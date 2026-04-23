@@ -53,7 +53,72 @@
                         <i class="fa-solid fa-house"></i>&nbsp;&nbsp;Dashboard
                     </a>
                 </li>
+                <li class="nav-item">
+                    <div class="accordion bg-dark text-white" id="sidebarAccordion1">
+                        <div class="accordion-item bg-dark border-0">
+                            <h2 class="accordion-header" id="headingBlog">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseBlog"
+                                    aria-expanded="false" aria-controls="collapseBlog">
+                                    <i class="fa-solid fa-list"></i>&nbsp; Manage Blog
+                                </button>
+                            </h2>
+                            <!-- COLLAPSE -->
+                            <div id="collapseBlog" class="accordion-collapse collapse {{ request()->routeIs('admin.blog.*') || request()->routeIs('admin.blog-category.*') ? 'show' : '' }}"
+                                aria-labelledby="headingBlog" data-bs-parent="#sidebarAccordion1">
 
+                                <div class="accordion-body bg-dark text-white">
+                                    <div>
+                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.blog-category.*') ? 'active' : '' }}"
+                                            href="{{ route('admin.blog-category.index') }}">
+                                            Category
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}"
+                                            href="{{ route('admin.blog.index') }}">
+                                            Blog
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="accordion bg-dark text-white" id="sidebarAccordion2">
+                        <div class="accordion-item bg-dark border-0">
+                            <h2 class="accordion-header" id="headingWork">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseWork"
+                                    aria-expanded="false" aria-controls="collapseWork">
+                                    <i class="fa-solid fa-list"></i>&nbsp; Manage Work
+                                </button>
+                            </h2>
+                            <!-- COLLAPSE -->
+                            <div id="collapseWork" class="accordion-collapse collapse {{ request()->routeIs('admin.work.*') || request()->routeIs('admin.work-category.*') ? 'show' : '' }}"
+                                aria-labelledby="headingWork" data-bs-parent="#sidebarAccordion2">
+
+                                <div class="accordion-body bg-dark text-white">
+                                    <div>
+                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.work-category.*') ? 'active' : '' }}"
+                                            href="{{ route('admin.work-category.index') }}">
+                                            Category
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.work.*') ? 'active' : '' }}"
+                                            href="{{ route('admin.work.index') }}">
+                                            Work
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="text-white nav-link" href="{{ route('admin.leads') }}">
                         <i class="fa-solid fa-house"></i>&nbsp;&nbsp;Leads
