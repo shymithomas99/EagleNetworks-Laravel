@@ -17,45 +17,6 @@
                     <ul class="list-group bg-transparent">
                         {!! implode(
                             '',
-                            $errors->all('<li style="font-size:1rem"
-                                                                                                class="text-left list-group-item bg-transparent">
-                                                                                                :message</li>'),
-                        ) !!}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    @endif
-</div>
-
-<script>
-    $(document).ready(function () {
-        setTimeout(function () {
-            $(".toast").toast('hide');
-        }, 5000); //  5000 milliseconds = 5 seconds
-    });
-</script>
-
-
-<div class="sessionMessage row justify-content-center" align="center">
-    @if ($message = Session::get('success'))
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
-                class="toast show bg-primary text-center" data-bs-autohide="false">
-                <div class="toast-body">
-                    <strong>{{ $message }}</strong>
-                </div>
-            </div>
-        </div>
-    @endif
-    @if ($errors->any())
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
-                class="toast show bg-primary text-center" data-bs-autohide="false">
-                <div class="toast-body">
-                    <ul class="list-group bg-transparent">
-                        {!! implode(
-                            '',
                             $errors->all('<li style="font-size:1rem" class="text-left list-group-item bg-transparent">
                          :message</li>'),
                         ) !!}
