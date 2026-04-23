@@ -1,40 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <h2>Dashboard Overview</h2>
 
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        </div>
+    <div style="background:#0d3f2f; color:#fff; padding:25px; border-radius:12px; width:280px;">
 
-        <!-- Content Row -->
-        <div class="row">
+        <h1 style="margin:0; font-size:40px;">{{ $totalLeads }}</h1>
+        <p style="margin:5px 0 15px;">Total Leads</p>
 
-            <!-- (Count) Card Example -->
-
-            <div class="col-xl-6 col-md-6 mb-6">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Text Boxes</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Blog</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fa fa-list fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
+        <a href="{{ route('admin.leads') }}"
+            style="display:inline-block; padding:8px 14px; background:#ff4d1c; color:#fff; text-decoration:none; border-radius:6px;">
+            View Leads →
+        </a>
 
     </div>
-    <!-- /.container-fluid -->
 @endsection

@@ -185,20 +185,20 @@
 
                 <select name="team" class="full">
                     <option value="">Select a team</option>
-                    <option>London</option>
-                    <option>Accra</option>
+                    <option value="London">London</option>
+                    <option value="Accra">Accra</option>
                 </select>
 
                 <select name="service" class="full">
                     <option value="">Select a service</option>
-                    <option>Web Development</option>
-                    <option>Marketing</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Marketing">Marketing</option>
                 </select>
 
                 <select name="package" class="full">
                     <option value="">None</option>
-                    <option>Basic</option>
-                    <option>Premium</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Premium">Premium</option>
                 </select>
 
                 <textarea name="message" class="full" placeholder="Your message">{{ old('message') }}</textarea>

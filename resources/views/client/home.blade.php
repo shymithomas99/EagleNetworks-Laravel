@@ -140,8 +140,8 @@
         <h2>LOGO</h2>
         <div>
             <a href="/">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Work</a>
+            <a href="/services">Services</a>
+            <a href="/work">Work</a>
             <a href="/contact">Contact</a>
             <a href="#" class="btn btn-primary">Get Started</a>
         </div>
@@ -209,11 +209,166 @@
         <a href="#" class="btn btn-primary">Contact Us</a>
     </section>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>© 2026 Agency. All rights reserved.</p>
-    </div>
+    {{--
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-</body>
+    <div id="map" style="height:500px; border-radius:10px;"></div>
+
+    <script>
+        var map = L.map('map').setView([20, 20], 2);
+
+        // ✅ WORKING DARK MAP
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap & CARTO'
+        }).addTo(map);
+
+        // Custom icon
+        var orangeIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+            iconSize: [25, 25]
+        });
+
+        // Locations
+        L.marker([10.0159, 76.3419], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("India - Kochi");
+        L.marker([52.6369, -1.1398], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("UK");
+        L.marker([43.6532, -79.3832], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("Canada");
+        L.marker([-33.8688, 151.2093], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("Australia");
+        L.marker([46.0569, 14.5058], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("Slovenia");
+        L.marker([41.9981, 21.4254], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("Macedonia");
+        L.marker([1.3521, 103.8198], {
+            icon: orangeIcon
+        }).addTo(map).bindPopup("Singapore");
+    </script>  --}}
+
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #map {
+            height: 500px;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 10px;
+        }
+
+        /* Optional: hide zoom buttons for clean UI */
+        .leaflet-control-zoom {
+            display: none;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <h2>Our Offices</h2>
+
+        <div id="map"></div>
+
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+        <script>
+            var map = L.map('map').setView([20, 20], 2);
+
+            // ✅ Dark map (no API key needed)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap & CARTO'
+            }).addTo(map);
+
+            // ✅ Custom orange icon
+            var orangeIcon = L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+                iconSize: [25, 25]
+            });
+
+            // ✅ Locations array
+            var locations = [{
+                    name: "Kochi, India",
+                    coords: [10.0159, 76.3419]
+                },
+                {
+                    name: "Bangalore, India",
+                    coords: [12.9716, 77.5946]
+                },
+                {
+                    name: "UK (Peterborough)",
+                    coords: [52.6369, -1.1398]
+                },
+                {
+                    name: "Canada (North York)",
+                    coords: [43.6532, -79.3832]
+                },
+                {
+                    name: "Australia (NSW)",
+                    coords: [-33.8688, 151.2093]
+                },
+                {
+                    name: "Slovenia (Ljubljana)",
+                    coords: [46.0569, 14.5058]
+                },
+                {
+                    name: "Macedonia (Skopje)",
+                    coords: [41.9981, 21.4254]
+                },
+                {
+                    name: "Singapore",
+                    coords: [1.3521, 103.8198]
+                }
+            ];
+
+            var markers = [];
+
+            // ✅ Loop and add markers
+            locations.forEach(function(loc) {
+                var marker = L.marker(loc.coords, {
+                        icon: orangeIcon
+                    })
+                    .addTo(map)
+                    .bindPopup("<b>" + loc.name + "</b>");
+
+                markers.push(marker);
+            });
+
+            // ✅ Auto fit all markers
+            var group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds());
+        </script>
+
+
+
+
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 Agency. All rights reserved.</p>
+        </div>
+
+    </body>
 
 </html>

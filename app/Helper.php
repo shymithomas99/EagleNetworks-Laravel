@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Helper
 {
@@ -45,5 +46,26 @@ class Helper
     // }
 
 
+    // use Illuminate\Support\Facades\Storage;
 
+
+    public static function uploadToS3($file, $folder = 'uploads')
+    {
+        if (!$file) return null;
+
+        // better method (handles file naming properly)
+        $path = Storage::disk('s3')->putFile($folder, $file);
+
+        return [
+            'url' => Storage::disk('s3')->url($path),
+            'key' => $path
+        ];
+    }
+
+    public static function deleteFromS3($key)
+    {
+        if ($key) {
+            Storage::disk('s3')->delete($key);
+        }
+    }
 }
