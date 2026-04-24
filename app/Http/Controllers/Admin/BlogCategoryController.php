@@ -55,7 +55,7 @@ class BlogCategoryController extends Controller
 
         BlogCategory::create($request->all());
 
-        return redirect()->route('admin.blog-category.index')->with('success', "Category Added");
+        return redirect()->route('admin.blog-category.index')->with('success', "Category added successfully");
     }
 
     /**
@@ -94,7 +94,7 @@ class BlogCategoryController extends Controller
 
         $blogCategory->update($request->all());
 
-        return redirect()->route('admin.blog-category.index')->with('success', "Category Updated");
+        return redirect()->route('admin.blog-category.index')->with('success', "Category updated successfully");
     }
 
     /**
@@ -106,18 +106,18 @@ class BlogCategoryController extends Controller
             return redirect()->back()->with('error', "Cannot delete: category has related blogs");
         }
         $blogCategory->delete();
-        return redirect()->back()->with('success', "Category Deleted");
+        return redirect()->back()->with('success', "Category deleted successfully");
     }
 
-    public function unpublish($id)
+    public function togglePublish($id)
     {
-        BlogCategory::where('id', $id)->update(['published' => false]);
-        return redirect()->back()->with('success', "Category Unpublished");
-    }
+        $blogCategory = BlogCategory::findOrFail($id);
+        $blogCategory->update(['published' => !$blogCategory->published]);
 
-    public function publish($id)
-    {
-        BlogCategory::where('id', $id)->update(['published' => true]);
-        return redirect()->back()->with('success', "Category Published");
+        $message = $blogCategory->published
+        ? 'Category published successfully'
+        : 'Category moved to draft';
+
+        return back()->with('success', $message);
     }
 }

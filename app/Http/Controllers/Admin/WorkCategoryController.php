@@ -55,7 +55,7 @@ class WorkCategoryController extends Controller
 
         WorkCategory::create($request->all());
 
-        return redirect()->route('admin.work-category.index')->with('success', "Category Added");
+        return redirect()->route('admin.work-category.index')->with('success', "Category added successfully");
     }
 
     /**
@@ -94,7 +94,7 @@ class WorkCategoryController extends Controller
 
         $workCategory->update($request->all());
 
-        return redirect()->route('admin.work-category.index')->with('success', "Category Updated");
+        return redirect()->route('admin.work-category.index')->with('success', "Category updated successfully");
     }
 
     /**
@@ -106,18 +106,18 @@ class WorkCategoryController extends Controller
             return redirect()->back()->with('error', "Cannot delete: category has related works");
         }
         $workCategory->delete();
-        return redirect()->back()->with('success', "Work Deleted");
+        return redirect()->back()->with('success', "Work deleted successfully");
     }
 
-    public function unpublish($id)
+    public function togglePublish($id)
     {
-        WorkCategory::where('id', $id)->update(['published' => false]);
-        return redirect()->back()->with('success', "Work Unpublished");
-    }
+        $workCategory = WorkCategory::findOrFail($id);
+        $workCategory->update(['published' => !$workCategory->published]);
 
-    public function publish($id)
-    {
-        WorkCategory::where('id', $id)->update(['published' => true]);
-        return redirect()->back()->with('success', "Work Published");
+        $message = $workCategory->published
+        ? 'Category published successfully'
+        : 'Category moved to draft';
+
+        return back()->with('success', $message);
     }
 }

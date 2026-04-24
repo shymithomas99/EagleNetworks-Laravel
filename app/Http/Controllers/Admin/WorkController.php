@@ -62,7 +62,7 @@ class WorkController extends Controller
 
         Work::create($request->all());
 
-        return redirect()->route('admin.work.index')->with('success', "Work Added");
+        return redirect()->route('admin.work.index')->with('success', "Work added successfully");
     }
 
     /**
@@ -106,7 +106,7 @@ class WorkController extends Controller
 
         $work->update($request->all());
 
-        return redirect()->route('admin.work.index')->with('success', "work Updated");
+        return redirect()->route('admin.work.index')->with('success', "work updated successfully");
     }
 
     /**
@@ -115,18 +115,18 @@ class WorkController extends Controller
     public function destroy(work $work)
     {
         $work->delete();
-        return redirect()->back()->with('success', "Work Deleted");
+        return redirect()->back()->with('success', "Work deleted successfully");
     }
 
-    public function unpublish($id)
+    public function togglePublish($id)
     {
-        Work::where('id', $id)->update(['published' => false]);
-        return redirect()->back()->with('success', "Work Unpublished");
-    }
+        $work = Work::findOrFail($id);
+        $work->update(['published' => !$work->published]);
 
-    public function publish($id)
-    {
-        Work::where('id', $id)->update(['published' => true]);
-        return redirect()->back()->with('success', "Work Published");
+        $message = $work->published
+        ? 'Work published successfully'
+        : 'Work moved to draft';
+
+        return back()->with('success', $message);
     }
 }

@@ -65,7 +65,7 @@
 
                     <div class="col-12 my-3">
                         <label for="excerpt">Excerpt</label><br>
-                        <textarea name="excerpt" id="excerpt" rows="3" style="width: 100%;"
+                        <textarea class="form-control" name="excerpt" id="excerpt" 
                             placeholder="Short summary shown in listings...">{{ old('excerpt', $blog->excerpt ?? '') }}</textarea>
                     </div>
 
@@ -86,8 +86,7 @@
 
                     <div class="col-6 my-3">
                         <label for="seoDescription">SEO Description</label><br>
-                        <textarea name="seoDescription" id="seoDescription"
-                            rows="3" style="width: 100%;">{{ old('seoDescription', $blog->seoDescription ?? '') }}</textarea>
+                        <textarea class="form-control" name="seoDescription" id="seoDescription">{{ old('seoDescription', $blog->seoDescription ?? '') }}</textarea>
                     </div>
 
                     <div class="col-6 my-3">
@@ -99,11 +98,8 @@
                 </div>
                 <div class="row">
                     <div class="col-6 my-3">
-                        <button type="submit" class="btn btn-primary w-100">{{ $blog->id ? 'Update' : 'Save' }}</button>
-                    </div>
-
-                    <div class="col-6 my-3">
-                        <a class="btn btn-secondary w-100" href="{{ route('admin.blog.index') }}">Cancel</a>
+                        <button type="submit" class="btn btn-primary">{{ $blog->id ? 'Update' : 'Save' }}</button>
+                        <a class="btn btn-secondary" href="{{ route('admin.blog.index') }}">Cancel</a>
                     </div>
                 </div>
             </form>

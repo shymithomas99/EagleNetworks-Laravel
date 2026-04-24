@@ -29,11 +29,8 @@
                 </div>
                 <div class="row">
                     <div class="col-6 my-3">
-                        <button type="submit" class="btn btn-primary w-100">{{ $blogCategory->id ? 'Update' : 'Save' }}</button>
-                    </div>
-
-                    <div class="col-6 my-3">
-                        <a class="btn btn-secondary w-100" href="{{ route('admin.blog-category.index') }}">Cancel</a>
+                        <button type="submit" class="btn btn-primary">{{ $blogCategory->id ? 'Update' : 'Save' }}</button>
+                        <a class="btn btn-secondary" href="{{ route('admin.blog-category.index') }}">Cancel</a>
                     </div>
                 </div>
             </form>

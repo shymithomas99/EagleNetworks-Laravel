@@ -4,107 +4,108 @@
         <div class="card">
             <div class="card-header">
                 {{ $title ?? null }}
+
+                <a href="{{ route('admin.work.create') }}" class="btn btn-success float-end">
+                    + Add Work
+                </a>
+
+                <div class="mt-3">
+                    <p><b>Manage all works here.</b></p>
+                </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="pb-3 row">
-                        <a href="{{route('admin.work.create')}}" class="btn btn-primary">
-                            Create
-                        </a>
-                    </div>
-                    <table class="table align-middle table-striped table-hover">
-                        <thead>
+                <table class="table align-middle table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Client</th>
+                            <th>Order</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($collections as $key => $item)
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Client</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Published</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $i = ($collections->currentPage() - 1) * $collections->perPage() + 1;
-                            @endphp
-                            @forelse ($collections as $key => $item)
-                                <tr>
-                                    <th scope="row">
-                                        {{ $key + $collections->perPage() * ($collections->currentPage() - 1) + 1 }}
-                                    </th>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->clientName }}</td>
-                                    <td>{{ $item->category->name }}</td>
-                                    {{-- <td>
-                                        <div class="form-check form-switch">
-                                        <input class="form-check-input toggle-publish" type="checkbox" value="1" data-id="{{ $item->id }}" {{ $item->published ? 'checked' : '' }}>
-                                        </div>
-                                    </td> --}}
-                                    <td>
-                                        @if ($item->published == true)
-                                            <a class="mx-2 col btn btn-success"
-                                                href="{{ route('admin.work.unpublish', $item->id) }}">
-                                                Publish
-                                            </a>
-                                        @else
-                                            <a class="mx-2 col btn btn-danger"
-                                                href="{{ route('admin.work.publish', $item->id) }}">
-                                                Unpublish
-                                            </a>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <a class="mx-2 col btn btn-success" href="{{ route('admin.work.edit', $item) }}">
-                                                <i class="fa-regular fa-pen-to-square"></i>
-                                            </a>
-                                            <button class="mx-2 col btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#delete{{ $item->id }}">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->category->name }}</td>
+                                <td>{{ $item->clientName }}</td>
+                                <td>{{ $item->displayOrder }}</td>
+                                <td>
+                                    <h4 class="pt-2"><span class="badge {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $item->published ? 'Published' : 'Draft' }}
+                                    </span></h4>
+                                </td>
+                                {{-- <td>
+                                    <div class="form-check form-switch">
+                                    <input class="form-check-input toggle-publish" type="checkbox" value="1" data-id="{{ $item->id }}" {{ $item->published ? 'checked' : '' }}>
+                                    </div>
+                                </td> --}}
+                                <td>
+                                    <form action="{{ route('admin.work.toggle-publish', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-primary">
+                                            {{ $item->published ? 'Unpublish' : 'Publish' }}
+                                        </button>
+                                    </form>
+                                    <a class="btn btn-info" href="{{ route('admin.work.edit', $item) }}">
+                                        Edit
+                                    </a>
+                                    <!-- DELETE -->
+                                    <form action="{{ route('admin.work.destroy', $item) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
 
-                                        {{-- DELETE MODAL START --}}
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1"
-                                            aria-labelledby="deleteLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteLabel">Confirm Delete</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form method="POST"
-                                                            action="{{ route('admin.work.destroy', $item) }}">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <div class="row">
-                                                                <button type="submit"
-                                                                    class="btn btn-danger">Delete</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                        <button class="btn btn-danger"
+                                            onclick="return confirm('Delete this work?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                    {{-- <button class="mx-2 col btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#delete{{ $item->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+
+                                    <!-- DELETE MODAL START -->
+                                    <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1"
+                                        aria-labelledby="deleteLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteLabel">Confirm Delete</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="POST"
+                                                        action="{{ route('admin.work.destroy', $item) }}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <div class="row">
+                                                            <button type="submit"
+                                                                class="btn btn-danger">Delete</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- DELETE MODAL END --}}
-                                    </td>
-                                </tr>
-                                @php
-                                    $i++;
-                                @endphp
-                            @empty
-                                <tr>
-                                    <td scope="col" colspan="6" style="text-align: center;">No Results to Show</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    <div class="row" align="center">
-                        {{ $collections->appends(['sortmenu' => $selectedsortedmenu ?? null])->links() }}
-                    </div>
+                                    </div> --}}
+                                    <!-- DELETE MODAL END -->
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" style="text-align: center;">No Results to Show</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+                <div class="row" align="center">
+                    {{ $collections->appends(['sortmenu' => $selectedsortedmenu ?? null])->links() }}
                 </div>
             </div>
         </div>

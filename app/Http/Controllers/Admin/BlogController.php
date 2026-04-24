@@ -61,7 +61,7 @@ class BlogController extends Controller
 
         Blog::create($request->all());
 
-        return redirect()->route('admin.blog.index')->with('success', "Blog Added");
+        return redirect()->route('admin.blog.index')->with('success', "Blog added successfully");
     }
 
     /**
@@ -104,7 +104,7 @@ class BlogController extends Controller
 
         $blog->update($request->all());
 
-        return redirect()->route('admin.blog.index')->with('success', "Blog Updated");
+        return redirect()->route('admin.blog.index')->with('success', "Blog updated successfully");
     }
 
     /**
@@ -113,18 +113,18 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        return redirect()->back()->with('success', "Blog Deleted");
+        return redirect()->back()->with('success', "Blog deleted successfully");
     }
 
-    public function unpublish($id)
+    public function togglePublish($id)
     {
-        Blog::where('id', $id)->update(['published' => false]);
-        return redirect()->back()->with('success', "Blog Unpublished");
-    }
+        $blog = Blog::findOrFail($id);
+        $blog->update(['published' => !$blog->published]);
 
-    public function publish($id)
-    {
-        Blog::where('id', $id)->update(['published' => true]);
-        return redirect()->back()->with('success', "Blog Published");
+        $message = $blog->published
+        ? 'Blog published successfully'
+        : 'Blog moved to draft';
+
+        return back()->with('success', $message);
     }
 }
