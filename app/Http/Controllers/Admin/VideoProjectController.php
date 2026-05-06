@@ -82,7 +82,8 @@ class VideoProjectController extends Controller
             'duration' => $request->duration,
             'thumbnail_url' => $thumbnail,
             'featured' => $request->has('featured'),
-            'published' => $request->action === 'publish',
+            // 'published' => $request->action === 'publish',
+            'published' => $request->has('published'),
             'display_order' => $request->display_order ?? 0,
         ]);
 
@@ -150,7 +151,8 @@ class VideoProjectController extends Controller
             'description' => $request->description,
             'duration' => $request->duration,
             'featured' => $request->has('featured'),
-            'published' => $request->action === 'publish',
+            // 'published' => $request->action === 'publish',
+            'published' => $request->has('published'),
             'display_order' => $request->display_order ?? 0,
         ]);
 
@@ -164,6 +166,30 @@ class VideoProjectController extends Controller
     //     return back()->with('success', 'Deleted!');
     // }
 
+    public function togglePublish($id)
+    {
+        $video = VideoProject::findOrFail($id);
+        $video->update(['published' => !$video->published]);
+
+        $message = $video->published
+            ? 'Video published successfully'
+            : 'Video moved to draft';
+
+        return back()->with('success', $message);
+    }
+
+    public function publish($id)
+    {
+        $video = VideoProject::findOrFail($id);
+
+        if ($video->published) {
+            return back()->with('info', 'Video is already published');
+        }
+
+        $video->update(['published' => true]);
+
+        return back()->with('success', 'Video published successfully');
+    }
 
     public function destroy($id)
     {

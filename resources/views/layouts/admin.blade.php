@@ -5,234 +5,282 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- FontAwesome (optional) -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Scripts -->
-    {{--  @vite(['resources/sass/app.scss', 'resources/js/app.js'])  --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     @include('includes.admin.header')
     @include('includes.admin.summernote')
 
+    <style>
+        body {
+            margin: 0;
+            background: #f8fafc;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background: #202123;
+            overflow-y: auto;
+            padding-top: 10px;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .nav-link {
+            color: #fff !important;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover {
+            background: #343a40;
+        }
+
+        .nav-link.active {
+            background: #f97316 !important;
+        }
+
+        .accordion-custom {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #202123;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .accordion-custom:hover {
+            background: #343a40;
+        }
+
+        .accordion-custom.active-parent {
+            background: #f97316;
+        }
+
+        .accordion-custom .arrow {
+            transition: 0.3s;
+        }
+
+        /* rotate arrow when open */
+        .accordion-custom.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding-left: 15px;
+        }
+
+        .accordion-content.show {
+            display: block;
+        }
+
+        .accordion-button {
+            background: #202123;
+            color: #fff;
+            padding: 10px 15px;
+            box-shadow: none;
+        }
+
+        .accordion-button.collapsed {
+            background: #202123;
+        }
+
+        .accordion-button.active-parent {
+            background: #f97316 !important;
+            color: #fff !important;
+        }
+
+        .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
+
+        .accordion-body {
+            padding-left: 20px;
+        }
+
+        .nav-anchor {
+            display: block;
+            padding: 6px 10px;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .nav-anchor:hover {
+            background: #343a40;
+        }
+
+        .nav-anchor.active {
+            background: #f97316;
+        }
+    </style>
 </head>
 
-<body class="bg-light-green">
-    <div id="app" class="d-flex h-100">
-        <!-- Sidebar -->
-        <nav class="text-white bg-dark">
-            <!-- Logo -->
-            <div class="p-3 mb-4 text-center">
-                <a href="{{ route('home') }}" class="text-decoration-none d-flex flex-column align-items-center">
-                    <img src="{{ asset('backend_assets/eaglenetworks-logo.png') }}" alt="Logo"
-                        style="max-width: 120px; height: auto;">
+<body>
 
-                    <span class="mt-2 text-white fw-bold">Eagle Networks |
-                        Admin</span>
+    <div class="d-flex">
+
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+
+            <div class="text-center mb-4">
+                <a href="{{ route('admin.dashboard') }}">
+                    <img src="{{ asset('backend_assets/eaglenetworks-logo.png') }}" style="max-width:120px;">
+                    <div class="text-white mt-2 fw-bold">Admin Panel</div>
                 </a>
             </div>
 
-            <!-- Menu Items -->
             <ul class="nav flex-column">
+
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="text-white nav-link" href="{{ route('admin.dashboard') }}">
-                        <i class="fa-solid fa-house"></i>&nbsp;&nbsp;Dashboard
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                        <i class="fa-solid fa-house"></i> Dashboard
                     </a>
                 </li>
+
+                <!-- Leads -->
+                <li class="nav-item py-1">
+                    <a href="{{ route('admin.leads') }}"
+                        class="nav-link {{ request()->routeIs('admin.leads') ? 'active' : '' }}">
+                        <i class="fa-solid fa-user"></i> Leads
+                    </a>
+                </li>
+
+                <!-- ACCORDION -->
                 <li class="nav-item">
-                    <div class="accordion bg-dark text-white" id="sidebarAccordion1">
-                        <div class="accordion-item bg-dark border-0">
-                            <h2 class="accordion-header" id="headingBlog">
-                                <button class="accordion-button collapsed bg-dark text-white" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseBlog"
-                                    aria-expanded="false" aria-controls="collapseBlog">
-                                    <i class="fa-solid fa-list"></i>&nbsp; Manage Blog
-                                </button>
-                            </h2>
-                            <!-- COLLAPSE -->
-                            <div id="collapseBlog" class="accordion-collapse collapse {{ request()->routeIs('admin.blog.*') || request()->routeIs('admin.blog-category.*') ? 'show' : '' }}"
-                                aria-labelledby="headingBlog" data-bs-parent="#sidebarAccordion1">
 
-                                <div class="accordion-body bg-dark text-white">
-                                    <div>
-                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.blog-category.*') ? 'active' : '' }}"
-                                            href="{{ route('admin.blog-category.index') }}">
-                                            Category
-                                        </a>
-                                    </div>
+                    @php
+                        $blogActive = request()->routeIs('admin.blog.*') || request()->routeIs('admin.blog-category.*');
+                        $workActive = request()->routeIs('admin.work.*') || request()->routeIs('admin.work-category.*');
+                        $videoActive = request()->routeIs('admin.videos.*') || request()->routeIs('admin.categories.*');
+                    @endphp
 
-                                    <div>
-                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}"
-                                            href="{{ route('admin.blog.index') }}">
-                                            Blog
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- BLOG -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ $blogActive ? 'active-parent active' : '' }}"
+                            data-target="blogMenu">
+                            <span><i class="fa fa-list"></i> Manage Blog</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="blogMenu" class="accordion-content {{ $blogActive ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.blog-category.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.blog-category.*') ? 'active' : '' }}">
+                                Category
+                            </a>
+
+                            <a href="{{ route('admin.blog.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
+                                Blog
+                            </a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <div class="accordion bg-dark text-white" id="sidebarAccordion2">
-                        <div class="accordion-item bg-dark border-0">
-                            <h2 class="accordion-header" id="headingWork">
-                                <button class="accordion-button collapsed bg-dark text-white" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseWork"
-                                    aria-expanded="false" aria-controls="collapseWork">
-                                    <i class="fa-solid fa-list"></i>&nbsp; Manage Work
-                                </button>
-                            </h2>
-                            <!-- COLLAPSE -->
-                            <div id="collapseWork" class="accordion-collapse collapse {{ request()->routeIs('admin.work.*') || request()->routeIs('admin.work-category.*') ? 'show' : '' }}"
-                                aria-labelledby="headingWork" data-bs-parent="#sidebarAccordion2">
 
-                                <div class="accordion-body bg-dark text-white">
-                                    <div>
-                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.work-category.*') ? 'active' : '' }}"
-                                            href="{{ route('admin.work-category.index') }}">
-                                            Category
-                                        </a>
-                                    </div>
+                    <!-- WORK -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ $workActive ? 'active-parent active' : '' }}"
+                            data-target="workMenu">
+                            <span><i class="fa fa-briefcase"></i> Manage Work</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
 
-                                    <div>
-                                        <a class="nav-anchor text-white {{ request()->routeIs('admin.work.*') ? 'active' : '' }}"
-                                            href="{{ route('admin.work.index') }}">
-                                            Work
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="workMenu" class="accordion-content {{ $workActive ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.work-category.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.work-category.*') ? 'active' : '' }}">
+                                Category
+                            </a>
+
+                            <a href="{{ route('admin.work.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.work.*') ? 'active' : '' }}">
+                                Work
+                            </a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="text-white nav-link" href="{{ route('admin.leads') }}">
-                        <i class="fa-solid fa-house"></i>&nbsp;&nbsp;Leads
-                    </a>
-                </li>
 
-                <!-- Video Categories -->
-                <li class="nav-item">
-                    <a class="text-white nav-link" href="{{ route('admin.categories.index') }}">
-                        <i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Video Categories
-                    </a>
-                </li>
+                    <!-- VIDEOS -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ $videoActive ? 'active-parent active' : '' }}"
+                            data-target="videoMenu">
+                            <span><i class="fa fa-video"></i> Manage Videos</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
 
-                <!-- Videos -->
-                <li class="nav-item">
-                    <a class="text-white nav-link" href="{{ route('admin.videos.index') }}">
-                        <i class="fa-solid fa-video"></i>&nbsp;&nbsp;Videos
-                    </a>
+                        <div id="videoMenu" class="accordion-content {{ $videoActive ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.categories.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+                                Category
+                            </a>
+
+                            <a href="{{ route('admin.videos.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.videos.*') ? 'active' : '' }}">
+                                Videos
+                            </a>
+                        </div>
+                    </div>
+
                 </li>
 
             </ul>
         </nav>
 
-        <style>
-            .nav-anchor {
-                display: block;
-                padding: 6px 10px;
-                color: #ffffff !important;
-                text-decoration: none;
-                transition: background-color 0.2s ease-in-out;
-            }
+        <!-- MAIN -->
+        <div class="main-content p-4">
 
-            .nav-anchor:hover {
-                background-color: #343a40;
-                /* Slightly lighter dark */
-                border-radius: 4px;
-                text-decoration: none;
-            }
-
-
-            .dropdown-item:hover {
-                background-color: #f97316 !important;
-                /* Tailwind's orange-500 */
-                color: white !important;
-            }
-
-            /* Dropdown Submenu Support */
-            .dropdown-submenu {
-                position: relative;
-            }
-
-            .dropdown-submenu>.dropdown-menu {
-                top: 0;
-                left: 100%;
-                margin-top: -1px;
-                display: none;
-            }
-
-            .dropdown-submenu:hover>.dropdown-menu {
-                display: block;
-            }
-
-            /* Make accordion dropdown arrow white */
-            .accordion-button::after {
-                filter: brightness(0) invert(1);
-                /* turns it white */
-            }
-
-            .bg-dark {
-                background-color: #202123 !important;
-            }
-
-            .collapse ul {
-                list-style: none;
-                padding-left: 50px;
-            }
-
-            .nav-link {
-                padding: 10px 15px;
-            }
-
-
-            /* Make sidebar full height and scrollable */
-            nav.bg-dark {
-                overflow-y: auto;
-                overflow-x: hidden;
-            }
-        </style>
-
-
-        <!-- Main Content -->
-        <div class="p-4 flex-grow-1">
-            <!-- Top Navbar -->
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-flex ms-auto">
-                        @csrf
-                        <button class="btn btn-danger" type="submit">Logout</button>
-                    </form>
-                </div>
+            <nav class="navbar bg-light mb-3">
+                <form method="POST" action="{{ route('admin.logout') }}" class="ms-auto">
+                    @csrf
+                    <button class="btn btn-danger">Logout</button>
+                </form>
             </nav>
 
-            <!-- Content Section -->
-            <main class="py-4">
-                @yield('content')
-            </main>
+            @yield('content')
         </div>
+
     </div>
 
-    {{-- @livewireScripts --}}
+    <!-- ✅ FIX SCRIPT -->
+    <script>
+        document.querySelectorAll('.accordion-custom').forEach(btn => {
+            btn.addEventListener('click', function() {
+
+                const target = document.getElementById(this.dataset.target);
+
+                // toggle current
+                target.classList.toggle('show');
+                this.classList.toggle('active');
+
+            });
+        });
+    </script>
+
     @include('includes.admin.SESSIONMESSAGE')
     @include('includes.admin.footer')
 
     @stack('scripts')
+
 </body>
 
 </html>

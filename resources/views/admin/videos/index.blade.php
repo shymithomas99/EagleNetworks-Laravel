@@ -28,9 +28,9 @@
                             <th>#</th>
                             <th>Title</th>
                             <th>Category</th>
-                            <th>Duration</th>
+                            {{--  <th>Duration</th>  --}}
                             <th>Featured</th>
-                            <th>Status</th>
+                            {{--  <th>Status</th>  --}}
                             <th>Order</th>
                             <th>Actions</th>
                         </tr>
@@ -42,34 +42,53 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $video->title }}</td>
                                 <td>{{ $video->category->name ?? '' }}</td>
-                                <td>{{ $video->duration }}</td>
+                                {{--  <td>{{ $video->duration }}</td>  --}}
 
                                 <td>
                                     {{ $video->featured ? 'Yes' : 'No' }}
                                 </td>
 
-                                <td>
+                                {{--  <td>
                                     {{ $video->published ? 'Published' : 'Draft' }}
-                                </td>
+                                </td>  --}}
 
                                 <td>{{ $video->display_order }}</td>
 
                                 <td>
-                                    <a href="{{ route('admin.videos.edit', $video->id) }}" class="btn btn-primary btn-sm">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </a>
+                                    <h4 class="pt-2"><span
+                                            class="badge {{ $video->published ? 'bg-success' : 'bg-secondary' }}">
+                                            {{ $video->published ? 'Published' : 'Draft' }}
+                                        </span></h4>
+                                </td>
 
+                                <td>
+                                    <form action="{{ route('admin.videos.toggle-publish', $video->id) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-primary">
+                                            {{ $video->published ? 'Unpublish' : 'Publish' }}
+                                        </button>
+                                    </form>
+
+
+                                    <a class="btn btn-info" href="{{ route('admin.videos.edit', $video->id) }}">
+                                        Edit
+                                    </a>
+                                    <!-- DELETE -->
                                     <form action="{{ route('admin.videos.delete', $video->id) }}" method="POST"
-                                        style="display:inline;">
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Delete this video?')">
-                                            <i class="fa-solid fa-trash"></i>
+                                        <button class="btn btn-danger" onclick="return confirm('Delete this video?')">
+                                            Delete
                                         </button>
                                     </form>
                                 </td>
+
+
+
 
                             </tr>
                         @endforeach
