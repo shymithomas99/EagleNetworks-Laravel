@@ -249,84 +249,11 @@
     </section>
 
     <!-- VIDEO SECTION -->
-    {{--  <section class="section">
-        <h2>Films, Commercials and Video Campaigns</h2>
 
-        <h4>Commercials</h4>
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Brand Commercial</p>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Product Showcase</p>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Corporate Spot</p>
-            </div>
-        </div>
-
-        <h4>Films</h4>
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Documentary</p>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Brand Story</p>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Client Journey</p>
-            </div>
-        </div>
-
-        <h4>Marketing Videos</h4>
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Social Media Campaign</p>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Product Demo</p>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumb">
-                    <div class="play">▶</div>
-                </div>
-                <p>Customer Testimonial</p>
-            </div>
-        </div>
-    </section>  --}}
 
     <section class="section">
         <h2>Films, Commercials and Video Campaigns</h2>
+
 
         @foreach ($categories as $category)
             <h4>{{ $category->name }}</h4>
@@ -336,8 +263,9 @@
                     <div class="video-card">
                         <div class="video-thumb">
                             {{-- Thumbnail (optional) --}}
-                            @if ($video->thumbnail)
-                                <img src="{{ asset('uploads/videos/' . $video->thumbnail) }}" alt="{{ $video->title }}">
+                            @if ($video->thumbnail_url)
+                                {{--  <img src="{{ asset('uploads/videos/' . $video->thumbnail) }}" alt="{{ $video->title }}">  --}}
+                                <img src="{{ asset($video->thumbnail_url) }}" width="120" alt="{{ $video->title }}">
                             @endif
 
                             <div class="play">▶</div>
