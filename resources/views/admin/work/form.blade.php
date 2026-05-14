@@ -93,9 +93,17 @@
                         <input type="text" id="testimonialAuthor" class="form-control" name="testimonialAuthor"
                             value="{{ old('testimonialAuthor', $work->testimonialAuthor ?? '') }}">
                     </div>
-                    <div class="col-12 my-3">
+                    <div class="col-6 my-3">
                         <label for="testimonial">Additional Content</label>
                         <textarea id="testimonial" class="textarea" name="testimonial">{{ old('testimonial', $work->testimonial ?? '') }}</textarea>
+                    </div>
+                    <div class="col-6 my-3">
+                        <label class="form-label" for="customFile">Cover Image (500 x 500 px){{ !$work->id ? '*' : '' }} :</label>
+                        <input type="file" class="form-control custom-file-input" id="coverImage" name="coverImage" accept="image/*" onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])" title="">
+                        <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100" src="{{ $work->coverImage ? asset('backend_assets/images/'.$work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
+                        @error("coverImage")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="col-4 my-3">
                         <input type="checkbox" class="form-check-input" id="featured"

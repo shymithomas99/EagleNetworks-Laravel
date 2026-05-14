@@ -32,6 +32,7 @@ class Work extends Model
         'featured',
         'published',
         'displayOrder',
+        'coverImage',
         'seoTitle',
         'seoDescription',
         'publishedAt',

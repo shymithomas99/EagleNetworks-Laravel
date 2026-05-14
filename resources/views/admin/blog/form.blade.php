@@ -63,10 +63,19 @@
                             value="{{ old('category', $blog->category ?? '') }}">
                     </div> --}}
 
-                    <div class="col-12 my-3">
+                    <div class="col-6 my-3">
                         <label for="excerpt">Excerpt</label><br>
-                        <textarea class="form-control" name="excerpt" id="excerpt" 
+                        <textarea class="form-control" name="excerpt" id="excerpt" rows="6" 
                             placeholder="Short summary shown in listings...">{{ old('excerpt', $blog->excerpt ?? '') }}</textarea>
+                    </div>
+
+                    <div class="col-6 my-3">
+                        <label class="form-label" for="customFile">Cover Image (500 x 500 px){{ !$blog->id ? '*' : '' }} :</label>
+                        <input type="file" class="form-control custom-file-input" id="coverImage" name="coverImage" accept="image/*" onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])" title="">
+                        <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100" src="{{ $blog->coverImage ? asset('backend_assets/images/'.$blog->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
+                        @error("coverImage")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="col-12 my-3">

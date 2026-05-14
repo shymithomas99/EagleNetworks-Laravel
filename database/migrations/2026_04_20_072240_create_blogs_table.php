@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('slug', 512)->unique()->comment('URL identifier, e.g. why-brand-strategy-matters');
             $table->string('author', 255)->default('Eagle London');
             $table->foreignId('category_id')->constrained('blog_categories');
-            $table->text('coverImageUrl')->nullable()->comment('CDN URL of cover image');
+            $table->text('coverImage')->nullable();
+            $table->text('coverImageUrl')->nullable();
             $table->string('coverImageKey', 512)->nullable()->comment('S3 key for deletion');
             $table->text('excerpt')->nullable()->comment('Short summary shown on listing page');
             $table->text('body')->comment('Full HTML body'); // NOT NULL

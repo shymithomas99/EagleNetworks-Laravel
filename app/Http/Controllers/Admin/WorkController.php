@@ -51,6 +51,7 @@ class WorkController extends Controller
                 'clientName' => ['required','string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
                 'projectYear' => ['nullable', 'integer', 'between:1900,' . date('Y')],
+                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             ],
             [
                 'clientName.required' => 'The client name field is required.',
@@ -58,9 +59,20 @@ class WorkController extends Controller
             ]
         );
 
-        $request->merge([ 'published' => $request->boolean('published'), 'featured' => $request->boolean('featured') ]);
+        $fileName = null;
+        if ($request->hasFile('coverImage')) {
+            $file = $request->file('coverImage');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('backend_assets/images'), $fileName);
+        }
 
-        Work::create($request->all());
+        $data = $request->all();
+
+        $data['published'] = $request->boolean('published');
+        $data['featured'] = $request->boolean('featured');
+        $data['coverImage'] = $fileName;
+
+        Work::create($data);
 
         return redirect()->route('admin.work.index')->with('success', "Work added successfully");
     }
@@ -95,6 +107,7 @@ class WorkController extends Controller
                 'clientName' => ['required','string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
                 'projectYear' => ['nullable', 'integer', 'between:1900,' . date('Y')],
+                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             ],
             [
                 'clientName.required' => 'The client name field is required.',
@@ -102,9 +115,24 @@ class WorkController extends Controller
             ]
         );
 
-        $request->merge([ 'published' => $request->boolean('published'), 'featured' => $request->boolean('featured') ]);
+        $fileName = $work->coverImage;
+        if ($request->hasFile('coverImage')) {
+            $file = $request->file('coverImage');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('backend_assets/images'), $fileName);
+            
+            if ($work->coverImage && file_exists(public_path('backend_assets/images/' . $work->coverImage))) {
+                unlink(public_path('backend_assets/images/' . $work->coverImage));
+            }
+        }
 
-        $work->update($request->all());
+        $data = $request->all();
+
+        $data['published'] = $request->boolean('published');
+        $data['featured'] = $request->boolean('featured');
+        $data['coverImage'] = $fileName;
+
+        $work->update($data);
 
         return redirect()->route('admin.work.index')->with('success', "work updated successfully");
     }

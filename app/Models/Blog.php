@@ -15,6 +15,7 @@ class Blog extends Model
         'author',
         'category_id',
         'excerpt',
+        'coverImage',
         'seoTitle',
         'seoDescription',
         'published',

@@ -134,6 +134,17 @@
         .nav-anchor.active {
             background: #f97316;
         }
+
+        /* #uploaded_img{
+            width: 60px;
+            height: 52px;
+            border-radius: 10px;
+            padding: 10px;
+            position: absolute;
+            right: 80px;
+            z-index: 9;
+            top: -7px;
+        } */
     </style>
 </head>
 

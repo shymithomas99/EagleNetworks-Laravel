@@ -51,15 +51,26 @@ class BlogController extends Controller
                 'author' => ['required','string'],
                 'category_id' => ['required', 'exists:blog_categories,id'],
                 'body' => ['required','string'],
+                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             ],
             [
                 'category_id.required' => 'Please select a category.',
             ]
         );
 
-        $request->merge([ 'published' => $request->boolean('published') ]);
+        $fileName = null;
+        if ($request->hasFile('coverImage')) {
+            $file = $request->file('coverImage');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('backend_assets/images'), $fileName);
+        }
 
-        Blog::create($request->all());
+        $data = $request->all();
+
+        $data['published'] = $request->boolean('published');
+        $data['coverImage'] = $fileName;
+
+        Blog::create($data);
 
         return redirect()->route('admin.blog.index')->with('success', "Blog added successfully");
     }
@@ -92,17 +103,32 @@ class BlogController extends Controller
                 'title' => ['required','string'],
                 'slug' => ['required','string', 'alpha_dash', Rule::unique('blogs', 'slug')->ignore($blog->id)],
                 'author' => ['required','string'],
-                'category_id' => ['required', 'exists:categories,id'],
+                'category_id' => ['required', 'exists:blog_categories,id'],
                 'body' => ['required','string'],
+                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             ],
             [
                 'category_id.required' => 'Please select a category.',
             ]
         );
 
-        $request->merge([ 'published' => $request->boolean('published') ]);
+        $fileName = $blog->coverImage;
+        if ($request->hasFile('coverImage')) {
+            $file = $request->file('coverImage');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('backend_assets/images'), $fileName);
+            
+            if ($blog->coverImage && file_exists(public_path('backend_assets/images/' . $blog->coverImage))) {
+                unlink(public_path('backend_assets/images/' . $blog->coverImage));
+            }
+        }
 
-        $blog->update($request->all());
+        $data = $request->all();
+
+        $data['published'] = $request->boolean('published');
+        $data['coverImage'] = $fileName;
+
+        $blog->update($data);
 
         return redirect()->route('admin.blog.index')->with('success', "Blog updated successfully");
     }

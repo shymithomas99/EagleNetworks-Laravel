@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('slug', 512)->unique()->comment('URL identifier, e.g. acca-brand-refresh');
             $table->string('clientName', 255);
             $table->foreignId('category_id')->constrained('work_categories');
-            $table->text('coverImageUrl')->nullable()->comment('CDN URL of cover/card image');
+            $table->text('coverImage')->nullable();
+            $table->text('coverImageUrl')->nullable();
             $table->string('coverImageKey', 512)->nullable()->comment('S3 key');
             $table->text('heroImageUrl')->nullable()->comment('CDN URL of full-width hero image');
             $table->string('heroImageKey', 512)->nullable()->comment('S3 key');

@@ -99,7 +99,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" style="text-align: center;">No Results to Show</td>
+                                <td colspan="7" style="text-align: center;">No Results to Show</td>
                             </tr>
                         @endforelse
                     </tbody>
