@@ -10,11 +10,6 @@
                     <div class="col-md-12 mb-8">
                         <label>Gallery Images (3456 x 2156 px)</label>
                         <div class="input-images-1" style="padding-top: .5rem;"></div>
-                        @error("gallery_images.*")
-                            <div class="fv-plugins-message-container">
-                                <div class="fv-help-block">{{ $message }}</div>
-                            </div>
-                        @endif
                     </div>
                 </div>
                 <div class="row">
