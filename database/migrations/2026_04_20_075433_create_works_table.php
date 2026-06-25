@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
+            $table->string('cover_title', 512);
+            $table->text('cover_description');
+            $table->string('core_service_1', 512);
+            $table->string('core_service_2', 512);
             $table->string('title', 512);
             $table->string('slug', 512)->unique()->comment('URL identifier, e.g. acca-brand-refresh');
             $table->string('clientName', 255);
@@ -20,6 +24,9 @@ return new class extends Migration
             $table->text('coverImage')->nullable();
             $table->text('coverImageUrl')->nullable();
             $table->string('coverImageKey', 512)->nullable()->comment('S3 key');
+            $table->text('featuredImage')->nullable();
+            $table->text('featuredImageUrl')->nullable();
+            $table->string('featuredImageKey', 512)->nullable()->comment('S3 key');
             $table->text('heroImageUrl')->nullable()->comment('CDN URL of full-width hero image');
             $table->string('heroImageKey', 512)->nullable()->comment('S3 key');
             $table->text('excerpt')->nullable()->comment('Short summary for listing card');

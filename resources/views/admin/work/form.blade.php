@@ -11,6 +11,40 @@
                 {{ $work->id ? method_field('PUT') : '' }}
                 <div class="row">
                     <div class="col-6 my-3">
+                        <label for="cover_title">Cover Title*</label>
+                        <input type="text" class="form-control" id="cover_title"
+                            placeholder="" name="cover_title"
+                            value="{{ old('cover_title', $work->cover_title ?? '') }}">
+                        @error("cover_title")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
+                        <label for="cover_description">Cover Description*</label>
+                        <textarea id="cover_description" class="form-control" name="cover_description">{{ old('cover_description', $work->cover_description ?? '') }}</textarea>
+                        @error("cover_description")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
+                        <label for="core_service_1">Core Service 1*</label>
+                        <input type="text" class="form-control" id="core_service_1"
+                            placeholder="" name="core_service_1"
+                            value="{{ old('core_service_1', $work->core_service_1 ?? '') }}">
+                        @error("core_service_1")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
+                        <label for="core_service_2">Core Service 2*</label>
+                        <input type="text" class="form-control" id="core_service_2"
+                            placeholder="" name="core_service_2"
+                            value="{{ old('core_service_2', $work->core_service_2 ?? '') }}">
+                        @error("core_service_2")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
                         <label for="title">Title*</label>
                         <input type="text" class="form-control" id="title"
                             placeholder="" name="title"
@@ -98,12 +132,22 @@
                         <textarea id="testimonial" class="textarea" name="testimonial">{{ old('testimonial', $work->testimonial ?? '') }}</textarea>
                     </div>
                     <div class="col-6 my-3">
-                        <label class="form-label" for="customFile">Cover Image (500 x 500 px){{ !$work->id ? '*' : '' }} :</label>
+                    <div class="col-12 my-3">
+                        <label class="form-label" for="customFile">Cover Image (1280 x 780 px)</label>
                         <input type="file" class="form-control custom-file-input" id="coverImage" name="coverImage" accept="image/*" onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])" title="">
-                        <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100" src="{{ $work->coverImage ? asset('backend_assets/images/'.$work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
+                        <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100" src="{{ $work->coverImage ? asset('backend_assets/work/cover-images/'.$work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
                         @error("coverImage")
                             <p style="color:red">{{ $message }}</p>
                         @enderror
+                    </div>
+                    <div class="col-12 my-3">
+                        <label class="form-label" for="customFile">Featured Image (3456 x 2156 px)</label>
+                        <input type="file" class="form-control custom-file-input" id="featuredImage" name="featuredImage" accept="image/*" onchange="document.getElementById('uploaded_bg_img').src = window.URL.createObjectURL(this.files[0])" title="">
+                        <img id="uploaded_bg_img" alt="Image" class="mt-1" width="130" height="100" src="{{ $work->featuredImage ? asset('backend_assets/work/featured-images/'.$work->featuredImage) : asset('backend_assets/images/upload_image.png') }}" />
+                        @error("featuredImage")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
                     </div>
                     <div class="col-4 my-3">
                         <input type="checkbox" class="form-check-input" id="featured"
@@ -135,7 +179,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6 my-3">
-                        <button type="submit" class="btn btn-primary">{{ $work->id ? 'Update' : 'Save' }}</button>
+                        <button type="submit" class="btn btn-primary">{{ $work->id ? 'Update and Continue' : 'Save and Continue' }}</button>
                         <a class="btn btn-secondary" href="{{ route('admin.work.index') }}">Cancel</a>
                     </div>
                 </div>

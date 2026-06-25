@@ -62,4 +62,7 @@ Route::middleware('auth')->group(function () {
     // Work
     Route::resource('work', WorkController::class);
     Route::patch('work/{id}/toggle-publish', [WorkController::class, 'togglePublish'])->name('work.toggle-publish');
+    Route::get('work/{id}/gallery-images-form', 'WorkController@galleryImagesForm')->name('work.gallery-images-form');
+    Route::post('delete-image', ['as'=>'delete-image','uses'=>'WorkController@deleteImage']);
+    Route::post('upload-image', ['as'=>'upload-image','uses'=>'WorkController@uploadImage']);
 });

@@ -10,6 +10,10 @@ class Work extends Model
     
     use SoftDeletes;
     protected $fillable = [
+        'cover_title',
+        'cover_description',
+        'core_service_1',
+        'core_service_2',
         'title',
         'slug',
         'clientName',
@@ -33,6 +37,7 @@ class Work extends Model
         'published',
         'displayOrder',
         'coverImage',
+        'featuredImage',
         'seoTitle',
         'seoDescription',
         'publishedAt',
@@ -74,5 +79,10 @@ class Work extends Model
     public function category()
     {
         return $this->belongsTo(WorkCategory::class);
+    }
+
+    public function galleryImages()
+    {
+        return $this->hasMany(WorkGallery::class);
     }
 }
