@@ -20,13 +20,6 @@
                         @enderror
                     </div>
                     <div class="col-6 my-3">
-                        <label for="cover_description">Cover Description*</label>
-                        <textarea id="cover_description" class="form-control" name="cover_description">{{ old('cover_description', $work->cover_description ?? '') }}</textarea>
-                        @error("cover_description")
-                            <p style="color:red">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-6 my-3">
                         <label for="core_service_1">Core Service 1*</label>
                         <input type="text" class="form-control" id="core_service_1"
                             placeholder="" name="core_service_1"

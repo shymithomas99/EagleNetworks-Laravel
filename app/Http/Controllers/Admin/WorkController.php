@@ -48,7 +48,6 @@ class WorkController extends Controller
         $request->validate(
             [
                 'cover_title' => ['required','string'],
-                'cover_description' => ['required','string'],
                 'core_service_1' => ['required','string'],
                 'core_service_2' => ['required','string'],
                 'title' => ['required','string'],
@@ -117,7 +116,6 @@ class WorkController extends Controller
         $request->validate(
             [
                 'cover_title' => ['required','string'],
-                'cover_description' => ['required','string'],
                 'core_service_1' => ['required','string'],
                 'core_service_2' => ['required','string'],
                 'title' => ['required','string'],

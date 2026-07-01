@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->string('cover_title', 512);
-            $table->text('cover_description');
             $table->string('core_service_1', 512);
             $table->string('core_service_2', 512);
             $table->string('title', 512);
