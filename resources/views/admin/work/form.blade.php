@@ -20,6 +20,38 @@
                         @enderror
                     </div>
                     <div class="col-6 my-3">
+                        <label for="title">Title*</label>
+                        <input type="text" class="form-control" id="title"
+                            placeholder="" name="title"
+                            value="{{ old('title', $work->title ?? '') }}">
+                        @error("title")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
+                        <label for="slug">Slug*</label>
+                        <input type="text" id="slug" name="slug" class="form-control"
+                            value="{{ old('slug', $work->slug ?? '') }}">
+                        @error("slug")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
+                        <label for="category_id">Category*</label>
+                        <select name="category_id" id="category_id" class="form-control">
+                            <option value="">-- Select Category --</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id', $work->category_id ?? '') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6 my-3">
                         <label for="core_service_1">Core Service 1*</label>
                         <input type="text" class="form-control" id="core_service_1"
                             placeholder="" name="core_service_1"
@@ -38,42 +70,10 @@
                         @enderror
                     </div>
                     <div class="col-6 my-3">
-                        <label for="title">Title*</label>
-                        <input type="text" class="form-control" id="title"
-                            placeholder="" name="title"
-                            value="{{ old('title', $work->title ?? '') }}">
-                        @error("title")
-                            <p style="color:red">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-6 my-3">
-                        <label for="slug">Slug*</label>
-                        <input type="text" id="slug" name="slug" class="form-control"
-                            value="{{ old('slug', $work->slug ?? '') }}">
-                        @error("slug")
-                            <p style="color:red">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-6 my-3">
                         <label for="clientName">Client Name*</label>
                         <input type="text" id="clientName" name="clientName" class="form-control"
                             value="{{ old('clientName', $work->clientName ?? '') }}">
                         @error("clientName")
-                            <p style="color:red">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-6 my-3">
-                        <label for="category_id">Category*</label>
-                        <select name="category_id" id="category_id" class="form-control">
-                            <option value="">-- Select Category --</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ old('category_id', $work->category_id ?? '') == $category->id ? 'selected' : '' }}>
-                                    {{ $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
                             <p style="color:red">{{ $message }}</p>
                         @enderror
                     </div>
