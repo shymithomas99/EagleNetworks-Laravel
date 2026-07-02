@@ -69,7 +69,7 @@
                             <p style="color:red">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="col-6 my-3">
+                    <div class="col-4 my-3">
                         <label for="clientName">Client Name*</label>
                         <input type="text" id="clientName" name="clientName" class="form-control"
                             value="{{ old('clientName', $work->clientName ?? '') }}">
@@ -77,12 +77,12 @@
                             <p style="color:red">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="col-6 my-3">
+                    <div class="col-4 my-3">
                         <label for="industry">Industry</label>
                         <input type="text" id="industry" class="form-control" name="industry"
                             value="{{ old('industry', $work->industry ?? '') }}">
                     </div>
-                    <div class="col-6 my-3">
+                    <div class="col-4 my-3">
                         <label for="projectYear">Project Year</label>
                         <input type="text" id="projectYear" class="form-control" inputmode="numeric" pattern="[0-9]*" maxlength="4" name="projectYear"
                             value="{{ old('projectYear', $work->projectYear ?? '') }}">

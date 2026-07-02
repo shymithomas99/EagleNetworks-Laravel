@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title', 512);
-            $table->string('slug', 512)->unique()->comment('URL identifier, e.g. why-brand-strategy-matters');
-            $table->string('author', 255)->default('Eagle London');
+            $table->string('url', 512)->nullable();
+            $table->string('slug', 512)->nullable()->unique()->comment('URL identifier, e.g. why-brand-strategy-matters');
+            $table->string('author', 255)->nullable();
             $table->foreignId('category_id')->constrained('blog_categories');
             $table->text('coverImage')->nullable();
             $table->text('coverImageUrl')->nullable();
             $table->string('coverImageKey', 512)->nullable()->comment('S3 key for deletion');
             $table->text('excerpt')->nullable()->comment('Short summary shown on listing page');
-            $table->text('body')->comment('Full HTML body'); // NOT NULL
+            $table->text('body')->nullable()->comment('Full HTML body');
             $table->boolean('published')->default(false)->comment('Controls public visibility');
             $table->timestamp('publishedAt')->nullable()->comment('Set when first published');
             $table->string('seoTitle', 512)->nullable()->comment('Optional SEO title override');

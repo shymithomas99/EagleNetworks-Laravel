@@ -21,17 +21,27 @@
                     </div>
 
                     <div class="col-6 my-3">
-                        <label for="slug">Slug*</label>
+                        <label for="url">URL</label>
+                        <input type="text" class="form-control" id="url"
+                            placeholder="External URL" name="url"
+                            value="{{ old('url', $blog->url ?? '') }}">
+                        @error("url")
+                            <p style="color:red">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="col-4 my-3">
+                        <label for="slug">Slug</label>
                         <input type="text" class="form-control" id="slug"
                             placeholder="article-slug" name="slug"
                             value="{{ old('slug', $blog->slug ?? '') }}">
                         @error("slug")
                             <p style="color:red">{{ $message }}</p>
                         @enderror
-                    </div>      
+                    </div>
 
-                    <div class="col-6 my-3">
-                        <label for="author">Author*</label>
+                    <div class="col-4 my-3">
+                        <label for="author">Author</label>
                         <input type="text" class="form-control" id="author"
                             placeholder="Eagle London" name="author"
                             value="{{ old('author', $blog->author ?? '') }}">
@@ -40,7 +50,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-6 my-3">
+                    <div class="col-4 my-3">
                         <label for="category_id">Category*</label>
                         <select name="category_id" id="category_id" class="form-control">
                             <option value="">-- Select Category --</option>
@@ -79,7 +89,7 @@
                     </div>
 
                     <div class="col-12 my-3">
-                        <label>Body*</label>
+                        <label>Body</label>
                         <textarea class="textarea" name="body">{{ old('body', $blog->body ?? '') }}</textarea>
                         @error("body")
                             <p style="color:red">{{ $message }}</p>

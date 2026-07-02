@@ -47,11 +47,12 @@ class BlogController extends Controller
         $request->validate(
             [
                 'title' => ['required','string'],
-                'slug' => ['required','string', 'alpha_dash', 'unique:blogs,slug'],
-                'author' => ['required','string'],
+                'url' => ['nullable','url'],
+                'slug' => ['nullable','string', 'alpha_dash', 'unique:blogs,slug'],
+                'author' => ['nullable','string'],
                 'category_id' => ['required', 'exists:blog_categories,id'],
-                'body' => ['required','string'],
-                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'body' => ['nullable','string'],
+                'coverImage' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
             ],
             [
                 'category_id.required' => 'Please select a category.',
@@ -101,11 +102,12 @@ class BlogController extends Controller
         $request->validate(
             [
                 'title' => ['required','string'],
-                'slug' => ['required','string', 'alpha_dash', Rule::unique('blogs', 'slug')->ignore($blog->id)],
-                'author' => ['required','string'],
+                'url' => ['nullable','url'],
+                'slug' => ['nullable','string', 'alpha_dash', Rule::unique('blogs', 'slug')->ignore($blog->id)],
+                'author' => ['nullable','string'],
                 'category_id' => ['required', 'exists:blog_categories,id'],
-                'body' => ['required','string'],
-                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'body' => ['nullable','string'],
+                'coverImage' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
             ],
             [
                 'category_id.required' => 'Please select a category.',
