@@ -1,6 +1,11 @@
-@extends('layouts.app')
-@section('content')@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
     <section class="section-hero contact-banner">
         <div class="container-custom">
             <div class="section-hero-sub">
@@ -24,7 +29,7 @@
 
 
 
-    <section id="contactForm" class="contact-form section-md">
+    <section id="contact-section" class="contact-form section-md">
 
         <div class=" container-custom d-flex flex-column">
             <div class="row">
@@ -38,28 +43,35 @@
                 </div>
             </div>
 
-
             <div class="form-section">
 
-                <form id="contactForm">
-
+                <form id="contactForm" method="POST" action="{{ route('contact.submit') }}">
+                    @csrf
                     <!-- Row 1 -->
                     <div class="row g-4">
                         <div class="col-md-6">
                             <label>Name *</label>
-                            <input type="text" class="form-control" placeholder="Your name" required>
+                            <input type="text" class="form-control" name="name" placeholder="Your name" required
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <small>{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label>Email *</label>
-                            <input type="email" class="form-control" placeholder="your@email.com" required>
+                            <input type="email" class="form-control" name="email" placeholder="your@email.com"
+                                value="{{ old('email') }}" required>
+                            @error('email')
+                                <small>{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
                             <!-- Who to speak -->
 
                             <label>Who would you like to speak to? *</label>
-                            <select class="form-select" required>
+                            <select class="form-select" name="team" required>
                                 <option selected disabled>Select a team</option>
                                 <option>London</option>
                                 <option>Accra</option>
@@ -70,7 +82,7 @@
                         <div class="col-md-6">
                             <!-- Service -->
                             <label>What service are you interested in? *</label>
-                            <select class="form-select" required>
+                            <select class="form-select" name="service" required>
                                 <option selected disabled>Select a service</option>
                                 <option>Creative Production</option>
                                 <option>Marketing & Consultancy</option>
@@ -86,7 +98,7 @@
                             <!-- Package -->
 
                             <label>Which package are you interested in?</label>
-                            <select class="form-select">
+                            <select class="form-select" name="package">
                                 <option>None</option>
                                 <option>Ignite</option>
                                 <option>Amplify</option>
@@ -98,15 +110,23 @@
                             <!-- Message -->
 
                             <label>Message *</label>
-                            <textarea class="form-control"
-                                placeholder="Tell us what you're trying to achieve, your timeline, and any key challenges." required></textarea>
+                            <textarea class="form-control" name="message"
+                                placeholder="Tell us what you're trying to achieve, your timeline, and any key challenges." required>{{ old('message') }}</textarea>
+
+                            @error('message')
+                                <small>{{ $message }}</small>
+                            @enderror
 
                         </div>
+
+
+
 
                         <div class="col-md-12">
-                            <!-- Button -->
-                            <a href="#" class="commn-btn btn-primary-custom w-100">Send Message</a>
+                            <button class="commn-btn btn-primary-custom w-100">Send Message</button>
                         </div>
+
+
 
                         <div
                             class="col-md-12 contact-submit-text x-small-text text-muted fw-normal d-flex justify-content-center">
@@ -114,7 +134,6 @@
                             </a>&nbspand&nbsp<a href="/terms-of-use"> Terms of Use</a>.
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -324,71 +343,4 @@
 
         </div>
     </section>
-
-
-
-    {{--  <!-- FORM -->
-    <section class="section">
-        <h2>Send Us a Message</h2>
-        <p>Fill out the form below and we'll respond within 24 hours.</p>
-
-
-
-        <form method="POST" action="{{ route('contact.submit') }}">
-            @csrf
-
-            <div class="form-grid">
-                <input type="text" name="name" placeholder="Your name" value="{{ old('name') }}">
-                @error('name')
-                    <small>{{ $message }}</small>
-                @enderror
-
-                <input type="email" name="email" placeholder="your@email.com" value="{{ old('email') }}">
-                @error('email')
-                    <small>{{ $message }}</small>
-                @enderror
-
-                <select name="team" class="full">
-                    <option value="">Select a team</option>
-                    <option value="London">London</option>
-                    <option value="Accra">Accra</option>
-                </select>
-
-                <select name="service" class="full">
-                    <option value="">Select a service</option>
-                    <option value="Web Development">Web Development</option>
-                    <option value="Marketing">Marketing</option>
-                </select>
-
-                <select name="package" class="full">
-                    <option value="">None</option>
-                    <option value="Basic">Basic</option>
-                    <option value="Premium">Premium</option>
-                </select>
-
-                <textarea name="message" class="full" placeholder="Your message">{{ old('message') }}</textarea>
-
-                @error('message')
-                    <small>{{ $message }}</small>
-                @enderror
-
-                <button class="submit-btn full">Send Message</button>
-            </div>
-        </form>
-
-        <!-- CARDS -->
-        <div class="cards">
-            <div class="card">
-                <h4>London</h4>
-                <p>Eagle London Agency</p>
-                <p>+44 0203 967 0281</p>
-            </div>
-
-            <div class="card dark">
-                <h4>Accra</h4>
-                <p>EMH Global Ghana Limited</p>
-                <p>+233 302 257 395</p>
-            </div>
-        </div>
-    </section>  --}}
 @endsection

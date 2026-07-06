@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero service-bnr">
 
@@ -12,7 +12,7 @@
                             tailored solutions for your business. Each service is designed to work together for maximum
                             impact.</div>
 
-                        <a href="/packages" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a
+                        <a href="packages.php" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a
                             Conversation<i class="bi bi-arrow-right ms-2"></i></a>
                     </div>
 
@@ -378,8 +378,8 @@
     <!-- --------------------creative section ends here--------------------------- -->
 
     <!-- =========================
-            IN HOUSE PROJECTS SECTION
-            ========================= -->
+        IN HOUSE PROJECTS SECTION
+        ========================= -->
 
     <section class="inhouse-projects-section">
         <div class="container-custom">
@@ -477,7 +477,7 @@
                                 quality visual storytelling.
                             </p>
 
-                            <a href="/media" class="initiative-link">
+                            <a href="media.php" class="initiative-link">
                                 See More
                                 <span>→</span>
                             </a>
@@ -492,8 +492,8 @@
         </div>
     </section>
     <!-- =========================
-            IN HOUSE PROJECTS SECTION
-            ========================= -->
+        IN HOUSE PROJECTS SECTION
+        ========================= -->
 
     <section class="how-we-deliver section-md">
         <div class="container-custom">
@@ -558,7 +558,7 @@
                         </div>
                         <h3>NHS Digital & Outdoor Campaign</h3>
                         <p>NHS Digital & Outdoor Campaign</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="details.php" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -569,7 +569,7 @@
                         </div>
                         <h3>Kings College London Chronic Kidney Disease Project</h3>
                         <p>Kings College London Chronic Kidney Disease Project</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="details.php" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -579,7 +579,7 @@
                         </div>
                         <h3>Paul Robinson West Ham TV Ad</h3>
                         <p>Paul Robinson West Ham TV Ad</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="details.php" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -589,7 +589,7 @@
                         </div>
                         <h3>Toyota Ghana</h3>
                         <p>Toyota Ghana</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="details.php" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
                     </div>
                 </div>
 
@@ -600,112 +600,120 @@
     <section class="highlight section">
         <div class="container-custom-2">
             <div class="highlight-content">
-                <h2 class="h2-30">Not sure which service is right for you?
+                <h2 class="h2-30 lh-base">Not sure which service is right for you?
                     We'll help you define the right approach.</h2>
 
-                <a href="/contact" class="commn-btn btn-white">Start a conversation</a>
+                <a href="contact.php" class="commn-btn btn-white">Start a conversation</a>
             </div>
         </div>
 
     </section>
 
 
-
-    <section class="faq-section section-md">
-        <div class="container-custom-2">
-            <div class="d-flex flex-column align-items-center text-center">
-                <div class="small-text mb-2">
-                    FAQ
-                </div>
-                <h2>Services FAQs</h2>
-                <div class="subhead">Common questions about our services, timelines and how projects are structured.
-                </div>
-            </div>
-
-            <div class="faq-section-aacordian pt-5">
-
-                <div class="accordion accordion-flush custom-faq" id="faqAccordion">
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne">
-                                What types of services do you offer?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                We provide creative production, film, marketing, digital and strategic support depending
-                                on project requirements and objectives.
-                            </div>
-                        </div>
+    <section class="faq-section section">
+        <div class="container-custom">
+            <div class="faq-main">
+                <div class="d-flex flex-column align-items-start text-center">
+                    <div class="tag orange-bg text-white mb-3">
+                        FAQ
                     </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo">
-                                Can services be combined?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes. Services can be combined into a single delivery approach depending on project needs
-                                and outcomes.
-                            </div>
-                        </div>
+                    <h2 class="h2-36">Services FAQ</h2>
+                    <div class="subhead">Common questions about how Eagle London works and what we deliver.
                     </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree">
-                                How long do service projects take?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Timelines vary based on scope, approvals, production requirements and delivery
-                                complexity.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour">
-                                Do you offer tailored service packages?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes. Services can be structured into tailored packages aligned with goals, timelines and
-                                budgets.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive">
-                                How do we get started?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                You can start by contacting the team to discuss requirements, timelines and objectives
-                                before defining the scope.
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
+                <div class="faq-section-accordian pt-3">
+
+                    <div class="accordion accordion-flush custom-faq" id="faqAccordion">
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne">
+                                    What services does Eagle London offer?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle London offers five integrated services: Strategy & Consulting, Marketing &
+                                    Communications, Creative Production, Customer Support Services, and Media & Insights.
+                                    All services are delivered by our integrated London and Accra teams.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo">
+                                    How does Eagle London deliver work across the UK and Africa?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We operate from two offices — London and Accra — as one integrated team. London leads on
+                                    UK and European strategy and client management, while Accra provides African market
+                                    expertise and creative production. Both teams collaborate on every project
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree">
+                                    What types of organisations does Eagle London work with?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle London works with startups and new ventures, SMEs and non-profits, and corporates
+                                    and government organisations. Our client portfolio includes the NHS, King's College
+                                    London, Toyota Ghana, and Paul Robinson West Ham.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour">
+                                    How do I start working with Eagle London?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The best starting point is a discovery conversation. Contact us via the form on our
+                                    Contact page, by email, or by WhatsApp. We respond within one business day and will
+                                    recommend the right service package for your stage and goals
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive">
+                                    Does Eagle London work on one-off projects or ongoing partnerships?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We work both ways. Our Eagle Ignite package is ideal for defined project scopes. Eagle
+                                    Amplify and Eagle Connect are structured as ongoing partnerships. We can also discuss
+                                    bespoke arrangements based on your specific needs.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
+
+
 
     <section class="ready-to section-md">
         <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
@@ -716,9 +724,9 @@
                 discuss your needs.</p>
 
             <div class="d-flex flex-column flex-sm-row">
-                <a href="/contact" class=" commn-btn btn-white me-0 me-sm-3 mb-3 mb-sm-0">Start a Conversation<i
-                        class="bi bi-arrow-right ms-2"></i></a>
-                <a href="/work" class="commn-btn btn-white">View Our Work</a>
+                <a href="contact.php" class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a
+                    Conversation<i class="bi bi-arrow-right ms-2"></i></a>
+                <a href="work.php" class="commn-btn btn-primary-custom">View Our Work</a>
             </div>
         </div>
 

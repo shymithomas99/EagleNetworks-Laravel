@@ -20,12 +20,15 @@
 
                 <ul class="list-unstyled footer-links">
                     <li><a href="/" class="small-text">Home</a></li>
-                    <li><a href="/about" class="small-text">About Us</a></li>
                     <li><a href="/services" class="small-text">Services</a></li>
                     <li><a href="/packages" class="small-text">Packages</a></li>
+                    <li><a href="/london" class="small-text">London</a></li>
+                    <li><a href="/accra" class="small-text">Accra</a></li>
+                    <li><a href="/work" class="small-text">Our work</a></li>
+                    <li><a href="/insights" class="small-text">Insights</a></li>
+                    <li><a href="/about" class="small-text">About Us</a></li>
                     <li><a href="/contact" class="small-text">Contact</a></li>
-                    <li><a href="/london" class="small-text">Eagle London</a></li>
-                    <li><a href="/accra" class="small-text">Eagle Accra</a></li>
+
                 </ul>
             </div>
 
@@ -222,7 +225,7 @@
 
                 <ul class="list-unstyled footer-links-subtle">
                     <li><a href="/privacy-policy" class="small-text">Privacy Policy</a></li>
-                    <li><a href="/terms-of-use" class="small-text">Terms of Use</a></li>
+                    <li><a href="/terms" class="small-text">Terms of Use</a></li>
                     <li><a href="/sitemap" class="small-text">Sitemap</a></li>
                     <li>
                         <a href="#" class="small-text" id="openCookieSettings">
@@ -244,24 +247,73 @@
                             to your inbox.</p>
                     </div>
                 </div>
-                <div class="row g-2 w-100">
+                {{--  <div class="row g-2 w-100">
                     <div class="subscribe-input">
-                        <form class="d-flex flex-wrap flex-lg-nowrap">
+                        <form action="{{ route('newsletter.subscribe') }}" method="POST"
+                            class="d-flex flex-wrap flex-lg-nowrap">
                             <div class="input-group">
                                 <span class="input-group-text bg-white border-0 px-3">
                                     <i class="bi bi-envelope text-muted"></i>
                                 </span>
-                                <input type="email" class="form-control text-muted" placeholder="Enter your email"
-                                    aria-label="Enter your email">
+
+                                <input type="email" name="email" class="form-control text-muted"
+                                    placeholder="Enter your email" aria-label="Enter your email" required>
                             </div>
 
                         </form>
                     </div>
-                    <div class="subscribe-button"> <button type="submit"
-                            class=" commn-btn btn-primary-custom">Subscribe</button>
+                    <div class="subscribe-button">
+                        <button type="submit" class=" commn-btn btn-primary-custom">Subscribe</button>
                     </div>
                     <p class="x-small-text mt-3 mb-0 fw-normal">We respect your
                         privacy. Unsubscribe at any time.</p>
+                </div>  --}}
+
+                <div class="row g-2 w-100">
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST">
+                        @csrf
+
+                        <div class="d-flex flex-wrap flex-lg-nowrap gap-2">
+
+                            <div class="subscribe-input flex-grow-1">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-0 px-3">
+                                        <i class="bi bi-envelope text-muted"></i>
+                                    </span>
+
+                                    <input type="email" name="email" class="form-control text-muted"
+                                        placeholder="Enter your email" required>
+                                </div>
+                            </div>
+
+                            <div class="subscribe-button">
+                                <button type="submit" class="commn-btn btn-primary-custom">
+                                    Subscribe
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <p class="x-small-text mt-3 mb-0 fw-normal">
+                        We respect your privacy.
+                        {{--  <a href="{{ route('newsletter.unsubscribe', $subscriber->id) }}">  --}}
+                        Unsubscribe
+                        {{--  </a>  --}}
+                        at any time.
+                    </p>
+
+                    @if (session('success'))
+                        <div class="alert alert-success mt-2">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-2">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -366,7 +418,8 @@
                                 </div>
                                 <!-- Toggle -->
                                 <label class="cookie-switch">
-                                    <input type="checkbox">
+                                    {{--  <input type="checkbox">  --}}
+                                    <input type="checkbox" id="analyticsCookies">
                                     <span class="cookie-slider"></span>
                                 </label>
                             </div>
@@ -385,17 +438,31 @@
             <div class="cookie-modal-footer">
 
                 <div>
-                    <button class="cookie-btn cookie-outline me-2">
+                    {{--  <button class="cookie-btn cookie-outline me-2">
                         Reject All
                     </button>
 
                     <button class="cookie-btn cookie-outline">
                         Accept All
+                    </button>  --}}
+
+                    <button class="cookie-btn cookie-outline me-2" id="rejectAllBtn">
+                        Reject All
                     </button>
+
+                    <button class="cookie-btn cookie-outline" id="acceptAllBtn">
+                        Accept All
+                    </button>
+
+
                 </div>
 
 
-                <button class="cookie-btn cookie-fill">
+                {{--  <button class="cookie-btn cookie-fill">
+                    Save Preferences
+                </button>  --}}
+
+                <button class="cookie-btn cookie-fill" id="savePreferencesBtn">
                     Save Preferences
                 </button>
 
@@ -465,7 +532,8 @@
     });
 </script>
 
-<script>
+{{--  cookies modal  --}}
+{{--  <script>
     const cookieBar = document.getElementById("cookieBar");
     const closeCookie = document.getElementById("closeCookie");
 
@@ -511,6 +579,201 @@
             }
         });
     }
+</script>  --}}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const cookieBar = document.getElementById("cookieBar");
+        const cookieModal = document.getElementById("cookieModal");
+
+        const openCookieModal = document.getElementById("openCookieModal");
+        const openCookieSettings = document.getElementById("openCookieSettings");
+        const closeCookieModal = document.getElementById("closeCookieModal");
+
+        const analyticsCheckbox = document.getElementById("analyticsCookies");
+
+        const rejectBtn = document.getElementById("rejectAllBtn");
+        const acceptBtn = document.getElementById("acceptAllBtn");
+        const saveBtn = document.getElementById("savePreferencesBtn");
+
+        const acceptBarBtn = document.getElementById("acceptBarBtn");
+        const rejectBarBtn = document.getElementById("rejectBarBtn");
+
+        // ===================================
+        // OPEN MODAL
+        // ===================================
+
+        if (openCookieModal) {
+            openCookieModal.addEventListener("click", function() {
+                cookieModal.classList.add("show");
+            });
+        }
+
+        if (openCookieSettings) {
+            openCookieSettings.addEventListener("click", function(e) {
+                e.preventDefault();
+                cookieModal.classList.add("show");
+            });
+        }
+
+        // ===================================
+        // CLOSE MODAL
+        // ===================================
+
+        if (closeCookieModal) {
+            closeCookieModal.addEventListener("click", function() {
+                cookieModal.classList.remove("show");
+            });
+        }
+
+        if (cookieModal) {
+            cookieModal.addEventListener("click", function(e) {
+                if (e.target === cookieModal) {
+                    cookieModal.classList.remove("show");
+                }
+            });
+        }
+
+        // ===================================
+        // CHECK SAVED CONSENT
+        // ===================================
+
+        const consent = localStorage.getItem("cookieConsent");
+
+        if (consent && cookieBar) {
+            cookieBar.style.display = "none";
+        }
+
+        // ===================================
+        // BAR ACCEPT
+        // ===================================
+
+        if (acceptBarBtn) {
+            acceptBarBtn.addEventListener("click", function() {
+
+                localStorage.setItem("cookieConsent", JSON.stringify({
+                    analytics: true
+                }));
+
+                cookieBar.style.display = "none";
+
+                loadAnalytics();
+            });
+        }
+
+        // ===================================
+        // BAR REJECT
+        // ===================================
+
+        if (rejectBarBtn) {
+            rejectBarBtn.addEventListener("click", function() {
+
+                localStorage.setItem("cookieConsent", JSON.stringify({
+                    analytics: false
+                }));
+
+                cookieBar.style.display = "none";
+            });
+        }
+
+        // ===================================
+        // MODAL ACCEPT
+        // ===================================
+
+        if (acceptBtn) {
+            acceptBtn.addEventListener("click", function() {
+
+                localStorage.setItem("cookieConsent", JSON.stringify({
+                    analytics: true
+                }));
+
+                if (cookieBar) cookieBar.style.display = "none";
+
+                cookieModal.classList.remove("show");
+
+                loadAnalytics();
+            });
+        }
+
+        // ===================================
+        // MODAL REJECT
+        // ===================================
+
+        if (rejectBtn) {
+            rejectBtn.addEventListener("click", function() {
+
+                localStorage.setItem("cookieConsent", JSON.stringify({
+                    analytics: false
+                }));
+
+                if (cookieBar) cookieBar.style.display = "none";
+
+                cookieModal.classList.remove("show");
+            });
+        }
+
+        // ===================================
+        // SAVE PREFERENCES
+        // ===================================
+
+        if (saveBtn) {
+            saveBtn.addEventListener("click", function() {
+
+                const preferences = {
+                    analytics: analyticsCheckbox ?
+                        analyticsCheckbox.checked : false
+                };
+
+                localStorage.setItem(
+                    "cookieConsent",
+                    JSON.stringify(preferences)
+                );
+
+                if (cookieBar) cookieBar.style.display = "none";
+
+                cookieModal.classList.remove("show");
+
+                if (preferences.analytics) {
+                    loadAnalytics();
+                }
+            });
+        }
+
+        // ===================================
+        // RESTORE SETTINGS
+        // ===================================
+
+        if (consent) {
+
+            const settings = JSON.parse(consent);
+
+            if (analyticsCheckbox) {
+                analyticsCheckbox.checked =
+                    settings.analytics || false;
+            }
+
+            if (settings.analytics) {
+                loadAnalytics();
+            }
+        }
+
+        // ===================================
+        // ANALYTICS LOADER
+        // ===================================
+
+        function loadAnalytics() {
+
+            console.log("Analytics Loaded");
+
+            // Example:
+            // Google Analytics
+            // Umami
+            // Ahrefs
+        }
+
+    });
 </script>
 
 <!-- service card click event function -->
@@ -668,7 +931,22 @@
 </script>
 
 
+<!-- =============== whtsapp modal service tage script ===============  -->
 
+<script>
+    document.querySelectorAll('.service-tag').forEach(tag => {
+
+        tag.addEventListener('click', function() {
+
+            this.classList.toggle('active');
+
+        });
+
+    });
+</script>
+
+
+{{--
 </body>
 
-</html>
+</html>  --}}

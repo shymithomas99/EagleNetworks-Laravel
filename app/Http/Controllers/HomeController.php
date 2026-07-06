@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactAdminEnquiry;
 use App\Models\Contact;
+use App\Models\NewsletterSubscriber;
 use App\Models\VideoCategory;
 use App\Models\VideoProject;
 use Illuminate\Http\Request;
@@ -24,10 +25,10 @@ class HomeController extends Controller
 
     public function work()
     {
-        $categories = VideoCategory::orderBy('display_order')->get();
+        $categories = VideoCategory::orderBy('display_order', 'desc')->get();
 
         $videos = VideoProject::with('category')
-            ->orderBy('display_order')
+            ->orderBy('display_order', 'desc')
             ->get();
 
         return view('client.work', compact('categories', 'videos'));
@@ -65,5 +66,54 @@ class HomeController extends Controller
         // Mail::to($data['email'])->send(new CitizenRegistrationUserEnquiry($contentData));
 
         return redirect()->back()->with('success', 'Form submitted successfully!');
+    }
+
+
+    public function media()
+    {
+        $categories = VideoCategory::orderBy('display_order', 'desc')->get();
+
+        $videos = VideoProject::with('category')
+            ->orderBy('display_order', 'desc')
+            ->get();
+
+        return view('client.media', compact('categories', 'videos'));
+    }
+
+
+
+
+    public function newsletterSubscribe(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|max:255'
+        ]);
+
+        // $exists = NewsletterSubscriber::where('email', $request->email)->first();
+
+        $exists = NewsletterSubscriber::query()
+            ->where('email', $request->email)
+            ->first();
+
+        if ($exists) {
+            return redirect()->back()
+                ->with('error', 'This email is already subscribed.');
+        }
+
+        NewsletterSubscriber::create([
+            'email' => $request->email,
+            'status' => 1
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Thank you for subscribing to our newsletter.');
+    }
+
+
+    public function insights()
+    {
+
+
+        return view('client.insights');
     }
 }
