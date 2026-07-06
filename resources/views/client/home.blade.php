@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 
 @section('content')
     <!-- ========================= COOKIES BAR ========================= -->
@@ -16,8 +16,7 @@
                 </p>
 
                 <div class="cookie-actions">
-
-                    <button class="cookie-btn cookie-outline">
+                    <button class="cookie-btn cookie-outline" id="rejectBarBtn">
                         Reject Non-Essential
                     </button>
 
@@ -25,7 +24,7 @@
                         Manage Preferences
                     </button>
 
-                    <button class="cookie-btn cookie-fill">
+                    <button class="cookie-btn cookie-fill" id="acceptBarBtn">
                         Accept All
                     </button>
 
@@ -39,9 +38,6 @@
 
         </div>
     </div>
-
-
-
 
     <!-- =================homepage content starts here======================== -->
 
@@ -1087,55 +1083,55 @@
     </section>
 
     <!-- <section class="home-insights section-md">
-                                    <div class="container-custom d-flex flex-column">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h2 class="element-2">Insights</h2>
-                                                <div class="subhead mb-0">
-                                                    Read our latest thinking on strategy, creativity, technology, and business growth. Our insights
-                                                    are grounded in real client work and industry expertise. We share what we learn to help our
-                                                    community stay ahead.
-                                                </div>
-                                            </div>
-                                        </div>
+                                                                        <div class="container-custom d-flex flex-column">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <h2 class="element-2">Insights</h2>
+                                                                                    <div class="subhead mb-0">
+                                                                                        Read our latest thinking on strategy, creativity, technology, and business growth. Our insights
+                                                                                        are grounded in real client work and industry expertise. We share what we learn to help our
+                                                                                        community stay ahead.
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
 
-                                        <div class="row cmn-sec-padding g-4 mb-5">
-                                            <div class="col-md-4">
-                                                <div class="card-1">
-                                                    <div class="x-small-text insight-date">March 2026</div>
-                                                    <h6 class="my-3">The Future of African Tech</h6>
-                                                    <p class="small-text text-muted mb-3">Committing to eco-friendly operations and
-                                                        digital-first
-                                                        workflows. We believe responsible business is good business.</p>
-                                                    <a href="#" class="button-link">Read More <i class="bi bi-arrow-right ms-2"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card-1">
-                                                    <div class="x-small-text insight-date">February 2026</div>
-                                                    <h6 class="my-3">Building Brands for Global Markets</h6>
-                                                    <p class="small-text text-muted mb-3">Strategies for scaling brand identity across different
-                                                        cultures and geographies.</p>
-                                                    <a href="#" class="button-link">Read More <i class="bi bi-arrow-right ms-2"></i></a>
-                                                </div>
-                                            </div>
+                                                                            <div class="row cmn-sec-padding g-4 mb-5">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="card-1">
+                                                                                        <div class="x-small-text insight-date">March 2026</div>
+                                                                                        <h6 class="my-3">The Future of African Tech</h6>
+                                                                                        <p class="small-text text-muted mb-3">Committing to eco-friendly operations and
+                                                                                            digital-first
+                                                                                            workflows. We believe responsible business is good business.</p>
+                                                                                        <a href="#" class="button-link">Read More <i class="bi bi-arrow-right ms-2"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="card-1">
+                                                                                        <div class="x-small-text insight-date">February 2026</div>
+                                                                                        <h6 class="my-3">Building Brands for Global Markets</h6>
+                                                                                        <p class="small-text text-muted mb-3">Strategies for scaling brand identity across different
+                                                                                            cultures and geographies.</p>
+                                                                                        <a href="#" class="button-link">Read More <i class="bi bi-arrow-right ms-2"></i></a>
+                                                                                    </div>
+                                                                                </div>
 
-                                            <div class="col-md-4">
-                                                <div class="card-1">
-                                                    <div class="x-small-text insight-date">January 2026</div>
-                                                    <h6 class="my-3">Digital Transformation for SMEs</h6>
-                                                    <p class="small-text text-muted mb-3">Practical approaches to modernizing operations without
-                                                        overwhelming your team.</p>
-                                                    <a href="#" class="button-link">Read More <i class="bi bi-arrow-right ms-2"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="#" class="button-link">View All Insights <i class="bi bi-arrow-right ms-2"></i></a>
-                                        </div>
-                                    </div>
-                                </section> -->
+                                                                                <div class="col-md-4">
+                                                                                    <div class="card-1">
+                                                                                        <div class="x-small-text insight-date">January 2026</div>
+                                                                                        <h6 class="my-3">Digital Transformation for SMEs</h6>
+                                                                                        <p class="small-text text-muted mb-3">Practical approaches to modernizing operations without
+                                                                                            overwhelming your team.</p>
+                                                                                        <a href="#" class="button-link">Read More <i class="bi bi-arrow-right ms-2"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="d-flex justify-content-center">
+                                                                                <a href="#" class="button-link">View All Insights <i class="bi bi-arrow-right ms-2"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </section> -->
 
     <section class="ready-to section-md">
         <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">

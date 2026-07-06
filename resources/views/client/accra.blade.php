@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero border-btm-green accra-banner">
 
@@ -7,7 +7,7 @@
             <div class="section-hero-sub">
                 <div>
                     <div>
-                        <div class="header-label">Based in Accra</div>
+                        <div class="header-label header-label-3">Based in Accra</div>
                         <h1>Creative Excellence & African
                             Market Expertise from Accra</h1>
                         <div class="subhead">Our Accra office taps into Africa's emerging digital economy and world-class
@@ -25,8 +25,8 @@
 
                             Serving Africa, Europe & Global Markets
                         </div>
-                        <a href="/contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Work With Our Accra
-                            Team<i class="bi bi-arrow-right ms-2"></i></a>
+                        <a href="contact.php" class="commn-btn btn-green-bg me-2 mb-3 mb-sm-0">Work With Our Accra Team<i
+                                class="bi bi-arrow-right ms-2"></i></a>
                     </div>
 
                 </div>
@@ -38,21 +38,19 @@
 
     <!---------------------------strategic hub section starts here--------------------->
 
-    <section class="eagle-london-section eagle-accra-section section-md">
+    <section class="eagle-london-section eagle-accra-section section-lg">
         <div class="container-custom">
 
-            <div class="row align-items-center">
+            <div class="row align-items-center mb-4">
 
                 <!-- LEFT CONTENT -->
                 <div class="col-lg-7">
 
                     <span class="tag green-lite-bg green-text">EAGLE ACCRA</span>
 
-                    <h2 class="green-text">
+                    <h2 class="green-text element-3 mb-6">
                         Eagle Accra: The Creative Hub
                     </h2>
-
-                    <div class="title-underline primary-bg"></div>
                 </div>
 
                 <!-- RIGHT CONTENT -->
@@ -69,9 +67,10 @@
             </div>
 
             <div class="row align-items-start">
-                <div class="col-md-6">
+                <div class="col-md-6 pe-lg-5">
                     <h3 class="brand-title">
-                        <span class="orange green-text">eagle</span>accra
+                        <span class="orange green-text">eagle</span>
+                        <span class="grey">accra</span>
                     </h3>
 
                     <p class="subhead">
@@ -87,33 +86,17 @@
 
                 <div class="col-md-6">
                     <!-- KEY OFFERINGS -->
-                    <div class="offer-box accra-box green-lite-bg">
-
+                    <div class="offer-box accra-box">
                         <div class="offer-inner">
-
-                            <p class="offer-title green-text">KEY OFFERINGS</p>
-
-                            <div class="row">
-
-                                <div class="col-7">
-                                    <ul class="offer-list">
-                                        <li class="highlight2 green-text">■ Creative Production</li>
-                                        <li class="highlight2 green-text">🎬 Video & Design</li>
-                                        <li class="green-text">Business Growth Strategy</li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-5">
-                                    <ul class="offer-list">
-                                        <li class="green-text">📱 Digital Solutions</li>
-                                        <li class="green-text">PR & Communications</li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
+                            <p class="offer-title">KEY OFFERINGS</p>
+                            <ul>
+                                <li>Content Production</li>
+                                <li> Marketing</li>
+                                <li>Business Growth Strategy</li>
+                                <li>Events Planning &amp; Management</li>
+                                <li>Brand Strategy</li>
+                            </ul>
                         </div>
-
                     </div>
                 </div>
 
@@ -134,7 +117,7 @@
             <h2 class="green-text">Accra by the Numbers</h2>
 
             <!-- CARDS -->
-            <div class="row g-4 mt-4">
+            <div class="row g-6 mt-4">
 
                 <!-- CARD 1 -->
                 <div class="col-lg-4 col-md-6">
@@ -167,7 +150,7 @@
 
     <!--=====================================accra by the numbers section ends here===============================-->
 
-    <section class="target-section border-btm-green section-md">
+    <section class="target-section border-btm-green section-md bg-white ">
         <div class="container-custom">
 
             <!-- TAG -->
@@ -224,23 +207,23 @@
 
     <!-- ================what we do in london section starts here====================== -->
 
-    <section class="services-section section-md">
+    <section class="services-section lite-green-bg section-md">
         <div class="container-custom">
 
             <!-- TAG -->
-            <span class="tag green-lite-bg green-text">EAGLE ACCRA</span>
+            <span class="tag primary-bg text-white">EAGLE ACCRA</span>
 
             <!-- TITLE -->
-            <h2 class="text-white">What We Do in Accra</h2>
+            <h2 class="green-text">What We Do in Accra</h2>
 
             <!-- CARDS -->
-            <div class="row g-4 mt-4">
+            <div class="row g-6 mt-4">
 
                 <!-- ACTIVE CARD -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="service-card-2 active">
-                        <h4 class="card-title dark">Creative Production</h4>
-                        <p class="card-text">
+                    <div class="accra-service-card active">
+                        <h4 class="text-white mb-3">Creative Production</h4>
+                        <p class="text-white">
                             We produce compelling creative content, from video production to graphic design, leveraging
                             African talent
                             and cultural insights.
@@ -250,9 +233,9 @@
 
                 <!-- CARD 2 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="service-card-2">
-                        <h4 class="card-title dark">Technology Development</h4>
-                        <p class="card-text">
+                    <div class="accra-service-card">
+                        <h4 class="text-white mb-3">Technology Development</h4>
+                        <p class="text-white">
                             We build custom software solutions and digital platforms that address unique African market
                             needs and
                             opportunities.
@@ -262,9 +245,9 @@
 
                 <!-- CARD 3 -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="service-card-2">
-                        <h4 class="card-title dark">Strategic Solutions</h4>
-                        <p class="card-text">
+                    <div class="accra-service-card">
+                        <h4 class="text-white mb-3">Strategic Solutions</h4>
+                        <p class="text-white">
                             We deliver market entry strategies, brand positioning, and integrated solutions for African and
                             international clients.
                         </p>
@@ -275,9 +258,8 @@
 
         </div>
     </section>
-    <!-- ================what we do in london section ends here====================== -->
-    <!--================market we serve section================-->
-    <section class="markets-section border-btm-green section-md">
+
+    <section class="markets-section border-0 section-md">
         <div class="container-custom">
 
             <!-- TAG -->
@@ -292,9 +274,10 @@
                 <!-- CARD 1 -->
                 <div class="col-lg-6">
                     <div class="market-card bordr-lft-green">
-                        <h4 class="card-title green-text">UK & Europe</h4>
+                        <h4 class="card-title green-text">African Businesses</h4>
                         <p class="card-text">
-                            Domestic and European market expansion, brand positioning, and digital transformation
+                            Startups and SMEs across Africa seeking to scale, expand regionally, or enter international
+                            markets
                         </p>
                     </div>
                 </div>
@@ -302,9 +285,10 @@
                 <!-- CARD 2 -->
                 <div class="col-lg-6">
                     <div class="market-card bordr-lft-green">
-                        <h4 class="card-title green-text">African Expansion</h4>
+                        <h4 class="card-title green-text">Global Companies</h4>
                         <p class="card-text">
-                            UK businesses seeking to enter African markets with strategic guidance and local expertise
+                            International businesses entering African markets with local expertise and cultural
+                            understanding
                         </p>
                     </div>
                 </div>
@@ -312,9 +296,9 @@
                 <!-- CARD 3 -->
                 <div class="col-lg-6">
                     <div class="market-card bordr-lft-green">
-                        <h4 class="card-title green-text">Tech & Fintech</h4>
+                        <h4 class="card-title green-text">Tech & Innovation</h4>
                         <p class="card-text">
-                            Innovation-driven companies building the future of digital finance and technology
+                            Fintech, e-commerce, and digital platforms leveraging African market opportunities
                         </p>
                     </div>
                 </div>
@@ -322,9 +306,9 @@
                 <!-- CARD 4 -->
                 <div class="col-lg-6">
                     <div class="market-card bordr-lft-green">
-                        <h4 class="card-title green-text">Enterprise Clients</h4>
+                        <h4 class="card-title green-text">Social Impact</h4>
                         <p class="card-text">
-                            Large organizations requiring integrated strategy, creative, and technology solutions
+                            NGOs and social enterprises driving positive change across the continent
                         </p>
                     </div>
                 </div>
@@ -333,68 +317,8 @@
 
         </div>
     </section>
-    <!--================market we serve section end================-->
 
-    <!--=============================Integrated with Eagle Accra section start====================-->
-    <section class="integration-section bg-white section-md">
-        <div class="container-custom">
-
-            <div class="row align-items-center g-2">
-
-                <div class="col-lg-12">
-                    <div class="row">
-                        <!-- TITLE -->
-                        <h2 class="green-text">Integrated with Eagle Accra</h2>
-                    </div>
-                </div>
-                <!-- LEFT CONTENT -->
-                <div class="col-lg-6">
-
-                    <!-- DESCRIPTION -->
-                    <p class="desc mt-3">
-                        Our Accra and London offices operate as one integrated organization. This unique positioning gives
-                        us
-                        powerful advantages:
-                    </p>
-
-                    <p class="desc italic">
-                        Delivered in collaboration with Eagle Accra.
-                    </p>
-
-                    <!-- LIST -->
-                    <ul class="check-list check-list-green">
-                        <li>24/7 project momentum across time zones</li>
-                        <li>UK strategic expertise + African market knowledge</li>
-                        <li>Global best practices + local cultural understanding</li>
-                        <li>Seamless handoff between offices</li>
-                        <li>Cost-effective delivery without compromising quality</li>
-                    </ul>
-
-                </div>
-
-                <!-- RIGHT QUOTE -->
-                <div class="col-lg-6">
-                    <div class="quote-box box-border-green box-gradient-green">
-                        <p class="quote-text green-text">
-                            "Accra brings creative energy and market insight. London brings strategic depth and global
-                            reach.
-                            Together, we're unstoppable."
-                        </p>
-                        <p class="quote-author">
-                            — Eagle Networks Leadership
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-    <!--=============================Integrated with Eagle Accra section end====================-->
-
-    <!--========================Why Clients Choose Accra==================== -->
-
-    <section class="why-choose-section black-bg border-bottom-0 section-md">
+    <section class="why-choose-section primary-bg border-bottom-0 section-md">
         <div class="container-custom">
 
 
@@ -447,6 +371,63 @@
         </div>
     </section>
 
+    <section class="integration-section bg-white section-md">
+        <div class="container-custom">
+
+            <div class="row align-items-center g-2">
+
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- TITLE -->
+                        <h2 class="green-text">Integrated with Eagle Accra</h2>
+                    </div>
+                </div>
+                <!-- LEFT CONTENT -->
+                <div class="col-lg-6">
+
+                    <!-- DESCRIPTION -->
+                    <p class="desc mt-3">
+                        Our Accra and London offices operate as one integrated organization. This unique positioning gives
+                        us
+                        powerful advantages:
+                    </p>
+
+                    <p class="desc italic">
+                        Delivered in collaboration with Eagle Accra.
+                    </p>
+
+                    <!-- LIST -->
+                    <ul class="check-list check-list-green">
+                        <li>24/7 project momentum across time zones</li>
+                        <li>UK strategic expertise + African market knowledge</li>
+                        <li>Global best practices + local cultural understanding</li>
+                        <li>Seamless handoff between offices</li>
+                        <li>Cost-effective delivery without compromising quality</li>
+                    </ul>
+
+                </div>
+
+                <!-- RIGHT QUOTE -->
+                <div class="col-lg-6">
+                    <div class="quote-box box-border-green box-gradient-green">
+                        <p class="quote-text green-text">
+                            "Accra brings creative energy and market insight. London brings strategic depth and global
+                            reach.
+                            Together, we're unstoppable."
+                        </p>
+                        <p class="quote-author mb-0">
+                            — Eagle Networks Leadership
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
     <!--=============================Why Clients Choose Accra section end====================-->
 
 
@@ -498,10 +479,112 @@
 
         </div>
     </section>
-    <!---------------------------How We Deliver from Accra section starts here--------------------->
-    <!-----------------------------call to action section----------------------------->
 
-    <section class="ready-to london-accra-cta section-md  text-center">
+
+    <section class="faq-section section">
+        <div class="container-custom">
+            <div class="faq-main">
+                <div class="d-flex flex-column align-items-start text-center">
+                    <div class="tag orange-bg text-white mb-3">
+                        FAQ
+                    </div>
+                    <h2 class="h2-36">Eagle Accra FAQ</h2>
+                    <div class="subhead">Common questions about working with Eagle Accra.
+                    </div>
+                </div>
+
+                <div class="faq-section-accordian pt-3">
+
+                    <div class="accordion accordion-flush custom-faq" id="faqAccordion">
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne">
+                                    What does Eagle Accra do?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Accra is our African creative and technology hub, based in Adabraka, Accra, Ghana.
+                                    We deliver strategy, creative production, digital solutions, and community engagement
+                                    for clients across Ghana and Africa.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo">
+                                    Where is Eagle Accra based?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Accra is based in Adabraka, Accra, Ghana. We serve clients across Ghana and the
+                                    wider African market, working in close partnership with Eagle London for
+                                    cross-continental delivery.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree">
+                                    Can Eagle Accra help international companies expand into Africa?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes. Eagle Accra provides market entry strategy, local brand positioning, creative
+                                    production, and community engagement for international companies looking to establish or
+                                    grow their presence in Ghana and Africa.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour">
+                                    How does Eagle Accra work with Eagle London?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Accra and Eagle London operate as one integrated team. Accra leads on African
+                                    market strategy and creative production while London provides UK and European expertise.
+                                    Both offices collaborate on every cross-continental project.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive">
+                                    What industries does Eagle Accra serve?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Accra serves clients across automotive, consumer goods, government, healthcare,
+                                    and financial services. Our portfolio includes work for Toyota Ghana and other leading
+                                    Ghanaian and African brands.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ready-to london-accra-cta accra-cta section-md  text-center">
         <div class="container-custom">
 
             <div class="inner-cta-box text-center text-white position-relative z-1">
@@ -512,7 +595,7 @@
                 </p>
 
                 <!-- TAG -->
-                <span class="tag orange-bg text-white">AFRICA CREATIVE HUB</span>
+                <span class="tag green-bg text-white">AFRICA CREATIVE HUB</span>
 
                 <!-- TITLE -->
                 <h2 class="text-white">
@@ -525,7 +608,7 @@
                 </p>
 
                 <!-- BUTTON -->
-                <a href="#" class="cta-btn">
+                <a href="#" class="cta-btn btn-green-bg">
                     <i class="bi bi-whatsapp"></i>
                     Schedule a Call
                     <span class="arrow">→</span>
@@ -533,20 +616,4 @@
             </div>
         </div>
     </section>
-    <!-----------------------------call to action section end----------------------------->
-
-
-    <!-- <section class="inner-bottom-menu">
-                <div class="container-custom d-flex justify-content-between align-items-center">
-                  <div class="small-text text-muted mb-0">Eagle Networks — Creative, strategy and digital solutions from London and
-                    Accra.</div>
-                  <ul class="inner-menu list-unstyled d-flex flex-wrap gap-3 mb-0 ">
-                    <li><a href="/" class="small-text fw-semibold">Home</a></li>
-                    <li><a href="/services" class="small-text fw-semibold active">Our Services</a></li>
-                    <li><a href="/packages" class="small-text fw-semibold">Packages</a></li>
-                    <li><a href="/london" class="small-text fw-semibold">Eagle London</a></li>
-                    <li><a href="/contact" class="small-text fw-semibold">Contact Us</a></li>
-                  </ul>
-                </div>
-              </section> -->
 @endsection

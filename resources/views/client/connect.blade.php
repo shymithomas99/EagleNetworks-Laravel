@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero border-btm-green package-banner">
 
@@ -15,9 +15,9 @@
                             integrations, and dedicated partnership for large-scale initiatives.
                         </div>
 
-                        <a href="/contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a Conversation<i
+                        <a href="contact.php" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a Conversation<i
                                 class="bi bi-arrow-right ms-2"></i></a>
-                        <a href="/packages" class="commn-btn btn-transperant">View All Packages</a>
+                        <a href="packages.php" class="commn-btn btn-transperant">View All Packages</a>
                     </div>
 
                 </div>
@@ -336,12 +336,12 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                                <div class="loc-divider d-none d-md-block"></div>
-                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                            </div> -->
+                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                            <div class="loc-divider d-none d-md-block"></div>
+                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                        </div> -->
 
-                <a href="/contact" class="commn-btn btn-green py-3">
+                <a href="contact.php" class="commn-btn btn-green py-3">
                     Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
                 </a>
 

@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row justify-content-center  py-5">
+            <div class="col-md-8 py-2">
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
@@ -60,7 +60,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn loginbtn">
                                         {{ __('Login') }}
                                     </button>
 
@@ -78,3 +78,41 @@
         </div>
     </div>
 @endsection
+<style>
+    .form {
+        padding: 25px;
+        margin: 25px;
+    }
+
+    .imglogo {
+
+        text-align: center;
+        padding-bottom: 25px;
+    }
+
+    .card-header {
+        align-items: center;
+        text-align: center;
+        font-weight: 200px;
+        font-size: 30px;
+        color: blanchedalmond !important;
+        background-color: #e54520 !important;
+        font-family: 'AvenirBook' !important;
+        border-color: #1d1639;
+
+    }
+
+    .loginbtn {
+        background-color: #ff4e25 !important;
+        text-align: center;
+        color: blanchedalmond !important;
+
+    }
+
+    .forgetpassword {
+        top: 93%;
+        left: 41%;
+        position: absolute;
+
+    }
+</style>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero details-page-banner">
         <div class="details-page-overlay">
@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb" class="custom-breadcrumb-wrapper mb-4">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="/" class="breadcrumb-link">Home</a>
+                                <a href="index.php" class="breadcrumb-link">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 NHS Digital & Outdoor Campaign
@@ -212,11 +212,11 @@
                 objectives through integrated services and strategic partnership.</p>
 
             <div class="d-flex flex-column flex-sm-row mb-3">
-                <a href="/contact" class=" commn-btn btn-third-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a Conversation<i
+                <a href="contact.php" class=" commn-btn btn-third-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a Conversation<i
                         class="bi bi-arrow-right ms-2"></i></a>
-                <a href="/services" class="commn-btn btn-white-outline">Explore Our Services</a>
+                <a href="services.php" class="commn-btn btn-white-outline">Explore Our Services</a>
             </div>
-            <a href="/about" class="commn-btn btn-white-outline">About Eagle Networks</a>
+            <a href="about.php" class="commn-btn btn-white-outline">About Eagle Networks</a>
 
         </div>
 

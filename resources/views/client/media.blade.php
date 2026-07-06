@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero service-bnr">
 
@@ -18,9 +18,7 @@
     </section>
 
     <section class="portfolio-section section">
-
         <div class="container-custom">
-
             <!-- FILTERS -->
             <div class="portfolio-filter mb-5">
 
@@ -28,163 +26,122 @@
                     All
                 </button>
 
-                <button class="filter-btn" data-filter="films">
-                    Films
-                </button>
-
-                <button class="filter-btn" data-filter="tvads">
-                    TV Ads
-                </button>
-
-                <button class="filter-btn" data-filter="documentaries">
-                    Documentaries
-                </button>
+                @foreach ($categories as $category)
+                    <button class="filter-btn" data-filter="{{ Str::slug($category->name) }}">
+                        {{ $category->name }}
+                    </button>
+                @endforeach
 
             </div>
 
             <!-- GRID -->
             <div class="row g-4 portfolio-grid">
+                @foreach ($videos as $video)
+                    <div class="col-lg-4 col-md-6 portfolio-item {{ Str::slug($video->category->name) }}"
+                        data-video="{{ $video->video_url }}" data-title="{{ $video->title }}">
 
-                <!-- TV ADS -->
-                <div class="col-lg-4 col-md-6 portfolio-item tvads" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-1.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="{{ asset($video->thumbnail_url) }}" alt="{{ $video->title }}">
+                                <div class="play-btn">
+                                    <i class="bi bi-play-fill"></i>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Time to Care – NHS Advert</h6>
+                            <div class="portfolio-content">
+                                <span class="portfolio-tag">
+                                    {{ $video->category->name }}
+                                </span>
+
+                                <h6>{{ $video->title }}</h6>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-
-                <!-- TV ADS -->
-                <div class="col-lg-4 col-md-6 portfolio-item tvads" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-2.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Crosswater – TV Advert</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FILMS -->
-                <div class="col-lg-4 col-md-6 portfolio-item films" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-3.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">FILMS</span>
-                            <h6>There is Life in All Things – Film</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TV ADS -->
-                <div class="col-lg-4 col-md-6 portfolio-item tvads" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-4.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Gift of Protection - NHS Advert</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FILMS -->
-                <div class="col-lg-4 col-md-6 portfolio-item films" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-5.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">FILMS</span>
-                            <h6>Blue Buttercream - Short Film</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TV ADS -->
-                <div class="col-lg-4 col-md-6 portfolio-item tvads" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-6.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Paul Robinson Solicitors - West Ham TV Advert</h6>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
-
         </div>
 
         <!-- Media Modal -->
-
         <div class="modal fade portfolio-modal" id="portfolioModal" tabindex="-1">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
+
                         <div class="video-container">
 
-                            <!-- Close -->
                             <button type="button" class="modal-close" data-bs-dismiss="modal">
                                 <i class="bi bi-x-lg"></i>
                             </button>
 
-                            <!-- Video -->
                             <div class="video-wrapper">
-
-                                <iframe title="vimeo-player" src="https://player.vimeo.com/video/879850541?h=6ff29af9af"
-                                    width="640" height="360" frameborder="0"
-                                    referrerpolicy="strict-origin-when-cross-origin"
+                                <iframe id="portfolioVideo" width="100%" height="600" frameborder="0"
                                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                    allowfullscreen></iframe>
-
+                                    allowfullscreen src="">
+                                </iframe>
                             </div>
 
-                            <!-- Title -->
-                            <h4 class="video-title">
-                                Time to Care – NHS Advert
-                            </h4>
+                            <h4 class="video-title mt-3" id="portfolioTitle"></h4>
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                const items = document.querySelectorAll('.portfolio-item');
+                const iframe = document.getElementById('portfolioVideo');
+                const title = document.getElementById('portfolioTitle');
+
+                items.forEach(item => {
+
+                    item.addEventListener('click', function() {
+
+                        let videoUrl = this.dataset.video;
+
+                        // YouTube watch URL
+                        if (videoUrl.includes('youtube.com/watch?v=')) {
+                            const videoId = new URL(videoUrl).searchParams.get('v');
+                            videoUrl = 'https://www.youtube.com/embed/' + videoId;
+                        }
+
+                        // Short YouTube URL
+                        else if (videoUrl.includes('youtu.be/')) {
+                            const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+                            videoUrl = 'https://www.youtube.com/embed/' + videoId;
+                        }
+
+                        // Vimeo URL
+                        else if (
+                            videoUrl.includes('vimeo.com/') &&
+                            !videoUrl.includes('player.vimeo.com/video/')
+                        ) {
+                            const videoId = videoUrl.split('vimeo.com/')[1].split('?')[0];
+                            videoUrl = 'https://player.vimeo.com/video/' + videoId;
+                        }
+
+                        iframe.src = videoUrl;
+                        title.innerText = this.dataset.title;
+
+                        new bootstrap.Modal(
+                            document.getElementById('portfolioModal')
+                        ).show();
+                    });
+
+                });
+
+                // Stop video when modal closes
+                document.getElementById('portfolioModal')
+                    .addEventListener('hidden.bs.modal', function() {
+                        iframe.src = '';
+                    });
+
+            });
+        </script>
     </section>
 
     <section class="media-about section text-white">

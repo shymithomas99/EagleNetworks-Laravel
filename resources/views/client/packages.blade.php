@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero package-banner">
         <div class="container-custom">
@@ -107,8 +107,8 @@
                         </ul>
 
 
-                        <a href="/contact" class="commn-btn btn-primary-custom">Get Started</a>
-                        <a href="/ignite" class="button-link button-link-grey text-center mt-3">Learn More <i
+                        <a href="contact.php" class="commn-btn btn-primary-custom">Get Started</a>
+                        <a href="ignite.php" class="button-link button-link-grey text-center mt-3">Learn More <i
                                 class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
@@ -135,8 +135,8 @@
                             <li><i class="bi bi-check2"></i> Strategy Reviews</li>
                         </ul>
 
-                        <a href="/contact" class="commn-btn btn-primary-custom">Get Started</a>
-                        <a href="/amplify" class="button-link button-link-grey text-center mt-3">Learn More <i
+                        <a href="contact.php" class="commn-btn btn-primary-custom">Get Started</a>
+                        <a href="amplify.php" class="button-link button-link-grey text-center mt-3">Learn More <i
                                 class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
@@ -163,8 +163,8 @@
                             <li><i class="bi bi-check2"></i> Custom Solutions</li>
                         </ul>
 
-                        <a href="/contact" class="commn-btn btn-primary-custom">Get Started</a>
-                        <a href="/connect" class="button-link button-link-grey text-center mt-3">Learn More <i
+                        <a href="contact.php" class="commn-btn btn-primary-custom">Get Started</a>
+                        <a href="connect.php" class="button-link button-link-grey text-center mt-3">Learn More <i
                                 class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                 around your goals, market, and stage of growth. Our team specializes in designing integrated solutions
                 that match your specific requirements and budget. </p>
 
-            <a href="/contact" class="commn-btn btn-white">Start a conversation</a>
+            <a href="contact.php" class="commn-btn btn-white">Start a conversation</a>
         </div>
     </section>
 
@@ -251,95 +251,104 @@
 
 
 
-    <section class="faq-section section-md">
+    <section class="faq-section section">
         <div class="container-custom">
-            <div class="d-flex flex-column align-items-center text-center">
-                <div class="small-text mb-2">
-                    FAQ
-                </div>
-                <h2>Packages FAQs</h2>
-                <div class="subhead">Common questions about our packages, structure and how to get started.
-                </div>
-            </div>
-
-            <div class="faq-section-aacordian pt-4">
-
-                <div class="accordion accordion-flush custom-faq" id="faqAccordion">
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne">
-                                What is included in each package?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Each package is designed around a defined scope of work and deliverables aligned with
-                                the selected package.
-                            </div>
-                        </div>
+            <div class="faq-main">
+                <div class="d-flex flex-column align-items-start text-center">
+                    <div class="tag orange-bg text-white mb-3">
+                        FAQ
                     </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo">
-                                Can packages be customised?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes. Packages can be adapted depending on your goals, timeline and project requirements.
-                            </div>
-                        </div>
+                    <h2 class="h2-36">Packages FAQ</h2>
+                    <div class="subhead">Common questions about Eagle London's service packages.
                     </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree">
-                                How do I choose the right package?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                The right package depends on your objectives, timeline and level of support required.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour">
-                                Are packages flexible?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Packages provide structure but can be adjusted to match specific delivery needs.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive">
-                                How do we get started?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Contact the team to discuss your goals and we will guide you to the most suitable
-                                package.
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
+                <div class="faq-section-accordian pt-3">
+
+                    <div class="accordion accordion-flush custom-faq" id="faqAccordion">
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne">
+                                    What is the Eagle Ignite package?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Ignite is designed for startups and new ventures. It provides brand foundation,
+                                    digital presence, and go-to-market strategy to help new businesses launch and grow
+                                    effectively.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo">
+                                    What is the Eagle Amplify package?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Amplify is designed for growing SMEs and non-profits. It helps established
+                                    organisations scale their reach, strengthen their brand, and accelerate digital
+                                    performance.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree">
+                                    What is the Eagle Connect package?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Eagle Connect is a full-service enterprise partnership for corporates and government
+                                    organisations. It covers strategy, creative, technology, and community engagement as an
+                                    integrated service.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item mb-3">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour">
+                                    How do I choose the right Eagle package?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Ignite is for startups and new ventures. Amplify is for growing SMEs and non-profits.
+                                    Connect is for corporates and government. If you are unsure, contact us and we will
+                                    recommend the right package for your stage and goals.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive">
+                                    Can Eagle London create a bespoke package?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes. If none of the three standard packages fits your needs exactly, we can discuss a
+                                    bespoke arrangement. Contact us to start the conversation.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -404,12 +413,12 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                                <div class="loc-divider d-none d-md-block"></div>
-                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                            </div> -->
+                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                            <div class="loc-divider d-none d-md-block"></div>
+                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                        </div> -->
 
-                <a href="/contact" class="commn-btn btn-green py-3">
+                <a href="contact.php" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
                     Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
                 </a>
 
