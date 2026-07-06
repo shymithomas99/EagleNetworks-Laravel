@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Artisan;
 
 class Blog extends Model
 {
@@ -52,6 +53,26 @@ class Blog extends Model
                     $blog->publishedAt = null;
                 }
             }
+        });
+
+        // When saved
+        static::saved(function ($blog) {
+            if (
+                !empty($blog->slug) &&
+                (
+                    $blog->wasRecentlyCreated ||
+                    $blog->wasChanged([
+                        'updated_at',
+                    ])
+                )
+            ) {
+                Artisan::call('sitemap:generate');
+            }
+        });
+
+        // When deleted
+        static::deleted(function () {
+            Artisan::call('sitemap:generate');
         });
     }
 

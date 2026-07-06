@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Artisan;
 
 class Work extends Model
 {
@@ -52,27 +53,47 @@ class Work extends Model
     protected static function booted()
     {
         // When creating
-        static::creating(function ($blog) {
-            if ($blog->published) {
-                $blog->publishedAt = now();
+        static::creating(function ($work) {
+            if ($work->published) {
+                $work->publishedAt = now();
             }
         });
 
         // When updating
-        static::updating(function ($blog) {
+        static::updating(function ($work) {
             // check if 'published' field changed
-            if ($blog->isDirty('published')) {
+            if ($work->isDirty('published')) {
 
                 // false → true
-                if ($blog->published) {
-                    $blog->publishedAt = now();
+                if ($work->published) {
+                    $work->publishedAt = now();
                 }
 
                 // true → false (unpublish)
                 else {
-                    $blog->publishedAt = null;
+                    $work->publishedAt = null;
                 }
             }
+        });
+
+        // When saved
+        static::saved(function ($work) {
+            if (
+                !empty($work->slug) &&
+                (
+                    $work->wasRecentlyCreated ||
+                    $work->wasChanged([
+                        'updated_at',
+                    ])
+                )
+            ) {
+                Artisan::call('sitemap:generate');
+            }
+        });
+
+        // When deleted
+        static::deleted(function () {
+            Artisan::call('sitemap:generate');
         });
     }
 
