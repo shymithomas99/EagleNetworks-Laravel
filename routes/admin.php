@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\VideoCategoryController;
 use App\Http\Controllers\Admin\VideoProjectController;
+use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\WorkCategoryController;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/videos/{id}', [VideoProjectController::class, 'update'])->name('videos.update');
     Route::delete('/videos/{id}', [VideoProjectController::class, 'destroy'])->name('videos.delete');
     Route::patch('videos/{id}/toggle-publish', [VideoProjectController::class, 'togglePublish'])->name('videos.toggle-publish');
+
+    Route::resource('authors', AuthorController::class);
 
     // Blog Categories
     Route::resource('blog-category', BlogCategoryController::class);
