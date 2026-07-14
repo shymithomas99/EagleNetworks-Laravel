@@ -41,11 +41,17 @@
                     </div>
 
                     <div class="col-4 my-3">
-                        <label for="author">Author</label>
-                        <input type="text" class="form-control" id="author"
-                            placeholder="Eagle London" name="author"
-                            value="{{ old('author', $blog->author ?? '') }}">
-                        @error("author")
+                        <label for="author_id">Author</label>
+                        <select name="author_id" id="author_id" class="form-control">
+                            <option value="">-- Select Author --</option>
+                            @foreach ($authors as $author)
+                                <option value="{{ $author->id }}"
+                                    {{ old('author_id', $blog->author_id ?? '') == $author->id ? 'selected' : '' }}>
+                                    {{ $author->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('author_id')
                             <p style="color:red">{{ $message }}</p>
                         @enderror
                     </div>

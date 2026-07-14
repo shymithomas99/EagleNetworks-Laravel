@@ -185,7 +185,7 @@
                 <li class="nav-item">
 
                     @php
-                        $blogActive = request()->routeIs('admin.blog.*') || request()->routeIs('admin.blog-category.*');
+                        $blogActive = request()->routeIs('admin.blog.*') || request()->routeIs('admin.blog-category.*') || request()->routeIs('admin.authors.*');
                         $workActive = request()->routeIs('admin.work.*') || request()->routeIs('admin.work-category.*');
                         $videoActive = request()->routeIs('admin.videos.*') || request()->routeIs('admin.categories.*');
                     @endphp
@@ -199,6 +199,11 @@
                         </button>
 
                         <div id="blogMenu" class="accordion-content {{ $blogActive ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.authors.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
+                                Author
+                            </a>
+
                             <a href="{{ route('admin.blog-category.index') }}"
                                 class="nav-anchor {{ request()->routeIs('admin.blog-category.*') ? 'active' : '' }}">
                                 Category

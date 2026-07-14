@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -34,9 +35,10 @@ class BlogController extends Controller
     {
         $title = "Add Blog";
         $blog = new Blog();
-        $categories = BlogCategory::all();
+        $authors = Author::orderBy('id', 'DESC')->all();
+        $categories = BlogCategory::orderBy('id', 'DESC')->all();
 
-        return view('admin.blog.form', compact('title', 'blog', 'categories'));
+        return view('admin.blog.form', compact('title', 'blog', 'authors', 'categories'));
     }
 
     /**
@@ -49,12 +51,13 @@ class BlogController extends Controller
                 'title' => ['required','string'],
                 'url' => ['nullable','url'],
                 'slug' => ['nullable','string', 'alpha_dash', 'unique:blogs,slug'],
-                'author' => ['nullable','string'],
+                'author_id' => ['required', 'exists:authors,id'],
                 'category_id' => ['required', 'exists:blog_categories,id'],
                 'body' => ['nullable','string'],
-                'coverImage' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
+                'coverImage' => ['required','image','mimes:jpg,jpeg,png,webp','max:2048'],
             ],
             [
+                'author_id.required' => 'Please select an author.',
                 'category_id.required' => 'Please select a category.',
             ]
         );
@@ -90,8 +93,9 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $title = "Edit Blog";
-        $categories = BlogCategory::all();
-        return view('admin.blog.form', compact('title', 'blog', 'categories'));
+        $authors = Author::orderBy('id', 'DESC')->all();
+        $categories = BlogCategory::orderBy('id', 'DESC')->all();
+        return view('admin.blog.form', compact('title', 'blog', 'authors', 'categories'));
     }
 
     /**
@@ -104,12 +108,13 @@ class BlogController extends Controller
                 'title' => ['required','string'],
                 'url' => ['nullable','url'],
                 'slug' => ['nullable','string', 'alpha_dash', Rule::unique('blogs', 'slug')->ignore($blog->id)],
-                'author' => ['nullable','string'],
+                'author_id' => ['required', 'exists:authors,id'],
                 'category_id' => ['required', 'exists:blog_categories,id'],
                 'body' => ['nullable','string'],
                 'coverImage' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
             ],
             [
+                'author_id.required' => 'Please select an author.',
                 'category_id.required' => 'Please select a category.',
             ]
         );
