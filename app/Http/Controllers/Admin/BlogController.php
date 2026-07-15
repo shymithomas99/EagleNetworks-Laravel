@@ -35,8 +35,8 @@ class BlogController extends Controller
     {
         $title = "Add Blog";
         $blog = new Blog();
-        $authors = Author::orderBy('id', 'DESC')->all();
-        $categories = BlogCategory::orderBy('id', 'DESC')->all();
+        $authors = Author::orderBy('id', 'DESC')->get();
+        $categories = BlogCategory::orderBy('id', 'DESC')->get();
 
         return view('admin.blog.form', compact('title', 'blog', 'authors', 'categories'));
     }
@@ -93,8 +93,8 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $title = "Edit Blog";
-        $authors = Author::orderBy('id', 'DESC')->all();
-        $categories = BlogCategory::orderBy('id', 'DESC')->all();
+        $authors = Author::orderBy('id', 'DESC')->get();
+        $categories = BlogCategory::orderBy('id', 'DESC')->get();
         return view('admin.blog.form', compact('title', 'blog', 'authors', 'categories'));
     }
 
