@@ -1,6 +1,6 @@
 @extends('layouts.appweb')
 @section('content')
-    <section class="section-hero border-btm-green package-banner">
+    <section class="section-hero package-banner">
 
         <div class="container-custom">
 
@@ -17,9 +17,15 @@
 
 
 
-                        <a href="contact.php" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a Conversation<i
-                                class="bi bi-arrow-right ms-2"></i></a>
-                        <a href="packages.php" class="commn-btn btn-transperant">View All Packages</a>
+                        <a href="/contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a
+                            Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg></a>
+                        <a href="/packages" class="commn-btn btn-transperant">View All Packages</a>
                     </div>
 
                 </div>
@@ -301,7 +307,7 @@
         <div class="container-custom">
             <div class="inner-cta-box text-center text-white position-relative z-1">
                 <h2 class="display-5 fw-bold mb-3">Ready to Scale Your Business?</h2>
-                <div class="subhead text-white mb-5">Partner with us to unlock your brand's full potential in 2026 and
+                <div class="subhead mb-5">Partner with us to unlock your brand's full potential in 2026 and
                     beyond.</div>
 
                 <div class="row g-4 justify-content-center mb-5">
@@ -357,14 +363,19 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                        <div class="loc-divider d-none d-md-block"></div>
-                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                    </div> -->
+                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                                <div class="loc-divider d-none d-md-block"></div>
+                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                            </div> -->
 
-                <a href="contact.php" class="commn-btn btn-green py-3">
-                    Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
-                </a>
+                <a href="/contact" class="commn-btn btn-primary-custom py-3">Start a
+                    Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                        data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg></a>
 
             </div>
         </div>

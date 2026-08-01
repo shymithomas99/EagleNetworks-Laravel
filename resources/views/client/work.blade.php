@@ -82,7 +82,7 @@
             </div>
             <div class="row mt-5 g-6">
                 <div class="col-md-6">
-                    <a href="details.php" class="card-type2 text-decoration-none">
+                    <a href="/details" class="card-type2 text-decoration-none">
 
                         <div class="card-type2-img-container green-border-bottom">
                             <img src="images/fw-nhs_80505d74.webp" alt="Digital Transformation" class="img-fluid">
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <a href="details.php" class="card-type2 text-decoration-none">
+                    <a href="/details" class="card-type2 text-decoration-none">
 
                         <div class="card-type2-img-container orange-border-bottom">
                             <img src="images/fw-kings-new-opt_7b43530d.webp" alt="Digital Transformation" class="img-fluid">
@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <a href="details.php" class="card-type2 text-decoration-none">
+                    <a href="/details" class="card-type2 text-decoration-none">
 
                         <div class="card-type2-img-container green-border-bottom">
                             <img src="images/fw-paul_383eac7e.webp" alt="Digital Transformation" class="img-fluid">
@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <a href="details.php" class="card-type2 text-decoration-none">
+                    <a href="/details" class="card-type2 text-decoration-none">
 
                         <div class="card-type2-img-container orange-border-bottom">
                             <img src="images/fw-toyota_f592b5d6.webp" alt="Digital Transformation" class="img-fluid">
@@ -198,7 +198,7 @@
 
             <div class="row mt-5 g-6">
                 <div class="col-md-4">
-                    <a href="media.php" class="card-type2 text-decoration-none">
+                    <a href="/media" class="card-type2 text-decoration-none">
 
                         <div class="card-type2-img-container">
                             <img src="images/emh-card-new_04f100bd_cf627976.webp" alt="Eagle Media House">
@@ -279,127 +279,167 @@
         </div>
     </section>
 
+
+
+
+
     <section class="work-media section">
         <div class="container-custom">
+
             <h2 class="element-2">Films, Commercials & Video Campaigns</h2>
+
             <div class="subhead">
                 A selection of productions from Eagle Media House — TV ads, films, and documentaries.
             </div>
 
             <div class="row g-4 portfolio-grid mt-4">
 
-                <!-- TV ADS -->
-                <div class="col-lg-3 col-md-6 portfolio-item" data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-1.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
+                @foreach ($videos as $video)
+                    <div class="col-lg-3 col-md-6">
 
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Time to Care – NHS Advert</h6>
-                        </div>
-                    </div>
-                </div>
+                        <div class="portfolio-card" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                            data-title="{{ $video->title }}" data-video="{{ $video->video_url }}">
 
-                <!-- TV ADS -->
-                <div class="col-lg-3 col-md-6 portfolio-item " data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-2.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
+                            <div class="portfolio-image">
 
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Crosswater – TV Advert</h6>
-                        </div>
-                    </div>
-                </div>
+                                <img src="{{ asset($video->thumbnail_url) }}" alt="{{ $video->title }}">
 
-                <!-- FILMS -->
-                <div class="col-lg-3 col-md-6 portfolio-item " data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-3.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">FILMS</span>
-                            <h6>There is Life in All Things – Film</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TV ADS -->
-                <div class="col-lg-3 col-md-6 portfolio-item " data-bs-toggle="modal" data-bs-target="#portfolioModal">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="images/media-4.jpg" alt="">
-                            <div class="play-btn">
-                                <i class="bi bi-play-fill"></i>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-content">
-                            <span class="portfolio-tag">TV ADS</span>
-                            <h6>Gift of Protection - NHS Advert</h6>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Media Modal -->
-
-            <div class="modal fade portfolio-modal" id="portfolioModal" tabindex="-1">
-                <div class="modal-dialog modal-xl modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="video-container">
-
-                                <!-- Close -->
-                                <button type="button" class="modal-close" data-bs-dismiss="modal">
-                                    <i class="bi bi-x-lg"></i>
-                                </button>
-
-                                <!-- Video -->
-                                <div class="video-wrapper">
-
-                                    <iframe title="vimeo-player"
-                                        src="https://player.vimeo.com/video/879850541?h=6ff29af9af" width="640"
-                                        height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
-                                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                        allowfullscreen></iframe>
-
+                                <div class="play-btn">
+                                    <i class="bi bi-play-fill"></i>
                                 </div>
 
-                                <!-- Title -->
-                                <h4 class="video-title">
-                                    Time to Care – NHS Advert
-                                </h4>
                             </div>
+
+                            <div class="portfolio-content">
+
+                                <span class="portfolio-tag">
+                                    {{ $video->category->name ?? '' }}
+                                </span>
+
+                                <h6>{{ $video->title }}</h6>
+
+                            </div>
+
                         </div>
+
                     </div>
-                </div>
+                @endforeach
+
             </div>
 
             <div class="d-flex flex-column align-items-center mt-5">
-                <a href="media.php" class="commn-btn btn-primary-custom mb-3 mb-sm-0">View All Productions<i
-                        class="bi bi-arrow-right ms-2"></i></a>
+
+                <a href="{{ url('/media') }}" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
+                    View All Productions
+                    <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+
                 <p class="count-note x-small-text fw-normal text-center mt-3">
-                    <span> 9 </span>productions in total — films, TV ads & documentaries
+                    <span>{{ $videos->count() }}</span>
+                    productions in total — films, TV ads & documentaries
                 </p>
+
             </div>
+
+        </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade portfolio-modal" id="portfolioModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="video-container">
+
+                        <button type="button" class="modal-close" data-bs-dismiss="modal">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+
+                        <div class="video-wrapper">
+
+                            {{--  <iframe id="portfolioVideo" src="" width="100%" height="600" frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            allowfullscreen>
+                        </iframe>  --}}
+
+                            <iframe title="vimeo-player" id="portfolioVideo" src="" width="640"
+                                height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <h4 class="video-title mt-4" id="portfolioTitle"></h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const modal = document.getElementById('portfolioModal');
+            const iframe = document.getElementById('portfolioVideo');
+            const title = document.getElementById('portfolioTitle');
+
+            modal.addEventListener('show.bs.modal', function(event) {
+
+                const card = event.relatedTarget;
+
+                let videoUrl = card.getAttribute('data-video');
+                const videoTitle = card.getAttribute('data-title');
+
+                if (!videoUrl) {
+                    iframe.src = '';
+                    title.innerText = '';
+                    return;
+                }
+
+                // YouTube watch URL
+                if (videoUrl.includes('youtube.com/watch?v=')) {
+                    const videoId = new URL(videoUrl).searchParams.get('v');
+                    videoUrl = 'https://www.youtube.com/embed/' + videoId;
+                }
+
+                // Short YouTube URL
+                else if (videoUrl.includes('youtu.be/')) {
+                    const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+                    videoUrl = 'https://www.youtube.com/embed/' + videoId;
+                }
+
+                // Vimeo URL
+                else if (
+                    videoUrl.includes('vimeo.com/') &&
+                    !videoUrl.includes('player.vimeo.com/video/')
+                ) {
+                    const videoId = videoUrl.match(/vimeo\.com\/(\d+)/);
+
+                    if (videoId) {
+                        videoUrl = 'https://player.vimeo.com/video/' + videoId[1];
+                    }
+                }
+
+                iframe.src = videoUrl;
+                title.innerText = videoTitle;
+            });
+
+            modal.addEventListener('hidden.bs.modal', function() {
+
+                iframe.src = '';
+                title.innerText = '';
+
+            });
+
+        });
+    </script>
+
+
+
+
 
     <section class="ready-to section">
         <div class="container-custom">
@@ -460,12 +500,12 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                        <div class="loc-divider d-none d-md-block"></div>
-                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                    </div> -->
+                                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                                        <div class="loc-divider d-none d-md-block"></div>
+                                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                                    </div> -->
 
-                <a href="contact.php" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
+                <a href="/contact" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
                     Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
                 </a>
 

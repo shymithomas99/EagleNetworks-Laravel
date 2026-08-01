@@ -10,6 +10,14 @@
                         <div class="subhead">Three tailored packages designed for every business stage, from startups to
                             enterprises. Each package combines strategy, creative excellence, and digital solutions to
                             drive measurable growth and sustainable competitive advantage.</div>
+                        <a href="/contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a
+                            Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg></a>
                     </div>
 
                 </div>
@@ -43,10 +51,10 @@
                                 <div class="inner-service-card bg-white">
                                     <div class="d-flex">
 
-                                        <h6 class="mb-2 fw-semibold">Startups</h6>
+                                        <h6 class="mb-2 fw-semibold">Startups & New Ventures</h6>
                                     </div>
-                                    <p>Best for businesses building their brand, launch strategy, and early market
-                                        presence.</p>
+                                    <p>Best for founders and new ventures building their brand, launch strategy, and early
+                                        market presence.</p>
                                 </div>
                             </div>
 
@@ -54,10 +62,10 @@
                                 <div class="inner-service-card green-border bg-white">
                                     <div class="d-flex">
 
-                                        <h6 class="mb-2 fw-semibold">SMEs</h6>
+                                        <h6 class="mb-2 fw-semibold">SMEs & Non-Profits</h6>
                                     </div>
-                                    <p>Best for growing businesses that need stronger marketing, digital transformation,
-                                        and customer experience support.</p>
+                                    <p>Best for growing SMEs and non-profit organisations that need stronger marketing,
+                                        digital transformation, and community engagement support.</p>
                                 </div>
                             </div>
 
@@ -65,7 +73,7 @@
                                 <div class="inner-service-card brown-border bg-white">
                                     <div class="d-flex">
 
-                                        <h6 class="mb-2 fw-semibold">Enterprise</h6>
+                                        <h6 class="mb-2 fw-semibold">Corporates & Government</h6>
                                     </div>
                                     <p>Best for organisations that need strategic consulting, complex delivery, and
                                         long-term partnership.</p>
@@ -82,14 +90,15 @@
         <div class="container-custom">
             <h2 class="mb-3">Our Service Packages</h2>
             <div class="subhead">
-                Each package is customizable and designed to deliver measurable results.
+                Each package is customizable and designed to deliver measurable results. We combine strategy, creative
+                excellence, and technology to create integrated solutions that drive business growth.
             </div>
             <div class="row g-4 mt-4 justify-content-center">
                 <!-- Card 1 -->
                 <div class="col-lg-4 col-md-6">
                     <div class="card-1">
                         <h3>Eagle Ignite</h3>
-                        <span class="text-orange fw-semibold mb-4">For Startups & New Ventures</span>
+                        <span class="text-deeper-orange fw-semibold mb-3">For Startups & New Ventures</span>
 
                         <p class="desc">
                             Launch your vision with complete brand identity, MVP development, and go-to-market strategy.
@@ -107,9 +116,9 @@
                         </ul>
 
 
-                        <a href="contact.php" class="commn-btn btn-primary-custom">Get Started</a>
-                        <a href="ignite.php" class="button-link button-link-grey text-center mt-3">Learn More <i
-                                class="bi bi-arrow-right ms-1"></i></a>
+                        <a href="/contact" class="commn-btn btn-primary-custom">Get Started</a>
+                        <a href="/ignite" class="button-link button-link-grey text-center mt-3 justify-content-center">Learn
+                            More <i class="bi bi-arrow-right-short ms-1 mt-2px"></i></a>
                     </div>
                 </div>
 
@@ -118,7 +127,7 @@
                     <div class="card-1">
                         <span class="badge-popular mb-3">Most Popular</span>
                         <h3>Eagle Amplify</h3>
-                        <span class="text-orange fw-semibold mb-4">For SMEs & Non-Profits</span>
+                        <span class="text-deeper-orange fw-semibold mb-3">For SMEs & Non-Profits</span>
 
                         <p class="desc ">
                             Scale your business through brand evolution, digital transformation, and growth campaigns.
@@ -135,9 +144,10 @@
                             <li><i class="bi bi-check2"></i> Strategy Reviews</li>
                         </ul>
 
-                        <a href="contact.php" class="commn-btn btn-primary-custom">Get Started</a>
-                        <a href="amplify.php" class="button-link button-link-grey text-center mt-3">Learn More <i
-                                class="bi bi-arrow-right ms-1"></i></a>
+                        <a href="/contact" class="commn-btn btn-primary-custom">Get Started</a>
+                        <a href="/amplify"
+                            class="button-link button-link-grey text-center mt-3 justify-content-center">Learn More <i
+                                class="bi bi-arrow-right-short ms-1 mt-2px"></i></a>
                     </div>
                 </div>
 
@@ -145,14 +155,16 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card-1">
                         <h3>Eagle Connect</h3>
-                        <span class="text-orange fw-semibold mb-4">For Corporates & Government</span>
+                        <span class="text-deeper-orange fw-semibold mb-3">For Enterprises & Government Bodies</span>
 
                         <p class="desc">
-                            Strategic consulting, integrations, and dedicated partnership for large-scale initiatives.
+                            Strategic consulting, complex integrations, and dedicated partnership for large-scale
+                            initiatives.
                         </p>
 
                         <p class="desc-small">
-                            We act as an extension of your leadership team.
+                            We become an extension of your leadership team, providing strategic partnership and dedicated
+                            support.
                         </p>
 
                         <ul class="package-list">
@@ -163,9 +175,10 @@
                             <li><i class="bi bi-check2"></i> Custom Solutions</li>
                         </ul>
 
-                        <a href="contact.php" class="commn-btn btn-primary-custom">Get Started</a>
-                        <a href="connect.php" class="button-link button-link-grey text-center mt-3">Learn More <i
-                                class="bi bi-arrow-right ms-1"></i></a>
+                        <a href="/contact" class="commn-btn btn-primary-custom">Get Started</a>
+                        <a href="/connect"
+                            class="button-link button-link-grey text-center mt-3 justify-content-center">Learn More <i
+                                class="bi bi-arrow-right-short ms-1 mt-2px"></i></a>
                     </div>
                 </div>
 
@@ -180,11 +193,11 @@
     <section class="highlight highlight-3">
         <div class="highlight-content">
             <h3 class="mb-3  text-white">Need Something More Tailored?</h3>
-            <p class="text-white"> cIf your needs do not fit neatly into one package, we can create a custom engagement
+            <p class="text-white mb-4"> If your needs do not fit neatly into one package, we can create a custom engagement
                 around your goals, market, and stage of growth. Our team specializes in designing integrated solutions
                 that match your specific requirements and budget. </p>
 
-            <a href="contact.php" class="commn-btn btn-white">Start a conversation</a>
+            <a href="/contact" class="commn-btn btn-white">Start a conversation</a>
         </div>
     </section>
 
@@ -255,7 +268,7 @@
         <div class="container-custom">
             <div class="faq-main">
                 <div class="d-flex flex-column align-items-start text-center">
-                    <div class="tag orange-bg text-white mb-3">
+                    <div class="tag deeper-orange-bg text-white mb-3">
                         FAQ
                     </div>
                     <h2 class="h2-36">Packages FAQ</h2>
@@ -357,7 +370,7 @@
         <div class="container-custom">
             <div class="inner-cta-box text-center text-white position-relative z-1">
                 <h2 class="display-5 fw-bold mb-3">Ready to Grow?</h2>
-                <div class="subhead text-white mb-5">Partner with us to unlock your brand's full potential in 2026 and
+                <div class="subhead  mb-5">Partner with us to unlock your brand's full potential in 2026 and
                     beyond.</div>
 
                 <div class="row g-4 justify-content-center mb-5">
@@ -413,16 +426,57 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                            <div class="loc-divider d-none d-md-block"></div>
-                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                        </div> -->
+                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                                <div class="loc-divider d-none d-md-block"></div>
+                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                            </div> -->
 
-                <a href="contact.php" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
-                    Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
+                <a href="/contact" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
+                    Start a Conversation <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                        data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
                 </a>
 
             </div>
         </div>
     </section>
+
+
+    <!-- ============== Exit-intent popup ================ -->
+
+
+    <div class="exit-intent-overlay" id="exitIntentOverlay">
+        <div class="exit-intent-modal">
+
+            <button class="exit-close" id="closeExitIntent">
+                &times;
+            </button>
+
+            <h3>Before you choose a package</h3>
+
+            <p>
+                Tell us about your project and we will recommend the right package for your business.
+            </p>
+
+
+            <a href="https://wa.me/447983508359?text=Hi%20Eagle%20London,%20I'd%20like%20to%20schedule%20a%20call.%20Please%20let%20me%20know%20your%20available%20times."
+                target="_blank" rel="noopener noreferrer" id="intent-btn-black" class="intent-btn-black">
+                <svg data-loc="client/src/components/ExitIntentPopup.tsx:11" width="16" height="16"
+                    viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0 me-2">
+                    <path data-loc="client/src/components/ExitIntentPopup.tsx:12"
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z">
+                    </path>
+                </svg> Schedule a Call
+            </a>
+
+            <a href="/services" id="intent-btn-white" class="intent-btn-white">
+                View Services
+            </a>
+
+        </div>
+    </div>
 @endsection

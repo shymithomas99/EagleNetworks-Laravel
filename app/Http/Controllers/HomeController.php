@@ -29,6 +29,7 @@ class HomeController extends Controller
 
         $videos = VideoProject::with('category')
             ->orderBy('display_order', 'desc')
+            ->limit(4)
             ->get();
 
         return view('client.work', compact('categories', 'videos'));
@@ -71,10 +72,10 @@ class HomeController extends Controller
 
     public function media()
     {
-        $categories = VideoCategory::orderBy('display_order', 'desc')->get();
+        $categories = VideoCategory::orderBy('display_order', 'asc')->get();
 
         $videos = VideoProject::with('category')
-            ->orderBy('display_order', 'desc')
+            ->orderBy('display_order', 'asc')
             ->get();
 
         return view('client.media', compact('categories', 'videos'));

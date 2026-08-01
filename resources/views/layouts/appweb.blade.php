@@ -27,7 +27,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-xl custom-navbar fixed-top" id="mainNavbar">
-            <div class="container container-custom-2">
+            <div class="container container-custom-3">
 
                 <!-- Logo Left -->
                 <a class="navbar-brand" href="/">
@@ -84,7 +84,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown custom-dropdown">
+                        {{--  <li class="nav-item dropdown custom-dropdown">
                             <a class="nav-link" href="#" id="workDropdown" role="button">
                                 Work & Insights
                             </a>
@@ -102,6 +102,39 @@
                                 </a>
 
                                 <a href="{{ url('/insights') }}" class="dropdown-item-custom">
+                                    <div class="dropdown-icon-box">
+                                        <i class="bi bi-lightbulb"></i>
+                                    </div>
+                                    <div>
+                                        <h6>Insights</h6>
+                                        <p>Business, market & world perspectives</p>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </li>  --}}
+
+                        <li class="nav-item dropdown custom-dropdown">
+                            <a class="nav-link {{ request()->is('work') || request()->is('insights') ? 'active' : '' }}"
+                                href="#" id="workDropdown" role="button">
+                                Work & Insights
+                            </a>
+
+                            <div class="dropdown-menu custom-mega-dropdown">
+
+                                <a href="{{ url('/work') }}"
+                                    class="dropdown-item-custom {{ request()->is('work') ? 'active' : '' }}">
+                                    <div class="dropdown-icon-box">
+                                        <i class="bi bi-briefcase"></i>
+                                    </div>
+                                    <div>
+                                        <h6>Our Work</h6>
+                                        <p>Case studies, campaigns & projects</p>
+                                    </div>
+                                </a>
+
+                                <a href="{{ url('/insights') }}"
+                                    class="dropdown-item-custom {{ request()->is('insights') ? 'active' : '' }}">
                                     <div class="dropdown-icon-box">
                                         <i class="bi bi-lightbulb"></i>
                                     </div>

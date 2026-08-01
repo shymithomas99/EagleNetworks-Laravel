@@ -6,6 +6,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     @endif
+
     <section class="section-hero contact-banner">
         <div class="container-custom">
             <div class="section-hero-sub">
@@ -18,18 +19,21 @@
                             solutions.</div>
                         <a href="#contactForm" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0 mt-2">
                             Get In Touch
-                            <i class="bi bi-arrow-right ms-2"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <section id="contact-section" class="contact-form section-md">
+    <section id="contactForm" class="contact-form section-md">
 
         <div class=" container-custom d-flex flex-column">
             <div class="row">
@@ -43,8 +47,8 @@
                 </div>
             </div>
 
-            <div class="form-section">
 
+            <div class="form-section">
                 <form id="contactForm" method="POST" action="{{ route('contact.submit') }}">
                     @csrf
                     <!-- Row 1 -->
@@ -123,7 +127,7 @@
 
 
                         <div class="col-md-12">
-                            <button class="commn-btn btn-primary-custom w-100">Send Message</button>
+                            <button class="commn-btn btn-primary-custom py-2 w-100">Send Message</button>
                         </div>
 
 
@@ -131,10 +135,13 @@
                         <div
                             class="col-md-12 contact-submit-text x-small-text text-muted fw-normal d-flex justify-content-center">
                             By submitting this form you agree to our&nbsp<a href="/privacy-policy"> Privacy Policy
-                            </a>&nbspand&nbsp<a href="/terms-of-use"> Terms of Use</a>.
+                            </a>&nbspand&nbsp<a href="/terms"> Terms of Use</a>.
                         </div>
                     </div>
                 </form>
+
+
+
             </div>
         </div>
     </section>
@@ -150,7 +157,7 @@
                     <div class="office-card office-orange">
 
                         <div class="office-location x-small-text fw-bold text-muted mb-2">BASED IN THE UK</div>
-                        <h2 class="location-title text-orange-alt mb-2">eagle<span>london</span></h2>
+                        <h2 class="location-title text-orange mb-2">eagle<span>london</span></h2>
                         <div class="small-text mb-3">London based team serving clients across the UK and Europe</div>
                         <div class="pill-group mb-3">
                             <span class="badge-custom-2 bg-orange-lite">London</span>
@@ -210,7 +217,8 @@
                         </div>
 
                         <div class="map-container">
-                            <iframe src="https://maps.google.com/maps?q=Accra&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+                            <iframe
+                                src="https://maps.google.com/maps?q=Accra&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
                         </div>
 
                     </div>
@@ -229,7 +237,7 @@
 
             </div>
 
-            <div class="faq-section-aacordian">
+            <div class="faq-section-accordian">
 
                 <div class="accordion accordion-flush custom-faq" id="faqAccordion">
 
@@ -329,7 +337,7 @@
 
             <h2 class="h2-30 mb-3">Follow Eagle Networks</h2>
 
-            <p class="follow-subtext text-white">
+            <p class="follow-subtext">
                 Connect with us across our social channels for updates, projects and new content.
             </p>
 

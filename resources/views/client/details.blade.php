@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb" class="custom-breadcrumb-wrapper mb-4">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="index.php" class="breadcrumb-link">Home</a>
+                                <a href="/" class="breadcrumb-link">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 NHS Digital & Outdoor Campaign
@@ -28,10 +28,6 @@
             </div>
         </div>
     </section>
-
-
-
-
 
 
     <section class="post-details">
@@ -208,15 +204,22 @@
     <section class="ready-to ready-to-v2 section-md">
         <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
             <h2 class="mb-3 text-white">Ready to Get Started?</h2>
-            <p class="subhead mb-4 text-white">Let's discuss how Eagle Networks can help you achieve your growth
+            <p class="subhead mb-4">Let's discuss how Eagle Networks can help you achieve your growth
                 objectives through integrated services and strategic partnership.</p>
 
             <div class="d-flex flex-column flex-sm-row mb-3">
-                <a href="contact.php" class=" commn-btn btn-third-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a Conversation<i
-                        class="bi bi-arrow-right ms-2"></i></a>
-                <a href="services.php" class="commn-btn btn-white-outline">Explore Our Services</a>
+
+                <a href="/contact" class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a
+                    Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-arrow-right ms-2" data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg> </a>
+
+                <a href="/services" class="commn-btn btn-primary-custom">Explore Our Services</a>
             </div>
-            <a href="about.php" class="commn-btn btn-white-outline">About Eagle Networks</a>
+            <a href="/about" class="commn-btn btn-primary-custom">About Eagle Networks</a>
 
         </div>
 

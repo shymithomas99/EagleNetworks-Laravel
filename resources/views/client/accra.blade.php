@@ -6,7 +6,7 @@
 
             <div class="section-hero-sub">
                 <div>
-                    <div>
+                    <div class="accra-element element-bottom">
                         <div class="header-label header-label-3">Based in Accra</div>
                         <h1>Creative Excellence & African
                             Market Expertise from Accra</h1>
@@ -25,8 +25,15 @@
 
                             Serving Africa, Europe & Global Markets
                         </div>
-                        <a href="contact.php" class="commn-btn btn-green-bg me-2 mb-3 mb-sm-0">Work With Our Accra Team<i
-                                class="bi bi-arrow-right ms-2"></i></a>
+
+                        <a href="/contact" class="commn-btn btn-green-bg me-2 mb-3 mb-sm-0">Work With Our Accra Team<svg
+                                xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg></a>
                     </div>
 
                 </div>
@@ -69,11 +76,10 @@
             <div class="row align-items-start">
                 <div class="col-md-6 pe-lg-5">
                     <h3 class="brand-title">
-                        <span class="orange green-text">eagle</span>
-                        <span class="grey">accra</span>
+                        <span class="orange green-text">eagle</span>accra
                     </h3>
 
-                    <p class="subhead">
+                    <p class="subhead mb-2">
                         Serving as the Africa core and global bridge, Eagle Accra delivers high-impact creative solutions
                         for
                         businesses looking to establish presence in African markets or expand internationally.
@@ -214,7 +220,7 @@
             <span class="tag primary-bg text-white">EAGLE ACCRA</span>
 
             <!-- TITLE -->
-            <h2 class="green-text">What We Do in Accra</h2>
+            <h2 class="dark-teal-text">What We Do in Accra</h2>
 
             <!-- CARDS -->
             <div class="row g-6 mt-4">
@@ -331,7 +337,7 @@
                 <!-- CARD 1 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Cost Efficiency with High Quality</h4>
+                        <h4 class="card-title font-20 green-text">Cost Efficiency with High Quality</h4>
                         <p class="card-text">Deliver world-class work at competitive cost through efficient delivery
                             models.</p>
                     </div>
@@ -340,7 +346,7 @@
                 <!-- CARD 2 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Access to Emerging Talent</h4>
+                        <h4 class="card-title font-20 green-text">Access to Emerging Talent</h4>
                         <p class="card-text">Tap into a fast-growing pool of highly skilled creative and technical
                             professionals.
                         </p>
@@ -350,7 +356,7 @@
                 <!-- CARD 3 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Regional & Cultural Expertise</h4>
+                        <h4 class="card-title font-20 green-text">Regional & Cultural Expertise</h4>
                         <p class="card-text">Deep understanding of African markets, audiences, and business environments.
                         </p>
                     </div>
@@ -358,7 +364,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Time Zone Advantage</h4>
+                        <h4 class="card-title font-20 green-text">Time Zone Advantage</h4>
                         <p class="card-text">Efficient collaboration across UK, Europe, and Africa for faster turnaround.
                         </p>
                     </div>
@@ -410,7 +416,7 @@
                 <!-- RIGHT QUOTE -->
                 <div class="col-lg-6">
                     <div class="quote-box box-border-green box-gradient-green">
-                        <p class="quote-text green-text">
+                        <p class="quote-text">
                             "Accra brings creative energy and market insight. London brings strategic depth and global
                             reach.
                             Together, we're unstoppable."
@@ -444,7 +450,7 @@
                 <!-- CARD 1 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Efficient Delivery Model</h4>
+                        <h4 class="card-title font-20 green-text">Efficient Delivery Model</h4>
                         <p class="card-text">Streamlined workflows designed for speed, clarity, and consistent output.</p>
                     </div>
                 </div>
@@ -452,7 +458,7 @@
                 <!-- CARD 2 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Collaborative Approach</h4>
+                        <h4 class="card-title font-20 green-text">Collaborative Approach</h4>
                         <p class="card-text">Close coordination with London teams and clients for seamless execution.
                         </p>
                     </div>
@@ -461,14 +467,14 @@
                 <!-- CARD 3 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Scalable Support</h4>
+                        <h4 class="card-title font-20 green-text">Scalable Support</h4>
                         <p class="card-text">Flexible resourcing to support projects of different sizes and complexity.</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="service-list-card bordr-top-green">
-                        <h4 class="card-title green-text">Continuous Optimisation</h4>
+                        <h4 class="card-title font-20 green-text">Continuous Optimisation</h4>
                         <p class="card-text">Ongoing refinement to improve performance and long-term results.</p>
                     </div>
                 </div>
@@ -485,7 +491,7 @@
         <div class="container-custom">
             <div class="faq-main">
                 <div class="d-flex flex-column align-items-start text-center">
-                    <div class="tag orange-bg text-white mb-3">
+                    <div class="tag deeper-orange-bg text-white mb-3">
                         FAQ
                     </div>
                     <h2 class="h2-36">Eagle Accra FAQ</h2>
@@ -608,12 +614,45 @@
                 </p>
 
                 <!-- BUTTON -->
-                <a href="#" class="cta-btn btn-green-bg">
-                    <i class="bi bi-whatsapp"></i>
+                <a href="https://wa.me/447983508359?text=Hi%20Eagle%20London,%20I'd%20like%20to%20schedule%20a%20call.%20Please%20let%20me%20know%20your%20available%20times."
+                    class="commn-btn btn-green-bg" target="_blank">
+                    <i class="bi bi-whatsapp me-3"></i>
                     Schedule a Call
-                    <span class="arrow">→</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                        data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
                 </a>
             </div>
         </div>
     </section>
+
+    <!-- ============== Exit-intent popup ================ -->
+
+    <div class="exit-intent-overlay" id="exitIntentOverlay">
+        <div class="exit-intent-modal">
+
+            <button class="exit-close" id="closeExitIntent">
+                &times;
+            </button>
+
+            <h3>Speak with the Accra team</h3>
+
+            <p>
+                Tell us about your African market project and the Accra team will assist you.
+            </p>
+
+            <a href="/contact" id="intent-btn-black" class="intent-btn-black">
+                Contact Accra Team
+            </a>
+
+            <a href="/packages" id="intent-btn-white" class="intent-btn-white">
+                View Packages
+            </a>
+
+        </div>
+    </div>
 @endsection

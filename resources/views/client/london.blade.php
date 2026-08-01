@@ -8,7 +8,7 @@
 
             <div class="section-hero-sub">
                 <div>
-                    <div>
+                    <div class="element-bottom">
                         <div class="header-label header-label-2 ">BASED IN LONDON</div>
                         <h1>Strategy, Creative & Technology
                             from the Heart of London</h1>
@@ -27,8 +27,15 @@
 
                             Serving UK, Europe & Africa
                         </div>
-                        <a href="#" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Work With Our London Team<i
-                                class="bi bi-arrow-right ms-2"></i></a>
+                        <a href="https://wa.me/447983508359?text=Hi%20Eagle%20London,%20I'd%20like%20to%20schedule%20a%20call.%20Please%20let%20me%20know%20your%20available%20times."
+                            class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0" target="_blank">Work With Our London
+                            Team<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg></a>
                     </div>
 
                 </div>
@@ -49,7 +56,7 @@
 
                     <span class="tag">EAGLE LONDON</span>
 
-                    <h2 class="element-3 mb-6 text-orange">
+                    <h2 class="element-3 mb-6 text-deeper-orange">
                         Eagle London: The Strategic Hub
                     </h2>
                 </div>
@@ -70,11 +77,10 @@
 
                 <div class="col-lg-6 pe-lg-5">
                     <h3 class="brand-title">
-                        <span class="orange">eagle</span>
-                        <span class="grey">london</span>
+                        <span class="text-deeper-orange">eagle</span>london
                     </h3>
 
-                    <p class="subhead">
+                    <p class="subhead mb-2">
                         Serving as the UK core and Africa bridge, Eagle London delivers high-impact strategies for
                         businesses
                         looking to solidify their presence in the UK or expand into African markets.
@@ -120,7 +126,7 @@
             <span class="tag">EAGLE LONDON</span>
 
             <!-- TITLE -->
-            <h2 class="orange-head">London by the Numbers</h2>
+            <h2 class="text-deeper-orange">London by the Numbers</h2>
 
             <!-- CARDS -->
             <div class="row g-6 mt-4">
@@ -160,7 +166,7 @@
         <div class="container-custom">
 
             <!-- TAG -->
-            <span class="tag">EAGLE LONDON</span>
+            <span class="tag deeper-orange-bg text-white">EAGLE LONDON</span>
 
             <!-- TITLE -->
             <h2 class="text-white">
@@ -173,7 +179,7 @@
                 <!-- CARD 1 -->
                 <div class="col-lg-4 col-md-6">
                     <div class="target-card">
-                        <h6 class="orange-head">UK Startups Expanding Internationally</h6>
+                        <h6 class="text-deeper-orange">UK Startups Expanding Internationally</h6>
                         <p class="card-text">
                             Fast-growing UK startups seeking strategic guidance and creative execution to expand into new
                             markets.
@@ -184,7 +190,7 @@
                 <!-- CARD 2 -->
                 <div class="col-lg-4 col-md-6">
                     <div class="target-card">
-                        <h6 class="orange-head">European Brands Entering Africa</h6>
+                        <h6 class="text-deeper-orange">European Brands Entering Africa</h6>
                         <p class="card-text">
                             European companies looking to establish presence in African markets with local expertise and
                             cultural
@@ -196,7 +202,7 @@
                 <!-- CARD 3 -->
                 <div class="col-lg-4 col-md-6">
                     <div class="target-card">
-                        <h6 class="orange-head">Government & Enterprise Organisations</h6>
+                        <h6 class="text-deeper-orange">Government & Enterprise Organisations</h6>
                         <p class="card-text">
                             Large organizations requiring integrated strategy, creative, and technology solutions at scale.
                         </p>
@@ -214,10 +220,10 @@
         <div class="container-custom">
 
             <!-- TAG -->
-            <span class="tag orange-bg text-white">EAGLE LONDON</span>
+            <span class="tag deeper-orange-bg text-white">EAGLE LONDON</span>
 
             <!-- TITLE -->
-            <h2 class="orange-head">What We Do in London</h2>
+            <h2 class="text-deeper-orange">What We Do in London</h2>
 
             <!-- CARDS -->
             <div class="row g-6 mt-4">
@@ -274,7 +280,7 @@
             <span class="tag">EAGLE LONDON</span>
 
             <!-- TITLE -->
-            <h2 class="orange-head">Markets We Serve</h2>
+            <h2 class="text-deeper-orange">Markets We Serve</h2>
 
             <!-- GRID -->
             <div class="row g-4 mt-4">
@@ -331,7 +337,7 @@
         <div class="container-custom">
 
             <!-- TAG -->
-            <span class="tag text-white orange-bg">EAGLE LONDON</span>
+            <span class="tag deeper-orange-bg text-white">EAGLE LONDON</span>
 
             <!-- TITLE -->
             <h2 class="text-white">Services Delivered from London</h2>
@@ -390,7 +396,7 @@
         <div class="container-custom">
 
             <!-- TITLE -->
-            <h2 class="orange-head">
+            <h2 class="text-deeper-orange">
                 Why Choose Eagle London
             </h2>
 
@@ -491,7 +497,7 @@
         <div class="container-custom">
             <div class="faq-main">
                 <div class="d-flex flex-column align-items-start text-center">
-                    <div class="tag orange-bg text-white mb-3">
+                    <div class="tag deeper-orange-bg text-white mb-3">
                         FAQ
                     </div>
                     <h2 class="h2-36">Eagle London FAQ</h2>
@@ -602,7 +608,7 @@
                 </p>
 
                 <!-- TAG -->
-                <span class="tag orange-bg text-white">UK & EUROPE STRATEGIC HUB</span>
+                <span class="tag deeper-orange-bg text-white">UK & EUROPE STRATEGIC HUB</span>
 
                 <!-- TITLE -->
                 <h2 class="text-white">
@@ -615,12 +621,46 @@
                 </p>
 
                 <!-- BUTTON -->
-                <a href="#" class="cta-btn">
-                    <i class="bi bi-whatsapp"></i>
+                <a href="https://wa.me/447983508359?text=Hi%20Eagle%20London,%20I'd%20like%20to%20schedule%20a%20call.%20Please%20let%20me%20know%20your%20available%20times."
+                    class="commn-btn btn-deep-orange" target="_blank">
+                    <i class="bi bi-whatsapp me-3"></i>
                     Schedule a Call
-                    <span class="arrow">→</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                        data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
                 </a>
             </div>
         </div>
     </section>
+
+
+    <!-- ============== Exit-intent popup ================ -->
+
+    <div class="exit-intent-overlay" id="exitIntentOverlay">
+        <div class="exit-intent-modal">
+
+            <button class="exit-close" id="closeExitIntent">
+                &times;
+            </button>
+
+            <h3>Speak with the London team</h3>
+
+            <p>
+                Tell us about your UK or European project and the London team will guide you.
+            </p>
+
+            <a href="/contact" id="intent-btn-black" class="intent-btn-black">
+                Contact London Team
+            </a>
+
+            <a href="/packages" id="intent-btn-white" class="intent-btn-white">
+                View Packages
+            </a>
+
+        </div>
+    </div>
 @endsection
