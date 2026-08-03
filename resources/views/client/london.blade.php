@@ -653,11 +653,11 @@
                 Tell us about your UK or European project and the London team will guide you.
             </p>
 
-            <a href="/contact" id="intent-btn-black" class="intent-btn-black">
+            <a href="{{ url('/contact') }}" id="intent-btn-black" class="intent-btn-black">
                 Contact London Team
             </a>
 
-            <a href="/packages" id="intent-btn-white" class="intent-btn-white">
+            <a href="{{ url('/packages') }}" id="intent-btn-white" class="intent-btn-white">
                 View Packages
             </a>
 

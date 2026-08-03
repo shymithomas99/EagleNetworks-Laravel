@@ -426,12 +426,12 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                                <div class="loc-divider d-none d-md-block"></div>
-                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                            </div> -->
+                                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                                            <div class="loc-divider d-none d-md-block"></div>
+                                            <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                                        </div> -->
 
-                <a href="/contact" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
+                <a href="{{ url('/contact') }}" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
                     Start a Conversation <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
@@ -473,7 +473,7 @@
                 </svg> Schedule a Call
             </a>
 
-            <a href="/services" id="intent-btn-white" class="intent-btn-white">
+            <a href="{{ url('/services') }}" id="intent-btn-white" class="intent-btn-white">
                 View Services
             </a>
 

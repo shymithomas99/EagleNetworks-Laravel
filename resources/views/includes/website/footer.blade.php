@@ -111,10 +111,6 @@
                         </a>
                     </li>
 
-
-
-
-
                 </ul>
             </div>
 
@@ -238,7 +234,7 @@
 
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="newsletter">
             <div class="col-12 newsletter-box">
                 <div class="row flex-column g-4">
                     <div class="col-md-12">
@@ -247,27 +243,6 @@
                             to your inbox.</p>
                     </div>
                 </div>
-                {{--  <div class="row g-2 w-100">
-                    <div class="subscribe-input">
-                        <form action="{{ route('newsletter.subscribe') }}" method="POST"
-                            class="d-flex flex-wrap flex-lg-nowrap">
-                            <div class="input-group">
-                                <span class="input-group-text bg-white border-0 px-3">
-                                    <i class="bi bi-envelope text-muted"></i>
-                                </span>
-
-                                <input type="email" name="email" class="form-control text-muted"
-                                    placeholder="Enter your email" aria-label="Enter your email" required>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="subscribe-button">
-                        <button type="submit" class=" commn-btn btn-primary-custom">Subscribe</button>
-                    </div>
-                    <p class="x-small-text mt-3 mb-0 fw-normal">We respect your
-                        privacy. Unsubscribe at any time.</p>
-                </div>  --}}
 
                 <div class="row g-2 w-100">
                     <form action="{{ route('newsletter.subscribe') }}" method="POST">
@@ -438,13 +413,6 @@
             <div class="cookie-modal-footer">
 
                 <div>
-                    {{--  <button class="cookie-btn cookie-outline me-2">
-                        Reject All
-                    </button>
-
-                    <button class="cookie-btn cookie-outline">
-                        Accept All
-                    </button>  --}}
 
                     <button class="cookie-btn cookie-outline me-2" id="rejectAllBtn">
                         Reject All
@@ -533,60 +501,13 @@
 </script>
 
 {{--  cookies modal  --}}
-{{--  <script>
-    const cookieBar = document.getElementById("cookieBar");
-    const closeCookie = document.getElementById("closeCookie");
-
-    const cookieModal = document.getElementById("cookieModal");
-    const openCookieModal = document.getElementById("openCookieModal");
-    const openCookieSettings = document.getElementById("openCookieSettings");
-    const closeCookieModal = document.getElementById("closeCookieModal");
-
-    /* Close Cookie Bar (Home page only) */
-    if (closeCookie && cookieBar) {
-        closeCookie.addEventListener("click", () => {
-            cookieBar.classList.add("hide");
-        });
-    }
-
-    /* Open from Cookie Bar button (Home page only) */
-    if (openCookieModal && cookieModal) {
-        openCookieModal.addEventListener("click", () => {
-            cookieModal.classList.add("show");
-        });
-    }
-
-    /* Open from Footer Link (All pages) */
-    if (openCookieSettings && cookieModal) {
-        openCookieSettings.addEventListener("click", (e) => {
-            e.preventDefault();
-            cookieModal.classList.add("show");
-        });
-    }
-
-    /* Close Modal */
-    if (closeCookieModal && cookieModal) {
-        closeCookieModal.addEventListener("click", () => {
-            cookieModal.classList.remove("show");
-        });
-    }
-
-    /* Outside Click */
-    if (cookieModal) {
-        cookieModal.addEventListener("click", (e) => {
-            if (e.target === cookieModal) {
-                cookieModal.classList.remove("show");
-            }
-        });
-    }
-</script>  --}}
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
         const cookieBar = document.getElementById("cookieBar");
         const cookieModal = document.getElementById("cookieModal");
+        const closeCookie = document.getElementById("closeCookie");
 
         const openCookieModal = document.getElementById("openCookieModal");
         const openCookieSettings = document.getElementById("openCookieSettings");
@@ -600,6 +521,8 @@
 
         const acceptBarBtn = document.getElementById("acceptBarBtn");
         const rejectBarBtn = document.getElementById("rejectBarBtn");
+
+        const STORAGE_KEY = "cookieConsent";
 
         // ===================================
         // OPEN MODAL
@@ -618,6 +541,20 @@
             });
         }
 
+        if (closeCookie) {
+
+            closeCookie.addEventListener("click", function() {
+
+                localStorage.setItem("cookieBannerClosed", "true");
+
+                if (cookieBar) {
+                    cookieBar.style.display = "none";
+                }
+
+            });
+
+        }
+
         // ===================================
         // CLOSE MODAL
         // ===================================
@@ -630,147 +567,179 @@
 
         if (cookieModal) {
             cookieModal.addEventListener("click", function(e) {
+
                 if (e.target === cookieModal) {
                     cookieModal.classList.remove("show");
                 }
+
             });
         }
 
         // ===================================
-        // CHECK SAVED CONSENT
+        // LOAD SAVED CONSENT
         // ===================================
 
-        const consent = localStorage.getItem("cookieConsent");
+        let consent = localStorage.getItem(STORAGE_KEY);
 
-        if (consent && cookieBar) {
-            cookieBar.style.display = "none";
+        if (!consent) {
+
+            // Client requirement:
+            // Analytics ON by default
+
+            const defaultConsent = {
+                analytics: true
+            };
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(defaultConsent)
+            );
+
+            consent = JSON.stringify(defaultConsent);
+
+        } else {
+
+            if (cookieBar) {
+                cookieBar.style.display = "none";
+            }
+
         }
 
+        const settings = JSON.parse(consent);
+
+        if (analyticsCheckbox) {
+            analyticsCheckbox.checked = settings.analytics;
+        }
+
+        updateGoogleConsent(settings.analytics);
+
         // ===================================
-        // BAR ACCEPT
+        // COOKIE BAR
         // ===================================
 
         if (acceptBarBtn) {
+
             acceptBarBtn.addEventListener("click", function() {
 
-                localStorage.setItem("cookieConsent", JSON.stringify({
-                    analytics: true
-                }));
+                saveConsent(true);
 
-                cookieBar.style.display = "none";
-
-                loadAnalytics();
             });
-        }
 
-        // ===================================
-        // BAR REJECT
-        // ===================================
+        }
 
         if (rejectBarBtn) {
+
             rejectBarBtn.addEventListener("click", function() {
 
-                localStorage.setItem("cookieConsent", JSON.stringify({
-                    analytics: false
-                }));
+                saveConsent(false);
 
-                cookieBar.style.display = "none";
             });
+
         }
 
         // ===================================
-        // MODAL ACCEPT
+        // MODAL BUTTONS
         // ===================================
 
         if (acceptBtn) {
+
             acceptBtn.addEventListener("click", function() {
 
-                localStorage.setItem("cookieConsent", JSON.stringify({
-                    analytics: true
-                }));
+                if (analyticsCheckbox) {
+                    analyticsCheckbox.checked = true;
+                }
 
-                if (cookieBar) cookieBar.style.display = "none";
+                saveConsent(true);
 
                 cookieModal.classList.remove("show");
 
-                loadAnalytics();
             });
-        }
 
-        // ===================================
-        // MODAL REJECT
-        // ===================================
+        }
 
         if (rejectBtn) {
+
             rejectBtn.addEventListener("click", function() {
 
-                localStorage.setItem("cookieConsent", JSON.stringify({
-                    analytics: false
-                }));
+                if (analyticsCheckbox) {
+                    analyticsCheckbox.checked = false;
+                }
 
-                if (cookieBar) cookieBar.style.display = "none";
+                saveConsent(false);
 
                 cookieModal.classList.remove("show");
-            });
-        }
 
-        // ===================================
-        // SAVE PREFERENCES
-        // ===================================
+            });
+
+        }
 
         if (saveBtn) {
+
             saveBtn.addEventListener("click", function() {
 
-                const preferences = {
-                    analytics: analyticsCheckbox ?
-                        analyticsCheckbox.checked : false
-                };
+                const analyticsEnabled = analyticsCheckbox ?
+                    analyticsCheckbox.checked :
+                    false;
 
-                localStorage.setItem(
-                    "cookieConsent",
-                    JSON.stringify(preferences)
-                );
-
-                if (cookieBar) cookieBar.style.display = "none";
+                saveConsent(analyticsEnabled);
 
                 cookieModal.classList.remove("show");
 
-                if (preferences.analytics) {
-                    loadAnalytics();
-                }
             });
+
         }
 
         // ===================================
-        // RESTORE SETTINGS
+        // SAVE CONSENT
         // ===================================
 
-        if (consent) {
+        function saveConsent(analyticsEnabled) {
 
-            const settings = JSON.parse(consent);
+            const consent = {
+                analytics: analyticsEnabled
+            };
 
-            if (analyticsCheckbox) {
-                analyticsCheckbox.checked =
-                    settings.analytics || false;
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(consent)
+            );
+
+            if (cookieBar) {
+                cookieBar.style.display = "none";
             }
 
-            if (settings.analytics) {
-                loadAnalytics();
-            }
+            updateGoogleConsent(analyticsEnabled);
+
         }
 
         // ===================================
-        // ANALYTICS LOADER
+        // GOOGLE CONSENT MODE V2
         // ===================================
 
-        function loadAnalytics() {
+        function updateGoogleConsent(analyticsEnabled) {
 
-            console.log("Analytics Loaded");
+            if (typeof gtag === "function") {
 
-            // Example:
-            // Google Analytics
-            // Umami
-            // Ahrefs
+                gtag("consent", "update", {
+
+                    analytics_storage: analyticsEnabled ? "granted" : "denied",
+
+                    ad_storage: "denied",
+
+                    ad_user_data: "denied",
+
+                    ad_personalization: "denied"
+
+                });
+
+            }
+
+            console.log(
+                analyticsEnabled ?
+                "Analytics Enabled" :
+                "Analytics Disabled"
+            );
+
         }
 
     });
@@ -1276,7 +1245,7 @@
         }
 
         // Primary CTA
-        if (primaryCTA) {
+        {{--  if (primaryCTA) {
 
             primaryCTA.addEventListener("click", function(e) {
 
@@ -1295,6 +1264,44 @@
                     }
 
                 }, 300);
+
+            });
+
+        }  --}}
+
+
+        // Primary CTA
+        if (primaryCTA) {
+
+            primaryCTA.addEventListener("click", function(e) {
+
+                suppressForSession();
+
+                // Only Insights page should scroll to the newsletter
+                if (currentPage === "insights") {
+
+                    e.preventDefault();
+
+                    setTimeout(function() {
+
+                        const newsletter = document.querySelector("#newsletter");
+
+                        if (newsletter) {
+                            newsletter.scrollIntoView({
+                                behavior: "smooth"
+                            });
+                        }
+
+                    }, 300);
+
+                }
+
+                // For all other pages:
+                // - Services -> Contact page
+                // - Packages -> WhatsApp
+                // - London -> Contact page
+                // - Accra -> Contact page
+                // The browser will automatically follow the href.
 
             });
 

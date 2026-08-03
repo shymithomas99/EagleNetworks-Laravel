@@ -386,8 +386,8 @@
     <!-- --------------------creative section ends here--------------------------- -->
 
     <!-- =========================
-                IN HOUSE PROJECTS SECTION
-                ========================= -->
+                                        IN HOUSE PROJECTS SECTION
+                                        ========================= -->
 
     <section class="inhouse-projects-section">
         <div class="container-custom">
@@ -497,8 +497,8 @@
         </div>
     </section>
     <!-- =========================
-                IN HOUSE PROJECTS SECTION
-                ========================= -->
+                                        IN HOUSE PROJECTS SECTION
+                                        ========================= -->
 
     <section class="how-we-deliver section-md">
         <div class="container-custom">
@@ -764,7 +764,9 @@
                 approach for your business.
             </p>
 
-            <a href="/contact" id="intent-btn-black" class="intent-btn-black">
+
+
+            <a href="{{ url('/contact') }}" id="intent-btn-black" class="intent-btn-black">
                 Start a Conversation
             </a>
 

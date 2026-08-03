@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{--  <title>{{ config('app.name', 'Laravel') }}</title>  --}}
     <title>Eagle Agency | Growth Through Authentic Connection</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +21,73 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
+    <!-- ========================= -->
+    <!-- Google Consent Mode v2 -->
+    <!-- ========================= -->
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('consent', 'default', {
+            analytics_storage: 'granted', // Client requirement
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            wait_for_update: 500
+        });
+    </script>
+
+    <!-- ========================= -->
+    <!-- Google Tag Manager -->
+    <!-- ========================= -->
+
+    <script>
+        (function(w, d, s, l, i) {
+
+            w[l] = w[l] || [];
+
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+
+            j.async = true;
+
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' +
+                i + dl;
+
+            f.parentNode.insertBefore(j, f);
+
+        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');
+    </script>
+
+    <!-- End Google Tag Manager -->
+
 </head>
 
 <body>
+
+    <!-- Google Tag Manager (noscript) -->
+
+    <noscript>
+
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
+            style="display:none;visibility:hidden">
+        </iframe>
+
+    </noscript>
+
+    <!-- End Google Tag Manager (noscript) -->
+
     <header>
         <nav class="navbar navbar-expand-xl custom-navbar fixed-top" id="mainNavbar">
             <div class="container container-custom-3">
@@ -84,35 +147,7 @@
                             </a>
                         </li>
 
-                        {{--  <li class="nav-item dropdown custom-dropdown">
-                            <a class="nav-link" href="#" id="workDropdown" role="button">
-                                Work & Insights
-                            </a>
 
-                            <div class="dropdown-menu custom-mega-dropdown">
-
-                                <a href="{{ url('/work') }}" class="dropdown-item-custom">
-                                    <div class="dropdown-icon-box">
-                                        <i class="bi bi-briefcase"></i>
-                                    </div>
-                                    <div>
-                                        <h6>Our Work</h6>
-                                        <p>Case studies, campaigns & projects</p>
-                                    </div>
-                                </a>
-
-                                <a href="{{ url('/insights') }}" class="dropdown-item-custom">
-                                    <div class="dropdown-icon-box">
-                                        <i class="bi bi-lightbulb"></i>
-                                    </div>
-                                    <div>
-                                        <h6>Insights</h6>
-                                        <p>Business, market & world perspectives</p>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </li>  --}}
 
                         <li class="nav-item dropdown custom-dropdown">
                             <a class="nav-link {{ request()->is('work') || request()->is('insights') ? 'active' : '' }}"
