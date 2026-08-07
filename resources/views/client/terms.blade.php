@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero prvcy-policy-bnr">
 
@@ -10,7 +10,7 @@
                         <nav aria-label="breadcrumb" class="custom-breadcrumb-wrapper mb-4">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
-                                    <a href="/" class="breadcrumb-link">Home</a>
+                                    <a href="/index" class="breadcrumb-link">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
                                     Terms of Use
@@ -284,5 +284,22 @@
                 <li><a href="/about" class="small-text fw-semibold">About Us</a></li>
             </ul>
         </div>
+    </section>
+
+    <section class="ready-to ready-to-v2 section-md">
+        <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
+            <h2 class="mb-3 text-white">Ready to Get Started?</h2>
+            <p class="subhead mb-4 text-white">Let's discuss how Eagle Networks can help you achieve your growth
+                objectives through integrated services and strategic partnership.</p>
+
+            <div class="d-flex flex-column flex-sm-row mb-3">
+                <a href="/contact" class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a
+                    Conversation<i class="bi bi-arrow-right ms-2"></i></a>
+                <a href="/services" class="commn-btn btn-primary-custom">Explore Our Services</a>
+            </div>
+            <a href="/about" class="commn-btn btn-primary-custom">About Eagle Networks</a>
+
+        </div>
+
     </section>
 @endsection

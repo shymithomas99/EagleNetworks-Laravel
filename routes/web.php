@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\WhatsAppController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,9 +43,6 @@ Route::get('/london', function () {
     return view('client.london');
 });
 
-Route::get('/media', function () {
-    return view('client.media');
-});
 
 Route::get('/packages', function () {
     return view('client.packages');
@@ -61,17 +60,38 @@ Route::get('/sitemap', function () {
     return view('client.sitemap');
 });
 
-Route::get('/terms-of-use', function () {
-    return view('client.terms-of-use');
+Route::get('/terms', function () {
+    return view('client.terms');
 });
-
-Route::get('/contact', function () {
-    return view('client.contact');
-});
-
 
 
 Route::get('/work', [HomeController::class, 'work']);
 
+Route::get('/insights', [HomeController::class, 'insights']);
+
+// Route::get('/contact', function () {
+//     return view('client.contact');
+// });
+
+
+
+Route::get('/contact', function () {
+    return view('client.contact');
+})->name('contact');
+
+
+
+Route::get('/media', [HomeController::class, 'media'])->name('media');
 
 Route::post('/contact-submit', [HomeController::class, 'submit'])->name('contact.submit');
+Route::post('/whatsapp/submit', [WhatsAppController::class, 'submit'])
+    ->name('whatsapp.submit');
+
+Route::post('/newsletter-subscribe', [HomeController::class, 'newsletterSubscribe'])
+    ->name('newsletter.subscribe');
+
+// Route::get('/unsubscribe/{id}', [HomeController::class, 'unsubscribeNewsletter'])
+//     ->name('newsletter.unsubscribe');
+
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);

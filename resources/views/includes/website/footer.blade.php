@@ -20,12 +20,15 @@
 
                 <ul class="list-unstyled footer-links">
                     <li><a href="/" class="small-text">Home</a></li>
-                    <li><a href="/about" class="small-text">About Us</a></li>
                     <li><a href="/services" class="small-text">Services</a></li>
                     <li><a href="/packages" class="small-text">Packages</a></li>
+                    <li><a href="/london" class="small-text">London</a></li>
+                    <li><a href="/accra" class="small-text">Accra</a></li>
+                    <li><a href="/work" class="small-text">Our work</a></li>
+                    <li><a href="/insights" class="small-text">Insights</a></li>
+                    <li><a href="/about" class="small-text">About Us</a></li>
                     <li><a href="/contact" class="small-text">Contact</a></li>
-                    <li><a href="/london" class="small-text">Eagle London</a></li>
-                    <li><a href="/accra" class="small-text">Eagle Accra</a></li>
+
                 </ul>
             </div>
 
@@ -107,10 +110,6 @@
                             eaglenetworks@theemhglobal.com
                         </a>
                     </li>
-
-
-
-
 
                 </ul>
             </div>
@@ -222,7 +221,7 @@
 
                 <ul class="list-unstyled footer-links-subtle">
                     <li><a href="/privacy-policy" class="small-text">Privacy Policy</a></li>
-                    <li><a href="/terms-of-use" class="small-text">Terms of Use</a></li>
+                    <li><a href="/terms" class="small-text">Terms of Use</a></li>
                     <li><a href="/sitemap" class="small-text">Sitemap</a></li>
                     <li>
                         <a href="#" class="small-text" id="openCookieSettings">
@@ -235,7 +234,7 @@
 
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="newsletter">
             <div class="col-12 newsletter-box">
                 <div class="row flex-column g-4">
                     <div class="col-md-12">
@@ -244,24 +243,52 @@
                             to your inbox.</p>
                     </div>
                 </div>
+
                 <div class="row g-2 w-100">
-                    <div class="subscribe-input">
-                        <form class="d-flex flex-wrap flex-lg-nowrap">
-                            <div class="input-group">
-                                <span class="input-group-text bg-white border-0 px-3">
-                                    <i class="bi bi-envelope text-muted"></i>
-                                </span>
-                                <input type="email" class="form-control text-muted" placeholder="Enter your email"
-                                    aria-label="Enter your email">
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST">
+                        @csrf
+
+                        <div class="d-flex flex-wrap flex-lg-nowrap gap-2">
+
+                            <div class="subscribe-input flex-grow-1">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-0 px-3">
+                                        <i class="bi bi-envelope text-muted"></i>
+                                    </span>
+
+                                    <input type="email" name="email" class="form-control text-muted"
+                                        placeholder="Enter your email" required>
+                                </div>
                             </div>
 
-                        </form>
-                    </div>
-                    <div class="subscribe-button"> <button type="submit"
-                            class=" commn-btn btn-primary-custom">Subscribe</button>
-                    </div>
-                    <p class="x-small-text mt-3 mb-0 fw-normal">We respect your
-                        privacy. Unsubscribe at any time.</p>
+                            <div class="subscribe-button">
+                                <button type="submit" class="commn-btn btn-primary-custom">
+                                    Subscribe
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <p class="x-small-text mt-3 mb-0 fw-normal">
+                        We respect your privacy.
+                        {{--  <a href="{{ route('newsletter.unsubscribe', $subscriber->id) }}">  --}}
+                        Unsubscribe
+                        {{--  </a>  --}}
+                        at any time.
+                    </p>
+
+                    @if (session('success'))
+                        <div class="alert alert-success mt-2">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-2">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -366,7 +393,8 @@
                                 </div>
                                 <!-- Toggle -->
                                 <label class="cookie-switch">
-                                    <input type="checkbox">
+                                    {{--  <input type="checkbox">  --}}
+                                    <input type="checkbox" id="analyticsCookies" checked>
                                     <span class="cookie-slider"></span>
                                 </label>
                             </div>
@@ -385,17 +413,24 @@
             <div class="cookie-modal-footer">
 
                 <div>
-                    <button class="cookie-btn cookie-outline me-2">
+
+                    <button class="cookie-btn cookie-outline me-2" id="rejectAllBtn">
                         Reject All
                     </button>
 
-                    <button class="cookie-btn cookie-outline">
+                    <button class="cookie-btn cookie-outline" id="acceptAllBtn">
                         Accept All
                     </button>
+
+
                 </div>
 
 
-                <button class="cookie-btn cookie-fill">
+                {{--  <button class="cookie-btn cookie-fill">
+                    Save Preferences
+                </button>  --}}
+
+                <button class="cookie-btn cookie-fill" id="savePreferencesBtn">
                     Save Preferences
                 </button>
 
@@ -465,53 +500,252 @@
     });
 </script>
 
+{{--  cookies modal  --}}
+
 <script>
-    const cookieBar = document.getElementById("cookieBar");
-    const closeCookie = document.getElementById("closeCookie");
+    document.addEventListener("DOMContentLoaded", function() {
 
-    const cookieModal = document.getElementById("cookieModal");
-    const openCookieModal = document.getElementById("openCookieModal");
-    const openCookieSettings = document.getElementById("openCookieSettings");
-    const closeCookieModal = document.getElementById("closeCookieModal");
+        const cookieBar = document.getElementById("cookieBar");
+        const cookieModal = document.getElementById("cookieModal");
+        const closeCookie = document.getElementById("closeCookie");
 
-    /* Close Cookie Bar (Home page only) */
-    if (closeCookie && cookieBar) {
-        closeCookie.addEventListener("click", () => {
-            cookieBar.classList.add("hide");
-        });
-    }
+        const openCookieModal = document.getElementById("openCookieModal");
+        const openCookieSettings = document.getElementById("openCookieSettings");
+        const closeCookieModal = document.getElementById("closeCookieModal");
 
-    /* Open from Cookie Bar button (Home page only) */
-    if (openCookieModal && cookieModal) {
-        openCookieModal.addEventListener("click", () => {
-            cookieModal.classList.add("show");
-        });
-    }
+        const analyticsCheckbox = document.getElementById("analyticsCookies");
 
-    /* Open from Footer Link (All pages) */
-    if (openCookieSettings && cookieModal) {
-        openCookieSettings.addEventListener("click", (e) => {
-            e.preventDefault();
-            cookieModal.classList.add("show");
-        });
-    }
+        const rejectBtn = document.getElementById("rejectAllBtn");
+        const acceptBtn = document.getElementById("acceptAllBtn");
+        const saveBtn = document.getElementById("savePreferencesBtn");
 
-    /* Close Modal */
-    if (closeCookieModal && cookieModal) {
-        closeCookieModal.addEventListener("click", () => {
-            cookieModal.classList.remove("show");
-        });
-    }
+        const acceptBarBtn = document.getElementById("acceptBarBtn");
+        const rejectBarBtn = document.getElementById("rejectBarBtn");
 
-    /* Outside Click */
-    if (cookieModal) {
-        cookieModal.addEventListener("click", (e) => {
-            if (e.target === cookieModal) {
+        const STORAGE_KEY = "cookieConsent";
+
+        // ===================================
+        // OPEN MODAL
+        // ===================================
+
+        if (openCookieModal) {
+            openCookieModal.addEventListener("click", function() {
+                cookieModal.classList.add("show");
+            });
+        }
+
+        if (openCookieSettings) {
+            openCookieSettings.addEventListener("click", function(e) {
+                e.preventDefault();
+                cookieModal.classList.add("show");
+            });
+        }
+
+        if (closeCookie) {
+
+            closeCookie.addEventListener("click", function() {
+
+                localStorage.setItem("cookieBannerClosed", "true");
+
+                if (cookieBar) {
+                    cookieBar.style.display = "none";
+                }
+
+            });
+
+        }
+
+        // ===================================
+        // CLOSE MODAL
+        // ===================================
+
+        if (closeCookieModal) {
+            closeCookieModal.addEventListener("click", function() {
                 cookieModal.classList.remove("show");
+            });
+        }
+
+        if (cookieModal) {
+            cookieModal.addEventListener("click", function(e) {
+
+                if (e.target === cookieModal) {
+                    cookieModal.classList.remove("show");
+                }
+
+            });
+        }
+
+        // ===================================
+        // LOAD SAVED CONSENT
+        // ===================================
+
+        let consent = localStorage.getItem(STORAGE_KEY);
+
+        if (!consent) {
+
+            // Client requirement:
+            // Analytics ON by default
+
+            const defaultConsent = {
+                analytics: true
+            };
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(defaultConsent)
+            );
+
+            consent = JSON.stringify(defaultConsent);
+
+        } else {
+
+            if (cookieBar) {
+                cookieBar.style.display = "none";
             }
-        });
-    }
+
+        }
+
+        const settings = JSON.parse(consent);
+
+        if (analyticsCheckbox) {
+            analyticsCheckbox.checked = settings.analytics;
+        }
+
+        updateGoogleConsent(settings.analytics);
+
+        // ===================================
+        // COOKIE BAR
+        // ===================================
+
+        if (acceptBarBtn) {
+
+            acceptBarBtn.addEventListener("click", function() {
+
+                saveConsent(true);
+
+            });
+
+        }
+
+        if (rejectBarBtn) {
+
+            rejectBarBtn.addEventListener("click", function() {
+
+                saveConsent(false);
+
+            });
+
+        }
+
+        // ===================================
+        // MODAL BUTTONS
+        // ===================================
+
+        if (acceptBtn) {
+
+            acceptBtn.addEventListener("click", function() {
+
+                if (analyticsCheckbox) {
+                    analyticsCheckbox.checked = true;
+                }
+
+                saveConsent(true);
+
+                cookieModal.classList.remove("show");
+
+            });
+
+        }
+
+        if (rejectBtn) {
+
+            rejectBtn.addEventListener("click", function() {
+
+                if (analyticsCheckbox) {
+                    analyticsCheckbox.checked = false;
+                }
+
+                saveConsent(false);
+
+                cookieModal.classList.remove("show");
+
+            });
+
+        }
+
+        if (saveBtn) {
+
+            saveBtn.addEventListener("click", function() {
+
+                const analyticsEnabled = analyticsCheckbox ?
+                    analyticsCheckbox.checked :
+                    false;
+
+                saveConsent(analyticsEnabled);
+
+                cookieModal.classList.remove("show");
+
+            });
+
+        }
+
+        // ===================================
+        // SAVE CONSENT
+        // ===================================
+
+        function saveConsent(analyticsEnabled) {
+
+            const consent = {
+                analytics: analyticsEnabled
+            };
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(consent)
+            );
+
+            if (cookieBar) {
+                cookieBar.style.display = "none";
+            }
+
+            updateGoogleConsent(analyticsEnabled);
+
+        }
+
+        // ===================================
+        // GOOGLE CONSENT MODE V2
+        // ===================================
+
+        function updateGoogleConsent(analyticsEnabled) {
+
+            if (typeof gtag === "function") {
+
+                gtag("consent", "update", {
+
+                    analytics_storage: analyticsEnabled ? "granted" : "denied",
+
+                    ad_storage: "denied",
+
+                    ad_user_data: "denied",
+
+                    ad_personalization: "denied"
+
+                });
+
+            }
+
+            console.log(
+                analyticsEnabled ?
+                "Analytics Enabled" :
+                "Analytics Disabled"
+            );
+
+        }
+
+    });
 </script>
+
+
 
 <!-- service card click event function -->
 <script>
@@ -597,31 +831,67 @@
 <!-- how we create section js -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
         const buttons = document.querySelectorAll(".expand-btn");
         const boxes = document.querySelectorAll(".expand-box");
+        const cards = document.querySelectorAll(".creative-card");
+
+        // Common function
+        function toggleExpand(button) {
+
+            const target = document.querySelector(button.dataset.target);
+            const isAlreadyOpen = target.classList.contains("show");
+
+            // Close all boxes
+            boxes.forEach(box => box.classList.remove("show"));
+
+            // Reset all buttons
+            buttons.forEach(btn => {
+                btn.classList.remove("active");
+                btn.innerHTML = `
+                Explore
+                <span class="arrow">
+                    <i class="bi bi-arrow-right-short fs-5"></i>
+                </span>
+            `;
+            });
+
+            // Open selected
+            if (!isAlreadyOpen) {
+                target.classList.add("show");
+                button.classList.add("active");
+                button.innerHTML = `
+                Close
+                <span class="arrow">
+                    <i class="bi bi-arrow-up-short fs-5"></i>
+                </span>
+            `;
+            }
+        }
+
+        // Button Click
         buttons.forEach(button => {
-            button.addEventListener("click", function() {
-                const target = document.querySelector(this.dataset.target);
-                const isAlreadyOpen = target.classList.contains("show");
-                /* CLOSE ALL BOXES */
-                boxes.forEach(box => {
-                    box.classList.remove("show");
-                });
-                /* RESET ALL BUTTONS */
-                buttons.forEach(btn => {
-                    btn.classList.remove("active");
-                    btn.innerHTML = `Explore <span class="arrow">→</span>`;
-                });
-                /* OPEN CURRENT ONLY IF NOT ALREADY OPEN */
-                if (!isAlreadyOpen) {
-                    target.classList.add("show");
-                    this.classList.add("active");
-                    this.innerHTML = `Close <span class="arrow">↑</span>`;
+            button.addEventListener("click", function(e) {
+                e.stopPropagation(); // Prevent card click from firing
+                toggleExpand(this);
+            });
+        });
+
+        // Card Click
+        cards.forEach(card => {
+            card.addEventListener("click", function() {
+                const button = this.querySelector(".expand-btn");
+                if (button) {
+                    toggleExpand(button);
                 }
             });
         });
+
     });
 </script>
+
+
+<!-- ===================Media portfolio filter script ==================== -->
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -669,6 +939,394 @@
 
 
 
-</body>
+<!-- ===================insight filter script ==================== -->
 
-</html>
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // MAIN TAB
+        const mainButtons = document.querySelectorAll(".main-tab-btn");
+        const mainContents = document.querySelectorAll(".main-tab-content");
+
+        mainButtons.forEach(button => {
+
+            button.addEventListener("click", function() {
+
+                mainButtons.forEach(btn => btn.classList.remove("active"));
+
+                this.classList.add("active");
+
+                const tab = this.dataset.tab;
+
+                mainContents.forEach(content => {
+
+                    if (content.id === tab) {
+                        content.classList.remove("d-none");
+                        content.classList.add("active");
+                    } else {
+                        content.classList.add("d-none");
+                        content.classList.remove("active");
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        // SUB FILTER (LinkedIn)
+        const filterButtons = document.querySelectorAll('.insights-filter-btn');
+        const portfolioItems = document.querySelectorAll('.insights-item');
+        const noItemsMessage = document.getElementById('noItemsMessage');
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener('click', function() {
+
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.dataset.filter;
+
+                let visibleItems = 0;
+
+                portfolioItems.forEach(item => {
+
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+
+                        item.classList.remove('d-none');
+                        visibleItems++;
+
+                    } else {
+
+                        item.classList.add('d-none');
+
+                    }
+
+                });
+
+                if (noItemsMessage) {
+
+                    if (visibleItems === 0) {
+                        noItemsMessage.classList.remove('d-none');
+                    } else {
+                        noItemsMessage.classList.add('d-none');
+                    }
+
+                }
+
+            });
+
+        });
+
+    });
+</script> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // ==========================
+        // MAIN TAB
+        // ==========================
+        const mainButtons = document.querySelectorAll(".main-tab-btn");
+        const mainContents = document.querySelectorAll(".main-tab-content");
+
+        mainButtons.forEach(button => {
+
+            button.addEventListener("click", function() {
+
+                mainButtons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+
+                const tab = this.dataset.tab;
+
+                mainContents.forEach(content => {
+
+                    if (content.id === tab) {
+
+                        content.classList.remove("d-none");
+                        content.classList.add("active");
+
+                    } else {
+
+                        content.classList.add("d-none");
+                        content.classList.remove("active");
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        // ==========================
+        // LINKEDIN FILTER
+        // ==========================
+        const filterButtons = document.querySelectorAll(".insights-filter-btn");
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", function() {
+
+                // Active button
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+
+                const filterValue = this.dataset.filter;
+
+                // LinkedIn container only
+                const linkedinTab = document.getElementById("linkedin"); // <-- main tab id
+
+                const portfolioItems = linkedinTab.querySelectorAll(".insights-item");
+                const noItemsMessage = linkedinTab.querySelector("#noItemsMessage");
+
+                let visibleItems = 0;
+
+                portfolioItems.forEach(item => {
+
+                    if (
+                        filterValue === "all" ||
+                        item.classList.contains(filterValue)
+                    ) {
+
+                        item.classList.remove("d-none");
+                        visibleItems++;
+
+                    } else {
+
+                        item.classList.add("d-none");
+
+                    }
+
+                });
+
+                if (noItemsMessage) {
+
+                    noItemsMessage.classList.toggle("d-none", visibleItems !== 0);
+
+                }
+
+            });
+
+        });
+
+    });
+</script>
+
+<!-- =============== whtsapp modal service tage script ===============  -->
+
+<script>
+    document.querySelectorAll('.service-tag').forEach(tag => {
+
+        tag.addEventListener('click', function() {
+
+            this.classList.toggle('active');
+
+        });
+
+    });
+</script>
+
+<!-- ============== Exit-intent popup script ================  -->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // Desktop only
+        if (window.innerWidth < 1024) return;
+
+        // Pages where exit intent is enabled
+        const enabledPages = [
+            "services",
+            "packages",
+            "london",
+            "accra",
+            "insights"
+        ];
+
+        const currentPage = window.location.pathname.split("/").pop();
+
+        if (!enabledPages.includes(currentPage)) return;
+
+        const overlay = document.getElementById("exitIntentOverlay");
+        const closeBtn = document.getElementById("closeExitIntent");
+
+        if (!overlay || !closeBtn) return;
+
+        // CTA buttons
+        const primaryCTA = document.getElementById("intent-btn-black");
+        const secondaryCTA = document.getElementById("intent-btn-white");
+
+        // Storage Keys
+        const pageShownKey = "exitIntentShown_" + currentPage;
+        const sessionSuppressKey = "exitIntentSuppressSession";
+        const cooldownKey = "exitIntentCooldownUntil";
+
+        // Already shown on this page this session
+        if (sessionStorage.getItem(pageShownKey)) return;
+
+        // Suppressed for remainder of session
+        if (sessionStorage.getItem(sessionSuppressKey)) return;
+
+        // 10-minute cooldown after dismissing
+        const cooldownUntil = parseInt(localStorage.getItem(cooldownKey) || "0", 10);
+
+        if (Date.now() < cooldownUntil) return;
+
+        let popupShown = false;
+        let eligible = false;
+
+        // Eligible only after 10 seconds
+        setTimeout(function() {
+            eligible = true;
+        }, 10000);
+
+        function showPopup() {
+
+            if (!eligible) return;
+            if (popupShown) return;
+
+            // Only one popup at a time
+            if (document.querySelector(".exit-intent-overlay.show")) return;
+
+            popupShown = true;
+
+            overlay.classList.add("show");
+
+            // Never show again on this page this session
+            sessionStorage.setItem(pageShownKey, "true");
+
+            document.removeEventListener("mouseleave", handleExit);
+        }
+
+        function handleExit(e) {
+
+            if (e.clientY <= 20) {
+                showPopup();
+            }
+
+        }
+
+        document.addEventListener("mouseleave", handleExit);
+
+        function dismissPopup() {
+
+            overlay.classList.remove("show");
+
+            // Suppress ALL exit popups for 10 minutes
+            localStorage.setItem(
+                cooldownKey,
+                Date.now() + (10 * 60 * 1000)
+            );
+
+        }
+
+        closeBtn.addEventListener("click", dismissPopup);
+
+        overlay.addEventListener("click", function(e) {
+
+            if (e.target === overlay) {
+                dismissPopup();
+            }
+
+        });
+
+        function suppressForSession() {
+
+            sessionStorage.setItem(sessionSuppressKey, "true");
+
+            overlay.classList.remove("show");
+
+        }
+
+        // Primary CTA
+        {{--  if (primaryCTA) {
+
+            primaryCTA.addEventListener("click", function(e) {
+
+                e.preventDefault();
+
+                suppressForSession();
+
+                setTimeout(function() {
+
+                    const newsletter = document.querySelector("#newsletter");
+
+                    if (newsletter) {
+                        newsletter.scrollIntoView({
+                            behavior: "smooth"
+                        });
+                    }
+
+                }, 300);
+
+            });
+
+        }  --}}
+
+
+        // Primary CTA
+        if (primaryCTA) {
+
+            primaryCTA.addEventListener("click", function(e) {
+
+                suppressForSession();
+
+                // Only Insights page should scroll to the newsletter
+                if (currentPage === "insights") {
+
+                    e.preventDefault();
+
+                    setTimeout(function() {
+
+                        const newsletter = document.querySelector("#newsletter");
+
+                        if (newsletter) {
+                            newsletter.scrollIntoView({
+                                behavior: "smooth"
+                            });
+                        }
+
+                    }, 300);
+
+                }
+
+                // For all other pages:
+                // - Services -> Contact page
+                // - Packages -> WhatsApp
+                // - London -> Contact page
+                // - Accra -> Contact page
+                // The browser will automatically follow the href.
+
+            });
+
+        }
+
+        // Secondary CTA
+        if (secondaryCTA) {
+
+            secondaryCTA.addEventListener("click", function() {
+
+                suppressForSession();
+
+            });
+
+        }
+
+    });
+</script>
+
+
+<script>
+    const shareWrapper = document.querySelector(".share-wrapper");
+    const shareBtn = document.getElementById("shareBtn");
+
+    shareBtn.addEventListener("click", () => {
+        shareWrapper.classList.toggle("active");
+    });
+</script>

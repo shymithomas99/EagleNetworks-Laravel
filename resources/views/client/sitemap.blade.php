@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero prvcy-policy-bnr">
 
@@ -247,7 +247,7 @@
 
                 <!-- Card 2 -->
                 <div class="col-lg-6">
-                    <a href="/terms-of-use">
+                    <a href="/terms">
                         <div class="rights-card bg-white card-white">
                             <div class="rights-header">
                                 <span class="rights-dot"></span>
@@ -294,11 +294,11 @@
                 objectives through integrated services and strategic partnership.</p>
 
             <div class="d-flex flex-column flex-sm-row mb-3">
-                <a href="/contact" class=" commn-btn btn-third-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a Conversation<i
-                        class="bi bi-arrow-right ms-2"></i></a>
-                <a href="/services" class="commn-btn btn-white-outline">Explore Our Services</a>
+                <a href="/contact" class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a
+                    Conversation<i class="bi bi-arrow-right ms-2"></i></a>
+                <a href="/services" class="commn-btn btn-primary-custom">Explore Our Services</a>
             </div>
-            <a href="/about" class="commn-btn btn-white-outline">About Eagle Networks</a>
+            <a href="/about" class="commn-btn btn-primary-custom">About Eagle Networks</a>
 
         </div>
 

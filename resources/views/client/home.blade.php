@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 
 @section('content')
     <!-- ========================= COOKIES BAR ========================= -->
@@ -17,7 +17,7 @@
 
                 <div class="cookie-actions">
 
-                    <button class="cookie-btn cookie-outline">
+                    <button class="cookie-btn cookie-outline" id="rejectBarBtn">
                         Reject Non-Essential
                     </button>
 
@@ -25,13 +25,14 @@
                         Manage Preferences
                     </button>
 
-                    <button class="cookie-btn cookie-fill">
+                    <button class="cookie-btn cookie-fill" id="acceptBarBtn">
                         Accept All
                     </button>
 
                     <button class="cookie-close" id="closeCookie">
                         <i class="bi bi-x-lg"></i>
                     </button>
+
 
                 </div>
 
@@ -48,25 +49,30 @@
     <section class="section-hero home-banner">
 
 
-        <div class="container-custom">
+        <div class="container-custom-3">
 
             <div class="section-hero-sub">
                 <div>
                     <div>
                         <h1 class="element-2">Growth Through Authentic Connection : Strategy, Creative & Digital
                             Solutions</h1>
-                        <div class="subhead">Strategy, creative, and digital solutions delivered through Eagle London
-                            and
-                            Eagle Accra. We help startups, SMEs, and enterprises scale locally and globally by
-                            connecting
-                            them with authentic communities.</div>
+                        <div class="subhead">Eagle is a Black-owned, full-service marketing and creative agency based in
+                            London and Accra, specialising in branding, web and software solutions, and TV and digital
+                            campaigns for SMEs and non-profits. With 20+ years of experience, we help purpose-driven
+                            organisations grow locally and globally.</div>
 
                         <div class="small-text">
                             Operating from London and Accra as one integrated team
                         </div>
-                        <a href="/contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a Conversation<i
-                                class="bi bi-arrow-right ms-2"></i></a>
-                        <a href="#FeaturedWork-Section" class="commn-btn btn-white">View Our Work</a>
+                        <a href="contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Start a
+                            Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg> </a>
+                        <a href="services#service-wrk" class="commn-btn btn-primary-custom">View Our Work</a>
                     </div>
 
                 </div>
@@ -197,8 +203,14 @@
 
             </div>
 
-            <div class="mt-5"><a href="/services" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">View
-                    Services<i class="bi bi-arrow-right ms-2"></i></a></div>
+            <div class="mt-5"><a href="services" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">View
+                    Services<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                        data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg> </a></div>
 
 
 
@@ -287,7 +299,8 @@
                         </div>
                         <h3>NHS Digital & Outdoor Campaign</h3>
                         <p>NHS Digital & Outdoor Campaign</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="/details" class="button-link small-text mb-0">See More <i
+                                class="bi bi-arrow-right-short ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -298,7 +311,8 @@
                         </div>
                         <h3>Kings College London Chronic Kidney Disease Project</h3>
                         <p>Kings College London Chronic Kidney Disease Project</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="/details" class="button-link small-text mb-0">See More <i
+                                class="bi bi-arrow-right-short ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -308,7 +322,8 @@
                         </div>
                         <h3>Paul Robinson West Ham TV Ad</h3>
                         <p>Paul Robinson West Ham TV Ad</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="/details" class="button-link small-text mb-0">See More <i
+                                class="bi bi-arrow-right-short ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -318,7 +333,8 @@
                         </div>
                         <h3>Toyota Ghana</h3>
                         <p>Toyota Ghana</p>
-                        <a href="/details" class="button-link">See More <i class="bi bi-arrow-right  ms-2"></i></a>
+                        <a href="/details" class="button-link small-text mb-0">See More <i
+                                class="bi bi-arrow-right-short ms-1"></i></a>
                     </div>
                 </div>
 
@@ -394,12 +410,12 @@
         </div>
     </section>
 
-    <section class="two-strategic section-md">
+    <section class="two-strategic section-md pb-2">
         <div class=" container-custom d-flex flex-column">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="element-2 text-white">Two Strategic Hubs. One Integrated Team.</h2>
-                    <div class="subhead text-white-v2">
+                    <div class="subhead mb-2 text-white-v2">
                         Operating from London and Accra, we bridge UK and African markets through integrated operations.
                         Our dual-hub model provides clients with seamless access to strategic expertise, creative
                         talent, and market knowledge across both regions. This unique positioning allows us to serve
@@ -407,7 +423,7 @@
                     </div>
                 </div>
 
-                <p class="subhead text-center sec-padding-2 text-white-v2 mb-5">Two locations. One integrated team.</p>
+                <p class="subhead text-center sec-padding-2 text-white mb-4">Two locations. One integrated team.</p>
             </div>
 
             <div class="location-section ">
@@ -416,15 +432,15 @@
 
                     <div class="col-md-6">
                         <div class="location-card london-card">
-                            <p class="x-small-text text-uppercase mb-2 d-block">Based in the UK</p>
-                            <h2 class="location-title text-orange-alt mb-2">eagle<span>london</span></h2>
+                            <p class="x-small-text text-uppercase grey-color-v2 mb-2 d-block">Based in the UK</p>
+                            <h2 class="location-title text-deeper-orange mb-2">eagle<span>london</span></h2>
                             <p class="small-text mb-3">London based team serving clients across the UK and Europe
                             </p>
 
                             <div class="pill-group mb-4">
-                                <span class="badge-custom bg-orange-lite">London</span>
-                                <span class="badge-custom bg-grey-lite">UK & Europe</span>
-                                <span class="badge-custom bg-grey-lite">One Integrated Team</span>
+                                <span class="badge-custom badge-bg-lite text-deeper-orange fw-semibold">London</span>
+                                <span class="badge-custom bg-grey-lite fw-semibold">UK & Europe</span>
+                                <span class="badge-custom bg-grey-lite fw-semibold">One Integrated Team</span>
                             </div>
 
                             <p class="mb-4">UK core and Africa bridge. Our London office drives strategic vision and
@@ -439,14 +455,14 @@
 
                     <div class="col-md-6">
                         <div class="location-card accra-card">
-                            <p class="x-small-text text-uppercase mb-2 d-block">Based in Ghana</p>
-                            <h2 class="location-title text-green mb-2">eagle<span>accra</span></h2>
+                            <p class="x-small-text text-uppercase grey-color-v2 mb-2 d-block">Based in Ghana</p>
+                            <h2 class="location-title text-deeper-orange mb-2">eagle<span>accra</span></h2>
                             <p class="small-text mb-3">Accra based team serving clients across Ghana and Africa</p>
 
                             <div class="pill-group mb-4">
-                                <span class="badge-custom bg-green-lite">Accra</span>
-                                <span class="badge-custom bg-grey-lite">Ghana & Africa</span>
-                                <span class="badge-custom bg-grey-lite">One Integrated Team</span>
+                                <span class="badge-custom bg-green-lite fw-semibold">Accra</span>
+                                <span class="badge-custom bg-grey-lite fw-semibold">Ghana & Africa</span>
+                                <span class="badge-custom bg-grey-lite fw-semibold">One Integrated Team</span>
                             </div>
 
                             <p class="mb-4">Ghana core and global bridge. Our Accra office leads the creative
@@ -459,14 +475,20 @@
                     </div>
                 </div>
 
-                <div class="row mt-5">
+                <div class="row mt-2">
                     <div class="col-12 text-center choose-market-box py-4">
                         <h3 class="text-white">Choose the team closest to your market</h3>
                         <p class="subhead mb-2 text-white-v2">Not sure which team to contact? Tell us your location and
                             we will
                             route you.</p>
                         <a href="/contact" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0 mt-2">Start a
-                            Conversation<i class="bi bi-arrow-right ms-2"></i></a>
+                            Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                data-loc="client/src/pages/Home.tsx:47">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg> </a>
                     </div>
                 </div>
             </div>
@@ -486,9 +508,9 @@
 
                 <div class="col-lg-4 col-md-6">
                     <div class="card-1">
-                        <span class="small-text text-orange d-block mb-2">For Startups</span>
-                        <h3>Eagle Ignite</h3>
-                        <p class="mb-4">Custom</p>
+                        <span class="small-text text-orange fw-semibold d-block mb-2">For Startups & New Ventures</span>
+                        <h3 class="fw-bolder">Eagle Ignite</h3>
+                        <p class="mb-4 fw-semibold">Custom</p>
                         <ul class="package-list">
                             <li><i class="bi bi-check2"></i> Brand strategy</li>
                             <li><i class="bi bi-check2"></i> Website design</li>
@@ -496,16 +518,16 @@
                             <li><i class="bi bi-check2"></i> Initial campaign</li>
                         </ul>
                         <a href="/ignite" class="button-link  mt-auto">Get Started <i
-                                class="bi bi-arrow-right  ms-2"></i></a>
+                                class="bi bi-arrow-right-short ms-1 mt-2px"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="card-1">
                         <span class="badge-popular mb-3">Most Popular</span>
-                        <span class="small-text text-orange d-block mb-2">For SMEs</span>
+                        <span class="small-text text-orange fw-semibold d-block mb-2">For SMEs & Non-Profits</span>
                         <h3>Eagle Amplify</h3>
-                        <p class=" mb-4">Custom</p>
+                        <p class=" mb-4 fw-semibold">Custom</p>
                         <ul class="package-list ">
                             <li><i class="bi bi-check2"></i> Full marketing strategy</li>
                             <li><i class="bi bi-check2"></i> Campaign execution</li>
@@ -514,15 +536,16 @@
                             <li><i class="bi bi-check2"></i> Monthly optimization</li>
                         </ul>
                         <a href="/amplify" class=" button-link mt-auto">Get Started <i
-                                class="bi bi-arrow-right ms-2"></i></a>
+                                class="bi bi-arrow-right-short ms-1 mt-2px"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="card-1">
-                        <span class="small-text text-orange d-block mb-2">For Enterprise</span>
+                        <span class="small-text text-orange fw-semibold d-block mb-2">For Enterprises & Government
+                            Bodies</span>
                         <h3>Eagle Connect</h3>
-                        <p class="mb-4">Custom</p>
+                        <p class="mb-4 fw-semibold">Custom</p>
                         <ul class="package-list">
                             <li><i class="bi bi-check2"></i> Dedicated team</li>
                             <li><i class="bi bi-check2"></i> Integrated services</li>
@@ -531,7 +554,7 @@
                             <li><i class="bi bi-check2"></i> Quarterly reviews</li>
                         </ul>
                         <a href="/connect" class="button-link mt-auto">Get Started <i
-                                class="bi bi-arrow-right  ms-2"></i></a>
+                                class="bi bi-arrow-right-short ms-1 mt-2px"></i></a>
                     </div>
                 </div>
 
@@ -1140,15 +1163,21 @@
     <section class="ready-to section-md">
         <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
             <h2 class="mb-3 text-white">Ready to Get Started?</h2>
-            <p class="subhead mb-4 text-white">Let's have a conversation about your project. Whether you're exploring
+            <p class="subhead mb-4">Let's have a conversation about your project. Whether you're exploring
                 ideas or
                 ready to execute, we're here to help you achieve ambitious growth goals. Contact our team today to
                 discuss your needs.</p>
 
             <div class="d-flex flex-column flex-sm-row">
                 <a href="/contact" class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a
-                    Conversation<i class="bi bi-arrow-right ms-2"></i></a>
-                <a href="/services" class="commn-btn btn-third-custom">Explore Services</a>
+                    Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                        data-loc="client/src/pages/Home.tsx:47">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg> </a>
+                <a href="/services" class="commn-btn btn-primary-custom">Explore Services</a>
             </div>
         </div>
 

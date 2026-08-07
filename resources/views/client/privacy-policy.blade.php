@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appweb')
 @section('content')
     <section class="section-hero prvcy-policy-bnr">
 
@@ -516,7 +516,7 @@
             <ul class="inner-menu list-unstyled d-flex flex-wrap gap-3 mb-0 ">
                 <li><a href="/services" class="small-text fw-semibold active">Our Services</a></li>
                 <li><a href="/contact" class="small-text fw-semibold">Contact Us</a></li>
-                <li><a href="/terms-of-use" class="small-text fw-semibold">Terms of Use</a></li>
+                <li><a href="/terms" class="small-text fw-semibold">Terms of Use</a></li>
                 <li><a href="/about" class="small-text fw-semibold">About Us</a></li>
             </ul>
         </div>
