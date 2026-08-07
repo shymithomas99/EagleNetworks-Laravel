@@ -14,7 +14,7 @@ class Blog extends Model
         'url',
         'slug',
         'body',
-        'author',
+        'author_id',
         'category_id',
         'excerpt',
         'coverImage',

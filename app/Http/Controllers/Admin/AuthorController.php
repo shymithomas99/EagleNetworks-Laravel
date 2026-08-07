@@ -92,7 +92,7 @@ class AuthorController extends Controller
                 'name' => ['required','string'],
                 'designation' => ['required','string'],
                 'about' => ['required','string'],
-                'image' => ['required','image','mimes:jpg,jpeg,png,webp','max:2048'],
+                'image' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
             ]
         );
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 512);
             $table->string('url', 512)->nullable();
             $table->string('slug', 512)->nullable()->unique()->comment('URL identifier, e.g. why-brand-strategy-matters');
-            $table->string('author', 255)->nullable();
+            $table->foreignId('author_id')->constrained('authors');
             $table->foreignId('category_id')->constrained('blog_categories');
             $table->text('coverImage')->nullable();
             $table->text('coverImageUrl')->nullable();
