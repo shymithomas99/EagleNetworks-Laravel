@@ -35,8 +35,7 @@ class SitemapController extends Controller
         foreach ($staticPages as $page) {
             $sitemap->add(
                 Url::create(url($page))
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                    ->setPriority($page == '/' ? 1.0 : 0.8)
+
             );
         }
 
@@ -49,8 +48,7 @@ class SitemapController extends Controller
             $sitemap->add(
                 Url::create(url('/blog/' . $blog->slug))
                     ->setLastModificationDate($blog->updated_at)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(0.7)
+
             );
         }
 
@@ -61,8 +59,7 @@ class SitemapController extends Controller
             $sitemap->add(
                 Url::create(url('/media/' . $video->slug))
                     ->setLastModificationDate($video->updated_at)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(0.6)
+
             );
         }
 

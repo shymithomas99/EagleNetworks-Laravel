@@ -7,6 +7,8 @@ use App\Models\Contact;
 use App\Models\NewsletterSubscriber;
 use App\Models\VideoCategory;
 use App\Models\VideoProject;
+use App\Models\Work;
+use App\Models\WorkCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,7 +34,42 @@ class HomeController extends Controller
             ->limit(4)
             ->get();
 
-        return view('client.work', compact('categories', 'videos'));
+        // Count all active videos
+        $videoCount = VideoProject::count();
+
+        $workCategories = WorkCategory::get();
+        // dd($workCategories);
+
+        // Get all published works
+        // $works = Work::where('published', 1)
+        //     ->orderBy('displayOrder', 'asc')
+        //     ->get();
+
+        $works = Work::with('category')
+            ->where('published', 1)
+            ->orderBy('displayOrder', 'asc')
+            ->get();
+
+        return view('client.work', compact(
+            'categories',
+            'videos',
+            'videoCount',
+            'works'
+        ));
+    }
+
+    public function workDetails($slug)
+    {
+        // $work = Work::where('slug', $slug)
+        //     ->where('published', 1)
+        //     ->firstOrFail();
+
+        $work = Work::with('galleries')
+            ->where('slug', $slug)
+            ->where('published', 1)
+            ->firstOrFail();
+
+        return view('client.details', compact('work'));
     }
 
 

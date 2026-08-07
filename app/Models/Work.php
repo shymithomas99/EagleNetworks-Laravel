@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class Work extends Model
 {
-    
+
     use SoftDeletes;
     protected $fillable = [
         'cover_title',
@@ -97,13 +97,23 @@ class Work extends Model
         });
     }
 
-    public function category()
-    {
-        return $this->belongsTo(WorkCategory::class);
-    }
+    // public function category()
+    // {
+    //     return $this->belongsTo(WorkCategory::class);
+    // }
 
     public function galleryImages()
     {
         return $this->hasMany(WorkGallery::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(WorkCategory::class, 'category_id', 'id');
+    }
+
+    public function galleries()
+    {
+        return $this->hasMany(WorkGallery::class, 'work_id', 'id');
     }
 }

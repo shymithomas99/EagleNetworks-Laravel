@@ -6,7 +6,7 @@
             <!-- Logo Content -->
             <div class="col">
                 <div class="footer-logo mb-3">
-                    <img src="images/LOGOEAGLELONDONACCRA.png" alt="Eagle Networks Logo">
+                    <img src="{{ asset('images/LOGOEAGLELONDONACCRA.png') }}" alt="Eagle Networks Logo">
                 </div>
 
                 <p class="small-text mb-0 max-240">

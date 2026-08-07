@@ -47,12 +47,12 @@ class WorkController extends Controller
     {
         $request->validate(
             [
-                'cover_title' => ['required','string'],
-                'core_service_1' => ['required','string'],
-                'core_service_2' => ['required','string'],
-                'title' => ['required','string'],
-                'slug' => ['required','string', 'alpha_dash', 'unique:works,slug'],
-                'clientName' => ['required','string'],
+                'cover_title' => ['required', 'string'],
+                'core_service_1' => ['required', 'string'],
+                'core_service_2' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'slug' => ['required', 'string', 'alpha_dash', 'unique:works,slug'],
+                'clientName' => ['required', 'string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
                 'projectYear' => ['nullable', 'integer', 'between:1900,' . date('Y')],
                 'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -115,12 +115,12 @@ class WorkController extends Controller
     {
         $request->validate(
             [
-                'cover_title' => ['required','string'],
-                'core_service_1' => ['required','string'],
-                'core_service_2' => ['required','string'],
-                'title' => ['required','string'],
-                'slug' => ['required','string', 'alpha_dash', Rule::unique('works', 'slug')->ignore($work->id)],
-                'clientName' => ['required','string'],
+                'cover_title' => ['required', 'string'],
+                'core_service_1' => ['required', 'string'],
+                'core_service_2' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'slug' => ['required', 'string', 'alpha_dash', Rule::unique('works', 'slug')->ignore($work->id)],
+                'clientName' => ['required', 'string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
                 'projectYear' => ['nullable', 'integer', 'between:1900,' . date('Y')],
                 'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
@@ -137,7 +137,7 @@ class WorkController extends Controller
             $file = $request->file('coverImage');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('backend_assets/work/cover-image'), $fileName);
-            
+
             if ($work->coverImage && file_exists(public_path('backend_assets/work/cover-images/' . $work->coverImage))) {
                 unlink(public_path('backend_assets/work/cover-images/' . $work->coverImage));
             }
@@ -148,7 +148,7 @@ class WorkController extends Controller
             $file = $request->file('featuredImage');
             $fileName2 = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('backend_assets/work/featured-images'), $fileName2);
-            
+
             if ($work->featuredImage && file_exists(public_path('backend_assets/work/featured-images/' . $work->featuredImage))) {
                 unlink(public_path('backend_assets/work/featured-images/' . $work->featuredImage));
             }
@@ -181,33 +181,33 @@ class WorkController extends Controller
         $work->update(['published' => !$work->published]);
 
         $message = $work->published
-        ? 'Work published successfully'
-        : 'Work moved to draft';
+            ? 'Work published successfully'
+            : 'Work moved to draft';
 
         return back()->with('success', $message);
     }
 
     public function galleryImagesForm(Request $request, $id)
     {
-        $work = Work::where('id',$id)->first();
-        
-        if(!$work) {
+        $work = Work::where('id', $id)->first();
+
+        if (!$work) {
             return abort(404);
         }
-        
+
         return view('admin.work.gallery-images-form')->with([
             'work' => $work,
         ]);
     }
-    
+
     public function uploadImage(Request $request)
     {
         $request->validate([
             'file' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
-        
+
         $work = Work::findOrFail($request->id);
-        
+
         if (!empty($request->file('file'))) {
             $file = $request->file('file');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
@@ -222,10 +222,10 @@ class WorkController extends Controller
                 'image_id' => $workGallery->id,
             ]);
         }
-        
+
         return response()->json(['error' => 'File upload failed']);
     }
-    
+
     public function deleteImage(Request $request)
     {
         $workGallery = WorkGallery::findOrFail($request->id);
@@ -243,6 +243,5 @@ class WorkController extends Controller
         return response()->json([
             'success' => true
         ]);
-
     }
 }

@@ -31,9 +31,7 @@ Route::get('/connect', function () {
     return view('client.connect');
 });
 
-Route::get('/details', function () {
-    return view('client.details');
-});
+
 
 Route::get('/ignite', function () {
     return view('client.ignite');
@@ -65,7 +63,12 @@ Route::get('/terms', function () {
 });
 
 
-Route::get('/work', [HomeController::class, 'work']);
+// Route::get('/work', [HomeController::class, 'work']);
+
+Route::get('/work', [HomeController::class, 'work'])->name('work');
+
+Route::get('/work/{slug}', [HomeController::class, 'workDetails'])
+    ->name('details');
 
 Route::get('/insights', [HomeController::class, 'insights']);
 

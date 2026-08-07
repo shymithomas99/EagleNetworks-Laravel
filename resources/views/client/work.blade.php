@@ -26,7 +26,6 @@
         </div>
     </section>
 
-
     <section class="work-deliver section">
         <div class="container-custom">
             <h2 class="element-2">How We Deliver</h2>
@@ -77,114 +76,51 @@
         <div class="container-custom">
             <h2 class="element-2">Selected Work</h2>
             <div class="subhead">
-                A snapshot of flagship projects — each one a real business challenge solved through strategy, creativity,
-                and execution.
+                A snapshot of flagship projects — each one a real business challenge
+                solved through strategy, creativity, and execution.
             </div>
             <div class="row mt-5 g-6">
-                <div class="col-md-6">
-                    <a href="/details" class="card-type2 text-decoration-none">
+                @forelse($works as $work)
+                    <div class="col-md-6">
+                        <a href="{{ route('details', $work->slug) }}" class="card-type2 text-decoration-none">
+                            <div class="card-type2-img-container green-border-bottom">
+                                @php
+                                    $image = $work->coverImage ?: $work->featuredImage;
+                                @endphp
+                                @if ($image)
+                                    <img src="{{ asset('backend_assets/work/cover-images/' . $work->coverImage) }}"
+                                        alt="{{ $work->cover_title ?? $work->title }}" class="img-fluid">
+                                @else
+                                    <img src="{{ asset('images/default-work.jpg') }}" alt="{{ $work->title }}"
+                                        class="img-fluid">
+                                @endif
+                            </div>
 
-                        <div class="card-type2-img-container green-border-bottom">
-                            <img src="images/fw-nhs_80505d74.webp" alt="Digital Transformation" class="img-fluid">
+                            <div class="card-type2-content">
+                                <span class="tag">
+                                    {{--  {{ $work->industry }}  --}}
+                                    {{ $work->category->name ?? 'Uncategorized' }}
+                                </span>
+                                <h3>
+                                    {{ $work->cover_title ?? $work->title }}
+                                </h3>
+                                <p>
+                                    {{ $work->excerpt }}
+                                </p>
+                                <span class="button-link">
+                                    See Case Study
+                                    <i class="bi bi-arrow-right ms-2"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                @empty
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <h3>No work available.</h3>
                         </div>
-
-                        <div class="card-type2-content">
-                            <span class="tag">Marketing & Communications</span>
-
-                            <h3>NHS Digital &amp; Outdoor Campaign</h3>
-
-                            <p>
-                                A multi-channel digital and outdoor campaign for the NHS,
-                                combining strategic messaging with high-impact creative to
-                                reach diverse UK communities.
-                            </p>
-
-                            <span class="button-link">
-                                See Case Study
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
-
-                    </a>
-                </div>
-
-                <div class="col-md-6">
-                    <a href="/details" class="card-type2 text-decoration-none">
-
-                        <div class="card-type2-img-container orange-border-bottom">
-                            <img src="images/fw-kings-new-opt_7b43530d.webp" alt="Digital Transformation" class="img-fluid">
-                        </div>
-
-                        <div class="card-type2-content">
-                            <span class="tag">Strategy & Consulting</span>
-
-                            <h3>Kings College London — Chronic Kidney Disease Project</h3>
-
-                            <p>
-                                Strategic communications and community engagement for Kings College London's Chronic Kidney
-                                Disease research initiative, driving awareness across underserved populations.
-                            </p>
-
-                            <span class="button-link">
-                                See Case Study
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
-
-                    </a>
-                </div>
-
-                <div class="col-md-6">
-                    <a href="/details" class="card-type2 text-decoration-none">
-
-                        <div class="card-type2-img-container green-border-bottom">
-                            <img src="images/fw-paul_383eac7e.webp" alt="Digital Transformation" class="img-fluid">
-                        </div>
-
-                        <div class="card-type2-content">
-                            <span class="tag">Creative Production</span>
-
-                            <h3>Paul Robinson West Ham TV Ad</h3>
-
-                            <p>
-                                A high-energy TV commercial for Paul Robinson Solicitors, leveraging West Ham United's brand
-                                to connect with a passionate football audience.
-                            </p>
-
-                            <span class="button-link">
-                                See Case Study
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
-
-                    </a>
-                </div>
-
-                <div class="col-md-6">
-                    <a href="/details" class="card-type2 text-decoration-none">
-
-                        <div class="card-type2-img-container orange-border-bottom">
-                            <img src="images/fw-toyota_f592b5d6.webp" alt="Digital Transformation" class="img-fluid">
-                        </div>
-
-                        <div class="card-type2-content">
-                            <span class="tag">Marketing & Communications</span>
-
-                            <h3>Toyota Ghana</h3>
-
-                            <p>
-                                Integrated marketing strategy and creative execution for Toyota Ghana, positioning the brand
-                                for growth across the Ghanaian automotive market.
-                            </p>
-
-                            <span class="button-link">
-                                See Case Study
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
-
-                    </a>
-                </div>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -335,7 +271,7 @@
                 </a>
 
                 <p class="count-note x-small-text fw-normal text-center mt-3">
-                    <span>{{ $videos->count() }}</span>
+                    <span>{{ $videoCount }}</span>
                     productions in total — films, TV ads & documentaries
                 </p>
 
@@ -500,10 +436,10 @@
                 </div>
 
                 <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                                        <div class="loc-divider d-none d-md-block"></div>
-                                        <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                                    </div> -->
+                                                                                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                                                                                                <div class="loc-divider d-none d-md-block"></div>
+                                                                                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                                                                                            </div> -->
 
                 <a href="/contact" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
                     Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
