@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\BlogContentType;
 use App\Mail\ContactAdminEnquiry;
+use App\Models\Author;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contact;
