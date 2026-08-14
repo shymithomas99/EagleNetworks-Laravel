@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\BlogContentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Artisan;
@@ -16,6 +17,7 @@ class Blog extends Model
         'body',
         'author_id',
         'category_id',
+        'content_type',
         'excerpt',
         'coverImage',
         'seoTitle',
@@ -24,10 +26,30 @@ class Blog extends Model
         'publishedAt',
     ];
 
-    protected $casts = [
-        'published' => 'boolean',
-        'publishedAt' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'published' => 'boolean',
+    //     'publishedAt' => 'datetime',
+    // ];
+
+    protected function casts(): array
+    {
+        return [
+            'content_type' => BlogContentType::class,
+            'published' => 'boolean',
+            'publishedAt' => 'datetime',
+        ];
+    }
+
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class, 'author_id');
+    }
+
+    /**
+     * Blog belongs to a category.
+     */
+
 
     protected static function booted()
     {
@@ -78,6 +100,11 @@ class Blog extends Model
 
     public function category()
     {
-        return $this->belongsTo(BlogCategory::class);
+        return $this->belongsTo(BlogCategory::class, 'category_id');
     }
+
+    // public function category()
+    // {
+    //     return $this->belongsTo(BlogCategory::class);
+    // }
 }

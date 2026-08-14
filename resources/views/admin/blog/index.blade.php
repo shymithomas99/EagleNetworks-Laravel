@@ -30,10 +30,11 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->category->name }}</td>
-                                <td>{{ $item->author }}</td>
+                                <td>{{ $item->category?->name ?? '-' }}</td>
+                                <td>{{ $item->author?->name ?? '-' }}</td>
                                 <td>
-                                    <span class="badge fs-6 px-3 py-2 {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
+                                    <span
+                                        class="badge fs-6 px-3 py-2 {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
                                         {{ $item->published ? 'Published' : 'Draft' }}
                                     </span>
                                 </td>
@@ -43,7 +44,8 @@
                                     </div>
                                 </td> --}}
                                 <td>
-                                    <form action="{{ route('admin.blog.toggle-publish', $item->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.blog.toggle-publish', $item->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('PATCH')
                                         <button class="btn btn-primary">
@@ -54,12 +56,12 @@
                                         Edit
                                     </a>
                                     <!-- DELETE -->
-                                    <form action="{{ route('admin.blog.destroy', $item) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.blog.destroy', $item) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="btn btn-danger"
-                                            onclick="return confirm('Delete this blog?')">
+                                        <button class="btn btn-danger" onclick="return confirm('Delete this blog?')">
                                             Delete
                                         </button>
                                     </form>
@@ -108,5 +110,4 @@
             </div>
         </div>
     </div>
-
 @endsection
