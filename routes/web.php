@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\WhatsAppController;
@@ -70,8 +71,14 @@ Route::get('/work', [HomeController::class, 'work'])->name('work');
 Route::get('/work/{slug}', [HomeController::class, 'workDetails'])
     ->name('details');
 
-Route::get('/insights', [HomeController::class, 'insights']);
+Route::get('/insights', [HomeController::class, 'blogs'])
+    ->name('blog.index');
 
+Route::get('/insights/{blog:slug}', [HomeController::class, 'showBlog'])
+    ->name('blog.show');
+
+Route::get('/authors/{author}', [AuthorController::class, 'showAuthor'])
+    ->name('author.show');
 // Route::get('/contact', function () {
 //     return view('client.contact');
 // });

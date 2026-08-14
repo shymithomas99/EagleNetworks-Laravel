@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="col-6 my-3">
-                        <label class="form-label" for="customFile">Image (500 x 500 px){{ !$author->id ? '*' : '' }} :</label>
+                        <label class="form-label" for="customFile">Image (1920 x 1920 px, max 400 KB){{ !$author->id ? '*' : '' }} :</label>
                         <input type="file" class="form-control custom-file-input" id="image" name="image" accept="image/*" onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])" title="">
                         <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100" src="{{ $author->image ? asset('backend_assets/authors/'.$author->image) : asset('backend_assets/images/upload_image.png') }}" />
                         @error("image")

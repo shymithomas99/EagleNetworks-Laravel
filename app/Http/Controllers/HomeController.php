@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\BlogContentType;
 use App\Mail\ContactAdminEnquiry;
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Contact;
 use App\Models\NewsletterSubscriber;
 use App\Models\VideoCategory;
@@ -148,10 +151,53 @@ class HomeController extends Controller
     }
 
 
-    public function insights()
+    public function blogs()
     {
+        $blogs = Blog::with([
+                'author',
+                'category',
+            ])
+            ->where('published', true)
+            ->latest()
+            ->get();
+        $categories = BlogCategory::where('published', 1)
+            ->orderByDesc('id')
+            ->get();
 
+        $contentTypes = BlogContentType::cases();
 
-        return view('client.insights');
+        return view('blogs.index', compact(
+            'blogs',
+            'categories',
+            'contentTypes'
+        ));
+    }
+
+    public function showBlog(Blog $blog)
+    {
+        abort_unless($blog->published, 404);
+
+        $blog->load([
+            'author',
+            'category',
+        ]);
+
+        return view('client.blogs.show', compact('blog'));
+    }
+
+    public function showAuthor(Author $author)
+    {
+        abort_unless($author->published, 404);
+
+        $author->load([
+            'blogs' => function ($query) {
+                $query
+                    ->with('category')
+                    ->where('published', true)
+                    ->latest();
+            },
+        ]);
+
+        return view('author.show', compact('author'));
     }
 }

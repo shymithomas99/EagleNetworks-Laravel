@@ -257,9 +257,6 @@ class BlogController extends Controller
                 ),
             ],
 
-            /*
-             * Category is required only for LinkedIn Posts.
-             */
             'category_id' => [
                 'nullable',
                 'exists:blog_categories,id',
@@ -284,7 +281,8 @@ class BlogController extends Controller
                     : 'required',
                 'image',
                 'mimes:jpg,jpeg,png,webp',
-                'max:2048',
+                'dimensions:width=900,height=1125',
+                'max:200',
             ],
 
             'seoTitle' => [
