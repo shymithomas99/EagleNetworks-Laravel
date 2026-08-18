@@ -161,7 +161,7 @@
 
                             <div class="dropdown-menu custom-mega-dropdown">
 
-                                <a href="{{ url('/work') }}"
+                                <a href="{{ url('/works') }}"
                                     class="dropdown-item-custom {{ request()->is('work') ? 'active' : '' }}">
                                     <div class="dropdown-icon-box">
                                         <i class="bi bi-briefcase"></i>
@@ -433,8 +433,9 @@
     <main>
         @yield('content')
     </main>
-
-    <script>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+    <!-- <script>
         $(document).on('click', '.ajax-link', function(e) {
             e.preventDefault();
 
@@ -457,7 +458,7 @@
         window.onpopstate = function() {
             location.reload();
         };
-    </script>
+    </script> -->
 
     @include('includes.website.footer')
 </body>
