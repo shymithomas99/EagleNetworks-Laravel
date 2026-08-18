@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         User::updateOrCreate(
             [
-                'email' => 'eagle@network.com'
+                'email' => 'admin@eaglenetwork.com'
             ],
             [
                 'name' => 'Admin',

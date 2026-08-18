@@ -104,4 +104,4 @@ Route::post('/newsletter-subscribe', [HomeController::class, 'newsletterSubscrib
 //     ->name('newsletter.unsubscribe');
 
 
-Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+// Route::get('/sitemap.xml', [SitemapController::class, 'index']);
