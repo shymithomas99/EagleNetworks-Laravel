@@ -97,11 +97,6 @@ class Work extends Model
         });
     }
 
-    // public function category()
-    // {
-    //     return $this->belongsTo(WorkCategory::class);
-    // }
-
     public function galleryImages()
     {
         return $this->hasMany(WorkGallery::class);
