@@ -66,18 +66,18 @@ Route::get('/terms', function () {
 
 // Route::get('/work', [HomeController::class, 'work']);
 
-Route::get('/work', [HomeController::class, 'work'])->name('work');
+Route::get('/works', [HomeController::class, 'work'])->name('work');
 
-Route::get('/work/{slug}', [HomeController::class, 'workDetails'])
+Route::get('/works/{slug}', [HomeController::class, 'workDetails'])
     ->name('details');
 
 Route::get('/insights', [HomeController::class, 'blogs'])
-    ->name('blog.index');
+    ->name('blogs.index');
 
 Route::get('/insights/{blog:slug}', [HomeController::class, 'showBlog'])
-    ->name('blog.show');
+    ->name('blogs.show');
 
-Route::get('/authors/{author}', [AuthorController::class, 'showAuthor'])
+Route::get('/author/{author:slug}', [HomeController::class, 'showAuthor'])
     ->name('author.show');
 // Route::get('/contact', function () {
 //     return view('client.contact');

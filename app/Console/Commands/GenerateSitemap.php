@@ -98,31 +98,52 @@ class GenerateSitemap extends Command
             $sitemap->add($url);
         }
 
-        Blog::where('published', 1)->get()->each(function ($blog) use ($sitemap) {
+        $blogs = Blog::where('published', true)
+            ->orderByDesc('updated_at')
+            ->get();
+
+        if ($blogs->isNotEmpty()) {
             $sitemap->add(
-                Url::create("/blogs/{$blog->slug}")
+                Url::create('/insights')
+                    ->setLastModificationDate($blogs->first()->updated_at)
+            );
+        }
+
+        foreach ($blogs as $blog) {
+            $sitemap->add(
+                Url::create("/insights/{$blog->slug}")
                     ->setLastModificationDate($blog->updated_at)
             );
-        });
+        }
 
-        Work::where('published', 1)->get()->each(function ($work) use ($sitemap) {
+        $works = Work::where('published', true)
+            ->orderByDesc('updated_at')
+            ->get();
+
+        if ($works->isNotEmpty()) {
+            $sitemap->add(
+                Url::create('/works')
+                    ->setLastModificationDate($works->first()->updated_at)
+            );
+        }
+
+        foreach ($works as $work) {
             $sitemap->add(
                 Url::create("/works/{$work->slug}")
                     ->setLastModificationDate($work->updated_at)
             );
-        });
-
-        // Videos
-        $videos = VideoProject::all();
-
-        foreach ($videos as $video) {
-            $sitemap->add(
-                Url::create(url('/media/' . $video->slug))
-                    ->setLastModificationDate($video->updated_at)
-
-            );
         }
 
+        $videoProjects = VideoProject::where('published', true)
+            ->orderByDesc('updated_at')
+            ->get();
+
+        if ($videoProjects->isNotEmpty()) {
+            $sitemap->add(
+                Url::create('/media')
+                    ->setLastModificationDate($videoProjects->first()->updated_at)
+            );
+        }
 
 
         $sitemap->writeToFile(public_path('sitemap.xml'));

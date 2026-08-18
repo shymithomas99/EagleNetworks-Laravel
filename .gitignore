@@ -16,6 +16,9 @@
 /public/build
 /public/hot
 /public/storage
+/public/backend_assets/authors/
+/public/backend_assets/images/
+/public/backend_assets/work/
 /storage/*.key
 /storage/pail
 /vendor

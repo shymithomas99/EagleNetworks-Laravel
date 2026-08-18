@@ -9,6 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{--  <title>{{ config('app.name', 'Laravel') }}</title>  --}}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/emh-fav-32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/emh-fav-16.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

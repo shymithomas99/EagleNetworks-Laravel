@@ -1,4 +1,11 @@
 @extends('layouts.appweb')
+@section('title', $work->seoTitle ? $work->seoTitle . ' | ' : $work->title . ' | ')
+@push('meta')
+    <meta
+        name="description"
+        content="{{ $work->seoDescription ?: $work->excerpt }}"
+    >
+@endpush
 @section('content')
     <section class="section-hero details-page-banner">
         <div class="details-page-overlay">

@@ -19,8 +19,8 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Content Type</th>
                             <th>Category</th>
-                            <th>Author</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -30,8 +30,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->title }}</td>
+                                <td>{{ $item->content_type->label() }}</td>
                                 <td>{{ $item->category?->name ?? '-' }}</td>
-                                <td>{{ $item->author?->name ?? '-' }}</td>
                                 <td>
                                     <span
                                         class="badge fs-6 px-3 py-2 {{ $item->published ? 'bg-success' : 'bg-secondary' }}">

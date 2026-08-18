@@ -1,4 +1,11 @@
 @extends('layouts.appweb')
+@section('title', 'Insights | ')
+@push('meta')
+    <meta
+        name="description"
+        content="Ideas, Perspectives & Market Intelligence"
+    >
+@endpush
 @section('content')
     <section class="section-hero home-banner ">
 
@@ -192,7 +199,7 @@
 
                     @forelse ($articles as $blog)
                     <div class="col-lg-4 col-md-6 insights-item ">
-                        <a href="{{ route('blog.show', $blog) }}" class="card-type2 text-decoration-none">
+                        <a href="{{ route('blogs.show', $blog) }}" class="card-type2 text-decoration-none">
                             <div class="card-type2-img-container">
                                 @if ($blog->coverImage)
                                     <img
@@ -258,7 +265,7 @@
                 <div class="row g-6 my-4">
                     @forelse ($authorBlogs as $blog)
                     <div class="col-lg-4 col-md-6 insights-item ">
-                        <a href="{{ route('blog.show', $blog) }}" class="card-type2 text-decoration-none">
+                        <a href="{{ route('blogs.show', $blog) }}" class="card-type2 text-decoration-none">
                             <div class="card-type2-img-container">
                                 @if ($blog->coverImage)
                                     <img

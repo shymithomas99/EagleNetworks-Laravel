@@ -1,5 +1,10 @@
 @extends('layouts.appweb')
-
+@push('meta')
+    <meta
+        name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
+    >
+@endpush
 @section('content')
     <!-- ========================= COOKIES BAR ========================= -->
 

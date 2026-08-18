@@ -1,4 +1,11 @@
 @extends('layouts.appweb')
+@section('title', 'Media | ')
+@push('meta')
+    <meta
+        name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
+    >
+@endpush
 @section('content')
     <section class="section-hero service-bnr">
 

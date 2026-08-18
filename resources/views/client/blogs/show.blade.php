@@ -1,4 +1,11 @@
 @extends('layouts.appweb')
+@section('title', $blog->seoTitle ? $blog->seoTitle . ' | ' : $blog->title . ' | ')
+@push('meta')
+    <meta
+        name="description"
+        content="{{ $blog->seoDescription ?: $blog->excerpt }}"
+    >
+@endpush
 @section('content')
     <section class="section-hero insights-inner-banner ">
 
@@ -9,7 +16,7 @@
                 <div>
                     <div class="insight-details-main">
                         <div class="custom-breadcrumb-wrapper">
-                            <a href="{{ route('blog.index') }}" class="breadcrumb-link small-text d-flex align-items-center mb-4"><i
+                            <a href="{{ route('blogs.index') }}" class="breadcrumb-link small-text d-flex align-items-center mb-4"><i
                                     class="bi bi-arrow-left-short me-1 fs-5 "></i>Back to Insights</a>
                         </div>
 
@@ -24,6 +31,7 @@
                                 <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
                             </svg>{{ $blog->category->name }}
                         </div>
+                        @endif
 
                         <h2>{{ $blog->title }}</h2>
 
@@ -131,7 +139,7 @@
                                     <div class="author-img">
                                         @if ($blog->author->image)
                                             <img
-                                                src="{{ asset('backend_assets/images/authors/' . $blog->author->image) }}"
+                                                src="{{ asset('backend_assets/authors/' . $blog->author->image) }}"
                                                 alt="{{ $blog->author->name }}"
                                             >
                                         @endif
@@ -151,9 +159,9 @@
                                         </div>
                                     @endif
 
-                                    @if ($blog->author->description)
+                                    @if ($blog->author->about)
                                         <p class="author-desc">
-                                            {{ $blog->author->description }}
+                                            {{ $blog->author->about }}
                                         </p>
                                     @endif
 
@@ -168,8 +176,9 @@
                         </div>
                     </a>
                 </div>
+                @endif
                 <div class="back-btn">
-                    <a href="{{ route('blog.index') }}" class="button-link text-deeper-orange d-flex align-items-center mb-0"><i
+                    <a href="{{ route('blogs.index') }}" class="button-link text-deeper-orange d-flex align-items-center mb-0"><i
                             class="bi bi-arrow-left-short me-1 mt-1"></i>Back to all Insights </a>
                 </div>
             </div>

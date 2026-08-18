@@ -86,7 +86,7 @@
                                 value="{{ old('projectYear', $work->projectYear ?? '') }}">
                         </div>
                         <div class="col-6 my-3">
-                            <label for="excerpt">Excerpt</label>
+                            <label for="excerpt">Excerpt*</label>
                             <textarea id="excerpt" class="form-control" name="excerpt">{{ old('excerpt', $work->excerpt ?? '') }}</textarea>
                         </div>
                         <div class="col-6 my-3">

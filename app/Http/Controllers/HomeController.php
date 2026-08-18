@@ -162,12 +162,17 @@ class HomeController extends Controller
             ->latest()
             ->get();
         $categories = BlogCategory::where('published', 1)
-            ->orderByDesc('id')
-            ->get();
+                ->whereHas('blogs', function ($query) {
+                    $query
+                        ->where('content_type', BlogContentType::LINKEDIN->value)
+                        ->where('published', true);
+                })
+                ->orderByDesc('id')
+                ->get();
 
         $contentTypes = BlogContentType::cases();
 
-        return view('blogs.index', compact(
+        return view('client.blogs.index', compact(
             'blogs',
             'categories',
             'contentTypes'
@@ -188,8 +193,6 @@ class HomeController extends Controller
 
     public function showAuthor(Author $author)
     {
-        abort_unless($author->published, 404);
-
         $author->load([
             'blogs' => function ($query) {
                 $query
@@ -199,6 +202,6 @@ class HomeController extends Controller
             },
         ]);
 
-        return view('author.show', compact('author'));
+        return view('client.blogs.author', compact('author'));
     }
 }

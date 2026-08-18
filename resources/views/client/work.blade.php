@@ -1,4 +1,11 @@
 @extends('layouts.appweb')
+@section('title', 'Our Work | ')
+@push('meta')
+    <meta
+        name="description"
+        content="A portfolio of projects across strategy, creative, and digital delivery from London and Accra to global markets."
+    >
+@endpush
 @section('content')
     <section class="section-hero home-banner ">
 

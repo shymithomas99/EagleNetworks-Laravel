@@ -1,4 +1,11 @@
 @extends('layouts.appweb')
+@section('title', 'Contact | ')
+@push('meta')
+    <meta
+        name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
+    >
+@endpush
 @section('content')
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">

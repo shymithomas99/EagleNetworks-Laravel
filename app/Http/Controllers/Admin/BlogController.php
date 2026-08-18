@@ -26,7 +26,7 @@ class BlogController extends Controller
         $search = $request->input('search', '');
 
         $collections = Blog::query()
-            ->with(['author', 'category'])
+            ->with(['category'])
             ->when($search, function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%');
             })
@@ -231,12 +231,21 @@ class BlogController extends Controller
             ],
 
             'url' => [
+                Rule::requiredIf(
+                    $contentType === BlogContentType::LINKEDIN->value
+                ),
                 'nullable',
                 'url',
                 'max:512',
             ],
 
             'slug' => [
+                Rule::requiredIf(
+                    in_array($contentType, [
+                        BlogContentType::ARTICLE->value,
+                        BlogContentType::AUTHOR->value,
+                    ])
+                ),
                 'nullable',
                 'string',
                 'alpha_dash',
@@ -250,23 +259,23 @@ class BlogController extends Controller
              * Optional for other content types.
              */
             'author_id' => [
-                'nullable',
-                'exists:authors,id',
                 Rule::requiredIf(
                     $contentType === BlogContentType::AUTHOR->value
                 ),
+                'nullable',
+                'exists:authors,id',
             ],
 
             'category_id' => [
-                'nullable',
-                'exists:blog_categories,id',
                 Rule::requiredIf(
                     $contentType === BlogContentType::LINKEDIN->value
                 ),
+                'nullable',
+                'exists:blog_categories,id',
             ],
 
             'excerpt' => [
-                'nullable',
+                'required',
                 'string',
             ],
 

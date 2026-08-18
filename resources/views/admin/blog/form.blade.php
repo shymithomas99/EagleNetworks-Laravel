@@ -22,23 +22,6 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="url">URL</label>
-                            <input type="text" class="form-control" id="url" placeholder="External URL"
-                                name="url" value="{{ old('url', $blog->url ?? '') }}">
-                            @error('url')
-                                <p style="color:red">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="col-4 my-3">
-                            <label for="slug">Slug</label>
-                            <input type="text" class="form-control" id="slug" placeholder="article-slug"
-                                name="slug" value="{{ old('slug', $blog->slug ?? '') }}">
-                            @error('slug')
-                                <p style="color:red">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-4 my-3">
                             <label for="content_type">
                                 Content Type*
                             </label>
@@ -54,23 +37,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-4 my-3">
-                            <label for="author_id">Author</label>
-                            <select name="author_id" id="author_id" class="form-control">
-                                <option value="">-- Select Author --</option>
-                                @foreach ($authors as $author)
-                                    <option value="{{ $author->id }}"
-                                        {{ old('author_id', $blog->author_id ?? '') == $author->id ? 'selected' : '' }}>
-                                        {{ $author->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('author_id')
-                                <p style="color:red">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="col-4 my-3">
+                        <div class="col-6 my-3">
                             <label for="category_id">Category*</label>
                             <select name="category_id" id="category_id" class="form-control">
                                 <option value="">-- Select Category --</option>
@@ -86,20 +53,47 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="col-6 my-3">
-                        <label for="category">Category:</label>
-                        <input type="text" class="form-control" id="category"
-                            placeholder="e.g., Strategy, Digital, Creative" name="category"
-                            value="{{ old('category', $blog->category ?? '') }}">
-                    </div> --}}
+                        <div class="col-6 my-3">
+                            <label for="url">URL</label>
+                            <input type="text" class="form-control" id="url" placeholder="External URL"
+                                name="url" value="{{ old('url', $blog->url ?? '') }}">
+                            @error('url')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                        <div class="col-4 my-3">
-                            <label for="excerpt">Excerpt</label><br>
+                        <div class="col-6 my-3">
+                            <label for="slug">Slug</label>
+                            <input type="text" class="form-control" id="slug" placeholder="article-slug"
+                                name="slug" value="{{ old('slug', $blog->slug ?? '') }}">
+                            @error('slug')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="author_id">Author</label>
+                            <select name="author_id" id="author_id" class="form-control">
+                                <option value="">-- Select Author --</option>
+                                @foreach ($authors as $author)
+                                    <option value="{{ $author->id }}"
+                                        {{ old('author_id', $blog->author_id ?? '') == $author->id ? 'selected' : '' }}>
+                                        {{ $author->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('author_id')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="excerpt">Excerpt*</label><br>
                             <textarea class="form-control" name="excerpt" id="excerpt" rows="6"
                                 placeholder="Short summary shown in listings...">{{ old('excerpt', $blog->excerpt ?? '') }}</textarea>
                         </div>
 
-                        <div class="col-4 my-3">
+                        <div class="col-6 my-3">
                             <label class="form-label" for="customFile">Cover Image (900 x 1125 px, max 200 KB){{ !$blog->id ? '*' : '' }} :</label>
                             <input type="file" class="form-control custom-file-input" id="coverImage" name="coverImage"
                                 accept="image/*"
