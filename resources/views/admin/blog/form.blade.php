@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label class="form-label" for="customFile">Cover Image (900 x 1125 px){{ !$blog->id ? '*' : '' }} :</label>
+                            <label class="form-label" for="customFile">Cover Image (900 x 1125 px, max 200 KB){{ !$blog->id ? '*' : '' }} :</label>
                             <input type="file" class="form-control custom-file-input" id="coverImage" name="coverImage"
                                 accept="image/*"
                                 onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
