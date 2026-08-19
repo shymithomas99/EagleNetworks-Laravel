@@ -326,32 +326,6 @@
     </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <section class="ready-to section">
         <div class="container-custom">
             <div class="inner-cta-box text-center text-white position-relative z-1">

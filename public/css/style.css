@@ -672,6 +672,12 @@ a {
     color: var(--color-accent) !important;
 }
 
+.nav-link svg {transition: transform 0.3s ease;}
+
+.nav-link:hover svg{
+      transform: rotate(180deg);
+}
+
 .navbar-brand img {
     max-width: 245px;
 }

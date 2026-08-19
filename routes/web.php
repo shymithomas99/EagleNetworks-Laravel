@@ -51,10 +51,6 @@ Route::get('/privacy-policy', function () {
     return view('client.privacy-policy');
 });
 
-Route::get('/services', function () {
-    return view('client.services');
-});
-
 Route::get('/sitemap', function () {
     return view('client.sitemap');
 });
@@ -64,7 +60,7 @@ Route::get('/terms', function () {
 });
 
 
-// Route::get('/work', [HomeController::class, 'work']);
+Route::get('/services', [HomeController::class, 'services'])->name('services');
 
 Route::get('/works', [HomeController::class, 'work'])->name('work');
 

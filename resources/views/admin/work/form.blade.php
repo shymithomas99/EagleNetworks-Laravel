@@ -75,14 +75,14 @@
                             @enderror
                         </div>
                         <div class="col-4 my-3">
-                            <label for="industry">Industry</label>
+                            <label for="industry">Service</label>
                             <input type="text" id="industry" class="form-control" name="industry"
                                 value="{{ old('industry', $work->industry ?? '') }}">
                         </div>
                         <div class="col-4 my-3">
                             <label for="projectYear">Project Year</label>
-                            <input type="text" id="projectYear" class="form-control" inputmode="numeric" pattern="[0-9]*"
-                                maxlength="4" name="projectYear"
+                            <input type="text" id="projectYear" class="form-control"
+                                name="projectYear"
                                 value="{{ old('projectYear', $work->projectYear ?? '') }}">
                         </div>
                         <div class="col-6 my-3">
@@ -97,6 +97,66 @@
                             <label for="brief">Brief</label>
                             <textarea id="brief" class="textarea" name="brief">{{ old('brief', $work->brief ?? '') }}</textarea>
                         </div>
+                        <div class="col-6">
+                            <div class="col-12 my-3">
+                                <label for="briefMediaType" class="form-label">
+                                    Brief Media Type
+                                </label>
+                                <select
+                                    name="briefMediaType"
+                                    id="briefMediaType"
+                                    class="form-select"
+                                >
+                                    <option value="">Select Media Type</option>
+                                    <option value="1"
+                                        {{ old('briefMediaType', $work->briefMediaType ?? '') == '1' ? 'selected' : '' }}>
+                                        Brief Image
+                                    </option>
+
+                                    <option value="2"
+                                        {{ old('briefMediaType', $work->briefMediaType ?? '') == '2' ? 'selected' : '' }}>
+                                        Brief Video URL
+                                    </option>
+                                </select>
+                                @error('briefMediaType')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-12 my-3" id="image-field">
+                                <label for="briefImage" class="form-label">
+                                    Brief Image (1280 × 780 px)*
+                                </label>
+                                <input
+                                    type="file"
+                                    name="briefImage"
+                                    id="briefImage"
+                                    class="form-control custom-file-input"
+                                    accept=".jpg,.jpeg,.png,.webp"
+                                    onchange="document.getElementById('uploaded_brief_img').src = window.URL.createObjectURL(this.files[0])"
+                                >
+                                <img id="uploaded_brief_img" alt="Image" class="mt-1" width="130" height="100"
+                                    src="{{ $work->briefImage ? asset('backend_assets/work/brief-images/' . $work->briefImage) : asset('backend_assets/images/upload_image.png') }}" />
+                                @error('briefImage')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-12 my-3" id="video-url-field">
+                                <label for="briefVideoUrl" class="form-label">
+                                    Brief Video URL*
+                                </label>
+                                <input
+                                    type="url"
+                                    name="briefVideoUrl"
+                                    id="briefVideoUrl"
+                                    value="{{ old('briefVideoUrl', $work->briefVideoUrl ?? '') }}"
+                                    class="form-control"
+                                    placeholder="https://player.vimeo.com/video/1028439571?h=2a3474e587"
+                                >
+                                @error('briefVideoUrl')
+                                    <p style="color:red">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-6 my-3">
                             <label for="keyMetrics">Key Metrics</label>
                             <textarea id="keyMetrics" class="textarea" name="keyMetrics">{{ old('keyMetrics', $work->keyMetrics ?? '') }}</textarea>
@@ -109,7 +169,10 @@
                             <label for="results">Results</label>
                             <textarea id="results" class="textarea" name="results">{{ old('results', $work->results ?? '') }}</textarea>
                         </div>
-
+                        <div class="col-6 my-3">
+                            <label for="additionalContent">Additional Content</label>
+                            <textarea id="additionalContent" class="textarea" name="additionalContent">{{ old('additionalContent', $work->additionalContent ?? '') }}</textarea>
+                        </div>
                         <div class="col-6 my-3">
                             <label for="testimonial">Testimonial</label>
                             <textarea id="testimonial" class="form-control" name="testimonial">{{ old('testimonial', $work->testimonial ?? '') }}</textarea>
@@ -120,34 +183,28 @@
                                 value="{{ old('testimonialAuthor', $work->testimonialAuthor ?? '') }}">
                         </div>
                         <div class="col-6 my-3">
-                            <label for="additionalContent">Additional Content</label>
-                            <textarea id="additionalContent" class="textarea" name="additionalContent">{{ old('additionalContent', $work->additionalContent ?? '') }}</textarea>
+                            <label class="form-label" for="customFile">Cover Image (1280 x 780 px)*</label>
+                            <input type="file" class="form-control custom-file-input" id="coverImage"
+                                name="coverImage" accept="image/*"
+                                onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
+                                title="">
+                            <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100"
+                                src="{{ $work->coverImage ? asset('backend_assets/work/cover-images/' . $work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
+                            @error('coverImage')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-6 my-3">
-                            <div class="col-12 my-3">
-                                <label class="form-label" for="customFile">Cover Image (1280 x 780 px)</label>
-                                <input type="file" class="form-control custom-file-input" id="coverImage"
-                                    name="coverImage" accept="image/*"
-                                    onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
-                                    title="">
-                                <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100"
-                                    src="{{ $work->coverImage ? asset('backend_assets/work/cover-images/' . $work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
-                                @error('coverImage')
-                                    <p style="color:red">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-12 my-3">
-                                <label class="form-label" for="customFile">Featured Image (3456 x 2156 px)</label>
-                                <input type="file" class="form-control custom-file-input" id="featuredImage"
-                                    name="featuredImage" accept="image/*"
-                                    onchange="document.getElementById('uploaded_bg_img').src = window.URL.createObjectURL(this.files[0])"
-                                    title="">
-                                <img id="uploaded_bg_img" alt="Image" class="mt-1" width="130" height="100"
-                                    src="{{ $work->featuredImage ? asset('backend_assets/work/featured-images/' . $work->featuredImage) : asset('backend_assets/images/upload_image.png') }}" />
-                                @error('featuredImage')
-                                    <p style="color:red">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <label class="form-label" for="customFile">Featured Image (776 x 417 px)</label>
+                            <input type="file" class="form-control custom-file-input" id="featuredImage"
+                                name="featuredImage" accept="image/*"
+                                onchange="document.getElementById('uploaded_bg_img').src = window.URL.createObjectURL(this.files[0])"
+                                title="">
+                            <img id="uploaded_bg_img" alt="Image" class="mt-1" width="130" height="100"
+                                src="{{ $work->featuredImage ? asset('backend_assets/work/featured-images/' . $work->featuredImage) : asset('backend_assets/images/upload_image.png') }}" />
+                            @error('featuredImage')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-4 my-3">
                             <input type="checkbox" class="form-check-input" id="featured" name="featured"
@@ -189,9 +246,40 @@
 @endsection
 
 @push('scripts')
-    <script>
-        document.getElementById('projectYear').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);
-        });
-    </script>
+<script>
+$(document).ready(function () {
+
+    const defaultBriefImage = "{{ asset('backend_assets/images/upload_image.png') }}";
+
+    function toggleMediaFields() {
+        const mediaType = $('#briefMediaType').val();
+
+        if (mediaType === '1') {
+            $('#image-field').show();
+            $('#video-url-field').hide();
+
+            $('#briefVideoUrl').val('');
+        } else if (mediaType === '2') {
+            $('#image-field').hide();
+            $('#video-url-field').show();
+
+            $('#briefImage').val('');
+            $('#uploaded_brief_img').attr('src', defaultBriefImage);
+        } else {
+            $('#image-field').hide();
+            $('#video-url-field').hide();
+            $('#briefImage').val('');
+            $('#briefVideoUrl').val('');
+            $('#uploaded_brief_img').attr('src', defaultBriefImage);
+        }
+    }
+
+    $('#briefMediaType').on('change', function () {
+        toggleMediaFields();
+    });
+
+    // Important for edit form / validation error
+    toggleMediaFields();
+});
+</script>
 @endpush

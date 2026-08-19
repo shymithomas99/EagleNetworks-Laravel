@@ -19,12 +19,15 @@
                         <div class="subhead mb-5">A portfolio of projects across strategy, creative, and digital delivery
                             from London and Accra to global markets.</div>
 
-                        <div class="pill-group">
-                            <span class="badge-custom badge-transperant-orange">Strategy & Consulting</span>
-                            <span class="badge-custom badge-transperant-orange">Creative Production</span>
-                            <span class="badge-custom badge-transperant-orange">Marketing & Communications</span>
-                            <span class="badge-custom badge-transperant-orange">Digital & Technology</span>
-                        </div>
+                        @if($workCategories->isNotEmpty())
+                            <div class="pill-group">
+                                @foreach($workCategories as $category)
+                                    <span class="badge-custom badge-transperant-orange">
+                                        {{ $category->name }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
 
                     </div>
 

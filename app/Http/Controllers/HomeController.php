@@ -31,33 +31,29 @@ class HomeController extends Controller
 
     public function work()
     {
-        $categories = VideoCategory::orderBy('display_order', 'desc')->get();
-
-        $videos = VideoProject::with('category')
+        $videos = VideoProject::where('published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
             ->orderBy('display_order', 'desc')
             ->limit(4)
             ->get();
 
-        // Count all active videos
-        $videoCount = VideoProject::count();
+        $videoCount = VideoProject::where('published', 1)->count();
 
-        $workCategories = WorkCategory::get();
-        // dd($workCategories);
+        $workCategories = WorkCategory::where('published', 1)->get();
 
-        // Get all published works
-        // $works = Work::where('published', 1)
-        //     ->orderBy('displayOrder', 'asc')
-        //     ->get();
-
-        $works = Work::with('category')
-            ->where('published', 1)
+        $works = Work::where('published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
             ->orderBy('displayOrder', 'asc')
             ->get();
 
         return view('client.work', compact(
-            'categories',
             'videos',
             'videoCount',
+            'workCategories',
             'works'
         ));
     }
@@ -69,8 +65,11 @@ class HomeController extends Controller
         //     ->firstOrFail();
 
         $work = Work::with('galleries')
-            ->where('slug', $slug)
             ->where('published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
+            ->where('slug', $slug)
             ->firstOrFail();
 
         return view('client.details', compact('work'));
@@ -81,41 +80,151 @@ class HomeController extends Controller
 
     public function submit(Request $request)
     {
-        $data =  $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email',
-            'team' => 'required|string',
-            'service' => 'required|string',
-            'package' => 'required|string',
-            'message' => 'required|min:10',
+        /*
+    |--------------------------------------------------------------------------
+    | Honeypot Check
+    |--------------------------------------------------------------------------
+    */
+
+        if ($request->filled('username')) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Unable to submit your enquiry. Please try again.',
+            ], 422);
+        }
+
+
+        /*
+    |--------------------------------------------------------------------------
+    | Laravel Validation
+    |--------------------------------------------------------------------------
+    */
+
+        $validator = validator($request->all(), [
+
+            'name' => [
+                'required',
+                'string',
+                'max:100',
+            ],
+
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+            ],
+
+            'team' => [
+                'required',
+                'in:London,Accra,General',
+            ],
+
+            'service' => [
+                'required',
+                'in:Creative Production,Marketing & Consultancy,Tech Solutions,Outsourced Customer Service,EMTV Portal,General Enquiry',
+            ],
+
+            'package' => [
+                'nullable',
+                'in:None,Ignite,Amplify,Connect',
+            ],
+
+            'message' => [
+                'required',
+                'string',
+
+            ],
+
+        ], [
+
+            'name.required' => 'Please enter your name.',
+
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+
+            'team.required' => 'Please select a team.',
+
+            'service.required' => 'Please select a service.',
+
+            'message.required' => 'Please enter your message.',
+            'message.min' => 'Your message must be at least 10 characters.',
+
         ]);
 
-        // Save to DB
+
+        if ($validator->fails()) {
+
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()->toArray(),
+            ], 422);
+        }
+
+
+        /*
+    |--------------------------------------------------------------------------
+    | Get Validated Data
+    |--------------------------------------------------------------------------
+    */
+
+        $data = $validator->validated();
+
+
+        /*
+    |--------------------------------------------------------------------------
+    | Save Contact
+    |--------------------------------------------------------------------------
+    */
+
         $contact = Contact::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'team' => $data['team'],
             'service' => $data['service'],
-            'package' =>  $data['package'],
-            'message' =>  $data['message'],
+            'package' => $data['package'] ?? 'None',
+            'message' => $data['message'],
         ]);
 
-        // ✅ Admin Emails (same as your code)
 
-        $adminEmails = ["shymicams@gmail.com"];
-        Mail::to($adminEmails)->send(new ContactAdminEnquiry($contact));
+        /*
+    |--------------------------------------------------------------------------
+    | Send Admin Email
+    |--------------------------------------------------------------------------
+    */
 
-        // Mail::to($data['email'])->send(new CitizenRegistrationUserEnquiry($contentData));
+        $adminEmails = [
+            'shymicams@gmail.com',
+        ];
 
-        return redirect()->back()->with('success', 'Form submitted successfully!');
+        Mail::to($adminEmails)->send(
+            new ContactAdminEnquiry($contact)
+        );
+
+
+        /*
+    |--------------------------------------------------------------------------
+    | Success Response
+    |--------------------------------------------------------------------------
+    */
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you. Your message has been sent successfully.',
+        ]);
     }
 
 
     public function media()
     {
-        $categories = VideoCategory::orderBy('display_order', 'asc')->get();
+        $categories = VideoCategory::orderBy('display_order', 'asc')
+            ->where('published', 1)
+            ->get();
 
-        $videos = VideoProject::with('category')
+        $videos = VideoProject::where('published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
             ->orderBy('display_order', 'asc')
             ->get();
 
@@ -155,13 +264,15 @@ class HomeController extends Controller
     public function blogs()
     {
         $blogs = Blog::with([
-                'author',
-                'category',
+                'author'
             ])
             ->where('published', true)
+            ->whereHas('category', function ($query) {
+                $query->where('published', true);
+            })
             ->latest()
             ->get();
-        $categories = BlogCategory::where('published', 1)
+        $categories = BlogCategory::where('published', true)
                 ->whereHas('blogs', function ($query) {
                     $query
                         ->where('content_type', BlogContentType::LINKEDIN->value)
@@ -181,7 +292,11 @@ class HomeController extends Controller
 
     public function showBlog(Blog $blog)
     {
-        abort_unless($blog->published, 404);
+        abort_unless(
+            $blog->published &&
+            $blog->category()->where('published', true)->exists(),
+            404
+        );
 
         $blog->load([
             'author',
@@ -196,12 +311,29 @@ class HomeController extends Controller
         $author->load([
             'blogs' => function ($query) {
                 $query
-                    ->with('category')
                     ->where('published', true)
+                    ->whereHas('category', function ($query) {
+                        $query->where('published', true);
+                    })
                     ->latest();
             },
         ]);
 
         return view('client.blogs.author', compact('author'));
+    }
+    
+    public function services()
+    {
+        $works = Work::where('published', 1)
+            ->where('featured', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
+            ->orderBy('displayOrder', 'asc')
+            ->get();
+
+        return view('client.services', compact(
+            'works'
+        ));
     }
 }

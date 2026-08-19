@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12 mb-8">
-                        <label>Gallery Images (3456 x 2156 px)</label>
+                        <label>Gallery Images</label>
                         <div class="input-images-1" style="padding-top: .5rem;"></div>
                     </div>
                 </div>

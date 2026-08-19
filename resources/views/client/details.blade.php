@@ -108,13 +108,27 @@
 
                     {{-- Featured Image --}}
                     <div class="col-lg-5">
-                        <div class="post-video-container ratio ratio-16x9">
-                            <iframe title="vimeo-player" src="https://player.vimeo.com/video/1028439571?h=2a3474e587"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
+
+                        @if($work->briefMediaType == 1 && $work->briefImage)
+                            <div class="post-video-container ratio ratio-16x9">
+                                <img
+                                    src="{{ asset('uploads/works/' . $work->briefImage) }}"
+                                    alt="{{ $work->title }}"
+                                    class="w-100 h-100 object-fit-cover" style="border-radius: 15px;"
+                                >
+                            </div>
+
+                        @elseif($work->briefMediaType == 2 && $work->briefVideoUrl)
+                            <div class="post-video-container ratio ratio-16x9">
+                                <iframe
+                                    title="{{ $work->title }}"
+                                    src="{{ $work->briefVideoUrl }}"
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

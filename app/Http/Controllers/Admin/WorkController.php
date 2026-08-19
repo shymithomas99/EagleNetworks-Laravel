@@ -54,14 +54,29 @@ class WorkController extends Controller
                 'slug' => ['required', 'string', 'alpha_dash', 'unique:works,slug'],
                 'clientName' => ['required', 'string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
-                'projectYear' => ['nullable', 'integer', 'between:1900,' . date('Y')],
+                'projectYear' => ['nullable'],
                 'excerpt' => ['required', 'string'],
-                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-                'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'coverImage' => 'required|image|mimes:jpg,jpeg,png,webp|dimensions:width=1280,height=780|max:1024',
+                'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=776,height=417|max:1024',
+                'briefMediaType' => ['nullable', 'in:1,2'],
+                'briefImage' => ['nullable','image','mimes:jpg,jpeg,png,webp', 'dimensions:width=1280,height=780', 'max:1024', Rule::requiredIf($request->briefMediaType == 1)],
+                'briefVideoUrl' => ['nullable', 'url', Rule::requiredIf($request->briefMediaType == 2)]
             ],
             [
-                'clientName.required' => 'The client name field is required.',
-                'category_id.required' => 'The category field is required.',
+                //
+            ],
+            [
+                'briefMediaType' => 'brief media type',
+                'briefImage' => 'brief image',
+                'briefVideoUrl' => 'brief video URL',
+                'coverImage' => 'cover image',
+                'featuredImage' => 'featured image',
+                'clientName' => 'client name',
+                'category_id' => 'category',
+                'projectYear' => 'project year',
+                'cover_title' => 'cover title',
+                'core_service_1' => 'core service 1',
+                'core_service_2' => 'core service 2',
             ]
         );
 
@@ -74,9 +89,16 @@ class WorkController extends Controller
 
         $fileName2 = null;
         if ($request->hasFile('featuredImage')) {
-            $file = $request->file('featuredImage');
-            $fileName2 = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('backend_assets/work/featured-images'), $fileName2);
+            $file2 = $request->file('featuredImage');
+            $fileName2 = time() . '_' . uniqid() . '.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path('backend_assets/work/featured-images'), $fileName2);
+        }
+
+        $fileName3 = null;
+        if ($request->hasFile('briefImage') && $request->briefMediaType == '1') {
+            $file3 = $request->file('briefImage');
+            $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
+            $file3->move(public_path('backend_assets/work/brief-images'), $fileName3);
         }
 
         $data = $request->all();
@@ -85,6 +107,7 @@ class WorkController extends Controller
         $data['featured'] = $request->boolean('featured');
         $data['coverImage'] = $fileName;
         $data['featuredImage'] = $fileName2;
+        $data['briefImage'] = $fileName3;
 
         $work = Work::create($data);
 
@@ -123,14 +146,29 @@ class WorkController extends Controller
                 'slug' => ['required', 'string', 'alpha_dash', Rule::unique('works', 'slug')->ignore($work->id)],
                 'clientName' => ['required', 'string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
-                'projectYear' => ['nullable', 'integer', 'between:1900,' . date('Y')],
+                'projectYear' => ['nullable'],
                 'excerpt' => ['required', 'string'],
-                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-                'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=1280,height=780|max:1024',
+                'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=776,height=417|max:1024',
+                'briefMediaType' => ['nullable', 'in:1,2'],
+                'briefImage' => ['nullable','image','mimes:jpg,jpeg,png,webp', 'dimensions:width=1280,height=780', 'max:1024', Rule::requiredIf($request->briefMediaType == 1)],
+                'briefVideoUrl' => ['nullable', 'url', Rule::requiredIf($request->briefMediaType == 2)]
             ],
             [
-                'clientName.required' => 'The client name field is required.',
-                'category_id.required' => 'The category field is required.',
+                //
+            ],
+            [
+                'briefMediaType' => 'brief media type',
+                'briefImage' => 'brief image',
+                'briefVideoUrl' => 'brief video URL',
+                'coverImage' => 'cover image',
+                'featuredImage' => 'featured image',
+                'clientName' => 'client name',
+                'category_id' => 'category',
+                'projectYear' => 'project year',
+                'cover_title' => 'cover title',
+                'core_service_1' => 'core service 1',
+                'core_service_2' => 'core service 2',
             ]
         );
 
@@ -147,12 +185,29 @@ class WorkController extends Controller
 
         $fileName2 = $work->featuredImage;
         if ($request->hasFile('featuredImage')) {
-            $file = $request->file('featuredImage');
-            $fileName2 = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('backend_assets/work/featured-images'), $fileName2);
+            $file2 = $request->file('featuredImage');
+            $fileName2 = time() . '_' . uniqid() . '.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path('backend_assets/work/featured-images'), $fileName2);
 
             if ($work->featuredImage && file_exists(public_path('backend_assets/work/featured-images/' . $work->featuredImage))) {
                 unlink(public_path('backend_assets/work/featured-images/' . $work->featuredImage));
+            }
+        }
+
+        $fileName3 = $work->briefImage;
+        if ($request->hasFile('briefImage') && $request->briefMediaType == '1') {
+            $file3 = $request->file('briefImage');
+            $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
+            $file3->move(public_path('backend_assets/work/brief-images'), $fileName3);
+
+            if ($work->briefImage && file_exists(public_path('backend_assets/work/brief-images/' . $work->briefImage))) {
+                unlink(public_path('backend_assets/work/brief-images/' . $work->briefImage));
+            }
+        }
+        else {
+            $fileName3 = null;
+            if ($work->briefImage && file_exists(public_path('backend_assets/work/brief-images/' . $work->briefImage))) {
+                unlink(public_path('backend_assets/work/brief-images/' . $work->briefImage));
             }
         }
 
@@ -162,6 +217,7 @@ class WorkController extends Controller
         $data['featured'] = $request->boolean('featured');
         $data['coverImage'] = $fileName;
         $data['featuredImage'] = $fileName2;
+        $data['briefImage'] = $fileName3;
 
         $work->update($data);
 

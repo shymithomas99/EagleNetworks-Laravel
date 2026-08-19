@@ -23,7 +23,8 @@
     <!-- FontAwesome (optional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
+    @stack('styles')
+    
     <!-- ========================= -->
     <!-- Google Consent Mode v2 -->
     <!-- ========================= -->
@@ -154,15 +155,16 @@
 
 
                         <li class="nav-item dropdown custom-dropdown">
-                            <a class="nav-link {{ request()->is('work') || request()->is('insights') ? 'active' : '' }}"
+                            <a class="nav-link d-flex align-items-center {{ request()->is('works') || request()->is('insights') ? 'active' : '' }}"
                                 href="#" id="workDropdown" role="button">
                                 Work & Insights
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-200" data-loc="client/src/components/Navigation.tsx:118"><path d="m6 9 6 6 6-6"></path></svg>
                             </a>
 
                             <div class="dropdown-menu custom-mega-dropdown">
 
                                 <a href="{{ url('/works') }}"
-                                    class="dropdown-item-custom {{ request()->is('work') ? 'active' : '' }}">
+                                    class="dropdown-item-custom {{ request()->is('works') ? 'active' : '' }}">
                                     <div class="dropdown-icon-box">
                                         <i class="bi bi-briefcase"></i>
                                     </div>
@@ -459,9 +461,8 @@
             location.reload();
         };
     </script> -->
-
+    
     @include('includes.website.footer')
+    @stack('scripts')
 </body>
-
-
 </html>
