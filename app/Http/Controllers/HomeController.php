@@ -24,9 +24,19 @@ class HomeController extends Controller
         // $this->middleware('auth');
     }
 
-    public function index()
+    public function home()
     {
-        return view('client.home');
+        $works = Work::where('published', 1)
+            ->where('featured', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
+            ->orderBy('displayOrder', 'asc')
+            ->get();
+
+        return view('client.home', compact(
+            'works'
+        ));
     }
 
     public function work()

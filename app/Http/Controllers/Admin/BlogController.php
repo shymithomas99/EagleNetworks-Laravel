@@ -267,10 +267,7 @@ class BlogController extends Controller
             ],
 
             'category_id' => [
-                Rule::requiredIf(
-                    $contentType === BlogContentType::LINKEDIN->value
-                ),
-                'nullable',
+                'required',
                 'exists:blog_categories,id',
             ],
 
@@ -312,7 +309,7 @@ class BlogController extends Controller
             'Please select an author for Author Spotlight.',
 
             'category_id.required' =>
-            'Please select a category for LinkedIn Post.',
+            'Please select a category.',
 
             'coverImage.required' =>
             'Please upload a cover image.',

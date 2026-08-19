@@ -282,7 +282,8 @@
 
         </div>
     </section>
-
+    
+    @if($works->count())
     <section id="FeaturedWork-Section" class="featured-work section-md">
         <div class="container-custom d-flex flex-column">
             <div class="row">
@@ -297,55 +298,32 @@
             </div>
 
             <div class="row cmn-sec-padding g-5">
+                @foreach($works as $work)
                 <div class="col-md-6">
                     <div class="work-card">
                         <div class="work-img-container">
-                            <img src="images/fw-nhs_80505d74.webp" alt="Digital Transformation" class="img-fluid">
+                            @php
+                                $image = $work->coverImage ?: $work->featuredImage;
+                            @endphp
+                            @if ($image)
+                                <img src="{{ asset('backend_assets/work/cover-images/' . $work->coverImage) }}"
+                                    alt="{{ $work->cover_title ?? $work->title }}" class="img-fluid">
+                            @else
+                                <img src="{{ asset('images/default-work.jpg') }}" alt="{{ $work->title }}"
+                                    class="img-fluid">
+                            @endif
                         </div>
-                        <h3>NHS Digital & Outdoor Campaign</h3>
-                        <p>NHS Digital & Outdoor Campaign</p>
-                        <a href="/details" class="button-link small-text mb-0">See More <i
+                        <h3>{{ $work->cover_title ?? $work->title }}</h3>
+                        <p>{{ $work->excerpt }}</p>
+                        <a href="{{ route('details', $work->slug) }}" class="button-link small-text mb-0">See More <i
                                 class="bi bi-arrow-right-short ms-1"></i></a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="work-card">
-                        <div class="work-img-container">
-                            <img src="images/fw-kings-new-opt_7b43530d.webp" alt="Digital Transformation"
-                                class="img-fluid">
-                        </div>
-                        <h3>Kings College London Chronic Kidney Disease Project</h3>
-                        <p>Kings College London Chronic Kidney Disease Project</p>
-                        <a href="/details" class="button-link small-text mb-0">See More <i
-                                class="bi bi-arrow-right-short ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="work-card">
-                        <div class="work-img-container">
-                            <img src="images/fw-paul_383eac7e.webp" alt="Digital Transformation" class="img-fluid">
-                        </div>
-                        <h3>Paul Robinson West Ham TV Ad</h3>
-                        <p>Paul Robinson West Ham TV Ad</p>
-                        <a href="/details" class="button-link small-text mb-0">See More <i
-                                class="bi bi-arrow-right-short ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="work-card">
-                        <div class="work-img-container">
-                            <img src="images/fw-toyota_f592b5d6.webp" alt="Digital Transformation" class="img-fluid">
-                        </div>
-                        <h3>Toyota Ghana</h3>
-                        <p>Toyota Ghana</p>
-                        <a href="/details" class="button-link small-text mb-0">See More <i
-                                class="bi bi-arrow-right-short ms-1"></i></a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </section>
+    @endif
 
     <section class="client-section section-md">
         <div class="container-custom text-center ">

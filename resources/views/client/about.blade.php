@@ -75,7 +75,7 @@
                                 growth through integrated strategy, creative excellence, and technology innovation.
                             </p>
 
-                            <a href="/work" class="button-link small-text text-deeper-orange mb-0">View Our Work <i
+                            <a href="/works" class="button-link small-text text-deeper-orange mb-0">View Our Work <i
                                     class="bi bi-arrow-right-short ms-1"></i></a>
                         </div>
                     </div>
@@ -264,7 +264,7 @@
                             <p class=" mb-3">Our London office drives strategic vision and creative excellence across
                                 Europe, the
                                 UK, and Africa. We combine decades of experience with cutting-edge thinking.</p>
-                            <a href="london." class="button-link text-deeper-orange small-text mb-0">Explore London <i
+                            <a href="/london" class="button-link text-deeper-orange small-text mb-0">Explore London <i
                                     class="bi bi-arrow-right-short ms-1"></i></a>
                         </div>
                     </a>

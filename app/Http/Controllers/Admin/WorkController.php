@@ -176,7 +176,7 @@ class WorkController extends Controller
         if ($request->hasFile('coverImage')) {
             $file = $request->file('coverImage');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('backend_assets/work/cover-image'), $fileName);
+            $file->move(public_path('backend_assets/work/cover-images'), $fileName);
 
             if ($work->coverImage && file_exists(public_path('backend_assets/work/cover-images/' . $work->coverImage))) {
                 unlink(public_path('backend_assets/work/cover-images/' . $work->coverImage));

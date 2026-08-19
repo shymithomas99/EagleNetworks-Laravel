@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-12 my-3" id="image-field">
                                 <label for="briefImage" class="form-label">
-                                    Brief Image (1280 × 780 px)*
+                                    Brief Image (1280 × 780 px, max 1 MB)*
                                 </label>
                                 <input
                                     type="file"
@@ -183,7 +183,7 @@
                                 value="{{ old('testimonialAuthor', $work->testimonialAuthor ?? '') }}">
                         </div>
                         <div class="col-6 my-3">
-                            <label class="form-label" for="customFile">Cover Image (1280 x 780 px)*</label>
+                            <label class="form-label" for="customFile">Cover Image (1280 x 780 px, max 1 MB)*</label>
                             <input type="file" class="form-control custom-file-input" id="coverImage"
                                 name="coverImage" accept="image/*"
                                 onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
@@ -195,7 +195,7 @@
                             @enderror
                         </div>
                         <div class="col-6 my-3">
-                            <label class="form-label" for="customFile">Featured Image (776 x 417 px)</label>
+                            <label class="form-label" for="customFile">Featured Image (776 x 417 px, max 1 MB)</label>
                             <input type="file" class="form-control custom-file-input" id="featuredImage"
                                 name="featuredImage" accept="image/*"
                                 onchange="document.getElementById('uploaded_bg_img').src = window.URL.createObjectURL(this.files[0])"
