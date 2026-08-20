@@ -112,9 +112,9 @@
                         @if($work->briefMediaType == 1 && $work->briefImage)
                             <div class="post-video-container ratio ratio-16x9">
                                 <img
-                                    src="{{ asset('uploads/works/' . $work->briefImage) }}"
+                                    src="{{ asset('backend_assets/work/brief-images/' . $work->briefImage) }}"
                                     alt="{{ $work->title }}"
-                                    class="w-100 h-100 object-fit-cover" style="border-radius: 15px;"
+                                    class="object-fit-cover" style="border-radius: 15px;"
                                 >
                             </div>
 
