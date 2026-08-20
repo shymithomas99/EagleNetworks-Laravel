@@ -1,10 +1,8 @@
 @extends('layouts.appweb')
 @section('title', 'Accra | ')
 @push('meta')
-    <meta
-        name="description"
-        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
-    >
+    <meta name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight.">
 @endpush
 @section('content')
     <section class="section-hero border-btm-green accra-banner">
@@ -392,7 +390,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- TITLE -->
-                        <h2 class="green-text">Integrated with Eagle Accra</h2>
+                        <h2 class="green-text">Integrated with Eagle London</h2>
                     </div>
                 </div>
                 <!-- LEFT CONTENT -->

@@ -32,6 +32,7 @@ class VideoCategoryController extends Controller
             'name' => $request->name,
             'slug' => $slug,
             'display_order' => $request->display_order ?? 0,
+            'published' => $request->has('published'),
         ]);
 
         return back()->with('success', 'Category created successfully!');
@@ -57,10 +58,37 @@ class VideoCategoryController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'display_order' => $request->display_order ?? 0,
+            'published' => $request->has('published'),
         ]);
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Category updated successfully!');
+    }
+
+    public function togglePublish($id)
+    {
+        $VideoCategory = VideoCategory::findOrFail($id);
+        $VideoCategory->update(['published' => !$VideoCategory->published]);
+
+        $message = $VideoCategory->published
+            ? 'Video Category published successfully'
+            : 'Video Category moved to draft';
+
+        return back()->with('success', $message);
+    }
+
+
+    public function publish($id)
+    {
+        $VideoCategory = VideoCategory::findOrFail($id);
+
+        if ($VideoCategory->published) {
+            return back()->with('info', 'Video Category is already published');
+        }
+
+        $VideoCategory->update(['published' => true]);
+
+        return back()->with('success', 'Video Category published successfully');
     }
 
     // ✅ ADD THIS

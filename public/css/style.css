@@ -5140,8 +5140,8 @@ FILTER
 
 .modal-close {
     position: absolute;
-    top: -55px;
-    right: 0;
+    top: 0px;
+    right: -44px;
     width: 40px;
     height: 40px;
     border: 0;

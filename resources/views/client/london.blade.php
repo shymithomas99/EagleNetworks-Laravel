@@ -1,10 +1,8 @@
 @extends('layouts.appweb')
 @section('title', 'London | ')
 @push('meta')
-    <meta
-        name="description"
-        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
-    >
+    <meta name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight.">
 @endpush
 @section('content')
     <section class="section-hero london-banner">
@@ -325,7 +323,7 @@
                 <!-- CARD 4 -->
                 <div class="col-lg-6">
                     <div class="market-card">
-                        <h4 class="card-title">Enterprise Clients</h4>
+                        <h4 class="card-title">Corporates & Government</h4>
                         <p class="card-text">
                             Large organizations requiring integrated strategy, creative, and technology solutions
                         </p>
