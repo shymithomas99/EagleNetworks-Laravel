@@ -39,6 +39,13 @@
                     @foreach ($contentTypes as $index => $contentType)
                     <button
                         class="main-tab-btn d-flex align-items-center
+                            @if ($contentType === \App\Enums\BlogContentType::LINKEDIN)
+                                linkedin-btn
+                            @elseif ($contentType === \App\Enums\BlogContentType::ARTICLE)
+                                article-btn
+                            @elseif ($contentType === \App\Enums\BlogContentType::AUTHOR)
+                                authors-btn
+                            @endif
                             {{ $index === 0 ? 'active' : '' }}"
                         data-tab="{{ $contentType->value }}"
                     >
