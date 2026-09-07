@@ -14,17 +14,16 @@ use Illuminate\Support\Facades\Route;
 
 // ✅ LOGIN ROUTES (no auth middleware)
 Route::middleware('guest')->group(function () {
-    Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 });
 
-// Logout route
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
-
 // ✅ PROTECTED ROUTES (auth middleware)
 Route::middleware('auth')->group(function () {
+    // Logout route
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Leads
     Route::get('/leads', [ContactController::class, 'index'])->name('leads');
@@ -38,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/edit/{id}', [VideoCategoryController::class, 'edit'])->name('categories.edit');
     Route::put('/categories/{id}', [VideoCategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}', [VideoCategoryController::class, 'destroy'])->name('categories.delete');
+    Route::patch('categories/{id}/toggle-publish', [VideoCategoryController::class, 'togglePublish'])->name('categories.toggle-publish');
 
     // Videos
     Route::get('/videos', [VideoProjectController::class, 'index'])->name('videos.index');

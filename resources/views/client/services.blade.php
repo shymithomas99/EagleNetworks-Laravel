@@ -115,8 +115,8 @@
                     </div>
 
                     <div class="col">
-                        <div class="service-card align-items-center text-center" data-title="Digital Transformation"
-                            data-description="Leverage cutting-edge technology to streamline operations, enhance customer experiences, and unlock new revenue streams.">
+                        <div class="service-card align-items-center text-center" data-title="Customer Support Services"
+                            data-description="Deliver a customer experience that builds loyalty. Our outsourced support solutions ensure every touchpoint reinforces your brand promise and retains your customers.">
                             <div class="icon-box">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -726,7 +726,7 @@
                         <path d="M5 12h14"></path>
                         <path d="m12 5 7 7-7 7"></path>
                     </svg> </a>
-                <a href="/work" class="commn-btn btn-primary-custom">View Our Work</a>
+                <a href="/works" class="commn-btn btn-primary-custom">View Our Work</a>
             </div>
         </div>
 

@@ -177,14 +177,6 @@
                     </a>
                 </li>
 
-                <!-- Leads -->
-                <li class="nav-item py-1">
-                    <a href="{{ route('admin.leads') }}"
-                        class="nav-link {{ request()->routeIs('admin.leads') ? 'active' : '' }}">
-                        <i class="fa-solid fa-user"></i> Leads
-                    </a>
-                </li>
-
                 <!-- ACCORDION -->
                 <li class="nav-item">
 
@@ -198,7 +190,7 @@
                     <div class="bg-dark py-1">
                         <button class="accordion-custom {{ $blogActive ? 'active-parent active' : '' }}"
                             data-target="blogMenu">
-                            <span><i class="fa fa-list"></i> Manage Blog</span>
+                            <span><i class="fas fa-blog"></i> Manage Blog</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
@@ -224,7 +216,7 @@
                     <div class="bg-dark py-1">
                         <button class="accordion-custom {{ $workActive ? 'active-parent active' : '' }}"
                             data-target="workMenu">
-                            <span><i class="fa fa-briefcase"></i> Manage Work</span>
+                            <span><i class="fas fa-briefcase"></i> Manage Work</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
@@ -245,7 +237,7 @@
                     <div class="bg-dark py-1">
                         <button class="accordion-custom {{ $videoActive ? 'active-parent active' : '' }}"
                             data-target="videoMenu">
-                            <span><i class="fa fa-video"></i> Manage Videos</span>
+                            <span><i class="fas fa-video"></i> Manage Videos</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
@@ -262,6 +254,14 @@
                         </div>
                     </div>
 
+                </li>
+
+                <!-- Leads -->
+                <li class="nav-item py-1">
+                    <a href="{{ route('admin.leads') }}"
+                        class="nav-link {{ request()->routeIs('admin.leads') ? 'active' : '' }}">
+                        <i class="fas fa-users"></i> Leads
+                    </a>
                 </li>
 
             </ul>

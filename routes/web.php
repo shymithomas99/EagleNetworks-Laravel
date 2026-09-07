@@ -99,3 +99,21 @@ Route::post('/newsletter-subscribe', [HomeController::class, 'newsletterSubscrib
 
 
 // Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+
+// use Illuminate\Support\Facades\Artisan;
+
+// Route::get('/generate-app-key', function () {
+//     Artisan::call('key:generate', [
+//         '--force' => true,
+//     ]);
+
+//     return 'Application key generated successfully.';
+// });
+
+
+
+// Route::get('/generate-sitemap', function () {
+//     Artisan::call('sitemap:generate');
+
+//     return 'Sitemap generated successfully.';
+// });

@@ -31,10 +31,10 @@ class WhatsAppController extends Controller
         $message .= "Project Summary: {$request->project_summary}\n\n";
         $message .= "Please let me know the next steps.";
 
-        $whatsappNumber = '';
+        $whatsappNumber = '447983508359';
 
         return redirect()->away(
-            "https://wa.me/{$whatsappNumber}?text=" . urlencode($message)
+            'https://wa.me/' . $whatsappNumber . '?text=' . urlencode($message)
         );
     }
 }

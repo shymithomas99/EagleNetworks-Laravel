@@ -45,8 +45,7 @@
                                 article-btn
                             @elseif ($contentType === \App\Enums\BlogContentType::AUTHOR)
                                 authors-btn
-                            @endif
-                            {{ $index === 0 ? 'active' : '' }}"
+                            @endif"
                         data-tab="{{ $contentType->value }}"
                     >
                         @if ($contentType === \App\Enums\BlogContentType::LINKEDIN)
@@ -58,6 +57,72 @@
                         {{ $contentType->label() }}
                     </button>
                     @endforeach
+
+                </div>
+
+            </div>
+
+        </div>
+        
+        <div class="main-tab-content active">
+
+            <div class="container-custom">
+
+                <div class="row g-6 my-4">
+                
+                    @forelse ($blogs as $blog)
+                    <div class="col-lg-4 col-md-6 insights-item ">
+                        
+                        <a href="{{ $blog->content_type === \App\Enums\BlogContentType::LINKEDIN ? $blog->url : route('blogs.show', $blog) }}"
+                            class="card-type2 text-decoration-none">
+                            <div class="card-type2-img-container">
+                                @if ($blog->coverImage)
+                                    <img
+                                        src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                                        alt="{{ $blog->title }}"
+                                    >
+                                @endif
+
+                                @if ($blog->category)
+                                    <div class="insight-img-tag">
+                                        {{ $blog->category->name }}
+                                    </div>
+                                @endif
+                            </div>
+
+
+                            <div class="card-type2-content">
+
+                                <h3 class="line-clamp-2">
+                                    {{ $blog->title }}
+                                </h3>
+
+                                <p class="line-clamp-3">
+                                    {{ $blog->excerpt }}
+                                </p>
+
+                                <div class="d-flex justify-content-between">
+                                    <div class="insight-date x-small-text fw-normal"><i
+                                            class="bi bi-calendar2 me-1"></i>{{ $blog->created_at->format('d M Y') }}</div>
+                                    <div class="read-on x-small-text fw-semibold text-orange d-flex align-items-center">
+                                        @if ($blog->content_type === \App\Enums\BlogContentType::LINKEDIN->value)
+                                            Read on LinkedIn
+                                            <i class="bi bi-box-arrow-up-right ms-1"></i>
+                                        @else
+                                            Read article
+                                            <i class="bi bi-arrow-right-short fs-6"></i>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    @empty
+
+                        <div class="text-center py-5">
+                            <h6>No posts available.</h6>
+                        </div>
+                    @endforelse
 
                 </div>
 
@@ -76,14 +141,14 @@
         @endphp
 
         <div
-            class="main-tab-content active"
+            class="main-tab-content d-none"
             id="{{ \App\Enums\BlogContentType::LINKEDIN->value }}"
         >
 
             <!-- SUB FILTERS -->
             <div class="insights-filter-main pt-0">
                 <div class="container-custom insights-filter">
-                    @if($linkedinBlogs->count())
+                    @if($categories->count())
                     <button
                         class="insights-filter-btn active"
                         data-filter="all">
@@ -147,25 +212,10 @@
                             </div>
                         </a>
                     </div>
-                    @empty
-
-                    <div id="noItemsMessage" class="text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-linkedin mx-auto mb-3 text-[#f97316] opacity-40"
-                            data-loc="client/src/pages/Insights.tsx:114">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect width="4" height="12" x="2" y="9"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        <h6 class="mb-3">
-                            No LinkedIn posts available.
-                        </h6>
-                        <p>Check back soon — we post regularly on LinkedIn.</p>
-                    </div>
-                    @endforelse
-
-                    <div id="noItemsMessage" class="text-center d-none">
+                    @endforeach
+                    
+                    @if($linkedinBlogs->count())
+                    <div class="text-center d-none" id="noItemsMessage">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-linkedin mx-auto mb-3 text-[#f97316] opacity-40"
@@ -179,7 +229,24 @@
                         </h6>
                         <p>Check back soon — we post regularly on LinkedIn.</p>
                     </div>
-
+                    @else
+                    
+                    <div class="text-center" id="noItemsMessage">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-linkedin mx-auto mb-3 text-[#f97316] opacity-40"
+                            data-loc="client/src/pages/Insights.tsx:114">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect width="4" height="12" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <h6 class="mb-3">
+                            No LinkedIn posts available.
+                        </h6>
+                        <p>Check back soon — we post regularly on LinkedIn.</p>
+                    </div>
+                    
+                    @endif
 
                 </div>
 

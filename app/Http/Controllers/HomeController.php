@@ -45,7 +45,7 @@ class HomeController extends Controller
             ->whereHas('category', function ($query) {
                 $query->where('published', 1);
             })
-            ->orderBy('display_order', 'desc')
+            ->orderBy('display_order', 'asc')
             ->limit(4)
             ->get();
 
@@ -122,6 +122,7 @@ class HomeController extends Controller
             'email' => [
                 'required',
                 'email',
+                'regex:/^[^@\s]+@[^@\s]+\.[^@\s]+$/',
                 'max:255',
             ],
 
@@ -204,7 +205,7 @@ class HomeController extends Controller
     */
 
         $adminEmails = [
-            'shymicams@gmail.com',
+            'shymicams@gmail.com','ama@theemhglobal.com'
         ];
 
         Mail::to($adminEmails)->send(
@@ -283,13 +284,8 @@ class HomeController extends Controller
             ->latest()
             ->get();
         $categories = BlogCategory::where('published', true)
-                ->whereHas('blogs', function ($query) {
-                    $query
-                        ->where('content_type', BlogContentType::LINKEDIN->value)
-                        ->where('published', true);
-                })
-                ->orderByDesc('id')
-                ->get();
+                    ->orderByDesc('id')
+                    ->get();
 
         $contentTypes = BlogContentType::cases();
 

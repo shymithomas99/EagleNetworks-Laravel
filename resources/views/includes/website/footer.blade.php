@@ -1,48 +1,43 @@
 <footer class="footer section-md">
     <div class="container-custom-2 ">
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-5 pb-4 footer-sec-1">
-
+            <div class="footer-grid pb-4 footer-sec-1">
             <!-- Logo Content -->
-            <div class="col">
+            <div class="footer-col flex-fill">
                 <div class="footer-logo mb-3">
-                    <img src="{{ asset('images/LOGOEAGLELONDONACCRA.png') }}" alt="Eagle Networks Logo">
+                    <img src="images/LOGOEAGLELONDONACCRA.png" alt="Eagle Networks Logo">
                 </div>
-
                 <p class="small-text mb-0 max-240">
-                    International creative, marketing, and technology agency.
+                    Eagle is a Black-owned, full-service marketing and creative agency based in London and Accra,
+                    specialising in branding, web and software solutions, and TV and digital campaigns
                 </p>
             </div>
 
-            <!-- Company -->
-            <div class="col mt-4 mt-md-0">
-                <h3 class="mb-3">Company</h3>
-
+            <!-- Company Links -->
+            <div class="footer-col flex-fill">
+                <h3 class="mb-2">Company</h3>
                 <ul class="list-unstyled footer-links">
                     <li><a href="/" class="small-text">Home</a></li>
                     <li><a href="/services" class="small-text">Services</a></li>
                     <li><a href="/packages" class="small-text">Packages</a></li>
                     <li><a href="/london" class="small-text">London</a></li>
                     <li><a href="/accra" class="small-text">Accra</a></li>
-                    <li><a href="/work" class="small-text">Our work</a></li>
+                    <li><a href="/works" class="small-text">Our work</a></li>
                     <li><a href="/insights" class="small-text">Insights</a></li>
                     <li><a href="/about" class="small-text">About Us</a></li>
                     <li><a href="/contact" class="small-text">Contact</a></li>
-
                 </ul>
             </div>
 
-            <!-- Contact 1 -->
-            <div class="col mt-4 mt-xl-0">
-                <h3 class="mb-3">London</h3>
-
+            <!-- London Contact -->
+            <div class="footer-col flex-fill">
+                <h3 class="mb-2">London</h3>
                 <ul class="list-unstyled footer-contact-list footer-links">
                     <li class="contact-item d-flex align-items-start mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:50"
                                 style="color: rgba(255, 255, 255, 0.65);">
                                 <path
                                     d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
@@ -50,74 +45,57 @@
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                         </span>
-
                         <div>
                             <span class="fw-semibold d-block">Eagle London Agency</span>
-                            <span class="small-text">c/o EMH Global Ltd, Old Town Hall Annexe, 29 Broadway,
-                                Stratford E15 4BQ</span>
+                            <span class="small-text">c/o EMH Global Ltd, Old Town Hall Annexe, 29 Broadway, Stratford
+                                E15 4BQ</span>
                         </div>
                     </li>
-
                     <li class="contact-item d-flex align-items-center mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:54"
                                 style="color: rgba(255, 255, 255, 0.65);">
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                 </path>
                             </svg>
                         </span>
-
-                        <a href="tel:+442039270281" class="small-text">
-                            +44 (0)203 927 0281
-                        </a>
+                        <a href="tel:+442039270281" class="small-text">+44 (0)203 927 0281</a>
                     </li>
-
                     <li class="contact-item d-flex align-items-center mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:54"
                                 style="color: rgba(255, 255, 255, 0.65);">
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                 </path>
                             </svg>
                         </span>
-
-                        <a href="tel:+447983508359" class="small-text">
-                            +44 (0)7983 508 359
-                        </a>
+                        <a href="tel:+447983508359" class="small-text">+44 (0)7983 508 359</a>
                     </li>
-
                     <li class="contact-item d-flex align-items-center mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-mail mt-0.5 flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:62"
                                 style="color: rgba(255, 255, 255, 0.65);">
                                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                             </svg>
                         </span>
-
-                        <a href="mailto:eaglenetworks@theemhglobal.com" class="small-text">
-                            eaglenetworks@theemhglobal.com
-                        </a>
+                        <a href="mailto:eaglenetworks@theemhglobal.com"
+                            class="small-text">eaglenetworks@theemhglobal.com</a>
                     </li>
-
                 </ul>
             </div>
 
-            <!-- Contact 2 -->
-            <div class="col mt-4 mt-xl-0">
-                <h3 class="mb-3">Accra</h3>
-
+            <!-- Accra Contact -->
+            <div class="footer-col flex-fill">
+                <h3 class="mb-2">Accra</h3>
                 <ul class="list-unstyled footer-contact-list footer-links">
                     <li class="contact-item d-flex align-items-start mb-2">
                         <span class="me-2">
@@ -125,7 +103,6 @@
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:50"
                                 style="color: rgba(255, 255, 255, 0.65);">
                                 <path
                                     d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
@@ -133,81 +110,58 @@
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                         </span>
-
                         <div>
                             <span class="fw-semibold d-block">EMH Global Ghana Limited</span>
                             <span class="small-text">Eagle House, C358/9 Manyo Plange Street, Adabraka, Accra,
                                 Ghana</span>
                         </div>
                     </li>
-
                     <li class="contact-item d-flex align-items-center mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-phone flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:54"
-                                style="color: rgba(255, 255, 255, 0.65);">
+                                class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                 </path>
                             </svg>
                         </span>
-
-                        <a href="tel:+233302237395" class="small-text">
-                            +233 (0)302 237 395
-                        </a>
+                        <a href="tel:+233302237395" class="small-text">+233 (0)302 237 395</a>
                     </li>
-
                     <li class="contact-item d-flex align-items-center mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-phone flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:54"
-                                style="color: rgba(255, 255, 255, 0.65);">
+                                class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                 </path>
                             </svg>
                         </span>
-
-                        <a href="tel:+233540381883" class="small-text">
-                            +233 (0)540 381 883
-                        </a>
+                        <a href="tel:+233540381883" class="small-text">+233 (0)540 381 883</a>
                     </li>
-
                     <li class="contact-item d-flex align-items-center mb-2">
                         <span class="me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-mail mt-0.5 flex-shrink-0"
-                                data-loc="client/src/components/Footer.tsx:62"
                                 style="color: rgba(255, 255, 255, 0.65);">
                                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                             </svg>
                         </span>
-
-                        <a href="mailto:eaglenetworks@theemhglobal.com" class="small-text">
-                            eaglenetworks@theemhglobal.com
-                        </a>
+                        <a href="mailto:eaglenetworks@theemhglobal.com"
+                            class="small-text">eaglenetworks@theemhglobal.com</a>
                     </li>
-
-
-
-
-
                 </ul>
             </div>
 
-            <!-- Connect -->
-            <div class="col mt-4 mt-xl-0">
-                <h3 class="mb-3">Connect</h3>
-
+            <!-- Connect & Legal -->
+            <div class="footer-col flex-fill">
+                <h3 class="mb-2">Connect</h3>
                 <div class="d-flex gap-3 fs-5 mb-5 mb-md-4 social-icons">
                     <a href="https://uk.linkedin.com/company/eagletheagency"><i class="bi bi-linkedin"></i></a>
                     <a href="https://x.com/Eagletheagency"><i class="bi bi-twitter-x"></i></a>
@@ -218,20 +172,18 @@
                 </div>
 
                 <h3 class="mb-3">Legal</h3>
-
                 <ul class="list-unstyled footer-links-subtle">
                     <li><a href="/privacy-policy" class="small-text">Privacy Policy</a></li>
                     <li><a href="/terms" class="small-text">Terms of Use</a></li>
                     <li><a href="/sitemap" class="small-text">Sitemap</a></li>
+                    <li><a href="#" class="small-text" id="openCookieSettings">Cookie Settings</a></li>
                     <li>
                         <a href="#" class="small-text" id="openCookieSettings">
                             Cookie Settings
                         </a>
                     </li>
-
                 </ul>
             </div>
-
         </div>
 
         <div class="row justify-content-center" id="newsletter">

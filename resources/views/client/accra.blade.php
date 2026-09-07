@@ -392,7 +392,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- TITLE -->
-                        <h2 class="green-text">Integrated with Eagle Accra</h2>
+                        <h2 class="green-text">Integrated with Eagle London</h2>
                     </div>
                 </div>
                 <!-- LEFT CONTENT -->

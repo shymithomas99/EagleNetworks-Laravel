@@ -1,78 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-    <loc>http://127.0.0.1:8000</loc>
-    <lastmod>2026-08-19T13:00:10+00:00</lastmod>
+    <loc>https://eagletheagency.com</loc>
+    <lastmod>2026-08-27T07:15:16+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/about</loc>
-    <lastmod>2026-08-19T12:59:33+00:00</lastmod>
+    <loc>https://eagletheagency.com/about</loc>
+    <lastmod>2026-08-19T12:59:15+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/contact</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/contact</loc>
+    <lastmod>2026-08-20T09:25:42+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/accra</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/accra</loc>
+    <lastmod>2026-08-20T04:28:39+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/amplify</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/amplify</loc>
+    <lastmod>2026-08-18T16:32:40+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/connect</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/connect</loc>
+    <lastmod>2026-08-18T16:32:40+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/details</loc>
-    <lastmod>2026-08-20T05:14:13+00:00</lastmod>
+    <loc>https://eagletheagency.com/details</loc>
+    <lastmod>2026-08-20T05:16:29+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/ignite</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/ignite</loc>
+    <lastmod>2026-08-18T16:32:40+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/london</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/london</loc>
+    <lastmod>2026-08-27T07:24:15+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/packages</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/packages</loc>
+    <lastmod>2026-08-18T16:32:40+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/privacy-policy</loc>
-    <lastmod>2026-08-18T11:02:39+00:00</lastmod>
+    <loc>https://eagletheagency.com/privacy-policy</loc>
+    <lastmod>2026-08-18T16:32:40+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/services</loc>
-    <lastmod>2026-08-19T12:45:31+00:00</lastmod>
+    <loc>https://eagletheagency.com/services</loc>
+    <lastmod>2026-08-20T04:25:36+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/terms-of-use</loc>
+    <loc>https://eagletheagency.com/terms-of-use</loc>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/insights</loc>
-    <lastmod>2026-08-18T09:38:10+00:00</lastmod>
+    <loc>https://eagletheagency.com/insights</loc>
+    <lastmod>2026-08-27T11:20:35+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/insights/test-slug-2</loc>
-    <lastmod>2026-08-18T09:38:10+00:00</lastmod>
+    <loc>https://eagletheagency.com/insights/celebrating-ghana-69-independence-day</loc>
+    <lastmod>2026-08-27T11:20:35+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/insights/test-slug-3</loc>
-    <lastmod>2026-08-18T09:38:10+00:00</lastmod>
+    <loc>https://eagletheagency.com/insights/How-to-Support-Women-A-Reflection-on-International-Womens-Day-and-Motherhood</loc>
+    <lastmod>2026-08-27T11:20:31+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/works</loc>
-    <lastmod>2026-08-20T05:17:29+00:00</lastmod>
+    <loc>https://eagletheagency.com/insights/World-Immunisation-Week-How-a-Creative-Approach-Can-Champion-Vaccinations</loc>
+    <lastmod>2026-08-27T11:20:28+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/works/test-slug-1</loc>
-    <lastmod>2026-08-20T05:17:29+00:00</lastmod>
+    <loc>https://eagletheagency.com/insights</loc>
+    <lastmod>2026-08-27T11:20:26+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/media</loc>
-    <lastmod>2026-08-19T11:31:46+00:00</lastmod>
+    <loc>https://eagletheagency.com/insights/Creating-a-Logo-for-TONE-A-Magazine-Dedicated-to-Amplify-African-Markets</loc>
+    <lastmod>2026-08-27T11:20:22+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/insights/Impressionist-Principles-for-Emotionally-Driven-Branding</loc>
+    <lastmod>2026-08-27T11:20:19+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/insights/reframe-content-in-a-different-light-and-produce-new-posts</loc>
+    <lastmod>2026-08-27T11:20:17+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/insights/reframe-content-different-light-produce-new-posts</loc>
+    <lastmod>2026-08-27T11:19:09+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/works</loc>
+    <lastmod>2026-08-27T06:52:56+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/works/toyota-ghana</loc>
+    <lastmod>2026-08-27T06:52:56+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/works/paul-robinson-west-ham-tv-ad</loc>
+    <lastmod>2026-08-27T06:49:45+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/works/nhs-digital-outdoor-campaign</loc>
+    <lastmod>2026-08-20T06:47:32+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/works/kings-college-london-chronic-kidney-disease-project</loc>
+    <lastmod>2026-08-19T15:54:55+00:00</lastmod>
+            </url>
+    <url>
+    <loc>https://eagletheagency.com/media</loc>
+    <lastmod>2026-08-20T06:57:47+00:00</lastmod>
             </url>
 </urlset>
