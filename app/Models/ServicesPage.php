@@ -15,7 +15,7 @@ class ServicesPage extends Model
     protected $fillable = [
         'section',
         'is_card',
-        'short_title',
+        'label',
         'title',
         'description',
         'image',

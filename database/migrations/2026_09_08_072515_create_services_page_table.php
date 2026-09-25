@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedTinyInteger('section');
             $table->boolean('is_card');
-            $table->string('short_title')->nullable();
+            $table->string('label')->nullable();
             $table->string('title');
             $table->text('description');
             $table->string('image')->nullable();

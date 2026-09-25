@@ -22,10 +22,16 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'eagle@network.com',
         // ]);
 
-         $this->call([
+        $this->call([
             UserSeeder::class,
             ServicesPageSeeder::class,
             PackagesPageSeeder::class,
+            LondonPageSeeder::class,
+            AccraPageSeeder::class,
+            AboutPageSeeder::class,
+            ContactPageSeeder::class,
+            WorkPageSeeder::class,
+            InsightsPageSeeder::class,
         ]);
     }
 }

@@ -89,7 +89,7 @@
                     <h2>{{ $totalBlogs }}</h2>
                 </div>
                 <div class="dashboard-card-icon"> <i class="fas fa-blog"></i> </div>
-            </div> <a href="{{ route('admin.blog.index') }}" class="dashboard-card-link"> View Blogs <span>→</span> </a>
+            </div> <a href="{{ route('admin.blogs.index') }}" class="dashboard-card-link"> View Blogs <span>→</span> </a>
         </div>
     </div> <!-- Total Works -->
     <div class="col-xl-3 col-md-6">
@@ -100,7 +100,7 @@
                     <h2>{{ $totalWorks }}</h2>
                 </div>
                 <div class="dashboard-card-icon"> <i class="fas fa-briefcase"></i> </div>
-            </div> <a href="{{ route('admin.work.index') }}" class="dashboard-card-link"> View Works <span>→</span> </a>
+            </div> <a href="{{ route('admin.works.index') }}" class="dashboard-card-link"> View Works <span>→</span> </a>
         </div>
     </div> <!-- Total Videos -->
     <div class="col-xl-3 col-md-6">

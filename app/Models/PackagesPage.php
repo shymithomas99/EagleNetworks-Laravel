@@ -17,7 +17,7 @@ class PackagesPage extends Model
         'is_card',
         'title',
         'support_title',
-        'short_title',
+        'label',
         'description',
         'support_description',
         'button_text',

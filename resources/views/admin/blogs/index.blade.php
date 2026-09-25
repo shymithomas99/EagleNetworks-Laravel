@@ -5,12 +5,12 @@
             <div class="card-header">
                 {{ $title ?? null }}
 
-                <a href="{{ route('admin.work.create') }}" class="btn btn-success float-end">
-                    + Add Work
+                <a href="{{ route('admin.blogs.create') }}" class="btn btn-success float-end">
+                    + Add Blog
                 </a>
 
                 <div class="mt-3">
-                    <p><b>Manage all works here.</b></p>
+                    <p><b>Manage all blogs here.</b></p>
                 </div>
             </div>
             <div class="card-body">
@@ -19,9 +19,8 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Content Type</th>
                             <th>Category</th>
-                            <th>Client</th>
-                            <th>Order</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -31,13 +30,13 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->category->name }}</td>
-                                <td>{{ $item->clientName }}</td>
-                                <td>{{ $item->displayOrder }}</td>
+                                <td>{{ $item->content_type->label() }}</td>
+                                <td>{{ $item->category?->name ?? '-' }}</td>
                                 <td>
-                                    <h4 class="pt-2"><span class="badge {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
+                                    <span
+                                        class="badge fs-6 px-3 py-2 {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
                                         {{ $item->published ? 'Published' : 'Draft' }}
-                                    </span></h4>
+                                    </span>
                                 </td>
                                 {{-- <td>
                                     <div class="form-check form-switch">
@@ -45,27 +44,28 @@
                                     </div>
                                 </td> --}}
                                 <td>
-                                    <form action="{{ route('admin.work.toggle-publish', $item->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.blogs.toggle-publish', $item->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('PATCH')
                                         <button class="btn btn-primary">
                                             {{ $item->published ? 'Unpublish' : 'Publish' }}
                                         </button>
                                     </form>
-                                    <a class="btn btn-info" href="{{ route('admin.work.edit', $item) }}">
+                                    <a class="btn btn-info" href="{{ route('admin.blogs.edit', $item) }}">
                                         Edit
                                     </a>
                                     <!-- DELETE -->
-                                    <form action="{{ route('admin.work.destroy', $item) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.blogs.destroy', $item) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="btn btn-danger"
-                                            onclick="return confirm('Delete this work?')">
+                                        <button class="btn btn-danger" onclick="return confirm('Delete this blog?')">
                                             Delete
                                         </button>
                                     </form>
-                                    {{-- <button class="mx-2 col btn btn-danger" data-bs-toggle="modal"
+                                    {{-- <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#delete{{ $item->id }}">
                                         <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -82,7 +82,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <form method="POST"
-                                                        action="{{ route('admin.work.destroy', $item) }}">
+                                                        action="{{ route('admin.blogs.destroy', $item) }}">
                                                         @csrf
                                                         @method('delete')
                                                         <div class="row">
@@ -99,7 +99,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" style="text-align: center;">No Results to Show</td>
+                                <td colspan="6" style="text-align: center;">No Results to Show</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -110,5 +110,4 @@
             </div>
         </div>
     </div>
-
 @endsection

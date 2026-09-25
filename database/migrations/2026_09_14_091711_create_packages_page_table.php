@@ -17,7 +17,7 @@ return new class extends Migration
             $table->boolean('is_card');
             $table->string('title');
             $table->string('support_title')->nullable();
-            $table->string('short_title')->nullable();
+            $table->string('label')->nullable();
             $table->text('description');
             $table->text('support_description')->nullable();
             $table->string('button_text')->nullable();

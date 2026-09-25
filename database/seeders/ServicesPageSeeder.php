@@ -13,93 +13,61 @@ class ServicesPageSeeder extends Seeder
      */
     public function run(): void
     {
-        ServicesPage::updateOrCreate(
-            ['section' => 1,
-             'is_card' => 0
+        $blocks = [
+            [
+                'section' => 1,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
             ],
             [
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
+                'section' => 2,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
+                'section' => 3,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
+                'section' => 4,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
+                'section' => 5,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
+                'section' => 7,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
+                'section' => 8,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
+                'section' => 9,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+        ];
 
-        ServicesPage::updateOrCreate(
-            ['section' => 2,
-             'is_card' => 0
-            ],
-            [
-                'title' => 'Our Five Integrated Services',
-                'description' => 'Five integrated services designed to work together for maximum impact. Each service is built on our core methodology and delivered through our integrated team structure.',
-                'published' => 1,
-            ]
-        );
-
-        ServicesPage::updateOrCreate(
-            ['section' => 3,
-             'is_card' => 0
-            ],
-            [
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
-
-        ServicesPage::updateOrCreate(
-            ['section' => 4,
-             'is_card' => 0
-            ],
-            [
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
-
-        ServicesPage::updateOrCreate(
-            ['section' => 5,
-             'is_card' => 0
-            ],
-            [
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
-
-        ServicesPage::updateOrCreate(
-            ['section' => 7,
-             'is_card' => 0
-            ],
-            [
-                'is_card' => 0,
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
-
-        ServicesPage::updateOrCreate(
-            ['section' => 8,
-             'is_card' => 0
-            ],
-            [
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
-
-        ServicesPage::updateOrCreate(
-            ['section' => 9,
-             'is_card' => 0
-            ],
-            [
-                'title' => 'Services We Provide',
-                'description' => 'We combine strategy, creative, technology, customer service, and media into tailored solutions for your business. Each service is designed to work together for maximum impact.',
-                'published' => 1,
-            ]
-        );
+        foreach ($blocks as $block) {
+            ServicesPage::updateOrCreate(
+                [
+                    'section' => $block['section'],
+                    'is_card' => 0,
+                ],
+                [
+                    'title' => $block['title'],
+                    'description' => $block['description'],
+                    'published' => 0,
+                ]
+            );
+        }
     }
 }

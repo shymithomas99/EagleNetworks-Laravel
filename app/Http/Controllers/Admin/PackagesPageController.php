@@ -28,7 +28,7 @@ class PackagesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7'], true),
+            in_array($section, ['1', '4', '7'], true),
             404
         );
         $title = $this->getTitle($section) . ' Cards';
@@ -61,7 +61,7 @@ class PackagesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7'], true),
+            in_array($section, ['1', '4', '7'], true),
             404
         );
         $title = 'Add ' . $this->getTitle($section) . ' Card';
@@ -83,14 +83,14 @@ class PackagesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7'], true),
+            in_array($section, ['1', '4', '7'], true),
             404
         );
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'support_title' => ['nullable', 'string', 'max:255'],
-            'short_title' => [!$is_card  && $section == 6 ? 'required' : 'nullable', 'string', 'max:255'],
+            'label' => [!$is_card  && $section == 6 ? 'required' : 'nullable', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'support_description' => ['nullable', 'string'],
             'key_services' => [$is_card  && $section == 3 ? 'required' : 'nullable', 'string'],
@@ -198,7 +198,7 @@ class PackagesPageController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'support_title' => ['nullable', 'string', 'max:255'],
-            'short_title' => [!$is_card  && $section == 6 ? 'required' : 'nullable', 'string', 'max:255'],
+            'label' => [!$is_card  && $section == 6 ? 'required' : 'nullable', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'support_description' => ['nullable', 'string'],
             'key_services' => [$is_card  && $section == 3 ? 'required' : 'nullable', 'string'],
@@ -240,7 +240,7 @@ class PackagesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7'], true),
+            in_array($section, ['1', '4', '7'], true),
             404
         );
 

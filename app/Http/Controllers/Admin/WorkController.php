@@ -25,7 +25,7 @@ class WorkController extends Controller
         } else {
             $collections = Work::orderBy('id', 'desc')->simplePaginate(20);
         }
-        return view('admin.work.index', compact('title', 'collections', 'search'));
+        return view('admin.works.index', compact('title', 'collections', 'search'));
     }
 
     /**
@@ -37,7 +37,7 @@ class WorkController extends Controller
         $work = new Work();
         $categories = WorkCategory::all();
 
-        return view('admin.work.form', compact('title', 'work', 'categories'));
+        return view('admin.works.form', compact('title', 'work', 'categories'));
     }
 
     /**
@@ -84,21 +84,21 @@ class WorkController extends Controller
         if ($request->hasFile('coverImage')) {
             $file = $request->file('coverImage');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('backend_assets/work/cover-images'), $fileName);
+            $file->move(public_path('backend_assets/works/cover-images'), $fileName);
         }
 
         $fileName2 = null;
         if ($request->hasFile('featuredImage')) {
             $file2 = $request->file('featuredImage');
             $fileName2 = time() . '_' . uniqid() . '.' . $file2->getClientOriginalExtension();
-            $file2->move(public_path('backend_assets/work/featured-images'), $fileName2);
+            $file2->move(public_path('backend_assets/works/featured-images'), $fileName2);
         }
 
         $fileName3 = null;
         if ($request->hasFile('briefImage') && $request->briefMediaType == '1') {
             $file3 = $request->file('briefImage');
             $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
-            $file3->move(public_path('backend_assets/work/brief-images'), $fileName3);
+            $file3->move(public_path('backend_assets/works/brief-images'), $fileName3);
         }
 
         $data = $request->all();
@@ -111,7 +111,7 @@ class WorkController extends Controller
 
         $work = Work::create($data);
 
-        return redirect()->route('admin.work.gallery-images-form', $work->id)->with('success', 'Work added successfully');
+        return redirect()->route('admin.works.gallery-images-form', $work->id)->with('success', 'Work added successfully');
     }
 
     /**
@@ -129,7 +129,7 @@ class WorkController extends Controller
     {
         $title = "Edit Work";
         $categories = WorkCategory::all();
-        return view('admin.work.form', compact('title', 'work', 'categories'));
+        return view('admin.works.form', compact('title', 'work', 'categories'));
     }
 
     /**
@@ -176,10 +176,10 @@ class WorkController extends Controller
         if ($request->hasFile('coverImage')) {
             $file = $request->file('coverImage');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('backend_assets/work/cover-images'), $fileName);
+            $file->move(public_path('backend_assets/works/cover-images'), $fileName);
 
-            if ($work->coverImage && file_exists(public_path('backend_assets/work/cover-images/' . $work->coverImage))) {
-                unlink(public_path('backend_assets/work/cover-images/' . $work->coverImage));
+            if ($work->coverImage && file_exists(public_path('backend_assets/works/cover-images/' . $work->coverImage))) {
+                unlink(public_path('backend_assets/works/cover-images/' . $work->coverImage));
             }
         }
 
@@ -187,10 +187,10 @@ class WorkController extends Controller
         if ($request->hasFile('featuredImage')) {
             $file2 = $request->file('featuredImage');
             $fileName2 = time() . '_' . uniqid() . '.' . $file2->getClientOriginalExtension();
-            $file2->move(public_path('backend_assets/work/featured-images'), $fileName2);
+            $file2->move(public_path('backend_assets/works/featured-images'), $fileName2);
 
-            if ($work->featuredImage && file_exists(public_path('backend_assets/work/featured-images/' . $work->featuredImage))) {
-                unlink(public_path('backend_assets/work/featured-images/' . $work->featuredImage));
+            if ($work->featuredImage && file_exists(public_path('backend_assets/works/featured-images/' . $work->featuredImage))) {
+                unlink(public_path('backend_assets/works/featured-images/' . $work->featuredImage));
             }
         }
 
@@ -198,16 +198,16 @@ class WorkController extends Controller
         if ($request->hasFile('briefImage') && $request->briefMediaType == '1') {
             $file3 = $request->file('briefImage');
             $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
-            $file3->move(public_path('backend_assets/work/brief-images'), $fileName3);
+            $file3->move(public_path('backend_assets/works/brief-images'), $fileName3);
 
-            if ($work->briefImage && file_exists(public_path('backend_assets/work/brief-images/' . $work->briefImage))) {
-                unlink(public_path('backend_assets/work/brief-images/' . $work->briefImage));
+            if ($work->briefImage && file_exists(public_path('backend_assets/works/brief-images/' . $work->briefImage))) {
+                unlink(public_path('backend_assets/works/brief-images/' . $work->briefImage));
             }
         }
         else {
             $fileName3 = null;
-            if ($work->briefImage && file_exists(public_path('backend_assets/work/brief-images/' . $work->briefImage))) {
-                unlink(public_path('backend_assets/work/brief-images/' . $work->briefImage));
+            if ($work->briefImage && file_exists(public_path('backend_assets/works/brief-images/' . $work->briefImage))) {
+                unlink(public_path('backend_assets/works/brief-images/' . $work->briefImage));
             }
         }
 
@@ -221,7 +221,7 @@ class WorkController extends Controller
 
         $work->update($data);
 
-        return redirect()->route('admin.work.gallery-images-form', $work->id)->with('success', "Work updated successfully");
+        return redirect()->route('admin.works.gallery-images-form', $work->id)->with('success', "Work updated successfully");
     }
 
     /**
@@ -253,7 +253,7 @@ class WorkController extends Controller
             return abort(404);
         }
 
-        return view('admin.work.gallery-images-form')->with([
+        return view('admin.works.gallery-images-form')->with([
             'work' => $work,
         ]);
     }
@@ -269,7 +269,7 @@ class WorkController extends Controller
         if (!empty($request->file('file'))) {
             $file = $request->file('file');
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('backend_assets/work/gallery-images'), $fileName);
+            $file->move(public_path('backend_assets/works/gallery-images'), $fileName);
             $workGallery = WorkGallery::create([
                 'work_id' => $work->id,
                 'image'   => $fileName,
@@ -289,7 +289,7 @@ class WorkController extends Controller
         $workGallery = WorkGallery::findOrFail($request->id);
 
         $path = public_path(
-            'backend_assets/work/gallery-images/' . $workGallery->image
+            'backend_assets/works/gallery-images/' . $workGallery->image
         );
 
         if (file_exists($path)) {

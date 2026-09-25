@@ -14,10 +14,10 @@
 
                         @if(!$is_card && $section === '6')
                         <div class="col-6 my-3">
-                            <label for="short_title">Short Title *</label>
-                            <input type="text" class="form-control" id="short_title" placeholder=""
-                                name="short_title" value="{{ old('short_title', $packagesPage->short_title ?? '') }}">
-                            @error('short_title')
+                            <label for="label">Label *</label>
+                            <input type="text" class="form-control" id="label" placeholder=""
+                                name="label" value="{{ old('label', $packagesPage->label ?? '') }}">
+                            @error('label')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>

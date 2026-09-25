@@ -7,7 +7,7 @@
                 {{ $title ?? null }}
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ $blog->id ? route('admin.blog.update', $blog) : route('admin.blog.store') }}"
+                <form method="POST" action="{{ $blog->id ? route('admin.blogs.update', $blog) : route('admin.blogs.store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     {{ $blog->id ? method_field('PUT') : '' }}
@@ -100,7 +100,7 @@
                                 onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
                                 title="">
                             <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100"
-                                src="{{ $blog->coverImage ? asset('backend_assets/images/' . $blog->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
+                                src="{{ $blog->coverImage ? asset('backend_assets/blogs/' . $blog->coverImage) : asset('backend_assets/blogs/upload_image.png') }}" />
                             @error('coverImage')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
@@ -134,7 +134,7 @@
                     <div class="row">
                         <div class="col-6 my-3">
                             <button type="submit" class="btn btn-primary">{{ $blog->id ? 'Update' : 'Save' }}</button>
-                            <a class="btn btn-secondary" href="{{ route('admin.blog.index') }}">Cancel</a>
+                            <a class="btn btn-secondary" href="{{ route('admin.blogs.index') }}">Cancel</a>
                         </div>
                     </div>
                 </form>

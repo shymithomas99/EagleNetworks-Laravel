@@ -105,7 +105,7 @@ class ServicesPageController extends Controller
         }
 
         $validated = $request->validate([
-            'short_title' => [!$is_card && in_array($section, [3, 4, 8]) ? 'required' : 'nullable', 'string', 'max:255'],
+            'label' => [!$is_card && in_array($section, [3, 4, 8]) ? 'required' : 'nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'image' => $imageRules,
@@ -213,7 +213,7 @@ class ServicesPageController extends Controller
         }
 
         $validated = $request->validate([
-            'short_title' => [!$is_card && in_array($section, [3, 4, 8]) ? 'required' : 'nullable', 'string', 'max:255'],
+            'label' => [!$is_card && in_array($section, [3, 4, 8]) ? 'required' : 'nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'image' => $imageRules,
