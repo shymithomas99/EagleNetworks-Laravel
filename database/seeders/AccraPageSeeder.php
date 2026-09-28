@@ -16,36 +16,47 @@ class AccraPageSeeder extends Seeder
         $blocks = [
             [
                 'section' => 1,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 2,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 3,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 4,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 5,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 6,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 7,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 8,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 9,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 10,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 11,
+                'title' => 'Lorem ipsum dolor...',
             ],
         ];
 
@@ -56,6 +67,7 @@ class AccraPageSeeder extends Seeder
                     'is_card' => 0,
                 ],
                 [
+                    'title' => $block['title'],
                     'published' => 0,
                 ]
             );

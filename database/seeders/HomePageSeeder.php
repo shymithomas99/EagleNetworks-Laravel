@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\LondonPage;
+use App\Models\HomePage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LondonPageSeeder extends Seeder
+class HomePageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -54,14 +54,10 @@ class LondonPageSeeder extends Seeder
                 'section' => 10,
                 'title' => 'Lorem ipsum dolor...',
             ],
-            [
-                'section' => 11,
-                'title' => 'Lorem ipsum dolor...',
-            ],
         ];
 
         foreach ($blocks as $block) {
-            LondonPage::updateOrCreate(
+            HomePage::updateOrCreate(
                 [
                     'section' => $block['section'],
                     'is_card' => 0,

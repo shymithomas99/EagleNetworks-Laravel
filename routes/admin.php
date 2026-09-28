@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\WorkCategoryController;
 use App\Http\Controllers\Admin\WorkController;
 use App\Http\Controllers\Admin\AboutPageController;
 use App\Http\Controllers\Admin\ContactPageController;
+use App\Http\Controllers\Admin\HomePageController;
 use Illuminate\Support\Facades\Route;
 
 // ✅ LOGIN ROUTES (no auth middleware)
@@ -192,5 +193,18 @@ Route::middleware('auth')->group(function () {
             Route::put('/{insightsPage}', [InsightsPageController::class, 'update'])->name('insights-page.update');
             Route::delete('/{insightsPage}', [InsightsPageController::class, 'destroy'])->name('insights-page.destroy');
             Route::patch('/{insightsPage}/toggle-publish', [InsightsPageController::class, 'togglePublish'])->name('insights-page.toggle-publish');
+        });
+
+    Route::prefix('home-page/{section}/{is_card}')
+        ->where(['section' => '1|2|3|4|5|6|7|8|9|10', 'is_card' => '0|1'])
+        ->group(function () {
+            Route::get('/', [HomePageController::class, 'index'])->name('home-page.index');
+            Route::get('/create', [HomePageController::class, 'create'])->name('home-page.create');
+            Route::post('/', [HomePageController::class, 'store'])->name('home-page.store');
+            Route::get('/{homePage}', [HomePageController::class, 'show'])->name('home-page.show');
+            Route::get('/{homePage}/edit', [HomePageController::class, 'edit'])->name('home-page.edit');
+            Route::put('/{homePage}', [HomePageController::class, 'update'])->name('home-page.update');
+            Route::delete('/{homePage}', [HomePageController::class, 'destroy'])->name('home-page.destroy');
+            Route::patch('/{homePage}/toggle-publish', [HomePageController::class, 'togglePublish'])->name('home-page.toggle-publish');
         });
 });

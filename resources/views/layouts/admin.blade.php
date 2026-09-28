@@ -189,8 +189,149 @@
 
                     @php
                         $workActive = request()->routeIs('admin.works.*') || request()->routeIs('admin.work-category.*');
-                        $videoActive = request()->routeIs('admin.videos.*') || request()->routeIs('admin.categories.*');
                     @endphp
+
+                    <!-- Home Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/home-page*') || request()->is('admin/leads*') ? 'active-parent active' : '' }}"
+                            data-target="homePageMenu">
+                            <span><i class="fas fa-home"></i> Home Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="homePageMenu" class="accordion-content {{ request()->is('admin/home-page*') || request()->is('admin/leads*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.home-page.edit', ['section' => 1, 'is_card' => 0, 'homePage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/home-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/2*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageServiceMenu">Service
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageServiceMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/2*')? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 2, 'is_card' => 0, 'homePage' => 2]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/2/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.home-page.index', ['section' => 2, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/2/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePage5CMenu">5 C
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePage5CMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 3, 'is_card' => 0, 'homePage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.home-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageWorkMenu">Work
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageWorkMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 4, 'is_card' => 0, 'homePage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                            </div> 
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageClientMenu">Client
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageClientMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 5, 'is_card' => 0, 'homePage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/6*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageCTAMenu">CTA Banner
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageCTAMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/6*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 6, 'is_card' => 0, 'homePage' => 6]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/6/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 6, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/6/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/7*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePagePackageMenu">Package
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePagePackageMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/7*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 7, 'is_card' => 0, 'homePage' => 7]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/7/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/8*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageTestimonialMenu">Testimonial
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageTestimonialMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/8*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 8, 'is_card' => 0, 'homePage' => 8]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/8/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 8, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/8/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/9*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageValueMenu">Value
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageValueMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/9*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 9, 'is_card' => 0, 'homePage' => 9]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/9/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 9, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/9/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.home-page.edit', ['section' => 10, 'is_card' => 0, 'homePage' => 10]) }}"
+                                class="nav-anchor {{ request()->is('admin/home-page/10/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
+                            </a>
+
+                        </div>
+                    </div>
 
                     <!-- Services Page -->
                     <div class="bg-dark py-1">
@@ -824,27 +965,6 @@
                                 Follow on LinkedIn
                             </a>
 
-                        </div>
-                    </div>
-
-                    <!-- VIDEOS -->
-                    <div class="bg-dark py-1">
-                        <button class="accordion-custom {{ $videoActive ? 'active-parent active' : '' }}"
-                            data-target="videoMenu">
-                            <span><i class="fas fa-video"></i> Manage Videos</span>
-                            <i class="fa fa-chevron-down arrow"></i>
-                        </button>
-
-                        <div id="videoMenu" class="accordion-content {{ $videoActive ? 'show' : '' }} py-2">
-                            <a href="{{ route('admin.categories.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-                                Category
-                            </a>
-
-                            <a href="{{ route('admin.videos.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.videos.*') ? 'active' : '' }}">
-                                Videos
-                            </a>
                         </div>
                     </div>
 

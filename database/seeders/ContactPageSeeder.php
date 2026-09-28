@@ -16,18 +16,23 @@ class ContactPageSeeder extends Seeder
         $blocks = [
             [
                 'section' => 1,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 2,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 3,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 4,
+                'title' => 'Lorem ipsum dolor...',
             ],
             [
                 'section' => 5,
+                'title' => 'Lorem ipsum dolor...',
             ],
         ];
 
@@ -38,6 +43,7 @@ class ContactPageSeeder extends Seeder
                     'is_card' => 0,
                 ],
                 [
+                    'title' => $block['title'],
                     'published' => 0,
                 ]
             );
