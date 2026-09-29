@@ -672,14 +672,26 @@ a {
     color: var(--color-accent) !important;
 }
 
-.nav-link svg {transition: transform 0.3s ease;}
+.nav-link svg {
+    transition: transform 0.3s ease;
+}
 
-.nav-link:hover svg{
-      transform: rotate(180deg);
+.nav-link:hover svg {
+    transform: rotate(180deg);
 }
 
 .navbar-brand img {
     max-width: 245px;
+}
+
+.navbar-brand img,
+.footer-logo img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img,
+.footer-logo:hover img {
+    transform: scale(1.03);
 }
 
 .navbar {
@@ -1338,7 +1350,7 @@ a {
 }
 
 .text-green {
-    color: var(--color-primary);
+    color: var(--color-primary) !important;
 }
 
 
@@ -1571,6 +1583,7 @@ a {
     position: relative;
     overflow: hidden;
     text-align: left;
+    min-height: 430px;
 }
 
 .testimonial-card h3 {
@@ -2748,6 +2761,150 @@ footer .small-text {
 }
 
 
+/* Footer Grid Layout */
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+
+/* ✅ DESKTOP: 5 Columns Side-by-Side (Fixed at 1400px) */
+
+@media (min-width: 1400px) {
+    /* Changed from 1200px to 1400px */
+    .footer-grid {
+        flex-wrap: nowrap;
+        gap: 2rem;
+    }
+    .footer-col {
+        min-width: 0;
+        overflow: hidden;
+    }
+    /* Column 1: Logo & Description - Reduced max-width */
+    .footer-col:nth-child(1) {
+        flex: 1 1 0%;
+        max-width: 240px;
+        /* Reduced from 280px to save space */
+    }
+    /* Column 2: Company Links */
+    .footer-col:nth-child(2) {
+        flex: 1 1 130px;
+        min-width: 130px;
+    }
+    /* Column 3 & 4: London & Accra */
+    .footer-col:nth-child(3),
+    .footer-col:nth-child(4) {
+        flex: 0 0 auto;
+        max-width: 300px;
+        /* Reduced from 320px to fit better */
+    }
+    /* Column 5: Connect & Legal */
+    .footer-col:nth-child(5) {
+        flex: 1 1 160px;
+        min-width: 160px;
+    }
+}
+
+
+/* ✅ LARGE TABLET / SMALL LAPTOP (992px - 1399px): 3+2 Layout */
+
+@media (min-width: 992px) and (max-width: 1399px) {
+    .footer-col {
+        flex: 0 0 calc(33.333% - 1.5rem);
+        min-width: 0;
+    }
+    /* Connect stays in second row */
+    .footer-col:nth-child(5) {
+        flex: 0 0 calc(50% - 1rem);
+        min-width: 160px;
+    }
+    .footer-col:nth-child(2) {
+        min-width: 130px;
+    }
+    .footer-col:nth-child(3),
+    .footer-col:nth-child(4) {
+        max-width: 300px;
+    }
+}
+
+
+/* ✅ TABLET (768px - 991px): 2+2+1 Layout */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer-col {
+        flex: 0 0 calc(50% - 1rem);
+        min-width: 0;
+    }
+    .footer-col:nth-child(5) {
+        flex: 0 0 100%;
+        min-width: 160px;
+    }
+    .footer-col:nth-child(2) {
+        min-width: 130px;
+    }
+    .footer-col:nth-child(3),
+    .footer-col:nth-child(4) {
+        max-width: 300px;
+    }
+}
+
+
+/* ✅ MOBILE (<768px): Vertical Stack */
+
+@media (max-width: 767px) {
+    .footer-grid {
+        gap: 2rem;
+    }
+    .footer-col {
+        flex: 0 0 100%;
+        min-width: 0;
+        max-width: none;
+        padding-right: 1rem;
+    }
+}
+
+
+/* Text Safety */
+
+.footer-col p,
+.footer-col .small-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.5;
+}
+
+
+/* Social Icons */
+
+.social-icons {
+    display: flex;
+    flex-wrap: nowrap !important;
+    gap: 0.75rem;
+}
+
+.social-icons a {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Contact Icon Alignment */
+
+.contact-item svg {
+    margin-top: 3px !important;
+    flex-shrink: 0;
+}
+
+
 /* ============================ CTA start here ============================== */
 
 
@@ -3638,6 +3795,11 @@ CARD
     border: 2px solid var(--color-accent);
 }
 
+.creative-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    transform: translateY(-5px);
+}
+
 .creative-image {
     height: 230px;
     overflow: hidden;
@@ -4322,6 +4484,10 @@ textarea.form-control {
 
 .office-green {
     border: 2px solid var(--color-primary);
+}
+
+.office-green .office-contact a {
+    color: var(--color-primary);
 }
 
 .office-green:hover {
@@ -5146,8 +5312,8 @@ FILTER
 
 .modal-close {
     position: absolute;
-    top: -55px;
-    right: 0;
+    top: 0px;
+    right: -44px;
     width: 40px;
     height: 40px;
     border: 0;
@@ -6075,7 +6241,7 @@ FILTER
 
 @media (max-width: 1440px) {
     .nav-link {
-        margin-right: 23px;
+        margin-right: 21px;
     }
     .navbar-brand img {
         max-width: 204px;
@@ -6468,6 +6634,9 @@ FILTER
     .section {
         padding-top: 48px;
         padding-bottom: 48px;
+    }
+    .testimonial-card {
+        min-height: auto;
     }
 }
 

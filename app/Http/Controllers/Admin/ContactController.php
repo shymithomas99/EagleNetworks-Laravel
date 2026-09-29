@@ -57,10 +57,19 @@ class ContactController extends Controller
             $file = fopen('php://output', 'w');
 
             // CSV Header
-            fputcsv($file, ['Name', 'Email', 'Team', 'Service', 'Package', 'Message']);
+            fputcsv($file, [
+                'Date',
+                'Name',
+                'Email',
+                'Team',
+                'Service',
+                'Package',
+                'Message'
+            ]);
 
             foreach ($contacts as $row) {
                 fputcsv($file, [
+                    $row->created_at ? $row->created_at->format('d M Y') : '',
                     $row->name,
                     $row->email,
                     $row->team,
@@ -72,6 +81,7 @@ class ContactController extends Controller
 
             fclose($file);
         };
+
 
         return response()->stream($callback, 200, $headers);
     }

@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/edit/{id}', [VideoCategoryController::class, 'edit'])->name('categories.edit');
     Route::put('/categories/{id}', [VideoCategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}', [VideoCategoryController::class, 'destroy'])->name('categories.delete');
-
+    Route::patch('categories/{id}/toggle-publish', [VideoCategoryController::class, 'togglePublish'])->name('categories.toggle-publish');
     // Videos
     Route::get('/videos', [VideoProjectController::class, 'index'])->name('videos.index');
     Route::get('/videos/new', [VideoProjectController::class, 'create'])->name('videos.create');
@@ -66,6 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('work', WorkController::class);
     Route::patch('work/{id}/toggle-publish', [WorkController::class, 'togglePublish'])->name('work.toggle-publish');
     Route::get('work/{id}/gallery-images-form', 'WorkController@galleryImagesForm')->name('work.gallery-images-form');
-    Route::post('delete-image', ['as'=>'delete-image','uses'=>'WorkController@deleteImage']);
-    Route::post('upload-image', ['as'=>'upload-image','uses'=>'WorkController@uploadImage']);
+    Route::post('delete-image', ['as' => 'delete-image', 'uses' => 'WorkController@deleteImage']);
+    Route::post('upload-image', ['as' => 'upload-image', 'uses' => 'WorkController@uploadImage']);
 });
