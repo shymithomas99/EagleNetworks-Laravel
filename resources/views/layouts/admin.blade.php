@@ -140,16 +140,23 @@
             background: #f97316;
         }
 
-        /* #uploaded_img{
+        .image-upload-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .uploaded-img{
             width: 60px;
-            height: 52px;
+            height: 50px;
             border-radius: 10px;
             padding: 10px;
             position: absolute;
-            right: 80px;
+            right: -7px;
             z-index: 9;
-            top: -7px;
-        } */
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -177,54 +184,646 @@
                     </a>
                 </li>
 
-                <!-- Leads -->
-                <li class="nav-item py-1">
-                    <a href="{{ route('admin.leads') }}"
-                        class="nav-link {{ request()->routeIs('admin.leads') ? 'active' : '' }}">
-                        <i class="fa-solid fa-user"></i> Leads
-                    </a>
-                </li>
-
                 <!-- ACCORDION -->
                 <li class="nav-item">
 
                     @php
-                        $blogActive = request()->routeIs('admin.blog.*') || request()->routeIs('admin.blog-category.*') || request()->routeIs('admin.authors.*');
-                        $workActive = request()->routeIs('admin.work.*') || request()->routeIs('admin.work-category.*');
-                        $videoActive = request()->routeIs('admin.videos.*') || request()->routeIs('admin.categories.*');
+                        $workActive = request()->routeIs('admin.works.*') || request()->routeIs('admin.work-category.*');
                     @endphp
 
-                    <!-- BLOG -->
+                    <!-- Home Page -->
                     <div class="bg-dark py-1">
-                        <button class="accordion-custom {{ $blogActive ? 'active-parent active' : '' }}"
-                            data-target="blogMenu">
-                            <span><i class="fa fa-list"></i> Manage Blog</span>
+                        <button class="accordion-custom {{ request()->is('admin/home-page*') || request()->is('admin/leads*') ? 'active-parent active' : '' }}"
+                            data-target="homePageMenu">
+                            <span><i class="fas fa-home"></i> Home Page</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
-                        <div id="blogMenu" class="accordion-content {{ $blogActive ? 'show' : '' }} py-2">
-                            <a href="{{ route('admin.authors.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
-                                Author
+                        <div id="homePageMenu" class="accordion-content {{ request()->is('admin/home-page*') || request()->is('admin/leads*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.home-page.edit', ['section' => 1, 'is_card' => 0, 'homePage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/home-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
                             </a>
 
-                            <a href="{{ route('admin.blog-category.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.blog-category.*') ? 'active' : '' }}">
-                                Category
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/2*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageServiceMenu">Service
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageServiceMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/2*')? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 2, 'is_card' => 0, 'homePage' => 2]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/2/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.home-page.index', ['section' => 2, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/2/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePage5CMenu">5 C
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePage5CMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 3, 'is_card' => 0, 'homePage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.home-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageWorkMenu">Work
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageWorkMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 4, 'is_card' => 0, 'homePage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                            </div> 
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageClientMenu">Client
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageClientMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 5, 'is_card' => 0, 'homePage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/6*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageCTAMenu">CTA Banner
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageCTAMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/6*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 6, 'is_card' => 0, 'homePage' => 6]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/6/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 6, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/6/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/7*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePagePackageMenu">Package
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePagePackageMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/7*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 7, 'is_card' => 0, 'homePage' => 7]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/7/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/8*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageTestimonialMenu">Testimonial
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageTestimonialMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/8*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 8, 'is_card' => 0, 'homePage' => 8]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/8/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 8, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/8/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/home-page/9*') ? 'active-parent active' : '' }}"
+                                data-target="manageHomePageValueMenu">Value
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHomePageValueMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/home-page/9*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.home-page.edit', ['section' => 9, 'is_card' => 0, 'homePage' => 9]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/9/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                 <a href="{{ route('admin.home-page.index', ['section' => 9, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/home-page/9/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.home-page.edit', ['section' => 10, 'is_card' => 0, 'homePage' => 10]) }}"
+                                class="nav-anchor {{ request()->is('admin/home-page/10/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
                             </a>
 
-                            <a href="{{ route('admin.blog.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
-                                Blog
+                        </div>
+                    </div>
+
+                    <!-- Services Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/services-page*') ? 'active-parent active' : '' }}"
+                            data-target="servicesPageMenu">
+                            <span><i class="fas fa-tools"></i> Services Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="servicesPageMenu" class="accordion-content {{ request()->is('admin/services-page*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.services-page.edit', ['section' => 1, 'is_card' => 0, 'servicesPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/services-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
                             </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/2*') ? 'active-parent active' : '' }}"
+                                data-target="manageServicesMenu">Services
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageServicesMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/services-page/2*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.services-page.edit', ['section' => 2, 'is_card' => 0, 'servicesPage' => 2]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/2/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.services-page.index', ['section' => 2, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/2/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageHowWeCreateMenu">How We Create
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHowWeCreateMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/services-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.services-page.edit', ['section' => 3, 'is_card' => 0, 'servicesPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.services-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageInitiativesMenu">Projects
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageInitiativesMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/services-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.services-page.edit', ['section' => 4, 'is_card' => 0, 'servicesPage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.services-page.index', ['section' => 4, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/4/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageHowWeDeliverMenu">How We Deliver
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageHowWeDeliverMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/services-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.services-page.edit', ['section' => 5, 'is_card' => 0, 'servicesPage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.services-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.services-page.edit', ['section' => 7, 'is_card' => 0, 'servicesPage' => 6]) }}"
+                                class="nav-anchor {{ request()->is('admin/services-page/7/0*') ? 'active' : '' }}">
+                                CTA Banner Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services/8*') ? 'active-parent active' : '' }}"
+                                data-target="manageServiceFAQMenu">FAQ
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageServiceFAQMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/services-page/8*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.services-page.edit', ['section' => 8, 'is_card' => 0, 'servicesPage' => 7]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/8/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.services-page.index', ['section' => 8, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/services-page/8/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.services-page.edit', ['section' => 9, 'is_card' => 0, 'servicesPage' => 8]) }}"
+                                class="nav-anchor {{ request()->is('admin/services-page/9/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Packages Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/packages-page*') || request()->is('admin/packages*') ? 'active-parent active' : '' }}"
+                            data-target="packagesPageMenu">
+                            <span><i class="fas fa-boxes"></i> Packages Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="packagesPageMenu" class="accordion-content {{ request()->is('admin/packages-page*') || request()->is('admin/packages*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.packages-page.edit', ['section' => 1, 'is_card' => 0, 'packagesPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/packages-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/2*') ? 'active-parent active' : '' }}"
+                                data-target="manageGuideMenu">Guide
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageGuideMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/packages-page/2*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.packages-page.edit', ['section' => 2, 'is_card' => 0, 'packagesPage' => 2]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/2/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.packages-page.index', ['section' => 2, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/2/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/3*') || request()->is('admin/packages*') ? 'active-parent active' : '' }}"
+                                data-target="managePackagesMenu">Packages
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="managePackagesMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/packages-page/3*') || request()->is('admin/packages*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.packages-page.edit', ['section' => 3, 'is_card' => 0, 'packagesPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.packages-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/3/1*') || request()->is('admin/packages*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.packages-page.edit', ['section' => 4, 'is_card' => 0, 'packagesPage' => 4]) }}"
+                                class="nav-anchor {{ request()->is('admin/packages-page/4/0*') ? 'active' : '' }}">
+                                CTA Banner Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageWhatYouGetMenu">What You Get
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWhatYouGetMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/packages-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.packages-page.edit', ['section' => 5, 'is_card' => 0, 'packagesPage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.packages-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/6*') ? 'active-parent active' : '' }}"
+                                data-target="managePackageFAQMenu">FAQ
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="managePackageFAQMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/packages-page/6*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.packages-page.edit', ['section' => 6, 'is_card' => 0, 'packagesPage' => 6]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/6/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.packages-page.index', ['section' => 6, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/packages-page/6/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.packages-page.edit', ['section' => 7, 'is_card' => 0, 'packagesPage' => 7]) }}"
+                                class="nav-anchor {{ request()->is('admin/packages-page/7/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- London Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/london-page*') ? 'active-parent active' : '' }}"
+                            data-target="londonPageMenu">
+                            <span><i class="fas fa-location"></i> London Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="londonPageMenu" class="accordion-content {{ request()->is('admin/london-page*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.london-page.edit', ['section' => 1, 'is_card' => 0, 'londonPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/london-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+                            <a href="{{ route('admin.london-page.edit', ['section' => 2, 'is_card' => 0, 'londonPage' => 2]) }}"
+                                class="nav-anchor {{ request()->is('admin/london-page/2/0*') ? 'active' : '' }}">
+                                Strategic Hub Intro
+                            </a>
+                            
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageNumbersMenu">Numbers
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageNumbersMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 3, 'is_card' => 0, 'londonPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageBuiltFor">Built For
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageBuiltFor"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 4, 'is_card' => 0, 'londonPage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 4, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/4/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageWhatWeDoMenu">What We Do
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWhatWeDoMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 5, 'is_card' => 0, 'londonPage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/6*') ? 'active-parent active' : '' }}"
+                                data-target="manageWeServeMenu">We Serve
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWeServeMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/6*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 6, 'is_card' => 0, 'londonPage' => 6]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/6/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 6, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/6/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/7*') ? 'active-parent active' : '' }}"
+                                data-target="manageServicesDeliveredMenu">Services Delivered
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageServicesDeliveredMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/7*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 7, 'is_card' => 0, 'londonPage' => 7]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/7/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 7, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/7/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/8*') ? 'active-parent active' : '' }}"
+                                data-target="manageWhyChooseUsMenu">Why Choose Us
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWhyChooseUsMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/8*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 8, 'is_card' => 0, 'londonPage' => 8]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/8/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 8, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/8/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.london-page.edit', ['section' => 9, 'is_card' => 0, 'londonPage' => 9]) }}"
+                                class="nav-anchor {{ request()->is('admin/london-page/9/0*') ? 'active' : '' }}">
+                                Integrated Organization Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london/10*') ? 'active-parent active' : '' }}"
+                                data-target="manageLondonPageFAQMenu">FAQ
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageLondonPageFAQMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/london-page/10*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.london-page.edit', ['section' => 10, 'is_card' => 0, 'londonPage' => 10]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/10/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.london-page.index', ['section' => 10, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/london-page/10/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.london-page.edit', ['section' => 11, 'is_card' => 0, 'londonPage' => 11]) }}"
+                                class="nav-anchor {{ request()->is('admin/london-page/11/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Accra Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/accra-page*') ? 'active-parent active' : '' }}"
+                            data-target="accraPageMenu">
+                            <span><i class="fas fa-location"></i> Accra Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="accraPageMenu" class="accordion-content {{ request()->is('admin/accra-page*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.accra-page.edit', ['section' => 1, 'is_card' => 0, 'accraPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/accra-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+                            <a href="{{ route('admin.accra-page.edit', ['section' => 2, 'is_card' => 0, 'accraPage' => 2]) }}"
+                                class="nav-anchor {{ request()->is('admin/accra-page/2/0*') ? 'active' : '' }}">
+                                Strategic Hub Intro
+                            </a>
+                            
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageNumbersMenu">Numbers
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageNumbersMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 3, 'is_card' => 0, 'accraPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageBuiltFor">Built For
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageBuiltFor"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 4, 'is_card' => 0, 'accraPage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 4, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/4/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageWhatWeDoMenu">What We Do
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWhatWeDoMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 5, 'is_card' => 0, 'accraPage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/6*') ? 'active-parent active' : '' }}"
+                                data-target="manageWeServeMenu">We Serve
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWeServeMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/6*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 6, 'is_card' => 0, 'accraPage' => 6]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/6/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 6, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/6/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/7*') ? 'active-parent active' : '' }}"
+                                data-target="manageServicesDeliveredMenu">Services Delivered
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageServicesDeliveredMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/7*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 7, 'is_card' => 0, 'accraPage' => 7]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/7/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 7, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/7/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/8*') ? 'active-parent active' : '' }}"
+                                data-target="manageWhyChooseUsMenu">Why Choose Us
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWhyChooseUsMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/8*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 8, 'is_card' => 0, 'accraPage' => 8]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/8/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 8, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/8/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.accra-page.edit', ['section' => 9, 'is_card' => 0, 'accraPage' => 9]) }}"
+                                class="nav-anchor {{ request()->is('admin/accra-page/9/0*') ? 'active' : '' }}">
+                                Integrated Organization Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra/10*') ? 'active-parent active' : '' }}"
+                                data-target="manageAccraPageFAQMenu">FAQ
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageAccraPageFAQMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/accra-page/10*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.accra-page.edit', ['section' => 10, 'is_card' => 0, 'accraPage' => 10]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/10/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.accra-page.index', ['section' => 10, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/accra-page/10/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.accra-page.edit', ['section' => 11, 'is_card' => 0, 'accraPage' => 11]) }}"
+                                class="nav-anchor {{ request()->is('admin/accra-page/11/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
+                            </a>
+
                         </div>
                     </div>
 
                     <!-- WORK -->
-                    <div class="bg-dark py-1">
+                    {{-- <div class="bg-dark py-1">
                         <button class="accordion-custom {{ $workActive ? 'active-parent active' : '' }}"
                             data-target="workMenu">
-                            <span><i class="fa fa-briefcase"></i> Manage Work</span>
+                            <span><i class="fas fa-briefcase"></i> Manage Work</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
@@ -234,31 +833,361 @@
                                 Category
                             </a>
 
-                            <a href="{{ route('admin.work.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.work.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.works.index') }}"
+                                class="nav-anchor {{ request()->routeIs('admin.works.*') ? 'active' : '' }}">
                                 Work
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <!-- VIDEOS -->
+                    <!-- Work Page -->
                     <div class="bg-dark py-1">
-                        <button class="accordion-custom {{ $videoActive ? 'active-parent active' : '' }}"
-                            data-target="videoMenu">
-                            <span><i class="fa fa-video"></i> Manage Videos</span>
+                        <button class="accordion-custom {{ request()->is('admin/work-page*') || request()->is('admin/works*') || request()->is('admin/work-category*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                            data-target="workPageMenu">
+                            <span><i class="fas fa-briefcase"></i> Work Page</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
-                        <div id="videoMenu" class="accordion-content {{ $videoActive ? 'show' : '' }} py-2">
-                            <a href="{{ route('admin.categories.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
-                                Category
+                        <div id="workPageMenu" class="accordion-content {{ request()->is('admin/work-page*') || request()->is('admin/works*') || request()->is('admin/work-category*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.work-page.edit', ['section' => 1, 'is_card' => 0, 'workPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/work-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+                            <a href="{{ route('admin.work-category.index') }}"
+                                class="nav-anchor {{ request()->is('admin/work-category*') ? 'active' : '' }}">
+                                Work Categories
+                            </a>
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/work-page/2*') ? 'active-parent active' : '' }}"
+                                data-target="manageWorkPageProcessMenu">Process
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWorkPageProcessMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/work-page/2*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.work-page.edit', ['section' => 2, 'is_card' => 0, 'workPage' => 2]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/2/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.work-page.index', ['section' => 2, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/2/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/work-page/3*') || request()->is('admin/works*') ? 'active-parent active' : '' }}"
+                                data-target="manageWorkPageWorkMenu">Work
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button> 
+                            <div id="manageWorkPageWorkMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/work-page/3*') || request()->is('admin/works*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.work-page.edit', ['section' => 3, 'is_card' => 0, 'workPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.works.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/works*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/work-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageWorkPageProjectMenu">Project
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWorkPageProjectMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/work-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.work-page.edit', ['section' => 4, 'is_card' => 0, 'workPage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.work-page.index', ['section' => 4, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/4/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/work-page/5*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                                data-target="manageWorkPageVideoMenu">Video
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageWorkPageVideoMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/work-page/5*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.work-page.edit', ['section' => 5, 'is_card' => 0, 'workPage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a> 
+                                <a href="{{ route('admin.categories.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/categories*') ? 'active' : '' }}">
+                                    Categories
+                                </a>
+                                <a href="{{ route('admin.videos.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/videos*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.work-page.edit', ['section' => 6, 'is_card' => 0, 'workPage' => 6]) }}"
+                                class="nav-anchor {{ request()->is('admin/work-page/6/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
                             </a>
 
-                            <a href="{{ route('admin.videos.index') }}"
-                                class="nav-anchor {{ request()->routeIs('admin.videos.*') ? 'active' : '' }}">
-                                Videos
+                        </div>
+                    </div>
+
+                    <!-- Insights Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/insights-page*') || request()->is('admin/blogs*') || request()->is('admin/blog-category*') ? 'active-parent active' : '' }}"
+                            data-target="insightsPageMenu">
+                            <span><i class="fas fa-blog"></i> Insights Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="insightsPageMenu" class="accordion-content {{ request()->is('admin/insights-page*') || request()->is('admin/blogs*') || request()->is('admin/blog-category*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.insights-page.edit', ['section' => 1, 'is_card' => 0, 'insightsPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/insights-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
                             </a>
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/blogs*') || request()->is('admin/blog-category*') ? 'active-parent active' : '' }}"
+                                data-target="manageInsightsPageBlogMenu">Blog
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button> 
+                            <div id="manageInsightsPageBlogMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/blogs*') || request()->is('admin/blog-category*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.blog-category.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/blog-category*') ? 'active' : '' }}">
+                                    Category
+                                </a>
+                                <a href="{{ route('admin.blogs.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/blogs*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+                            <a href="{{ route('admin.insights-page.edit', ['section' => 3, 'is_card' => 0, 'insightsPage' => 2]) }}"
+                                class="nav-anchor {{ request()->is('admin/insights-page/3/0*') ? 'active' : '' }}">
+                                Follow on LinkedIn
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- About Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/about-page*') ? 'active-parent active' : '' }}"
+                            data-target="aboutPageMenu">
+                            <span><i class="fas fa-info-circle"></i> About Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="aboutPageMenu" class="accordion-content {{ request()->is('admin/about-page*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.about-page.edit', ['section' => 1, 'is_card' => 0, 'aboutPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/about-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+                            <a href="{{ route('admin.about-page.edit', ['section' => 2, 'is_card' => 0, 'aboutPage' => 2]) }}"
+                                class="nav-anchor {{ request()->is('admin/about-page/2/0*') ? 'active' : '' }}">
+                                Story Intro
+                            </a>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageMilestoneMenu">Milestone
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageMilestoneMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 3, 'is_card' => 0, 'aboutPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageValueMenu">Value
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageValueMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 4, 'is_card' => 0, 'aboutPage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 4, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/4/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/5*') ? 'active-parent active' : '' }}"
+                                data-target="manageClientMenu">Client
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageClientMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/5*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 5, 'is_card' => 0, 'aboutPage' => 5]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/5/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/5/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/6*') ? 'active-parent active' : '' }}"
+                                data-target="manageOfficeMenu">Office
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageOfficeMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/6*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 6, 'is_card' => 0, 'aboutPage' => 6]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/6/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 6, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/6/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/7*') ? 'active-parent active' : '' }}"
+                                data-target="manageProcessMenu">Process
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageProcessMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/7*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 7, 'is_card' => 0, 'aboutPage' => 7]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/7/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 7, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/7/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/8*') ? 'active-parent active' : '' }}"
+                                data-target="manageEngagementModelMenu">Engagement Model
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageEngagementModelMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/8*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 8, 'is_card' => 0, 'aboutPage' => 8]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/8/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 8, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/8/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about-page/9*') ? 'active-parent active' : '' }}"
+                                data-target="manageCommitmentMenu">Commitment
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageCommitmentMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/9*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 9, 'is_card' => 0, 'aboutPage' => 9]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/9/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 9, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/9/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/about/10*') ? 'active-parent active' : '' }}"
+                                data-target="manageProofSignalMenu">Proof Signal
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageProofSignalMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/about-page/10*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.about-page.edit', ['section' => 10, 'is_card' => 0, 'aboutPage' => 10]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/10/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.about-page.index', ['section' => 10, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/about-page/10/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.about-page.edit', ['section' => 11, 'is_card' => 0, 'aboutPage' => 11]) }}"
+                                class="nav-anchor {{ request()->is('admin/about-page/11/0*') ? 'active' : '' }}">
+                                CTA Banner (Bottom) Intro
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Contact Page -->
+                    <div class="bg-dark py-1">
+                        <button class="accordion-custom {{ request()->is('admin/contact-page*') || request()->is('admin/leads*') ? 'active-parent active' : '' }}"
+                            data-target="contactPageMenu">
+                            <span><i class="fas fa-envelope"></i> Contact Page</span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="contactPageMenu" class="accordion-content {{ request()->is('admin/contact-page*') || request()->is('admin/leads*') ? 'show' : '' }} py-2">
+                            <a href="{{ route('admin.contact-page.edit', ['section' => 1, 'is_card' => 0, 'contactPage' => 1]) }}"
+                                class="nav-anchor {{ request()->is('admin/contact-page/1/0*') ? 'active' : '' }}">
+                                Banner Intro
+                            </a>
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/contact-page/2*') || request()->is('admin/leads*') ? 'active-parent active' : '' }}"
+                                data-target="manageContactPageFormMenu">Form
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageContactPageFormMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/contact-page/2*') || request()->is('admin/leads*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.contact-page.edit', ['section' => 2, 'is_card' => 0, 'contactPage' => 2]) }}"
+                                    class="nav-anchor {{ request()->is('admin/contact-page/2/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.leads') }}"
+                                    class="nav-anchor {{ request()->is('admin/leads*') ? 'active' : '' }}">
+                                    Leads
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/contact-page/3*') ? 'active-parent active' : '' }}"
+                                data-target="manageContactPageOfficeMenu">Office
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageContactPageOfficeMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/contact-page/3*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.contact-page.edit', ['section' => 3, 'is_card' => 0, 'contactPage' => 3]) }}"
+                                    class="nav-anchor {{ request()->is('admin/contact-page/3/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.contact-page.index', ['section' => 3, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/contact-page/3/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <button class="accordion-custom sub-accordion {{ request()->is('admin/contact-page/4*') ? 'active-parent active' : '' }}"
+                                data-target="manageContactPageFAQMenu">FAQ
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+                            <div id="manageContactPageFAQMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/contact-page/4*') ? 'show' : '' }}">
+                                <a href="{{ route('admin.contact-page.edit', ['section' => 4, 'is_card' => 0, 'contactPage' => 4]) }}"
+                                    class="nav-anchor {{ request()->is('admin/contact-page/4/0*') ? 'active' : '' }}">
+                                    Intro
+                                </a>
+                                <a href="{{ route('admin.contact-page.index', ['section' => 4, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/contact-page/4/1*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.contact-page.edit', ['section' => 5, 'is_card' => 0, 'contactPage' => 5]) }}"
+                                class="nav-anchor {{ request()->is('admin/contact-page/5/0*') ? 'active' : '' }}">
+                                Follow Intro
+                            </a>
+
                         </div>
                     </div>
 

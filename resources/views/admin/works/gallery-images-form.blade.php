@@ -14,7 +14,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6 my-3">
-                        <a href="{{ route('admin.work.index') }}" class="btn btn-primary">Done</a>
+                        <a href="{{ route('admin.works.index') }}" class="btn btn-primary">Done</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@ $(document).ready(function() {
             @foreach($work->galleryImages as $gallery)
                 {
                     id: {{$gallery->id}},
-                    src: '{{ asset("backend_assets/work/gallery-images/".$gallery->image) }}'
+                    src: '{{ asset("backend_assets/works/gallery-images/".$gallery->image) }}'
                 },
             @endforeach
             ];

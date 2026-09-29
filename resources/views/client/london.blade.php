@@ -34,8 +34,8 @@
 
                             Serving UK, Europe & Africa
                         </div>
-                        <a href="https://wa.me/447983508359?text=Hi%20Eagle%20London,%20I'd%20like%20to%20schedule%20a%20call.%20Please%20let%20me%20know%20your%20available%20times."
-                            class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0" target="_blank">Work With Our London
+                        <a href="/contact"
+                            class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">Work With Our London
                             Team<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
@@ -325,9 +325,9 @@
                 <!-- CARD 4 -->
                 <div class="col-lg-6">
                     <div class="market-card">
-                        <h4 class="card-title">Enterprise Clients</h4>
+                        <h4 class="card-title">Corporates & Government</h4>
                         <p class="card-text">
-                            Large organizations requiring integrated strategy, creative, and technology solutions
+                           Large organizations requiring integrated strategy, creative, and technology solutions
                         </p>
                     </div>
                 </div>

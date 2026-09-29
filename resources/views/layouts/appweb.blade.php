@@ -18,13 +18,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=2">
 
     <!-- FontAwesome (optional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    @stack('styles')
     
+    @stack('styles')
+
     <!-- ========================= -->
     <!-- Google Consent Mode v2 -->
     <!-- ========================= -->
@@ -43,6 +43,14 @@
             ad_personalization: 'denied',
             wait_for_update: 500
         });
+    </script>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2JYCZVKQD"></script>
+
+    <script>
+        gtag('js', new Date());
+      gtag('config', 'G-X2JYCZVKQD');
     </script>
 
     <!-- ========================= -->
@@ -71,7 +79,7 @@
 
             f.parentNode.insertBefore(j, f);
 
-        })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');
+        })(window, document, 'script', 'dataLayer', 'GTM-5DH45M5D');
     </script>
 
     <!-- End Google Tag Manager -->
@@ -84,7 +92,7 @@
 
     <noscript>
 
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DH45M5D" height="0" width="0"
             style="display:none;visibility:hidden">
         </iframe>
 
@@ -296,7 +304,7 @@
                         </p>
 
 
-                        <form action="{{ route('whatsapp.submit') }}" method="POST">
+                        <form action="{{ route('whatsapp.submit') }}" method="POST" target="_blank">
                             @csrf
 
                             <div class="mb-3">
@@ -405,7 +413,7 @@
 
                             </div>
 
-                            <button type="submit" target="_blank" class="btn-whatsapp">
+                            <button type="submit" class="btn-whatsapp">
 
                                 Continue to WhatsApp
                                 <i class="bi bi-arrow-right"></i>

@@ -1,19 +1,10 @@
 @extends('layouts.appweb')
 @section('title', 'Contact | ')
 @push('meta')
-    <meta
-        name="description"
-        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
-    >
+    <meta name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight.">
 @endpush
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
-
     <section class="section-hero contact-banner">
         <div class="container-custom">
             <div class="section-hero-sub">
@@ -40,7 +31,7 @@
         </div>
     </section>
 
-    <section id="contactForm" class="contact-form section-md">
+    <section id="contact-section" class="contact-form section-md">
 
         <div class=" container-custom d-flex flex-column">
             <div class="row">
@@ -58,92 +49,209 @@
             <div class="form-section">
                 <form id="contactForm" method="POST" action="{{ route('contact.submit') }}">
                     @csrf
-                    <!-- Row 1 -->
+
                     <div class="row g-4">
-                        <div class="col-md-6">
-                            <label>Name *</label>
-                            <input type="text" class="form-control" name="name" placeholder="Your name" required
-                                value="{{ old('name') }}">
-                            @error('name')
-                                <small>{{ $message }}</small>
-                            @enderror
+
+                        {{-- Honeypot --}}
+                        <div class="honeypot-field" aria-hidden="true">
+                            <label for="username-contact">Username</label>
+
+                            <input type="text" id="username-contact" name="username" value="" tabindex="-1"
+                                autocomplete="off">
                         </div>
 
+
+                        {{-- Name --}}
                         <div class="col-md-6">
-                            <label>Email *</label>
-                            <input type="email" class="form-control" name="email" placeholder="your@email.com"
-                                value="{{ old('email') }}" required>
-                            @error('email')
-                                <small>{{ $message }}</small>
-                            @enderror
+                            <label>
+                                Name <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="text" class="form-control" name="name" placeholder="Your name">
+
+                            <div class="field-error" data-error-for="name">
+                            </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <!-- Who to speak -->
 
-                            <label>Who would you like to speak to? *</label>
-                            <select class="form-select" name="team" required>
-                                <option selected disabled>Select a team</option>
-                                <option>London</option>
-                                <option>Accra</option>
-                                <option>General</option>
+                        {{-- Email --}}
+                        <div class="col-md-6">
+                            <label>
+                                Email <span class="text-danger">*</span>
+                            </label>
+
+                            <input type="email" class="form-control" name="email" placeholder="your@email.com">
+
+                            <div class="field-error" data-error-for="email">
+                            </div>
+                        </div>
+
+
+                        {{-- Team --}}
+                        <div class="col-md-6">
+
+                            <label>
+                                Who would you like to speak to?
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <select class="form-select" name="team">
+
+                                <option value="" selected disabled>
+                                    Select a team
+                                </option>
+
+                                <option value="London">
+                                    London
+                                </option>
+
+                                <option value="Accra">
+                                    Accra
+                                </option>
+
+                                <option value="General">
+                                    General
+                                </option>
+
                             </select>
 
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Service -->
-                            <label>What service are you interested in? *</label>
-                            <select class="form-select" name="service" required>
-                                <option selected disabled>Select a service</option>
-                                <option>Creative Production</option>
-                                <option>Marketing & Consultancy</option>
-                                <option>Tech Solutions</option>
-                                <option>Outsourced Customer Service</option>
-                                <option>EMTV Portal</option>
-                                <option>General Enquiry</option>
-                            </select>
+                            <div class="field-error" data-error-for="team">
+                            </div>
 
                         </div>
+
+
+                        {{-- Service --}}
+                        <div class="col-md-6">
+
+                            <label>
+                                What service are you interested in?
+                                <span class="text-danger">*</span>
+                            </label>
+
+                            <select class="form-select" name="service">
+
+                                <option value="" selected disabled>
+                                    Select a service
+                                </option>
+
+                                <option value="Creative Production">
+                                    Creative Production
+                                </option>
+
+                                <option value="Marketing & Consultancy">
+                                    Marketing & Consultancy
+                                </option>
+
+                                <option value="Tech Solutions">
+                                    Tech Solutions
+                                </option>
+
+                                <option value="Outsourced Customer Service">
+                                    Outsourced Customer Service
+                                </option>
+
+                                <option value="EMTV Portal">
+                                    EMTV Portal
+                                </option>
+
+                                <option value="General Enquiry">
+                                    General Enquiry
+                                </option>
+
+                            </select>
+
+                            <div class="field-error" data-error-for="service">
+                            </div>
+
+                        </div>
+
+
+                        {{-- Package --}}
                         <div class="col-md-12">
 
-                            <!-- Package -->
+                            <label>
+                                Which package are you interested in?
+                            </label>
 
-                            <label>Which package are you interested in?</label>
                             <select class="form-select" name="package">
-                                <option>None</option>
-                                <option>Ignite</option>
-                                <option>Amplify</option>
-                                <option>Connect</option>
+
+                                <option value="None">
+                                    None
+                                </option>
+
+                                <option value="Ignite">
+                                    Ignite
+                                </option>
+
+                                <option value="Amplify">
+                                    Amplify
+                                </option>
+
+                                <option value="Connect">
+                                    Connect
+                                </option>
+
                             </select>
 
-                        </div>
-                        <div class="col-md-12">
-                            <!-- Message -->
+                            <div class="field-error" data-error-for="package">
+                            </div>
 
-                            <label>Message *</label>
+                        </div>
+
+
+                        {{-- Message --}}
+                        <div class="col-md-12">
+
+                            <label>
+                                Message <span class="text-danger">*</span>
+                            </label>
+
                             <textarea class="form-control" name="message"
-                                placeholder="Tell us what you're trying to achieve, your timeline, and any key challenges." required>{{ old('message') }}</textarea>
+                                placeholder="Tell us what you're trying to achieve, your timeline, and any key challenges."></textarea>
 
-                            @error('message')
-                                <small>{{ $message }}</small>
-                            @enderror
+                            <div class="field-error" data-error-for="message">
+                            </div>
 
                         </div>
 
 
-
-
+                        {{-- Submit --}}
                         <div class="col-md-12">
-                            <button class="commn-btn btn-primary-custom py-2 w-100">Send Message</button>
+
+                            <button type="submit" id="submitBtn" class="commn-btn btn-primary-custom py-2 w-100">
+
+                                <span id="submitText">
+                                    Send Message
+                                </span>
+
+                                <span id="submitLoader" style="display:none;">
+                                    Sending...
+                                </span>
+
+                            </button>
+
                         </div>
 
 
-
+                        {{-- Terms --}}
                         <div
                             class="col-md-12 contact-submit-text x-small-text text-muted fw-normal d-flex justify-content-center">
-                            By submitting this form you agree to our&nbsp<a href="/privacy-policy"> Privacy Policy
-                            </a>&nbspand&nbsp<a href="/terms"> Terms of Use</a>.
+
+                            By submitting this form you agree to our&nbsp;
+
+                            <a href="/privacy-policy">
+                                Privacy Policy
+                            </a>
+
+                            &nbsp;and&nbsp;
+
+                            <a href="/terms">
+                                Terms of Use
+                            </a>.
+
                         </div>
+
                     </div>
                 </form>
 
@@ -196,7 +304,7 @@
                 </div>
 
                 <!-- RIGHT CARD -->
-                <div class="col-lg-6">
+                     <div class="col-lg-6">
                     <div class="office-card office-green">
 
                         <div class="office-location x-small-text fw-bold text-muted mb-2">BASED IN GHANA</div>
@@ -208,9 +316,9 @@
                             <span class="badge-custom-2 bg-grey-lite">One Integrated Team</span>
                         </div>
                         <div class="text-green x-small-text fw-bold mb-2">ACCRA</div>
-                        <div class="office-title mb-2">EMH Global Ghana Limited</div>
+                        <div class="office-title text-green mb-2">EMH Global Ghana Limited</div>
 
-                        <div class="office-text">
+                        <div class="office-text text-green">
                             Eagle House<br>
                             C358/9 Manyo Plange Street<br>
                             Adabraka<br>
@@ -358,4 +466,418 @@
 
         </div>
     </section>
+
+
 @endsection
+
+@push('styles')
+    <style>
+        /*
+                    |--------------------------------------------------------------------------
+                    | Honeypot
+                    |--------------------------------------------------------------------------
+                    */
+
+        .honeypot-field {
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+
+            width: 1px !important;
+            height: 1px !important;
+
+            overflow: hidden !important;
+
+            opacity: 0 !important;
+
+            pointer-events: none !important;
+        }
+
+
+        /*
+                    |--------------------------------------------------------------------------
+                    | Validation Error
+                    |--------------------------------------------------------------------------
+                    */
+
+        .field-error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 6px;
+            display: none;
+        }
+
+
+        .field-error.show {
+            display: block;
+        }
+
+
+        /*
+                    |--------------------------------------------------------------------------
+                    | Input Error
+                    |--------------------------------------------------------------------------
+                    */
+
+        .input-error {
+            border-color: #dc3545 !important;
+        }
+    </style>
+@endpush
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const form = document.getElementById('contactForm');
+
+            if (!form || form.tagName !== 'FORM') {
+                console.error('Contact form not found or contactForm is not a FORM.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitLoader = document.getElementById('submitLoader');
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Clear Errors
+            |--------------------------------------------------------------------------
+            */
+
+            function clearErrors() {
+
+                form.querySelectorAll('.field-error').forEach(function(element) {
+
+                    element.textContent = '';
+                    element.classList.remove('show');
+
+                });
+
+                form.querySelectorAll('.input-error').forEach(function(element) {
+
+                    element.classList.remove('input-error');
+
+                });
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Show Laravel Validation Errors
+            |--------------------------------------------------------------------------
+            */
+
+            function showErrors(errors) {
+
+                console.log('Validation errors:', errors);
+
+                Object.keys(errors).forEach(function(field) {
+
+                    const errorElement = form.querySelector(
+                        '[data-error-for="' + field + '"]'
+                    );
+
+                    const inputElement = form.querySelector(
+                        '[name="' + field + '"]'
+                    );
+
+
+                    if (errorElement) {
+
+                        errorElement.textContent = errors[field][0];
+
+                        errorElement.classList.add('show');
+
+                    }
+
+
+                    if (inputElement) {
+
+                        inputElement.classList.add('input-error');
+
+                    }
+
+                });
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Remove Error On Input
+            |--------------------------------------------------------------------------
+            */
+
+            form.querySelectorAll('input, select, textarea').forEach(function(field) {
+
+                field.addEventListener('input', function() {
+
+                    const errorElement = form.querySelector(
+                        '[data-error-for="' + this.name + '"]'
+                    );
+
+                    if (errorElement) {
+
+                        errorElement.textContent = '';
+
+                        errorElement.classList.remove('show');
+
+                    }
+
+                    this.classList.remove('input-error');
+
+                });
+
+
+                field.addEventListener('change', function() {
+
+                    const errorElement = form.querySelector(
+                        '[data-error-for="' + this.name + '"]'
+                    );
+
+                    if (errorElement) {
+
+                        errorElement.textContent = '';
+
+                        errorElement.classList.remove('show');
+
+                    }
+
+                    this.classList.remove('input-error');
+
+                });
+
+            });
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Submit Form
+            |--------------------------------------------------------------------------
+            */
+
+            form.addEventListener('submit', async function(e) {
+
+                e.preventDefault();
+
+                clearErrors();
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | Honeypot
+                |--------------------------------------------------------------------------
+                */
+
+                const honeypot = form.querySelector('[name="username"]');
+
+
+                if (honeypot && honeypot.value.trim() !== '') {
+
+                    Swal.fire({
+
+                        icon: 'error',
+
+                        title: 'Oops!',
+
+                        text: 'Unable to submit your enquiry. Please try again.',
+
+                        confirmButtonText: 'OK'
+
+                    });
+
+                    return;
+
+                }
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | Loading
+                |--------------------------------------------------------------------------
+                */
+
+                submitBtn.disabled = true;
+
+                submitText.style.display = 'none';
+
+                submitLoader.style.display = 'inline';
+
+
+                try {
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Send Form
+                    |--------------------------------------------------------------------------
+                    */
+
+                    const formData = new FormData(form);
+
+
+                    const response = await fetch(form.action, {
+
+                        method: 'POST',
+
+                        body: formData,
+
+                        headers: {
+
+                            'X-Requested-With': 'XMLHttpRequest',
+
+                            'Accept': 'application/json'
+
+                        }
+
+                    });
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Always Try JSON
+                    |--------------------------------------------------------------------------
+                    */
+
+                    const data = await response.json();
+
+
+                    console.log('HTTP Status:', response.status);
+
+                    console.log('Laravel Response:', data);
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | SUCCESS
+                    |--------------------------------------------------------------------------
+                    */
+
+                    if (response.ok && data.success === true) {
+
+                        await Swal.fire({
+
+                            icon: 'success',
+
+                            title: 'Thank You!',
+
+                            text: data.message,
+
+                            confirmButtonText: 'OK'
+
+                        });
+
+                        form.reset();
+
+                        clearErrors();
+
+                        return;
+                    }
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | 422 VALIDATION ERROR
+                    |--------------------------------------------------------------------------
+                    */
+
+                    if (response.status === 422) {
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | Laravel validation errors
+                        |--------------------------------------------------------------------------
+                        */
+
+                        if (data.errors) {
+
+                            showErrors(data.errors);
+
+                            return;
+                        }
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | Honeypot error
+                        |--------------------------------------------------------------------------
+                        */
+
+                        if (data.message) {
+
+                            Swal.fire({
+
+                                icon: 'error',
+
+                                title: 'Oops!',
+
+                                text: data.message,
+
+                                confirmButtonText: 'OK'
+
+                            });
+
+                            return;
+                        }
+
+                    }
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Other Errors
+                    |--------------------------------------------------------------------------
+                    */
+
+                    Swal.fire({
+
+                        icon: 'error',
+
+                        title: 'Something Went Wrong',
+
+                        text: data.message ||
+                            'Unable to submit your enquiry. Please try again.',
+
+                        confirmButtonText: 'OK'
+
+                    });
+
+
+                } catch (error) {
+
+                    console.error('Contact form error:', error);
+
+
+                    Swal.fire({
+
+                        icon: 'error',
+
+                        title: 'Something Went Wrong',
+
+                        text: 'Unable to submit your enquiry. Please try again.',
+
+                        confirmButtonText: 'OK'
+
+                    });
+
+
+                } finally {
+
+                    submitBtn.disabled = false;
+
+                    submitText.style.display = 'inline';
+
+                    submitLoader.style.display = 'none';
+
+                }
+
+            });
+
+        });
+    </script>
+@endpush

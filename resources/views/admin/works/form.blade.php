@@ -6,7 +6,7 @@
                 {{ $title ?? null }}
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ $work->id ? route('admin.work.update', $work) : route('admin.work.store') }}"
+                <form method="POST" action="{{ $work->id ? route('admin.works.update', $work) : route('admin.works.store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     {{ $work->id ? method_field('PUT') : '' }}
@@ -135,7 +135,7 @@
                                     onchange="document.getElementById('uploaded_brief_img').src = window.URL.createObjectURL(this.files[0])"
                                 >
                                 <img id="uploaded_brief_img" alt="Image" class="mt-1" width="130" height="100"
-                                    src="{{ $work->briefImage ? asset('backend_assets/work/brief-images/' . $work->briefImage) : asset('backend_assets/images/upload_image.png') }}" />
+                                    src="{{ $work->briefImage ? asset('backend_assets/works/brief-images/' . $work->briefImage) : asset('backend_assets/images/upload_image.png') }}" />
                                 @error('briefImage')
                                     <p style="color:red">{{ $message }}</p>
                                 @enderror
@@ -189,7 +189,7 @@
                                 onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
                                 title="">
                             <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100"
-                                src="{{ $work->coverImage ? asset('backend_assets/work/cover-images/' . $work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
+                                src="{{ $work->coverImage ? asset('backend_assets/works/cover-images/' . $work->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
                             @error('coverImage')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
@@ -201,7 +201,7 @@
                                 onchange="document.getElementById('uploaded_bg_img').src = window.URL.createObjectURL(this.files[0])"
                                 title="">
                             <img id="uploaded_bg_img" alt="Image" class="mt-1" width="130" height="100"
-                                src="{{ $work->featuredImage ? asset('backend_assets/work/featured-images/' . $work->featuredImage) : asset('backend_assets/images/upload_image.png') }}" />
+                                src="{{ $work->featuredImage ? asset('backend_assets/works/featured-images/' . $work->featuredImage) : asset('backend_assets/images/upload_image.png') }}" />
                             @error('featuredImage')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
@@ -236,7 +236,7 @@
                         <div class="col-6 my-3">
                             <button type="submit"
                                 class="btn btn-primary">{{ $work->id ? 'Update and Continue' : 'Save and Continue' }}</button>
-                            <a class="btn btn-secondary" href="{{ route('admin.work.index') }}">Cancel</a>
+                            <a class="btn btn-secondary" href="{{ route('admin.works.index') }}">Cancel</a>
                         </div>
                     </div>
                 </form>

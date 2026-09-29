@@ -385,7 +385,7 @@
                 </div>
                 <div class="col">
                     <div class="client-logo-wrapper">
-                        <img src="images/nhs.jpg" alt="NHS" class="img-fluid client-logo">
+                        <img src="images/NHS-logo-1.png" alt="NHS" class="img-fluid client-logo">
                         <span class="client-name">NHS</span>
                     </div>
                 </div>

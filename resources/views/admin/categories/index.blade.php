@@ -63,11 +63,33 @@
                                 <td>{{ $cat->display_order }}</td>
 
                                 <td>
+                                    <h4 class="pt-2">
+                                        <span class="badge {{ $cat->published ? 'bg-success' : 'bg-secondary' }}">
+                                            {{ $cat->published ? 'Published' : 'Draft' }}
+                                        </span>
+                                    </h4>
+                                </td>
+
+
+
+                                <td>
+                                    <form action="{{ route('admin.categories.toggle-publish', $cat->id) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-primary">
+                                            {{ $cat->published ? 'Unpublish' : 'Publish' }}
+                                        </button>
+                                    </form>
+
+
                                     <!-- EDIT -->
-                                    <a href="{{ route('admin.categories.edit', $cat->id) }}" class="btn btn-primary btn-sm">
+                                    <a href="{{ route('admin.categories.edit', $cat->id) }}"
+                                        class="btn btn-primary btn-sm">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
 
+                                    <!-- DELETE -->
                                     <!-- DELETE -->
                                     <form action="{{ route('admin.categories.delete', $cat->id) }}" method="POST"
                                         style="display:inline;">
@@ -80,6 +102,7 @@
                                         </button>
                                     </form>
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -88,13 +111,4 @@
             </div>
         </div>
     </div>
-
-
-    {{--  <form method="POST" action="{{ route('admin.categories.store') }}">
-        @csrf
-
-        <input type="text" name="name" placeholder="Category name" required>
-
-        <button>Add Category</button>
-    </form>  --}}
 @endsection

@@ -34,7 +34,7 @@ class BlogController extends Controller
             ->simplePaginate(20)
             ->withQueryString();
 
-        return view('admin.blog.index', compact(
+        return view('admin.blogs.index', compact(
             'title',
             'collections',
             'search'
@@ -58,7 +58,7 @@ class BlogController extends Controller
 
         $contentTypes = BlogContentType::cases();
 
-        return view('admin.blog.form', compact(
+        return view('admin.blogs.form', compact(
             'title',
             'blog',
             'authors',
@@ -68,7 +68,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Store blog.
+     * Store blogs.
      */
     public function store(Request $request)
     {
@@ -95,12 +95,12 @@ class BlogController extends Controller
         Blog::create($validated);
 
         return redirect()
-            ->route('admin.blog.index')
+            ->route('admin.blogs.index')
             ->with('success', 'Blog added successfully');
     }
 
     /**
-     * Display blog.
+     * Display blogs.
      */
     public function show(Blog $blog)
     {
@@ -122,7 +122,7 @@ class BlogController extends Controller
 
         $contentTypes = BlogContentType::cases();
 
-        return view('admin.blog.form', compact(
+        return view('admin.blogs.form', compact(
             'title',
             'blog',
             'authors',
@@ -132,7 +132,7 @@ class BlogController extends Controller
     }
 
     /**
-     * Update blog.
+     * Update blogs.
      */
     public function update(Request $request, Blog $blog)
     {
@@ -157,13 +157,13 @@ class BlogController extends Controller
                 $blog->coverImage &&
                 file_exists(
                     public_path(
-                        'backend_assets/images/' . $blog->coverImage
+                        'backend_assets/blogs/' . $blog->coverImage
                     )
                 )
             ) {
                 unlink(
                     public_path(
-                        'backend_assets/images/' . $blog->coverImage
+                        'backend_assets/blogs/' . $blog->coverImage
                     )
                 );
             }
@@ -175,12 +175,12 @@ class BlogController extends Controller
         $blog->update($validated);
 
         return redirect()
-            ->route('admin.blog.index')
+            ->route('admin.blogs.index')
             ->with('success', 'Blog updated successfully');
     }
 
     /**
-     * Delete blog.
+     * Delete blogs.
      */
     public function destroy(Blog $blog)
     {
@@ -328,7 +328,7 @@ class BlogController extends Controller
     //     } else {
     //         $collections = Blog::orderBy('id', 'desc')->simplePaginate(20);
     //     }
-    //     return view('admin.blog.index', compact('title', 'collections', 'search'));
+    //     return view('admin.blogs.index', compact('title', 'collections', 'search'));
     // }
 
     // /**
@@ -341,7 +341,7 @@ class BlogController extends Controller
     //     $authors = Author::orderBy('id', 'DESC')->get();
     //     $categories = BlogCategory::orderBy('id', 'DESC')->get();
 
-    //     return view('admin.blog.form', compact('title', 'blog', 'authors', 'categories'));
+    //     return view('admin.blogs.form', compact('title', 'blog', 'authors', 'categories'));
     // }
 
     // /**
@@ -379,7 +379,7 @@ class BlogController extends Controller
 
     //     Blog::create($data);
 
-    //     return redirect()->route('admin.blog.index')->with('success', "Blog added successfully");
+    //     return redirect()->route('admin.blogs.index')->with('success', "Blog added successfully");
     // }
 
     // /**
@@ -398,7 +398,7 @@ class BlogController extends Controller
     //     $title = "Edit Blog";
     //     $authors = Author::orderBy('id', 'DESC')->get();
     //     $categories = BlogCategory::orderBy('id', 'DESC')->get();
-    //     return view('admin.blog.form', compact('title', 'blog', 'authors', 'categories'));
+    //     return view('admin.blogs.form', compact('title', 'blog', 'authors', 'categories'));
     // }
 
     // /**
@@ -428,8 +428,8 @@ class BlogController extends Controller
     //         $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
     //         $file->move(public_path('backend_assets/images'), $fileName);
 
-    //         if ($blog->coverImage && file_exists(public_path('backend_assets/images/' . $blog->coverImage))) {
-    //             unlink(public_path('backend_assets/images/' . $blog->coverImage));
+    //         if ($blog->coverImage && file_exists(public_path('backend_assets/blogs/' . $blog->coverImage))) {
+    //             unlink(public_path('backend_assets/blogs/' . $blog->coverImage));
     //         }
     //     }
 
@@ -440,7 +440,7 @@ class BlogController extends Controller
 
     //     $blog->update($data);
 
-    //     return redirect()->route('admin.blog.index')->with('success', "Blog updated successfully");
+    //     return redirect()->route('admin.blogs.index')->with('success', "Blog updated successfully");
     // }
 
     // /**
