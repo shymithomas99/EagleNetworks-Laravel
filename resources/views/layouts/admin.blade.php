@@ -12,16 +12,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/emh-fav-16.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     @include('includes.admin.header')
-    @include('includes.admin.summernote')
     @stack('styles')
     
     <style>
@@ -1309,6 +1303,7 @@
     </script>
 
     @include('includes.admin.SESSIONMESSAGE')
+    @include('includes.admin.footer')
 
     @stack('scripts')
 
