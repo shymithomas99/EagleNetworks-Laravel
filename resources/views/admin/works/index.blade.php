@@ -36,7 +36,7 @@
                                 <td>{{ $item->displayOrder }}</td>
                                 <td>
                                     <h4 class="pt-2"><span class="badge {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
-                                        {{ $item->published ? 'Published' : 'Draft' }}
+                                        {{ $item->published ? 'Published' : 'Unpublished' }}
                                     </span></h4>
                                 </td>
                                 {{-- <td>
@@ -61,7 +61,7 @@
                                         @method('DELETE')
 
                                         <button class="btn btn-danger"
-                                            onclick="return confirm('Delete this work?')">
+                                            onclick="return confirm('Delete this content?')">
                                             Delete
                                         </button>
                                     </form>

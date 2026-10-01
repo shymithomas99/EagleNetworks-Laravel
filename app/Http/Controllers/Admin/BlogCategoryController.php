@@ -14,7 +14,7 @@ class BlogCategoryController extends Controller
     public function index()
     {
         $search = '';
-        $title = "Blog Category";
+        $title = "Blog Category Cards";
         if (isset($request->search) && !empty($request->search)) {
             $search = $request->search;
             $collections = BlogCategory::orderBy('id', 'desc')->where('menu', 'like', '%' . $request->search . '%')
@@ -31,7 +31,7 @@ class BlogCategoryController extends Controller
     public function create()
     {
         $blogCategory = new BlogCategory();
-        $title = "Add Blog Category";
+        $title = "Add Blog Category Card";
         
         return view('admin.blog-category.form', compact('blogCategory', 'title'));
     }
@@ -55,7 +55,7 @@ class BlogCategoryController extends Controller
 
         BlogCategory::create($request->all());
 
-        return redirect()->route('admin.blog-category.index')->with('success', "Category added successfully");
+        return redirect()->route('admin.blog-category.index')->with('success', "Content added successfully");
     }
 
     /**
@@ -71,7 +71,7 @@ class BlogCategoryController extends Controller
      */
     public function edit(BlogCategory $blogCategory)
     {
-        $title = "Edit Blog Category";
+        $title = "Edit Blog Category Card";
         return view('admin.blog-category.form', compact('blogCategory', 'title'));
     }
 
@@ -94,7 +94,7 @@ class BlogCategoryController extends Controller
 
         $blogCategory->update($request->all());
 
-        return redirect()->route('admin.blog-category.index')->with('success', "Category updated successfully");
+        return redirect()->route('admin.blog-category.index')->with('success', "Content updated successfully");
     }
 
     /**
@@ -106,7 +106,7 @@ class BlogCategoryController extends Controller
             return redirect()->back()->with('error', "Cannot delete: category has related blogs");
         }
         $blogCategory->delete();
-        return redirect()->back()->with('success', "Category deleted successfully");
+        return redirect()->back()->with('success', "Content deleted successfully");
     }
 
     public function togglePublish($id)
@@ -115,8 +115,8 @@ class BlogCategoryController extends Controller
         $blogCategory->update(['published' => !$blogCategory->published]);
 
         $message = $blogCategory->published
-        ? 'Category published successfully'
-        : 'Category moved to draft';
+        ? 'Content published successfully'
+        : 'Content unpublished successfully';
 
         return back()->with('success', $message);
     }

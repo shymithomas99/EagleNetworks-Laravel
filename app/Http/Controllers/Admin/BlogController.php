@@ -21,7 +21,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $title = 'Blog';
+        $title = 'Blog Cards';
 
         $search = $request->input('search', '');
 
@@ -46,7 +46,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $title = 'Add Blog';
+        $title = 'Add Blog Card';
 
         $blog = new Blog();
 
@@ -96,7 +96,7 @@ class BlogController extends Controller
 
         return redirect()
             ->route('admin.blogs.index')
-            ->with('success', 'Blog added successfully');
+            ->with('success', 'Content added successfully');
     }
 
     /**
@@ -112,7 +112,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $title = 'Edit Blog';
+        $title = 'Edit Blog Card';
 
         $authors = Author::orderByDesc('id')->get();
 
@@ -176,7 +176,7 @@ class BlogController extends Controller
 
         return redirect()
             ->route('admin.blogs.index')
-            ->with('success', 'Blog updated successfully');
+            ->with('success', 'Content updated successfully');
     }
 
     /**
@@ -188,7 +188,7 @@ class BlogController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', 'Blog deleted successfully');
+            ->with('success', 'Content deleted successfully');
     }
 
     /**
@@ -203,8 +203,8 @@ class BlogController extends Controller
         ]);
 
         $message = $blog->published
-            ? 'Blog published successfully'
-            : 'Blog moved to draft';
+            ? 'Content published successfully'
+            : 'Content unpublished successfully';
 
         return back()->with('success', $message);
     }

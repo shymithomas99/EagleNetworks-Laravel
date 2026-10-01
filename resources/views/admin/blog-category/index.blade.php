@@ -30,7 +30,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>
                                     <span class="badge fs-6 px-3 py-2 {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
-                                        {{ $item->published ? 'Published' : 'Draft' }}
+                                        {{ $item->published ? 'Published' : 'Unpublished' }}
                                     </span>
                                 </td>
                                 <td>

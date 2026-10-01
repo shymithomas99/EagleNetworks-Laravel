@@ -31,6 +31,17 @@
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        @if ($is_card && $section === '2')
+                        <div class="col-6 my-3">
+                            <label for="short_description">Short Description (Home Page)</label><br>
+                            <textarea class="form-control" name="short_description" id="short_description" rows="3"
+                                placeholder="">{{ old('short_description', $servicesPage->short_description ?? '') }}</textarea>
+                            @error('short_description')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        @endif
                 
                         <div class="col-6 my-3">
                             <label for="description">Description *</label><br>
@@ -45,7 +56,7 @@
                         <div class="col-6 my-3">
                             @php
                             if ($section == 2) {
-                                $imgSpec = "100 x 100 px, max 200 KB";
+                                $imgSpec = "32 x 32 px, max 10 KB";
                             }
                             elseif ($section === '3') {
                                 $imgSpec = "1432 x 768 px, max 700 KB";

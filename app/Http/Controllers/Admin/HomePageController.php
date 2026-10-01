@@ -30,7 +30,7 @@ class HomePageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '4', '7', '10'], true),
+            in_array($section, ['1', '10'], true),
             404
         );
         $title = $this->getTitle($section) . ' Cards';
@@ -63,7 +63,7 @@ class HomePageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '4', '7', '10'], true),
+            in_array($section, ['1', '2', '4', '7', '10'], true),
             404
         );
         $title = 'Add ' . $this->getTitle($section) . ' Card';
@@ -85,25 +85,21 @@ class HomePageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '4', '7', '10'], true),
+            in_array($section, ['1', '2', '4', '7', '10'], true),
             404
         );
 
         $imageRules = [
-            $is_card && in_array($section, [2, 3, 5]) ? 'required' : 'nullable',
+            $is_card && in_array($section, [3, 5]) ? 'required' : 'nullable',
             'image',
             'mimes:jpg,jpeg,png,webp',
         ];
 
-        if ($is_card && $section == 2) {
-            $imageRules[] = 'dimensions:width=100,height=100';
-            $imageRules[] = 'max:200';
-        } elseif ($is_card && $section == 3) {
-            $imageRules[] = 'dimensions:width=1432,height=768';
-            $imageRules[] = 'max:700';
+        if ($is_card && $section == 3) {
+            $imageRules[] = 'dimensions:width=84,height=84';
+            $imageRules[] = 'max:50';
         } elseif ($is_card && $section == 5) {
-            $imageRules[] = 'dimensions:width=760,height=440';
-            $imageRules[] = 'max:100';
+            $imageRules[] = 'max:600';
         }
 
         $validated = $request->validate([
@@ -171,7 +167,7 @@ class HomePageController extends Controller
     public function edit($section, $is_card, HomePage $homePage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7', '10'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '4', '7', '10'], true),
             404
         );
 
@@ -198,25 +194,21 @@ class HomePageController extends Controller
     public function update(Request $request, $section, $is_card, HomePage $homePage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7', '10'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '4', '7', '10'], true),
             404
         );
 
-        $imageRules = [
+         $imageRules = [
             'nullable',
             'image',
             'mimes:jpg,jpeg,png,webp',
         ];
 
-        if ($is_card && $section == 2) {
-            $imageRules[] = 'dimensions:width=100,height=100';
-            $imageRules[] = 'max:200';
-        } elseif ($is_card && $section == 3) {
-            $imageRules[] = 'dimensions:width=1432,height=768';
-            $imageRules[] = 'max:700';
+        if ($is_card && $section == 3) {
+            $imageRules[] = 'dimensions:width=84,height=84';
+            $imageRules[] = 'max:50';
         } elseif ($is_card && $section == 5) {
-            $imageRules[] = 'dimensions:width=760,height=440';
-            $imageRules[] = 'max:100';
+            $imageRules[] = 'max:600';
         }
 
         $validated = $request->validate([
@@ -300,7 +292,7 @@ class HomePageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '4', '7', '10'], true),
+            in_array($section, ['1', '2', '4', '7', '10'], true),
             404
         );
 
@@ -314,7 +306,7 @@ class HomePageController extends Controller
     public function togglePublish($section, $is_card, HomePage $homePage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '4', '7', '10'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '4', '7', '10'], true),
             404
         );
         

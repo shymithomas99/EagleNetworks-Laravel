@@ -40,6 +40,11 @@ class ServicesPageSeeder extends Seeder
                 'description' => 'Lorem ipsum dolor...'
             ],
             [
+                'section' => 6,
+                'title' => 'Lorem ipsum dolor...',
+                'description' => 'Lorem ipsum dolor...'
+            ],
+            [
                 'section' => 7,
                 'title' => 'Lorem ipsum dolor...',
                 'description' => 'Lorem ipsum dolor...'

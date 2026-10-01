@@ -167,7 +167,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="linkedin">Linkedin</label>
+                            <label for="linkedin">LinkedIn</label>
                             <input type="text" class="form-control" id="linkedin" placeholder=""
                                 name="linkedin" value="{{ old('linkedin', $contactPage->linkedin ?? '') }}">
                             @error('linkedin')
@@ -185,7 +185,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="tiktok">Tik Tok</label>
+                            <label for="tiktok">TikTok</label>
                             <input type="text" class="form-control" id="tiktok" placeholder=""
                                 name="tiktok" value="{{ old('tiktok', $contactPage->tiktok ?? '') }}">
                             @error('tiktok')
@@ -194,7 +194,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="youtube">Youtube</label>
+                            <label for="youtube">YouTube</label>
                             <input type="text" class="form-control" id="youtube" placeholder=""
                                 name="youtube" value="{{ old('youtube', $contactPage->youtube ?? '') }}">
                             @error('youtube')

@@ -23,16 +23,13 @@
                         </div>
                         @endif
 
-                        @if($is_card && in_array($section, [2, 3, 5]))
+                        @if($is_card && in_array($section, [3, 5]))
                         @php
-                            if ($section == 2) {
-                                $imgSpec = "100 x 100 px, max 200 KB";
-                            }
-                            elseif ($section === '3') {
-                                $imgSpec = "1432 x 768 px, max 700 KB";
+                            if ($section === '3') {
+                                $imgSpec = "84 x 84 px, max 50 KB";
                             }
                             elseif ($section === '5') {
-                                $imgSpec = "760 x 440 px, max 100 KB";
+                                $imgSpec = "max 600 KB";
                             }
                         @endphp
                         <div class="col-6 my-3">
@@ -60,9 +57,9 @@
                             @enderror
                         </div>
 
-                        @if((!$is_card) || ($is_card && in_array($section, [2, 6, 9])))
+                        @if((!$is_card) || ($is_card && in_array($section, [6, 9])))
                         <div class="col-6 my-3">
-                            <label for="description">Description *</label><br>
+                            <label for="description">Description {{ !$is_card && $section === '2' ? '(Enter each paragraph on a new line)' : '' }} *</label><br>
                             <textarea class="form-control" name="description" id="description" rows="3"
                                 placeholder="">{{ old('description', $homePage->description ?? '') }}</textarea>
                             @error('description')
@@ -73,7 +70,7 @@
                         
                         @if(!$is_card && in_array($section, [1, 6]) || ($is_card && $section === '6'))
                         <div class="col-6 my-3">
-                            <label for="additional_description">Additional Description *</label><br>
+                            <label for="additional_description">Additional Description</label><br>
                             <textarea class="form-control" name="additional_description" id="additional_description" rows="3"
                                 placeholder="">{{ old('additional_description', $homePage->additional_description ?? '') }}</textarea>
                             @error('additional_description')

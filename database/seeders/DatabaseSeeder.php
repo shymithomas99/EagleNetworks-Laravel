@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             WorkPageSeeder::class,
             InsightsPageSeeder::class,
             HomePageSeeder::class,
+            FooterSeeder::class,
         ]);
     }
 }

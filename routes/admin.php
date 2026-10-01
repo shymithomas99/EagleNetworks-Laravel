@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\WorkController;
 use App\Http\Controllers\Admin\AboutPageController;
 use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\HomePageController;
+use App\Http\Controllers\Admin\FooterController;
+use App\Http\Controllers\Admin\NewsletterSubscriberController;
 use Illuminate\Support\Facades\Route;
 
 // ✅ LOGIN ROUTES (no auth middleware)
@@ -81,7 +83,7 @@ Route::middleware('auth')->group(function () {
 
     //Services Page
     Route::prefix('services-page/{section}/{is_card}')
-        ->where(['section' => '1|2|3|4|5|7|8|9', 'is_card' => '0|1'])
+        ->where(['section' => '1|2|3|4|5|6|7|8|9', 'is_card' => '0|1'])
         ->group(function () {
             Route::get('/', [ServicesPageController::class, 'index'])->name('services-page.index');
             Route::get('/create', [ServicesPageController::class, 'create'])->name('services-page.create');
@@ -207,4 +209,20 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{homePage}', [HomePageController::class, 'destroy'])->name('home-page.destroy');
             Route::patch('/{homePage}/toggle-publish', [HomePageController::class, 'togglePublish'])->name('home-page.toggle-publish');
         });
+
+    Route::prefix('footer/{section}/{is_link}')
+        ->where(['section' => '1|2|3|4|5|6|7|8', 'is_link' => '0|1'])
+        ->group(function () {
+            Route::get('/', [FooterController::class, 'index'])->name('footer.index');
+            Route::get('/create', [FooterController::class, 'create'])->name('footer.create');
+            Route::post('/', [FooterController::class, 'store'])->name('footer.store');
+            Route::get('/{footer}', [FooterController::class, 'show'])->name('footer.show');
+            Route::get('/{footer}/edit', [FooterController::class, 'edit'])->name('footer.edit');
+            Route::put('/{footer}', [FooterController::class, 'update'])->name('footer.update');
+            Route::delete('/{footer}', [FooterController::class, 'destroy'])->name('footer.destroy');
+            Route::patch('/{footer}/toggle-publish', [FooterController::class, 'togglePublish'])->name('footer.toggle-publish');
+        });
+
+    Route::get('newsletter-subscribers', [NewsletterSubscriberController::class, 'index'])->name('newsletter-subscribers.index');
+    Route::delete('newsletter-subscribers/{newsletterSubscriber}', [NewsletterSubscriberController::class, 'destroy'])->name('newsletter-subscribers.destroy');
 });

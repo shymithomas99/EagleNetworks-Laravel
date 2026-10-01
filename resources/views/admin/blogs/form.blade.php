@@ -100,7 +100,7 @@
                                 onchange="document.getElementById('uploaded_img').src = window.URL.createObjectURL(this.files[0])"
                                 title="">
                             <img id="uploaded_img" alt="Image" class="mt-1" width="130" height="100"
-                                src="{{ $blog->coverImage ? asset('backend_assets/blogs/' . $blog->coverImage) : asset('backend_assets/blogs/upload_image.png') }}" />
+                                src="{{ $blog->coverImage ? asset('backend_assets/blogs/' . $blog->coverImage) : asset('backend_assets/images/upload_image.png') }}" />
                             @error('coverImage')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror

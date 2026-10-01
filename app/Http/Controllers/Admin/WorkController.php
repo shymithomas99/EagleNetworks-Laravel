@@ -17,7 +17,7 @@ class WorkController extends Controller
     public function index()
     {
         $search = '';
-        $title = "Work";
+        $title = "Work Cards";
         if (isset($request->search) && !empty($request->search)) {
             $search = $request->search;
             $collections = Work::orderBy('id', 'desc')->where('menu', 'like', '%' . $request->search . '%')
@@ -33,7 +33,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        $title = "Add Work";
+        $title = "Add Work Card";
         $work = new Work();
         $categories = WorkCategory::all();
 
@@ -111,7 +111,7 @@ class WorkController extends Controller
 
         $work = Work::create($data);
 
-        return redirect()->route('admin.works.gallery-images-form', $work->id)->with('success', 'Work added successfully');
+        return redirect()->route('admin.works.gallery-images-form', $work->id)->with('success', 'Content added successfully');
     }
 
     /**
@@ -127,7 +127,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        $title = "Edit Work";
+        $title = "Edit Work Card";
         $categories = WorkCategory::all();
         return view('admin.works.form', compact('title', 'work', 'categories'));
     }
@@ -221,16 +221,16 @@ class WorkController extends Controller
 
         $work->update($data);
 
-        return redirect()->route('admin.works.gallery-images-form', $work->id)->with('success', "Work updated successfully");
+        return redirect()->route('admin.works.gallery-images-form', $work->id)->with('success', "Content updated successfully");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(work $work)
+    public function destroy(Work $work)
     {
         $work->delete();
-        return redirect()->back()->with('success', "Work deleted successfully");
+        return redirect()->back()->with('success', "Content deleted successfully");
     }
 
     public function togglePublish($id)
@@ -239,8 +239,8 @@ class WorkController extends Controller
         $work->update(['published' => !$work->published]);
 
         $message = $work->published
-            ? 'Work published successfully'
-            : 'Work moved to draft';
+            ? 'Content published successfully'
+            : 'Content unpublished successfully';
 
         return back()->with('success', $message);
     }

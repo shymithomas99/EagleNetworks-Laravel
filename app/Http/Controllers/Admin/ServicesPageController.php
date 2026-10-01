@@ -16,6 +16,7 @@ class ServicesPageController extends Controller
                         3 => 'How We Create',
                         4 => 'Project',
                         5 => 'How We Deliver',
+                        6 => 'Work',
                         7 => 'CTA Banner',
                         8 => 'FAQ',
                         9 => 'CTA Banner (Bottom)'
@@ -61,7 +62,7 @@ class ServicesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '7', '9'], true),
+            $is_card === '1' && in_array($section, ['1', '6', '7', '9'], true),
             404
         );
         $title = 'Add ' . $this->getTitle($section) . ' Card';
@@ -83,7 +84,7 @@ class ServicesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '7', '9'], true),
+            $is_card === '1' && in_array($section, ['1', '6', '7', '9'], true),
             404
         );
 
@@ -94,8 +95,8 @@ class ServicesPageController extends Controller
         ];
 
         if ($is_card && $section == 2) {
-            $imageRules[] = 'dimensions:width=100,height=100';
-            $imageRules[] = 'max:200';
+            $imageRules[] = 'dimensions:width=32,height=32';
+            $imageRules[] = 'max:10';
         } elseif ($is_card && $section == 3) {
             $imageRules[] = 'dimensions:width=1432,height=768';
             $imageRules[] = 'max:700';
@@ -108,6 +109,7 @@ class ServicesPageController extends Controller
             'label' => [!$is_card && in_array($section, [3, 4, 8]) ? 'required' : 'nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
+            'short_description' => ['nullable', 'string'],
             'image' => $imageRules,
             'button1_text' => ['nullable'],
             'button1_url' => ['nullable', 'url'],
@@ -164,7 +166,7 @@ class ServicesPageController extends Controller
     public function edit($section, $is_card, ServicesPage $servicesPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '7', '9'], true),
+            $is_card === '1' && in_array($section, ['1', '6', '7', '9'], true),
             404
         );
 
@@ -191,7 +193,7 @@ class ServicesPageController extends Controller
     public function update(Request $request, $section, $is_card, ServicesPage $servicesPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '7', '9'], true),
+            $is_card === '1' && in_array($section, ['1', '6', '7', '9'], true),
             404
         );
 
@@ -202,8 +204,8 @@ class ServicesPageController extends Controller
         ];
 
         if ($is_card && $section == 2) {
-            $imageRules[] = 'dimensions:width=100,height=100';
-            $imageRules[] = 'max:200';
+            $imageRules[] = 'dimensions:width=32,height=32';
+            $imageRules[] = 'max:10';
         } elseif ($is_card && $section == 3) {
             $imageRules[] = 'dimensions:width=1432,height=768';
             $imageRules[] = 'max:700';
@@ -216,6 +218,7 @@ class ServicesPageController extends Controller
             'label' => [!$is_card && in_array($section, [3, 4, 8]) ? 'required' : 'nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
+            'short_description' => ['nullable', 'string'],
             'image' => $imageRules,
             'button1_text' => ['nullable'],
             'button1_url' => ['nullable', 'url'],
@@ -288,7 +291,7 @@ class ServicesPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '7', '9'], true),
+            $is_card === '1' && in_array($section, ['1', '6', '7', '9'], true),
             404
         );
 
@@ -302,7 +305,7 @@ class ServicesPageController extends Controller
     public function togglePublish($section, $is_card, ServicesPage $servicesPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '7', '9'], true),
+            $is_card === '1' && in_array($section, ['1', '6', '7', '9'], true),
             404
         );
 
