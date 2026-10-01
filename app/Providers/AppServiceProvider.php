@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\CookiePreferencePage;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('includes.website.footer', function ($view) {
+
+            $cookiePage = CookiePreferencePage::where('published', 1)->first();
+
+            $view->with('cookiePage', $cookiePage);
+        });
     }
 }

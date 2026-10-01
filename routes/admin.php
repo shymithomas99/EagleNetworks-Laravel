@@ -19,7 +19,11 @@ use App\Http\Controllers\Admin\WorkCategoryController;
 use App\Http\Controllers\Admin\WorkController;
 use App\Http\Controllers\Admin\AboutPageController;
 use App\Http\Controllers\Admin\ContactPageController;
+use App\Http\Controllers\Admin\CookiePreferencePageController;
 use App\Http\Controllers\Admin\HomePageController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
+use App\Http\Controllers\Admin\TermsPageController;
+
 use Illuminate\Support\Facades\Route;
 
 // ✅ LOGIN ROUTES (no auth middleware)
@@ -76,8 +80,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('works', WorkController::class);
     Route::patch('works/{id}/toggle-publish', [WorkController::class, 'togglePublish'])->name('works.toggle-publish');
     Route::get('works/{id}/gallery-images-form', 'WorkController@galleryImagesForm')->name('works.gallery-images-form');
-    Route::post('delete-image', ['as'=>'delete-image','uses'=>'WorkController@deleteImage']);
-    Route::post('upload-image', ['as'=>'upload-image','uses'=>'WorkController@uploadImage']);
+    Route::post('delete-image', ['as' => 'delete-image', 'uses' => 'WorkController@deleteImage']);
+    Route::post('upload-image', ['as' => 'upload-image', 'uses' => 'WorkController@uploadImage']);
 
     //Services Page
     Route::prefix('services-page/{section}/{is_card}')
@@ -106,7 +110,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{packagesPage}', [PackagesPageController::class, 'destroy'])->name('packages-page.destroy');
             Route::patch('/{packagesPage}/toggle-publish', [PackagesPageController::class, 'togglePublish'])->name('packages-page.toggle-publish');
         });
-    
+
     // Packages
     Route::prefix('packages/{packagesPage}/{section}/{is_card}')
         ->where(['section' => '1|2|3|4|5', 'is_card' => '0|1'])
@@ -146,7 +150,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{accraPage}', [AccraPageController::class, 'destroy'])->name('accra-page.destroy');
             Route::patch('/{accraPage}/toggle-publish', [AccraPageController::class, 'togglePublish'])->name('accra-page.toggle-publish');
         });
-    
+
     Route::prefix('about-page/{section}/{is_card}')
         ->where(['section' => '1|2|3|4|5|6|7|8|9|10|11', 'is_card' => '0|1'])
         ->group(function () {
@@ -185,7 +189,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{workPage}', [WorkPageController::class, 'destroy'])->name('work-page.destroy');
             Route::patch('/{workPage}/toggle-publish', [WorkPageController::class, 'togglePublish'])->name('work-page.toggle-publish');
         });
-    
+
     Route::prefix('insights-page/{section}/{is_card}')
         ->where(['section' => '1|3', 'is_card' => '0'])
         ->group(function () {
@@ -207,4 +211,195 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{homePage}', [HomePageController::class, 'destroy'])->name('home-page.destroy');
             Route::patch('/{homePage}/toggle-publish', [HomePageController::class, 'togglePublish'])->name('home-page.toggle-publish');
         });
+
+    Route::prefix('terms-page/{section}/{is_card}')
+        ->where([
+            'section' => '1|2|3|4|5|6|7|8|9|10',
+            'is_card' => '0|1',
+        ])
+        ->group(function () {
+
+            /*
+        |--------------------------------------------------------------------------
+        | INDEX
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/', [TermsPageController::class, 'index'])
+                ->name('terms-page.index');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | CREATE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/create', [TermsPageController::class, 'create'])
+                ->name('terms-page.create');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | STORE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::post('/', [TermsPageController::class, 'store'])
+                ->name('terms-page.store');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | SHOW
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/{termsPage}', [TermsPageController::class, 'show'])
+                ->name('terms-page.show');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | EDIT
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/{termsPage}/edit', [TermsPageController::class, 'edit'])
+                ->name('terms-page.edit');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | UPDATE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::put('/{termsPage}', [TermsPageController::class, 'update'])
+                ->name('terms-page.update');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | DELETE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::delete('/{termsPage}', [TermsPageController::class, 'destroy'])
+                ->name('terms-page.destroy');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | PUBLISH / UNPUBLISH
+        |--------------------------------------------------------------------------
+        */
+
+            Route::patch(
+                '/{termsPage}/toggle-publish',
+                [TermsPageController::class, 'togglePublish']
+            )->name('terms-page.toggle-publish');
+        });
+
+    Route::prefix('privacy-policy/{section}/{is_card}')
+        ->where([
+            'section' => '1|2|3|4|5|6|7|8|9|10|11',
+            'is_card' => '0|1',
+        ])
+        ->group(function () {
+
+            /*
+        |--------------------------------------------------------------------------
+        | INDEX
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/', [PrivacyPolicyController::class, 'index'])
+                ->name('privacy-policy.index');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | CREATE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/create', [PrivacyPolicyController::class, 'create'])
+                ->name('privacy-policy.create');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | STORE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::post('/', [PrivacyPolicyController::class, 'store'])
+                ->name('privacy-policy.store');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | SHOW
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/{privacyPolicy}', [PrivacyPolicyController::class, 'show'])
+                ->name('privacy-policy.show');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | EDIT
+        |--------------------------------------------------------------------------
+        */
+
+            Route::get('/{privacyPolicy}/edit', [PrivacyPolicyController::class, 'edit'])
+                ->name('privacy-policy.edit');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | UPDATE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::put('/{privacyPolicy}', [PrivacyPolicyController::class, 'update'])
+                ->name('privacy-policy.update');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | DELETE
+        |--------------------------------------------------------------------------
+        */
+
+            Route::delete('/{privacyPolicy}', [PrivacyPolicyController::class, 'destroy'])
+                ->name('privacy-policy.destroy');
+
+
+            /*
+        |--------------------------------------------------------------------------
+        | PUBLISH / UNPUBLISH
+        |--------------------------------------------------------------------------
+        */
+
+            Route::patch(
+                '/{privacyPolicy}/toggle-publish',
+                [PrivacyPolicyController::class, 'togglePublish']
+            )->name('privacy-policy.toggle-publish');
+        });
+
+
+
+    // Cookie Preferences
+    Route::get(
+        '/cookie-preference-page/edit',
+        [CookiePreferencePageController::class, 'edit']
+    )->name('cookie-preference-page.edit');
+
+    Route::put(
+        '/cookie-preference-page',
+        [CookiePreferencePageController::class, 'update']
+    )->name('cookie-preference-page.update');
 });

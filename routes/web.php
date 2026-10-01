@@ -45,17 +45,24 @@ Route::get('/packages', function () {
     return view('client.packages');
 });
 
-Route::get('/privacy-policy', function () {
-    return view('client.privacy-policy');
-});
+// Route::get('/privacy-policy', function () {
+//     return view('client.privacy-policy');
+// });
+
+
+Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])
+    ->name('privacy-policy');
 
 Route::get('/sitemap', function () {
     return view('client.sitemap');
 });
 
-Route::get('/terms', function () {
-    return view('client.terms');
-});
+// Route::get('/terms', function () {
+//     return view('client.terms');
+// });
+
+Route::get('/terms', [HomeController::class, 'terms'])
+    ->name('terms');
 
 
 Route::get('/services', [HomeController::class, 'services'])->name('services');
