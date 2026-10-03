@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->text('short_description')->nullable();
             $table->string('image')->nullable();
+            $table->string('button_text')->nullable();
+            $table->string('button_url')->nullable();
             $table->string('button1_text')->nullable();
             $table->string('button1_url')->nullable();
             $table->string('button2_text')->nullable();

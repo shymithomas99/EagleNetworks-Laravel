@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthorController;
+use App\Http\Controllers\AboutPageController;
+use App\Http\Controllers\ContactPageController;
+use App\Http\ControllersAccraPageController;
+use App\Http\Controllers\LondonPageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\WhatsAppController;
@@ -14,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/about', function () {
-    return view('client.about');
-});
+Route::get('about', [AboutPageController::class, 'index'])->name('about-page.index');
 
-Route::get('/accra', function () {
-    return view('client.accra');
-});
+Route::get('contact', [ContactPageController::class, 'index'])->name('contact-page.index');
+
+Route::get('accra', [AccraPageController::class, 'index'])->name('accra-page.index');
+
+Route::get('london', [LondonPageController::class, 'index'])->name('london-page.index');
 
 Route::get('/amplify', function () {
     return view('client.amplify');
@@ -30,16 +33,9 @@ Route::get('/connect', function () {
     return view('client.connect');
 });
 
-
-
 Route::get('/ignite', function () {
     return view('client.ignite');
 });
-
-Route::get('/london', function () {
-    return view('client.london');
-});
-
 
 Route::get('/packages', function () {
     return view('client.packages');
@@ -73,17 +69,6 @@ Route::get('/insights/{blog:slug}', [HomeController::class, 'showBlog'])
 
 Route::get('/author/{author:slug}', [HomeController::class, 'showAuthor'])
     ->name('author.show');
-// Route::get('/contact', function () {
-//     return view('client.contact');
-// });
-
-
-
-Route::get('/contact', function () {
-    return view('client.contact');
-})->name('contact');
-
-
 
 Route::get('/media', [HomeController::class, 'media'])->name('media');
 

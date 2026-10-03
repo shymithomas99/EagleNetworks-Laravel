@@ -5,46 +5,57 @@
         content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight.">
 @endpush
 @section('content')
-    <section class="section-hero contact-banner">
-        <div class="container-custom">
-            <div class="section-hero-sub">
-                <div>
-                    <div>
 
-                        <h1>Start a Conversation About Your Project</h1>
-                        <div class="subhead">Tell us what you're working on and we'll come back with clear next steps on
-                            how we can help. Our team is ready to explore your challenges and develop integrated
-                            solutions.</div>
-                        <a href="#contactForm" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0 mt-2">
-                            Get In Touch
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
-                                data-loc="client/src/pages/Home.tsx:47">
-                                <path d="M5 12h14"></path>
-                                <path d="m12 5 7 7-7 7"></path>
-                            </svg>
-                        </a>
+    @if($banner)
+        <section class="section-hero contact-banner">
+            <div class="container-custom">
+                <div class="section-hero-sub">
+                    <div>
+                        <div>
+
+                            <h1>{{ $banner->title }}</h1>
+                            @if($banner->description)
+                                <div class="subhead">
+                                    {{ $banner->description }}
+                                </div>
+                            @endif
+
+                            @if($banner->button_text)
+                            <a href="{{ $banner->button_url ?? '' }}" class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0 mt-2">
+                                {{ $banner->button_text }}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-arrow-right ms-2"
+                                    data-loc="client/src/pages/Home.tsx:47">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
 
     <section id="contact-section" class="contact-form section-md">
 
         <div class=" container-custom d-flex flex-column">
+            @if($formIntro)
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Send Us a Message</h2>
-                    <div class="subhead mb-5">
-                        Whether you're exploring a new project, scaling your business, or looking for strategic
-                        guidance, we're here to help. Fill out the form below and we'll respond within 24 business hours
-                        with next steps.
-                    </div>
+                    <h2>{{ $formIntro->title }}</h2>
+
+                    @if($formIntro->description)
+                        <div class="subhead mb-5">
+                            {{ $formIntro->description }}
+                        </div>
+                    @endif
                 </div>
             </div>
-
+            @endif
 
             <div class="form-section">
                 <form id="contactForm" method="POST" action="{{ route('contact.submit') }}">
@@ -261,211 +272,244 @@
         </div>
     </section>
 
-    <section class="office-map section-md">
+    @if($officeIntro || $offices->isNotEmpty())
+        <section class="office-map section-md">
 
-        <div class="container-custom">
-            <h2 class="text-white mb-5">Find Our Offices in the following locations</h2>
-            <div class="row g-4">
+            <div class="container-custom">
+                @if($officeIntro)
+                <h2 class="text-white mb-5">{{ $officeIntro->title }}</h2>
+                @endif
 
-                <!-- LEFT CARD -->
-                <div class="col-lg-6">
-                    <div class="office-card office-orange">
+                @if($offices->isNotEmpty())
+                <div class="row g-4">
 
-                        <div class="office-location x-small-text fw-bold text-muted mb-2">BASED IN THE UK</div>
-                        <h2 class="location-title text-orange mb-2">eagle<span>london</span></h2>
-                        <div class="small-text mb-3">London based team serving clients across the UK and Europe</div>
-                        <div class="pill-group mb-3">
-                            <span class="badge-custom-2 bg-orange-lite">London</span>
-                            <span class="badge-custom-2 bg-grey-lite">UK &amp; Europe</span>
-                            <span class="badge-custom-2 bg-grey-lite">One Integrated Team</span>
+                    @foreach($offices as $office)
+                        <div class="col-lg-6">
+                            <div class="office-card {{ $loop->odd ? 'office-orange' : 'office-green' }}">
+
+                                {{-- Label --}}
+                                @if($office->label)
+                                    <div class="office-location x-small-text fw-bold text-muted mb-2">
+                                        {{ $office->label }}
+                                    </div>
+                                @endif
+
+                                {{-- Title --}}
+                                @if($office->title)
+                                    <h2 class="location-title {{ $loop->odd ? 'text-orange' : 'text-green' }} mb-2">
+                                        {{ $office->title }}
+                                    </h2>
+                                @endif
+
+                                {{-- Description --}}
+                                @if($office->description)
+                                    <div class="small-text mb-3">
+                                        {{ $office->description }}
+                                    </div>
+                                @endif
+
+                                {{-- Tags --}}
+                                @if($office->tag_1 || $office->tag_2 || $office->tag_3)
+                                    <div class="pill-group mb-3">
+                                        @if($office->tag_1)
+                                            <span class="badge-custom-2 {{ $loop->odd ? 'bg-orange-lite' : 'bg-green-lite' }}">
+                                                {{ $office->tag_1 }}
+                                            </span>
+                                        @endif
+
+                                        @if($office->tag_2)
+                                            <span class="badge-custom-2 bg-grey-lite">
+                                                {{ $office->tag_2 }}
+                                            </span>
+                                        @endif
+
+                                        @if($office->tag_3)
+                                            <span class="badge-custom-2 bg-grey-lite">
+                                                {{ $office->tag_3 }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                @endif
+
+                                {{-- Location --}}
+                                @if($office->location)
+                                    <div class="{{ $loop->odd ? 'text-orange' : 'text-green' }} x-small-text fw-bold mb-2">
+                                        {{ strtoupper($office->location) }}
+                                    </div>
+                                @endif
+
+                                {{-- Company --}}
+                                @if($office->company_name)
+                                    <div class="office-title {{ $loop->even ? 'text-green' : '' }} mb-2">
+                                        {{ $office->company_name }}
+                                    </div>
+                                @endif
+
+                                {{-- Address --}}
+                                @if($office->address)
+                                    <div class="office-text {{ $loop->even ? 'text-green' : '' }}">
+                                        {!! nl2br(e($office->address)) !!}
+                                    </div>
+                                @endif
+
+                                {{-- Contact --}}
+                                @if($office->phone_1 || $office->phone_2 || $office->email)
+                                    <div class="office-contact">
+
+                                        @if($office->phone_1)
+                                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $office->phone_1) }}">
+                                                {{ $office->phone_1 }}
+                                            </a>
+                                        @endif
+
+                                        @if($office->phone_2)
+                                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $office->phone_2) }}">
+                                                {{ $office->phone_2 }}
+                                            </a>
+                                        @endif
+
+                                        @if($office->email)
+                                            <a href="mailto:{{ $office->email }}">
+                                                {{ $office->email }}
+                                            </a>
+                                        @endif
+
+                                    </div>
+                                @endif
+
+                                {{-- Google Map --}}
+                                @if($office->map_url)
+                                    <div class="map-container">
+                                        <iframe
+                                            src="{{ $office->map_url }}"
+                                            loading="lazy">
+                                        </iframe>
+                                    </div>
+                                @endif
+
+                            </div>
                         </div>
-                        <div class="text-orange x-small-text fw-bold mb-2">LONDON</div>
-                        <div class="office-title mb-2">Eagle London Agency</div>
-
-                        <div class="office-text">
-                            c/o EMH Global Ltd<br>
-                            Old Town Hall Annexe<br>
-                            29 Broadway<br>
-                            Stratford E15 4BQ
-                        </div>
-
-                        <div class="office-contact">
-                            <a href="tel:+442039270281">+44 (0)203 927 0281</a>
-                            <a href="tel:+447983508359">+44 (0)7983 508 359</a>
-                            <a href="mailto:theoffice@theemhglobal.com">theoffice@theemhglobal.com</a>
-                        </div>
-
-                        <div class="map-container">
-                            <iframe
-                                src="https://maps.google.com/maps?q=Stratford%20London&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-                        </div>
-
-                    </div>
+                    @endforeach
                 </div>
+                @endif
+            </div>
+        </section>
+    @endif
 
-                <!-- RIGHT CARD -->
-                     <div class="col-lg-6">
-                    <div class="office-card office-green">
+    @if($faqIntro || $faqs->isNotEmpty())
+        <section class="faq-section section-md">
+            <div class="container-custom-2">
+                @if($faqIntro)
+                    <div class="d-flex flex-column align-items-center text-center">
 
-                        <div class="office-location x-small-text fw-bold text-muted mb-2">BASED IN GHANA</div>
-                        <h2 class="location-title text-green mb-2">eagle<span>accra</span></h2>
-                        <div class="small-text mb-3">Accra based team serving clients across Ghana and Africa</div>
-                        <div class="pill-group mb-3">
-                            <span class="badge-custom-2 bg-green-lite">Accra</span>
-                            <span class="badge-custom-2 bg-grey-lite">UK &amp; Europe</span>
-                            <span class="badge-custom-2 bg-grey-lite">One Integrated Team</span>
-                        </div>
-                        <div class="text-green x-small-text fw-bold mb-2">ACCRA</div>
-                        <div class="office-title text-green mb-2">EMH Global Ghana Limited</div>
-
-                        <div class="office-text text-green">
-                            Eagle House<br>
-                            C358/9 Manyo Plange Street<br>
-                            Adabraka<br>
-                            Accra
-                        </div>
-
-                        <div class="office-contact">
-                            <a href="tel:+233302237395">+233 (0)302 237 395</a>
-                            <a href="tel:+233540381883">+233 (0)540 381 883</a>
-                            <a href="mailto:emhghana@theemhglobal.com">emhghana@theemhglobal.com</a>
-                        </div>
-
-                        <div class="map-container">
-                            <iframe
-                                src="https://maps.google.com/maps?q=Accra&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-                        </div>
+                        <h2 class="h2-36 mb-5">{{ $faqIntro->title }}</h2>
 
                     </div>
+                @endif
+
+                @if($faqs->isNotEmpty())
+                    <div class="faq-section-accordian">
+                        <div class="accordion accordion-flush custom-faq" id="faqAccordion">
+                            @foreach($faqs as $faq)
+                                @php
+                                    $faqId = 'faq' . $faq->id;
+                                @endphp
+                                <div class="accordion-item mb-3">
+                                    <h2 class="accordion-header" id="heading{{ $faqId }}">
+                                        <button
+                                            class="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ $faqId }}"
+                                            aria-expanded="false"
+                                            aria-controls="collapse{{ $faqId }}">
+                                            {{ $faq->title }}
+                                        </button>
+                                    </h2>
+
+                                    <div
+                                        id="collapse{{ $faqId }}"
+                                        class="accordion-collapse collapse"
+                                        aria-labelledby="heading{{ $faqId }}"
+                                        data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            {{ $faq->description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </section>
+    @endif
+
+    @if($follow)
+        <section class="follow-section ready-to">
+            <div class="container position-relative z-3">
+
+                @if($follow->title)
+                    <h2 class="h2-30 mb-3">
+                        {{ $follow->title }}
+                    </h2>
+                @endif
+
+                @if($follow->description)
+                    <p class="follow-subtext">
+                        {{ $follow->description }}
+                    </p>
+                @endif
+
+                <div class="contact-social-icons">
+                    @if($follow->instagram)
+                        <a href="{{ $follow->instagram }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    @endif
+
+                    @if($follow->linkedin)
+                        <a href="{{ $follow->linkedin }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    @endif
+
+                    @if($follow->x)
+                        <a href="{{ $follow->x }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="X">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                    @endif
+
+                    @if($follow->tiktok)
+                        <a href="{{ $follow->tiktok }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    @endif
+
+                    @if($follow->youtube)
+                        <a href="{{ $follow->youtube }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="YouTube">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    @endif
                 </div>
-
             </div>
-        </div>
-    </section>
-
-
-    <section class="faq-section section-md">
-        <div class="container-custom-2">
-            <div class="d-flex flex-column align-items-center text-center">
-
-                <h2 class="h2-36 mb-5">Frequently Asked Questions</h2>
-
-            </div>
-
-            <div class="faq-section-accordian">
-
-                <div class="accordion accordion-flush custom-faq" id="faqAccordion">
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne">
-                                How quickly will you respond to my enquiry?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                We aim to respond to all enquiries within 24 business hours. For urgent matters, please
-                                call our London office directly on +44(0)203 927 0281.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo">
-                                Which team should I contact — London or Accra?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                If your project is primarily UK or European-facing, our London team is best placed to
-                                help. For West African markets or pan-African strategy, contact our Accra team. For
-                                projects spanning both regions, select General and we will route your enquiry to the
-                                right people.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree">
-                                What information should I include in my message?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                The more context you can share, the better. Useful details include your business
-                                objective, the service you are interested in, your approximate timeline, and any budget
-                                parameters. This allows us to prepare a relevant and specific response rather than a
-                                generic one.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour">
-                                Do you work with startups as well as established businesses?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes. We work with early-stage startups, growing SMEs, and established enterprises. Our
-                                Ignite
-                                package is specifically designed for businesses at the beginning of their growth
-                                journey, while
-                                Amplify and Connect are built for organisations ready to scale.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item mb-3">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive">
-                                Can I book a call before committing to a package?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Absolutely. We encourage a discovery call before any commitment. Use the contact form
-                                above to
-                                introduce yourself and we will arrange a no-obligation conversation to explore how we
-                                can help.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="follow-section ready-to">
-        <div class="container position-relative z-3">
-
-            <h2 class="h2-30 mb-3">Follow Eagle Networks</h2>
-
-            <p class="follow-subtext">
-                Connect with us across our social channels for updates, projects and new content.
-            </p>
-
-            <div class="contact-social-icons ">
-                <a href="https://www.instagram.com/eagletheagency/"><i class="bi bi-instagram"></i></a>
-                <a href="https://uk.linkedin.com/company/eagletheagency"><i class="bi bi-linkedin"></i></a>
-                <a href="https://x.com/Eagletheagency"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.tiktok.com/@eagletheagency"><i class="bi bi-tiktok"></i></a>
-                <a href="https://www.youtube.com/channel/UCeQnJm2xSTkK2G9hbl5ySUQ"><i class="bi bi-youtube"></i></a>
-            </div>
-
-        </div>
-    </section>
+        </section>
+    @endif
 
 
 @endsection

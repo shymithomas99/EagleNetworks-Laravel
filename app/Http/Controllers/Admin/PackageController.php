@@ -66,6 +66,7 @@ class PackageController extends Controller
             404
         );
 
+        $prevTitle = $this->getTitle($section) . ' Cards';
         $title = 'Add ' . $this->getTitle($section) . ' Card';
  
         $package = new Package();
@@ -74,6 +75,7 @@ class PackageController extends Controller
             'packagesPage',
             'section',
             'is_card',
+            'prevTitle',
             'title',
             'package',
         ));
@@ -95,6 +97,8 @@ class PackageController extends Controller
             'additional_title' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'key_points' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string'],
+            'button_text' => ['nullable'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable'],
@@ -137,19 +141,20 @@ class PackageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '5']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
+        $prevTitle = $this->getTitle($section) . ' Cards';
         $title = 'Edit ' . $this->getTitle($section) . ' ' . $cardOrIntro;
  
         return view('admin.packages.form', compact(
             'packagesPage',
             'section',
             'is_card',
+            'prevTitle',
             'title',
             'package',
         ));
@@ -171,6 +176,8 @@ class PackageController extends Controller
             'additional_title' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'key_points' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string'],
+            'button_text' => ['nullable'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable'],

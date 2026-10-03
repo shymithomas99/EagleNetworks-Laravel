@@ -14,7 +14,7 @@ class BlogCategoryController extends Controller
     public function index()
     {
         $search = '';
-        $title = "Blog Category Cards";
+        $title = "Blog Categories";
         if (isset($request->search) && !empty($request->search)) {
             $search = $request->search;
             $collections = BlogCategory::orderBy('id', 'desc')->where('menu', 'like', '%' . $request->search . '%')
@@ -31,7 +31,7 @@ class BlogCategoryController extends Controller
     public function create()
     {
         $blogCategory = new BlogCategory();
-        $title = "Add Blog Category Card";
+        $title = "Add Blog Category";
         
         return view('admin.blog-category.form', compact('blogCategory', 'title'));
     }
@@ -71,7 +71,7 @@ class BlogCategoryController extends Controller
      */
     public function edit(BlogCategory $blogCategory)
     {
-        $title = "Edit Blog Category Card";
+        $title = "Edit Blog Category";
         return view('admin.blog-category.form', compact('blogCategory', 'title'));
     }
 

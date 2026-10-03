@@ -14,7 +14,7 @@ class WorkCategoryController extends Controller
     public function index()
     {
         $search = '';
-        $title = "Work Category";
+        $title = "Work Categories";
         if (isset($request->search) && !empty($request->search)) {
             $search = $request->search;
             $collections = WorkCategory::orderBy('id', 'desc')->where('menu', 'like', '%' . $request->search . '%')

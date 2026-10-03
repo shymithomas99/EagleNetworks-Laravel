@@ -98,6 +98,10 @@ class AboutPageController extends Controller
             'stat_value' => ['nullable', 'string'],
             'stat_title' => ['nullable', 'string'],
             'stat_description' => ['nullable', 'string'],
+            'link_text' => ['nullable', 'string'],
+            'link_url' => ['nullable', 'url'],
+            'button_text' => ['nullable', 'string'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable', 'string'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable', 'string'],
@@ -135,10 +139,9 @@ class AboutPageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '2', '11']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
@@ -170,6 +173,10 @@ class AboutPageController extends Controller
             'stat_value' => ['nullable', 'string'],
             'stat_title' => ['nullable', 'string'],
             'stat_description' => ['nullable', 'string'],
+            'link_text' => ['nullable', 'string'],
+            'link_url' => ['nullable', 'url'],
+            'button_text' => ['nullable', 'string'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable', 'string'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable', 'string'],

@@ -118,6 +118,8 @@ class HomePageController extends Controller
             'cta_description' => ['nullable', 'string'],
             'cta_button_text' => ['nullable', 'string'],
             'cta_button_url' => ['nullable', 'url'],
+            'button_text' => ['nullable', 'string'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable', 'string'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable', 'string'],
@@ -171,10 +173,9 @@ class HomePageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '10']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
@@ -227,6 +228,8 @@ class HomePageController extends Controller
             'cta_description' => ['nullable', 'string'],
             'cta_button_text' => ['nullable', 'string'],
             'cta_button_url' => ['nullable', 'url'],
+            'button_text' => ['nullable', 'string'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable', 'string'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable', 'string'],

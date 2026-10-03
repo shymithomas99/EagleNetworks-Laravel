@@ -22,7 +22,7 @@
 
             <div class="list-group">
 
-                {{-- Banner Intro --}}
+                {{-- Banner --}}
                 <a href="{{ route('admin.packages.edit', [
                         'packagesPage' => $packagesPage,
                         'section' => '1',
@@ -31,7 +31,7 @@
                     ]) }}"
                     class="list-group-item list-group-item-action">
                     <i class="fas fa-image me-2"></i>
-                    Banner Intro
+                    Banner
                 </a>
 
 
@@ -153,7 +153,7 @@
                     ]) }}"
                     class="list-group-item list-group-item-action">
                     <i class="fas fa-bullhorn me-2"></i>
-                    CTA Banner (Bottom) Intro
+                    CTA Banner (Bottom)
                 </a>
 
             </div>

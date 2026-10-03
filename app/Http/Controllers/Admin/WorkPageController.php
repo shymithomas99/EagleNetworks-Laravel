@@ -26,7 +26,7 @@ class WorkPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '3', '5'], true),
+            in_array($section, ['1', '3', '5', '6'], true),
             404
         );
         $title = $this->getTitle($section) . ' Cards';
@@ -59,7 +59,7 @@ class WorkPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '3', '5'], true),
+            in_array($section, ['1', '3', '5', '6'], true),
             404
         );
         $title = 'Add ' . $this->getTitle($section) . ' Card';
@@ -81,7 +81,7 @@ class WorkPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '3', '5'], true),
+            in_array($section, ['1', '3', '5', '6'], true),
             404
         );
 
@@ -142,18 +142,17 @@ class WorkPageController extends Controller
     public function edit($section, $is_card, WorkPage $workPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '3', '5'], true),
+            $is_card === '1' && in_array($section, ['1', '3', '5', '6'], true),
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '6']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
-        $title = 'Edit ' . $this->getTitle($section) . ' ' . $cardOrIntro; 
+        $title = 'Edit ' . $this->getTitle($section) . ' ' . $cardOrIntro;
  
         return view('admin.work-page.form', compact(
             'section',
@@ -169,7 +168,7 @@ class WorkPageController extends Controller
     public function update(Request $request, $section, $is_card, WorkPage $workPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '3', '5'], true),
+            $is_card === '1' && in_array($section, ['1', '3', '5', '6'], true),
             404
         );
 
@@ -246,7 +245,7 @@ class WorkPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '3', '5'], true),
+            in_array($section, ['1', '3', '5', '6'], true),
             404
         );
 
@@ -260,7 +259,7 @@ class WorkPageController extends Controller
     public function togglePublish($section, $is_card, WorkPage $workPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '3', '5'], true),
+            $is_card === '1' && in_array($section, ['1', '3', '5', '6'], true),
             404
         );
         

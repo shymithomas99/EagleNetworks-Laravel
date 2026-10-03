@@ -134,10 +134,9 @@ class FooterController extends Controller
             404
         );
 
-        if(!$is_link) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_link) {
+            $cardOrIntro = in_array($section, ['1', '3', '4', '8']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Link';
         }
 

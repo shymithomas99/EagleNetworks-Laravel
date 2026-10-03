@@ -17,6 +17,8 @@ class Package extends Model
         'title',
         'additional_title',
         'description',
+        'button_text',
+        'button_url',
         'button1_text',
         'button1_url',
         'button2_text',

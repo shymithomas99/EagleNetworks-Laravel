@@ -5,10 +5,10 @@
         <div class="card">
 
             <div class="card-header">
-                Video Projects
+                Video Cards
 
                 <a href="{{ route('admin.videos.create') }}" class="btn btn-success float-end">
-                    + Add Video
+                    + Add
                 </a>
 
                 <div class="mt-3">

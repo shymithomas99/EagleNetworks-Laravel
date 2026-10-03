@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('stat_value')->nullable();
             $table->string('stat_title')->nullable();
             $table->text('stat_description')->nullable();
+            $table->string('link_text')->nullable();
+            $table->string('link_url')->nullable();
+            $table->string('button_text')->nullable();
+            $table->string('button_url')->nullable();
             $table->string('button1_text')->nullable();
             $table->string('button1_url')->nullable();
             $table->string('button2_text')->nullable();

@@ -102,7 +102,7 @@ class ContactPageController extends Controller
             'button_url' => ['nullable', 'string'],
             'instagram' => ['nullable', 'string'],
             'linkedin' => ['nullable', 'string'],
-            'twitter' => ['nullable', 'string'],
+            'x' => ['nullable', 'string'],
             'tiktok' => ['nullable', 'string'],
             'youtube' => ['nullable', 'string'],
             'published' => ['nullable', 'boolean'],
@@ -138,10 +138,9 @@ class ContactPageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '5']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 

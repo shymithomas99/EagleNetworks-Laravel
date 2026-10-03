@@ -30,6 +30,8 @@ return new class extends Migration
             $table->text('cta_description')->nullable();
             $table->string('cta_button_text')->nullable();
             $table->string('cta_button_url')->nullable();
+            $table->string('button_text')->nullable();
+            $table->string('button_url')->nullable();
             $table->string('button1_text')->nullable();
             $table->string('button1_url')->nullable();
             $table->string('button2_text')->nullable();

@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            <button class="btn btn-success">Add Category</button>
+                            <button class="btn btn-success">Add</button>
                         </div>
                     </div>
                 </form>

@@ -7,6 +7,7 @@
     >
 @endpush
 @section('content')
+
     <section class="section-hero service-bnr">
 
         <div class="container-custom">
@@ -33,7 +34,6 @@
             </div>
         </div>
     </section>
-
 
 
     <section class="five-integrated-services section-lg ">
@@ -163,6 +163,8 @@
             </div>
         </div>
     </section>
+
+
     <!-- --------------------creative section starts here--------------------------- -->
     <section class="creative-overview-section">
         <div class="container-custom">
@@ -389,13 +391,10 @@
             </div>
         </div>
     </section>
-
     <!-- --------------------creative section ends here--------------------------- -->
 
-    <!-- =========================
-                                        IN HOUSE PROJECTS SECTION
-                                        ========================= -->
 
+    <!-- =========================IN HOUSE PROJECTS SECTION========================= -->
     <section class="inhouse-projects-section">
         <div class="container-custom">
 
@@ -503,9 +502,8 @@
 
         </div>
     </section>
-    <!-- =========================
-                                        IN HOUSE PROJECTS SECTION
-                                        ========================= -->
+    <!-- =========================IN HOUSE PROJECTS SECTION========================= -->
+
 
     <section class="how-we-deliver section-md">
         <div class="container-custom">
@@ -549,7 +547,8 @@
         </div>
     </section>
 
-    @if($works->count())
+
+    @if($workCards->count())
     <section id="service-wrk" class="featured-work grey-bg-4 section-md">
         <div class="container-custom d-flex flex-column">
             <div class="row">
@@ -564,24 +563,24 @@
             </div>
 
             <div class="row cmn-sec-padding g-5">
-                @foreach($works as $work)
+                @foreach($workCards as $card)
                 <div class="col-md-6">
                     <div class="work-card">
                         <div class="work-img-container">
                             @php
-                                $image = $work->coverImage ?: $work->featuredImage;
+                                $image = $card->coverImage ?: $card->featuredImage;
                             @endphp
                             @if ($image)
-                                <img src="{{ asset('backend_assets/work/cover-images/' . $work->coverImage) }}"
-                                    alt="{{ $work->cover_title ?? $work->title }}" class="img-fluid">
+                                <img src="{{ asset('backend_assets/work/cover-images/' . $card->coverImage) }}"
+                                    alt="{{ $card->cover_title ?? $card->title }}" class="img-fluid">
                             @else
-                                <img src="{{ asset('images/default-work.jpg') }}" alt="{{ $work->title }}"
+                                <img src="{{ asset('images/default-work.jpg') }}" alt="{{ $card->title }}"
                                     class="img-fluid">
                             @endif
                         </div>
-                        <h3>{{ $work->cover_title ?? $work->title }}</h3>
-                        <p>{{ $work->excerpt }}</p>
-                        <a href="{{ route('details', $work->slug) }}" class="button-link small-text mb-0">See More <i
+                        <h3>{{ $card->cover_title ?? $card->title }}</h3>
+                        <p>{{ $card->excerpt }}</p>
+                        <a href="{{ route('details', $card->slug) }}" class="button-link small-text mb-0">See More <i
                                 class="bi bi-arrow-right-short ms-1"></i></a>
                     </div>
                 </div>
@@ -591,6 +590,7 @@
         </div>
     </section>
     @endif
+
 
     <section class="highlight section">
         <div class="container-custom-2">
@@ -709,7 +709,6 @@
     </section>
 
 
-
     <section class="ready-to section-md">
         <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
             <h2 class="mb-3 text-white">Ready to Get Started?</h2>
@@ -734,8 +733,6 @@
 
 
     <!-- ============== Exit-intent popup ================ -->
-
-
     <div class="exit-intent-overlay" id="exitIntentOverlay">
         <div class="exit-intent-modal">
 

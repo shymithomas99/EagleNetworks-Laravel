@@ -45,7 +45,14 @@
 
                         @if($is_card || (!$is_card && in_array($section, [1, 2, 9, 10, 11])))
                         <div class="col-6 my-3">
-                            <label for="description">Description {{ $is_card && $section === '7' ? '(Enter each point on a new line)' : '' }} *</label><br>
+                            <label for="description">
+                                Description {{ !$is_card && $section === '2'
+                                    ? '(Enter each para on a new line)'
+                                    : ($is_card && $section === '7'
+                                        ? '(Enter each point on a new line)'
+                                        : '')
+                                }} *
+                            </label><br>
                             <textarea class="form-control" name="description" id="description" rows="3"
                                 placeholder="">{{ old('description', $londonPage->description ?? '') }}</textarea>
                             @error('description')
@@ -116,10 +123,10 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="description">Quote</label><br>
-                            <textarea class="form-control" name="description" id="description" rows="3"
-                                placeholder="">{{ old('description', $londonPage->description ?? '') }}</textarea>
-                            @error('description')
+                            <label for="quote">Quote</label><br>
+                            <textarea class="form-control" name="quote" id="quote" rows="3"
+                                placeholder="">{{ old('quote', $londonPage->quote ?? '') }}</textarea>
+                            @error('quote')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>
@@ -172,16 +179,7 @@
                                 <label class="form-check-label" for="published">Published</label>
                             </div>
                         </div>
-
-                        @if($is_card && $section === '2')
-                        <div class="col-3 my-3 d-flex align-items-end">
-                            <div>
-                                <input type="checkbox" class="form-check-input" id="featured" name="featured"
-                                    value="1" {{ old('featured', $londonPage->featured ?? false) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="featured">Featured</label>
-                            </div>
-                        </div>
-                        @endif
+                        
                     </div>
 
                     <div class="row">

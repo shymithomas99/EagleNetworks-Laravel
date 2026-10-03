@@ -1,6 +1,18 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container px-5 py-5">
+
+        {{-- Breadcrumb --}}
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"> <a href="{{ route('admin.dashboard') }}"> Dashboard </a> </li>
+                <li class="breadcrumb-item"> <a href="{{ route('admin.packages-page.index', [ 'section' => 3, 'is_card' => 1 ]) }}"> Package Cards </a> </li>
+                <li class="breadcrumb-item"> <a href="{{ route('admin.packages-page.show', [ 'section' => 3, 'is_card' => 1, 'packagesPage' => $packagesPage ]) }}"> View Package Card (Menu) </a> </li>
+                @if($is_card)<li class="breadcrumb-item"> <a href="{{ route('admin.packages.index', [ 'packagesPage' => $packagesPage, 'section' => $section, 'is_card' => $is_card ]) }}"> {{ $prevTitle ?? null }} </a> </li>@endif
+                <li class="breadcrumb-item active" aria-current="page"> {{ $title ?? null }}</li>
+            </ol>
+        </nav>
+
         <div class="card">
             <div class="card-header">
                 {{ $title ?? null }}
@@ -70,7 +82,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="linkedin">Linkedin</label>
+                            <label for="linkedin">LinkedIn</label>
                             <input type="text" class="form-control" id="linkedin" placeholder=""
                                 name="linkedin" value="{{ old('linkedin', $package->linkedin ?? '') }}">
                             @error('linkedin')
@@ -79,7 +91,27 @@
                         </div>
                         @endif
 
-                        @if(!$is_card && ($section === '1' || $section === '5'))
+                        @if(!$is_card && $section === '5')
+                        <div class="col-6 my-3">
+                            <label for="button_text">Button Text</label>
+                            <input type="text" class="form-control" id="button_text" placeholder=""
+                                name="button_text" value="{{ old('button_text', $package->button_text ?? '') }}">
+                            @error('button_text')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+                
+                        <div class="col-6 my-3">
+                            <label for="button_url">Button URL</label>
+                            <input type="text" class="form-control" id="button_url" placeholder=""
+                                name="button_url" value="{{ old('button_url', $package->button_url ?? '') }}">
+                            @error('button_url')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        @endif
+
+                        @if(!$is_card && $section === '1' )
                         <div class="col-6 my-3">
                             <label for="button1_text">Button 1 Text</label>
                             <input type="text" class="form-control" id="button1_text" placeholder=""
@@ -142,6 +174,8 @@
                             <button type="submit" class="btn btn-primary">{{ $package->id ? 'Update' : 'Save' }}</button>
                             @if($is_card)
                             <a class="btn btn-secondary" href="{{ route('admin.packages.index', ['packagesPage' => $packagesPage, 'section' => $section, 'is_card' => $is_card]) }}">Cancel</a>
+                            @else
+                            <a href="{{ route('admin.packages-page.show', ['section' => 3, 'is_card' => 1, 'packagesPage' => $packagesPage]) }}" class="btn btn-secondary">Cancel</a>
                             @endif
                         </div>
                     </div>

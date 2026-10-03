@@ -14,7 +14,7 @@
 
                         @if(!$is_card && $section === '11')
                         <div class="col-6 my-3">
-                            <label for="intro">Intro</label><br>
+                            <label for="intro">Intro Text</label><br>
                             <textarea class="form-control" name="intro" id="intro" rows="4"
                                 placeholder="">{{ old('intro', $accraPage->intro ?? '') }}</textarea>
                             @error('intro')
@@ -23,7 +23,7 @@
                         </div>
                         @endif
 
-                        @if(!$is_card && in_array($section, [1, 2, 3, 4, 5, 6, 7, 10, 11]))
+                        @if(!$is_card && in_array($section, [1, 2, 3, 4, 5, 6, 10, 11]))
                         <div class="col-6 my-3">
                             <label for="label">Label *</label>
                             <input type="text" class="form-control" id="label" placeholder=""
@@ -43,9 +43,9 @@
                             @enderror
                         </div>
 
-                        @if($is_card || (!$is_card && in_array($section, [1, 2, 9, 10, 11])))
+                        @if($is_card || (!$is_card && in_array($section, [1, 2, 8, 10, 11])))
                         <div class="col-6 my-3">
-                            <label for="description">Description {{ $is_card && $section === '7' ? '(Enter each point on a new line)' : '' }} *</label><br>
+                            <label for="description">Description {{ !$is_card && $section === '2' ? '(Enter each para on a new line)' : '' }} *</label><br>
                             <textarea class="form-control" name="description" id="description" rows="3"
                                 placeholder="">{{ old('description', $accraPage->description ?? '') }}</textarea>
                             @error('description')
@@ -54,7 +54,7 @@
                         </div>
                         @endif
 
-                        @if(!$is_card && ($section === '1' || $section === '9'))
+                        @if(!$is_card && ($section === '1' || $section === '8'))
                         <div class="col-6 my-3">
                             <label for="additional_description">Additional Description</label><br>
                             <textarea class="form-control" name="additional_description" id="additional_description" rows="3"
@@ -105,7 +105,7 @@
                         </div>
                         @endif
 
-                        @if(!$is_card && $section === '9')
+                        @if(!$is_card && $section === '8')
                         <div class="col-6 my-3">
                             <label for="key_points">Key Points (Enter each point on a new line)</label><br>
                             <textarea class="form-control" name="key_points" id="key_points" rows="4"
@@ -116,10 +116,10 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="description">Quote</label><br>
-                            <textarea class="form-control" name="description" id="description" rows="3"
-                                placeholder="">{{ old('description', $accraPage->description ?? '') }}</textarea>
-                            @error('description')
+                            <label for="quote">Quote</label><br>
+                            <textarea class="form-control" name="quote" id="quote" rows="3"
+                                placeholder="">{{ old('quote', $accraPage->quote ?? '') }}</textarea>
+                            @error('quote')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>
@@ -134,7 +134,7 @@
                         </div>
                         @endif  
 
-                        @if(!$is_card && ($section === '1' || $section === '9'))
+                        @if(!$is_card && ($section === '1' || $section === '11'))
                         <div class="col-6 my-3">
                             <label for="button_text">Button Text</label>
                             <input type="text" class="form-control" id="button_text" placeholder=""
@@ -173,15 +173,6 @@
                             </div>
                         </div>
 
-                        @if($is_card && $section === '2')
-                        <div class="col-3 my-3 d-flex align-items-end">
-                            <div>
-                                <input type="checkbox" class="form-check-input" id="featured" name="featured"
-                                    value="1" {{ old('featured', $accraPage->featured ?? false) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="featured">Featured</label>
-                            </div>
-                        </div>
-                        @endif
                     </div>
 
                     <div class="row">

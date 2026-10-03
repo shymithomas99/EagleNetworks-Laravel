@@ -13,7 +13,7 @@ class LondonPageController extends Controller
         return match ((int) $section) {
                         1 => 'Banner',
                         2 => 'Strategic Hub',
-                        3 => 'Numbers',
+                        3 => 'Number',
                         4 => 'Built For',
                         5 => 'What We Do',
                         6 => 'We Serve',
@@ -102,6 +102,7 @@ class LondonPageController extends Controller
             'key_points' => ['nullable', 'string'],
             'quote' => ['nullable', 'string'],
             'quote_author' => ['nullable', 'string'],
+            'intro' => ['nullable', 'string'],
             'button_text' => ['nullable', 'string'],
             'button_url' => ['nullable', 'url'],
             'published' => ['nullable', 'boolean'],
@@ -137,10 +138,9 @@ class LondonPageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '2', '9', '11']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
@@ -176,6 +176,7 @@ class LondonPageController extends Controller
             'key_points' => ['nullable', 'string'],
             'quote' => ['nullable', 'string'],
             'quote_author' => ['nullable', 'string'],
+            'intro' => ['nullable', 'string'],
             'button_text' => ['nullable', 'string'],
             'button_url' => ['nullable', 'url'],
             'published' => ['nullable', 'boolean'],

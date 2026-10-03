@@ -25,6 +25,8 @@ class AccraPage extends Model
         'primary_focus',
         'key_offerings',
         'key_points',
+        'quote',
+        'quote_author',
         'button_text',
         'button_url',
         'published',

@@ -6,7 +6,7 @@
                 {{ $title ?? null }}
 
                 <a href="{{ route('admin.work-category.create') }}" class="btn btn-success float-end">
-                    + Add Category
+                    + Add
                 </a>
 
                 <div class="mt-3">

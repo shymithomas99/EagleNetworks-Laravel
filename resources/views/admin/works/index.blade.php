@@ -6,7 +6,7 @@
                 {{ $title ?? null }}
 
                 <a href="{{ route('admin.works.create') }}" class="btn btn-success float-end">
-                    + Add Work
+                    + Add
                 </a>
 
                 <div class="mt-3">

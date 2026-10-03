@@ -177,7 +177,27 @@
                             @endif
                         @endif
 
-                        @if(!$is_card && in_array($section, [1, 2, 6, 10]))
+                        @if(!$is_card && $section === '2')
+                        <div class="col-6 my-3">
+                            <label for="button_text">Button Text</label>
+                            <input type="text" class="form-control" id="button_text" placeholder=""
+                                name="button_text" value="{{ old('button_text', $homePage->button_text ?? '') }}">
+                            @error('button_text')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+                
+                        <div class="col-6 my-3">
+                            <label for="button_url">Button URL</label>
+                            <input type="text" class="form-control" id="button_url" placeholder=""
+                                name="button_url" value="{{ old('button_url', $homePage->button_url ?? '') }}">
+                            @error('button_url')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        @endif
+
+                        @if(!$is_card && in_array($section, [1, 10]))
                         <div class="col-6 my-3">
                             <label for="button1_text">Button 1 Text</label>
                             <input type="text" class="form-control" id="button1_text" placeholder=""

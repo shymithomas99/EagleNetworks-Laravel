@@ -1,6 +1,17 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container px-5 py-5">
+
+        {{-- Breadcrumb --}}
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"> <a href="{{ route('admin.dashboard') }}"> Dashboard </a> </li>
+                <li class="breadcrumb-item"> <a href="{{ route('admin.packages-page.index', [ 'section' => 3, 'is_card' => 1 ]) }}"> Package Cards </a> </li>
+                <li class="breadcrumb-item"> <a href="{{ route('admin.packages-page.show', [ 'section' => 3, 'is_card' => 1, 'packagesPage' => $packagesPage ]) }}"> View Package Card (Menu) </a> </li>
+                <li class="breadcrumb-item active" aria-current="page"> {{ $title ?? null }}</li>
+            </ol>
+        </nav>
+
         <div class="card">
             <div class="card-header">
                 {{ $title ?? null }}

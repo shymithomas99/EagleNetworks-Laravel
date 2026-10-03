@@ -5,7 +5,7 @@
         <div class="card">
 
             <div class="card-header">
-                Edit Video
+                Edit Video Card
             </div>
 
             <div class="card-body">

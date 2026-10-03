@@ -110,7 +110,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="address">Address *</label><br>
+                            <label for="address">Address (Enter each address line on a new line) *</label><br>
                             <textarea class="form-control" name="address" id="address" rows="3"
                                 placeholder="">{{ old('address', $contactPage->address ?? '') }}</textarea>
                             @error('address')
@@ -158,10 +158,10 @@
 
                         @if(!$is_card && $section === '5')
                         <div class="col-6 my-3">
-                            <label for="link_url">Instagram</label>
-                            <input type="text" class="form-control" id="link_url" placeholder=""
-                                name="link_url" value="{{ old('link_url', $contactPage->link_url ?? '') }}">
-                            @error('link_url')
+                            <label for="instagram">Instagram</label>
+                            <input type="text" class="form-control" id="instagram" placeholder=""
+                                name="instagram" value="{{ old('instagram', $contactPage->instagram ?? '') }}">
+                            @error('instagram')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>

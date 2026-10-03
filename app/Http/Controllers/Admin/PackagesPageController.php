@@ -168,10 +168,9 @@ class PackagesPageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '4', '7']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 

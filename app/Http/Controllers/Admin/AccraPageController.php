@@ -13,13 +13,13 @@ class AccraPageController extends Controller
         return match ((int) $section) {
                         1 => 'Banner',
                         2 => 'Strategic Hub',
-                        3 => 'Numbers',
+                        3 => 'Number',
                         4 => 'Built For',
                         5 => 'What We Do',
                         6 => 'We Serve',
-                        7 => 'Services Delivered',
-                        8 => 'Why Choose Us',
-                        9 => 'Integrated Organization',
+                        7 => 'Why Choose Us',
+                        8 => 'Integrated Organization',
+                        9 => 'How We Deliver',
                         10 => 'FAQ',
                         11 => 'CTA Banner (Bottom)'
                     };
@@ -31,7 +31,7 @@ class AccraPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '2', '9', '11'], true),
+            in_array($section, ['1', '2', '8', '11'], true),
             404
         );
         $title = $this->getTitle($section) . ' Cards';
@@ -64,7 +64,7 @@ class AccraPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '2', '9', '11'], true),
+            in_array($section, ['1', '2', '8', '11'], true),
             404
         );
         $title = 'Add ' . $this->getTitle($section) . ' Card';
@@ -86,14 +86,14 @@ class AccraPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '2', '9', '11'], true),
+            in_array($section, ['1', '2', '8', '11'], true),
             404
         );
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'label' => [!$is_card && in_array($section, [1, 2, 3, 4, 5, 6, 7, 10, 11]) ? 'required' : 'nullable', 'string', 'max:255'],
-            'description' => [!$is_card && in_array($section, [3, 4, 5, 6, 7, 8]) ? 'nullable' : 'required', 'string'],
+            'label' => [!$is_card && in_array($section, [1, 2, 3, 4, 5, 6, 10, 11]) ? 'required' : 'nullable', 'string', 'max:255'],
+            'description' => [!$is_card && in_array($section, [3, 4, 5, 6, 7, 9]) ? 'nullable' : 'required', 'string'],
             'additional_description' => ['nullable', 'string'],
             'location' => ['nullable', 'string'],
             'serving' => ['nullable', 'string'],
@@ -102,6 +102,7 @@ class AccraPageController extends Controller
             'key_points' => ['nullable', 'string'],
             'quote' => ['nullable', 'string'],
             'quote_author' => ['nullable', 'string'],
+            'intro' => ['nullable', 'string'],
             'button_text' => ['nullable', 'string'],
             'button_url' => ['nullable', 'url'],
             'published' => ['nullable', 'boolean'],
@@ -133,14 +134,13 @@ class AccraPageController extends Controller
     public function edit($section, $is_card, AccraPage $accraPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '2', '9', '11'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '8', '11'], true),
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '2', '8', '11']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
@@ -160,14 +160,14 @@ class AccraPageController extends Controller
     public function update(Request $request, $section, $is_card, AccraPage $accraPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '2', '9', '11'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '8', '11'], true),
             404
         );
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'label' => [!$is_card && in_array($section, [1, 2, 3, 4, 5, 6, 7, 10, 11]) ? 'required' : 'nullable', 'string', 'max:255'],
-            'description' => [!$is_card && in_array($section, [3, 4, 5, 6, 7, 8]) ? 'nullable' : 'required', 'string'],
+            'label' => [!$is_card && in_array($section, [1, 2, 3, 4, 5, 6, 10, 11]) ? 'required' : 'nullable', 'string', 'max:255'],
+            'description' => [!$is_card && in_array($section, [3, 4, 5, 6, 7, 9]) ? 'nullable' : 'required', 'string'],
             'additional_description' => ['nullable', 'string'],
             'location' => ['nullable', 'string'],
             'serving' => ['nullable', 'string'],
@@ -176,6 +176,7 @@ class AccraPageController extends Controller
             'key_points' => ['nullable', 'string'],
             'quote' => ['nullable', 'string'],
             'quote_author' => ['nullable', 'string'],
+            'intro' => ['nullable', 'string'],
             'button_text' => ['nullable', 'string'],
             'button_url' => ['nullable', 'url'],
             'published' => ['nullable', 'boolean'],
@@ -207,7 +208,7 @@ class AccraPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '2', '9', '11'], true),
+            in_array($section, ['1', '2', '8', '11'], true),
             404
         );
 
@@ -221,7 +222,7 @@ class AccraPageController extends Controller
     public function togglePublish($section, $is_card, AccraPage $accraPage)
     {
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '2', '9', '11'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '8', '11'], true),
             404
         );
         

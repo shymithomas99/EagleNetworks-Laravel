@@ -30,6 +30,8 @@ class HomePage extends Model
         'cta_description',
         'cta_button_text',
         'cta_button_url',
+        'button_text',
+        'button_url',
         'button1_text',
         'button1_url',
         'button2_text',

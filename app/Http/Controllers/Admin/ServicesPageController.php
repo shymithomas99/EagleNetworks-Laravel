@@ -111,6 +111,8 @@ class ServicesPageController extends Controller
             'description' => ['required', 'string'],
             'short_description' => ['nullable', 'string'],
             'image' => $imageRules,
+            'button_text' => ['nullable'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable'],
@@ -170,10 +172,9 @@ class ServicesPageController extends Controller
             404
         );
 
-        if(!$is_card) {
-            $cardOrIntro = 'Intro';
-        }
-        else {
+        if (!$is_card) {
+            $cardOrIntro = in_array($section, ['1', '7', '9']) ? '' : 'Intro';
+        } else {
             $cardOrIntro = 'Card';
         }
 
@@ -220,6 +221,8 @@ class ServicesPageController extends Controller
             'description' => ['required', 'string'],
             'short_description' => ['nullable', 'string'],
             'image' => $imageRules,
+            'button_text' => ['nullable'],
+            'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable'],
             'button1_url' => ['nullable', 'url'],
             'button2_text' => ['nullable'],
