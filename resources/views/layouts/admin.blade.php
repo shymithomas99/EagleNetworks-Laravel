@@ -170,6 +170,29 @@
         .accordion-custom.sub-accordion {
             padding: 10px 12px;
         }
+
+        .sidebar-custom-link {
+            display: block;
+            color: #fff !important;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none !important;
+            background: #202123;
+        }
+
+        .sidebar-custom-link:hover {
+            background: #343a40;
+            color: #fff !important;
+        }
+
+        .sidebar-custom-link.active {
+            background: #f97316 !important;
+            color: #fff !important;
+        }
+
+        .sidebar-custom-link i {
+            color: #fff !important;
+        }
     </style>
 </head>
 
