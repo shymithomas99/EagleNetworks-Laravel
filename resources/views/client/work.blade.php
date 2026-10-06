@@ -7,288 +7,299 @@
     >
 @endpush
 @section('content')
-    <section class="section-hero home-banner ">
 
-        <div class="container-custom">
+    @if($banner || $workCategories->isNotEmpty())
+        <section class="section-hero home-banner ">
+            <div class="container-custom">
 
-            <div class="section-hero-sub">
-                <div>
+                <div class="section-hero-sub">
                     <div>
-                        <div class="x-small-text text-orange fw-medium text-uppercase mb-4">Eagle London & Accra</div>
-                        <h1>Our Work</h1>
-                        <div class="subhead mb-5">A portfolio of projects across strategy, creative, and digital delivery
-                            from London and Accra to global markets.</div>
+                        <div>
+                            @if($banner?->label)
+                                <div class="x-small-text text-orange fw-medium text-uppercase mb-4">
+                                    {{ $banner->label }}
+                                </div>
+                            @endif
+                            @if($banner?->title)
+                                <h1>{{ $banner->title }}</h1>
+                            @endif
 
-                        @if($workCategories->isNotEmpty())
-                            <div class="pill-group">
-                                @foreach($workCategories as $category)
-                                    <span class="badge-custom badge-transperant-orange">
-                                        {{ $category->name }}
-                                    </span>
-                                @endforeach
+                            @if($banner?->description)
+                                <div class="subhead mb-5">
+                                    {!! nl2br(e($banner->description)) !!}
+                                </div>
+                            @endif
+
+                            @if($workCategories->isNotEmpty())
+                                <div class="pill-group">
+                                    @foreach($workCategories as $category)
+                                        <span class="badge-custom badge-transperant-orange">
+                                            {{ $category->name }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
+    @if($processIntro || $processCards->isNotEmpty())
+        <section class="work-deliver section">
+            <div class="container-custom">
+                @if($processIntro)
+                    @if($processIntro->title)
+                        <h2 class="element-2">
+                            {{ $processIntro->title }}
+                        </h2>
+                    @endif
+
+                    @if($processIntro->description)
+                        <div class="subhead">
+                            {!! nl2br(e($processIntro->description)) !!}
+                        </div>
+                    @endif
+                @endif
+
+                @if($processCards->isNotEmpty())
+                    <div class="row g-4">
+                        @foreach($processCards as $card)
+                            <div class="col-md-6 col-lg-3">
+                                <div class="value-card">
+                                    <div class="x-small-text text-orange fw-bold text-uppercase mb-2">
+                                        {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
+                                    </div>
+
+                                    @if($card->title)
+                                        <div class="fw-bold mb-2">
+                                            {{ $card->title }}
+                                        </div>
+                                    @endif
+
+                                    @if($card->description)
+                                        <p class="small-text text-muted mb-0">
+                                            {!! nl2br(e($card->description)) !!}
+                                        </p>
+                                    @endif
+                                </div>
                             </div>
-                        @endif
-
+                        @endforeach
                     </div>
-
-                </div>
+                @endif
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
-    <section class="work-deliver section">
-        <div class="container-custom">
-            <h2 class="element-2">How We Deliver</h2>
-            <div class="subhead">
-                Our process is built around clarity, execution, and measurable outcomes.
+
+    @if($workIntro || $workCards->isNotEmpty())
+        <section class="selected-work section">
+            <div class="container-custom">
+                @if($workIntro)
+                    @if($workIntro->title)
+                        <h2 class="element-2">
+                            {{ $workIntro->title }}
+                        </h2>
+                    @endif
+
+                    @if($workIntro->description)
+                        <div class="subhead">
+                            {!! nl2br(e($workIntro->description)) !!}
+                        </div>
+                    @endif
+                @endif
+
+                @if($workCards->isNotEmpty())
+                    <div class="row mt-5 g-6">
+                        @foreach($workCards as $card)
+                            <div class="col-md-6">
+                                <a href="{{ route('details', $card->slug) }}" class="card-type2 text-decoration-none">
+                                    <div class="card-type2-img-container green-border-bottom">
+                                        @php
+                                            $image = $card->coverImage ?: $card->featuredImage;
+                                        @endphp
+                                        @if ($image)
+                                            <img src="{{ asset('backend_assets/works/cover-images/' . $card->coverImage) }}"
+                                                alt="{{ $card->cover_title ?? $card->title }}" class="img-fluid">
+                                        @else
+                                            <img src="{{ asset('images/default-work.jpg') }}" alt="{{ $card->title }}"
+                                                class="img-fluid">
+                                        @endif
+                                    </div>
+
+                                    <div class="card-type2-content">
+                                        <span class="tag">
+                                            {{--  {{ $card->industry }}  --}}
+                                            {{ $card->category->name ?? 'Uncategorized' }}
+                                        </span>
+                                        <h3>
+                                            {{ $card->cover_title ?? $card->title }}
+                                        </h3>
+                                        <p>
+                                            {{ $card->excerpt }}
+                                        </p>
+                                        <span class="button-link">
+                                            See Case Study
+                                            <i class="bi bi-arrow-right ms-2"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
+        </section>
+    @endif
 
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="value-card">
-                        <div class="x-small-text text-orange fw-bold text-uppercase mb-2">01</div>
-                        <div class="fw-bold mb-2">Conversation</div>
-                        <p class="small-text text-muted mb-0">We start by understanding your goals, constraints, and
-                            opportunities.</p>
-                    </div>
-                </div>
+    @if($projectIntro || $projectCards->isNotEmpty())
+        <section class="work-in-house section">
+            <div class="container-custom">
+                @if($projectIntro)
+                    <h2 class="element-2 text-white">{{ $projectIntro->title }}</h2>
+                    @if($projectIntro->description)
+                        <div class="subhead">
+                            {!! nl2br(e($projectIntro->description)) !!}
+                        </div>
+                    @endif
+                @endif
 
-                <div class="col-md-6 col-lg-3">
-                    <div class="value-card">
-                        <div class="x-small-text text-orange fw-bold text-uppercase mb-2">02</div>
-                        <div class="fw-bold mb-2">Define</div>
-                        <p class="small-text text-muted mb-0">We shape a clear strategy and direction tailored to your
-                            market.</p>
-                    </div>
-                </div>
+                @if($projectCards->isNotEmpty())
+                    <div class="row mt-5 g-6">
+                        @foreach($projectCards as $card)
+                            <div class="col-md-4">
+                                @if($card->link_url)
+                                    <a href="{{ $card->link_url }}"
+                                        class="card-type2 text-decoration-none"
+                                        @if(parse_url($card->link_url, PHP_URL_HOST) !== parse_url(config('app.url'), PHP_URL_HOST))
+                                            target="_blank"
+                                            rel="noopener"
+                                        @endif>
+                                @endif
 
-                <div class="col-md-6 col-lg-3">
-                    <div class="value-card">
-                        <div class="x-small-text text-orange fw-bold text-uppercase mb-2">03</div>
-                        <div class="fw-bold mb-2">Build</div>
-                        <p class="small-text text-muted mb-0">We execute with focus across design, technology, and delivery.
-                        </p>
-                    </div>
-                </div>
+                                    @if($card->image)
+                                        <div class="card-type2-img-container">
+                                            <img
+                                                src="{{ asset('backend_assets/work-page/' . $card->image) }}"
+                                                alt="{{ $card->title }}"
+                                            >
+                                        </div>
+                                    @endif
 
-                <div class="col-md-6 col-lg-3">
-                    <div class="value-card">
-                        <div class="x-small-text text-orange fw-bold text-uppercase mb-2">04</div>
-                        <div class="fw-bold mb-2">Scale</div>
-                        <p class="small-text text-muted mb-0">We refine and expand what works, driving sustained growth.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                                    <div class="card-type2-content">
+                                        @if($card->label)
+                                            <span class="tag">
+                                                {{ $card->label }}
+                                            </span>
+                                        @endif
 
-    <section class="selected-work section">
-        <div class="container-custom">
-            <h2 class="element-2">Selected Work</h2>
-            <div class="subhead">
-                A snapshot of flagship projects — each one a real business challenge
-                solved through strategy, creativity, and execution.
-            </div>
-            <div class="row mt-5 g-6">
-                @forelse($works as $work)
-                    <div class="col-md-6">
-                        <a href="{{ route('details', $work->slug) }}" class="card-type2 text-decoration-none">
-                            <div class="card-type2-img-container green-border-bottom">
-                                @php
-                                    $image = $work->coverImage ?: $work->featuredImage;
-                                @endphp
-                                @if ($image)
-                                    <img src="{{ asset('backend_assets/work/cover-images/' . $work->coverImage) }}"
-                                        alt="{{ $work->cover_title ?? $work->title }}" class="img-fluid">
-                                @else
-                                    <img src="{{ asset('images/default-work.jpg') }}" alt="{{ $work->title }}"
-                                        class="img-fluid">
+                                        @if($card->title)
+                                            <h3>
+                                                {{ $card->title }}
+                                            </h3>
+                                        @endif
+
+                                        @if($card->description)
+                                            <p>
+                                                {!! nl2br(e($card->description)) !!}
+                                            </p>
+                                        @endif
+
+                                        @if($card->link_text)
+                                            <span class="button-link">
+                                                {{ $card->link_text }}
+                                                <i class="bi bi-arrow-right ms-2"></i>
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                @if($card->link_url)
+                                    </a>
                                 @endif
                             </div>
+                        @endforeach
 
-                            <div class="card-type2-content">
-                                <span class="tag">
-                                    {{--  {{ $work->industry }}  --}}
-                                    {{ $work->category->name ?? 'Uncategorized' }}
-                                </span>
-                                <h3>
-                                    {{ $work->cover_title ?? $work->title }}
-                                </h3>
-                                <p>
-                                    {{ $work->excerpt }}
-                                </p>
-                                <span class="button-link">
-                                    See Case Study
-                                    <i class="bi bi-arrow-right ms-2"></i>
-                                </span>
-                            </div>
-                        </a>
                     </div>
-                @empty
-                    <div class="col-12">
-                        <div class="text-center py-5">
-                            <h3>No work available.</h3>
-                        </div>
-                    </div>
-                @endforelse
+                @endif
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
-    <section class="work-in-house section">
-        <div class="container-custom">
-            <h2 class="element-2 text-white">In-House Projects</h2>
-            <div class="subhead">
-                Eagle-owned initiatives built and run by our team — from media production to branded content ventures.
-            </div>
+    @if($videoIntro || $videoCards->isNotEmpty())
+        <section class="work-media section">
+            <div class="container-custom">
+                @if($videoIntro)
+                    @if($videoIntro->title)
+                        <h2 class="element-2">
+                            {{ $videoIntro->title }}
+                        </h2>
+                    @endif
 
-            <div class="row mt-5 g-6">
-                <div class="col-md-4">
-                    <a href="/media" class="card-type2 text-decoration-none">
-
-                        <div class="card-type2-img-container">
-                            <img src="images/emh-card-new_04f100bd_cf627976.webp" alt="Eagle Media House">
+                    @if($videoIntro->description)
+                        <div class="subhead">
+                            {!! nl2br(e($videoIntro->description)) !!}
                         </div>
+                    @endif
+                @endif
 
-                        <div class="card-type2-content">
-                            <span class="tag">In-House</span>
+                @if($videoCards->isNotEmpty())
+                    <div class="row g-4 portfolio-grid mt-4">
 
-                            <h3>Eagle Media House</h3>
+                        @foreach ($videoCards as $card)
+                            <div class="col-lg-3 col-md-6">
 
-                            <p>
-                                A branded media initiative focused on content creation, production capability and
-                                high-quality visual storytelling — films, TV ads, and documentaries.
-                            </p>
+                                <div class="portfolio-card" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                                    data-title="{{ $card->title }}" data-video="{{ $card->video_url }}">
 
-                            <span class="button-link">
-                                View Productions
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
+                                    <div class="portfolio-image">
 
-                    </a>
-                </div>
+                                        <img src="{{ asset($card->thumbnail_url) }}" alt="{{ $card->title }}">
 
-                <div class="col-md-4">
-                    <a href="https://shoutabouttone.com/" target="_blank" class="card-type2 text-decoration-none">
+                                        <div class="play-btn">
+                                            <i class="bi bi-play-fill"></i>
+                                        </div>
 
-                        <div class="card-type2-img-container">
-                            <img src="images/tone-new_9df01429_a12de706.webp" alt="Tone Project">
-                        </div>
+                                    </div>
 
-                        <div class="card-type2-content">
-                            <span class="tag">In-House</span>
+                                    <div class="portfolio-content">
 
-                            <h3>Tone</h3>
+                                        <span class="portfolio-tag">
+                                            {{ $card->category->name ?? '' }}
+                                        </span>
 
-                            <p>
-                                A media and content platform developed to spotlight stories, perspectives and brand-aligned
-                                editorial content.
-                            </p>
+                                        <h6>{{ $card->title }}</h6>
 
-                            <span class="button-link">
-                                Read More
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
+                                    </div>
 
-                    </a>
-                </div>
-
-                <div class="col-md-4">
-                    <a href="https://www.youtube.com/playlist?list=PLdffCfwJzONULB90pJgxWd7X_f3ceZvsC" target="_blank"
-                        class="card-type2 text-decoration-none">
-
-                        <div class="card-type2-img-container">
-                            <img src="images/eagle-conv-card_4aa7dfad_b29ffb1d.webp" alt="Eagle Conversations">
-                        </div>
-
-                        <div class="card-type2-content">
-                            <span class="tag">In-House</span>
-
-                            <h3>Eagle Conversations</h3>
-
-                            <p>
-                                A conversation-led content format designed to share ideas, insight and audience-relevant
-                                discussions.
-                            </p>
-
-                            <span class="button-link">
-                                Be Part of the Conversation
-                                <i class="bi bi-arrow-right ms-2"></i>
-                            </span>
-                        </div>
-
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-    <section class="work-media section">
-        <div class="container-custom">
-
-            <h2 class="element-2">Films, Commercials & Video Campaigns</h2>
-
-            <div class="subhead">
-                A selection of productions from Eagle Media House — TV ads, films, and documentaries.
-            </div>
-
-            <div class="row g-4 portfolio-grid mt-4">
-
-                @foreach ($videos as $video)
-                    <div class="col-lg-3 col-md-6">
-
-                        <div class="portfolio-card" data-bs-toggle="modal" data-bs-target="#portfolioModal"
-                            data-title="{{ $video->title }}" data-video="{{ $video->video_url }}">
-
-                            <div class="portfolio-image">
-
-                                <img src="{{ asset($video->thumbnail_url) }}" alt="{{ $video->title }}">
-
-                                <div class="play-btn">
-                                    <i class="bi bi-play-fill"></i>
                                 </div>
 
                             </div>
-
-                            <div class="portfolio-content">
-
-                                <span class="portfolio-tag">
-                                    {{ $video->category->name ?? '' }}
-                                </span>
-
-                                <h6>{{ $video->title }}</h6>
-
-                            </div>
-
-                        </div>
+                        @endforeach
 
                     </div>
-                @endforeach
+
+                    <div class="d-flex flex-column align-items-center mt-5">
+
+                        <a href="{{ url('/media') }}" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
+                            View All Productions
+                            <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+
+                        <p class="count-note x-small-text fw-normal text-center mt-3">
+                            <span>{{ $videoCount }}</span>
+                            productions in total — films, TV ads & documentaries
+                        </p>
+
+                    </div>
+                @endif
 
             </div>
-
-            <div class="d-flex flex-column align-items-center mt-5">
-
-                <a href="{{ url('/media') }}" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
-                    View All Productions
-                    <i class="bi bi-arrow-right ms-2"></i>
-                </a>
-
-                <p class="count-note x-small-text fw-normal text-center mt-3">
-                    <span>{{ $videoCount }}</span>
-                    productions in total — films, TV ads & documentaries
-                </p>
-
-            </div>
-
-        </div>
-    </section>
+        </section>
+    @endif
 
     <!-- Modal -->
     <div class="modal fade portfolio-modal" id="portfolioModal" tabindex="-1" aria-hidden="true">
@@ -384,78 +395,123 @@
     </script>
 
 
+    @if($ctaBannerBottom)
+        <section class="ready-to section">
+            <div class="container-custom">
+                <div class="inner-cta-box text-center text-white position-relative z-1">
+                    <h2 class="display-5 fw-bold mb-3">{{ $ctaBannerBottom->title }}</h2>
+                    @if($ctaBannerBottom->description)
+                        <div class="subhead mb-5">
+                            {{ $ctaBannerBottom->description }}
+                        </div>
+                    @endif
+
+                    @if($ctaBannerBottom->email || $ctaBannerBottom->website || $ctaBannerBottom->linkedin)
+                        <div class="row g-4 justify-content-center mb-5">
+                            @if($ctaBannerBottom->email)
+                                <div class="col-md-4">
+                                    <a href="mailto:{{ $ctaBannerBottom->email }}">
+                                        <div class="icon-circle mx-auto mb-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-mail text-[#F15A24]">
+                                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                            </svg>
+                                        </div>
+
+                                        <span class="cta-link">
+                                            {{ $ctaBannerBottom->email }}
+                                        </span>
+                                    </a>
+                                </div>
+                            @endif
 
 
+                            {{-- Website --}}
+                            @if($ctaBannerBottom->website)
+                                <div class="col-md-4">
+                                    <a href="{{ $ctaBannerBottom->website }}"
+                                        target="_blank"
+                                        rel="noopener">
+                                        <div class="icon-circle mx-auto mb-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-globe text-[#F15A24]">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                        </div>
 
-    <section class="ready-to section">
-        <div class="container-custom">
-            <div class="inner-cta-box text-center text-white position-relative z-1">
-                <h2 class="display-5 fw-bold mb-3">Have a Project in Mind?</h2>
-                <div class="subhead mb-5">Tell us what you're working on and we'll show you how we can help.</div>
+                                        <span class="cta-link">
+                                            {{ $ctaBannerBottom->website }}
+                                        </span>
+                                    </a>
+                                </div>
+                            @endif
 
-                <div class="row g-4 justify-content-center mb-5">
-                    <div class="col-md-4">
-                        <a href="mailto:eaglenetworks@theemhglobal.com" target="_blank">
-                            <div class="icon-circle mx-auto mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-mail text-[#F15A24]"
-                                    data-loc="client/src/components/CTASection.tsx:37">
-                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                </svg>
-                            </div>
-                            <span class="cta-link">eaglenetworks@theemhglobal.com</span>
+
+                            {{-- LinkedIn --}}
+                            @if($ctaBannerBottom->linkedin)
+                                <div class="col-md-4">
+                                    <a href="{{ $ctaBannerBottom->linkedin }}"
+                                        target="_blank"
+                                        rel="noopener">
+                                        <div class="icon-circle mx-auto mb-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-linkedin text-[#F15A24]">
+                                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                                <rect width="4" height="12" x="2" y="9"></rect>
+                                                <circle cx="4" cy="4" r="2"></circle>
+                                            </svg>
+                                        </div>
+
+                                        <span class="cta-link">
+                                            {{ $ctaBannerBottom->linkedin }}
+                                        </span>
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                    <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
+                                                                                                    <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
+                                                                                                    <div class="loc-divider d-none d-md-block"></div>
+                                                                                                    <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
+                                                                                                </div> -->
+            
+                    @if($ctaBannerBottom->button_text)
+                        <a href="{{ $ctaBannerBottom->button_url ?? '' }}" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
+                            {{ $ctaBannerBottom->button_text }} <i class="bi bi-arrow-right ms-2"></i>
                         </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://www.eagletheagency.com" target="_blank">
-                            <div class="icon-circle mx-auto mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-globe text-[#F15A24]"
-                                    data-loc="client/src/components/CTASection.tsx:50">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                                    <path d="M2 12h20"></path>
-                                </svg>
-                            </div>
-                            <span class="cta-link">www.eagletheagency.com</span>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://www.linkedin.com/company/eagletheagency" target="_blank">
-                            <div class="icon-circle mx-auto mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-linkedin text-[#F15A24]"
-                                    data-loc="client/src/components/CTASection.tsx:63">
-                                    <path
-                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                    </path>
-                                    <rect width="4" height="12" x="2" y="9"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                            </div>
-                            <span class="cta-link">linkedin.com/eagletheagency</span>
-                        </a>
-                    </div>
+                    @endif
+
                 </div>
-
-                <!-- <div class="d-flex justify-content-center align-items-center gap-3 mb-5 flex-wrap">
-                                                                                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>london</a>
-                                                                                                <div class="loc-divider d-none d-md-block"></div>
-                                                                                                <a href="#" class="commn-btn loc-badge text-white"><span class="text-orange">eagle</span>accra</a>
-                                                                                            </div> -->
-
-                <a href="/contact" class="commn-btn btn-primary-custom mb-3 mb-sm-0">
-                    Start a Conversation <i class="bi bi-arrow-right ms-2"></i>
-                </a>
-
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
 @endsection

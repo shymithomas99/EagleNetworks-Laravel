@@ -414,7 +414,7 @@
                                 @php
                                     $faqId = 'faq' . $faq->id;
                                 @endphp
-                                <div class="accordion-item mb-3">
+                                <div class="accordion-item {{ $loop->last ? '' : 'mb-3'  }}">
                                     <h2 class="accordion-header" id="heading{{ $faqId }}">
                                         <button
                                             class="accordion-button collapsed"

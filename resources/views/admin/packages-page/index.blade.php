@@ -47,7 +47,7 @@
                                     </form>
                                     @if($is_card && $section === '3')
                                     <a class="btn btn-dark" href="{{ route('admin.packages-page.show', ['section' => $section, 'is_card' => $is_card, 'packagesPage' => $item]) }}">
-                                        View
+                                        Learn More
                                     </a>
                                     @endif
                                     <a class="btn btn-info" href="{{ route('admin.packages-page.edit', ['section' => $section, 'is_card' => $is_card, 'packagesPage' => $item]) }}">

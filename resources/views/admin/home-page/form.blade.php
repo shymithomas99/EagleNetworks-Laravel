@@ -23,13 +23,16 @@
                         </div>
                         @endif
 
-                        @if($is_card && in_array($section, [3, 5]))
+                        @if($is_card && in_array($section, [3, 5, 9]))
                         @php
                             if ($section === '3') {
                                 $imgSpec = "84 x 84 px, max 50 KB";
                             }
                             elseif ($section === '5') {
                                 $imgSpec = "max 600 KB";
+                            }
+                            elseif ($section === '9') {
+                                $imgSpec = "32 x 32 px, max 10 KB";
                             }
                         @endphp
                         <div class="col-6 my-3">
@@ -100,7 +103,7 @@
 
                         <div class="col-6 my-3">
                             <label for="client_name">Client Name *</label>
-                            <input type="number" class="form-control" id="client_name" placeholder=""
+                            <input type="text" class="form-control" id="client_name" placeholder=""
                                 name="client_name" value="{{ old('client_name', $homePage->client_name ?? '') }}">
                             @error('client_name')
                                 <p style="color:red">{{ $message }}</p>

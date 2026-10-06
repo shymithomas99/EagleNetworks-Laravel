@@ -1,5 +1,5 @@
 @extends('layouts.appweb')
-@section('title', 'Accra | ')
+@section('title', 'London | ')
 @push('meta')
     <meta
         name="description"
@@ -7,21 +7,22 @@
     >
 @endpush
 @section('content')
-
     @if($banner)
-        <section class="section-hero border-btm-green accra-banner">
+        <section class="section-hero london-banner">
 
             <div class="container-custom">
 
                 <div class="section-hero-sub">
                     <div>
-                        <div class="accra-element element-bottom">
+                        <div class="element-bottom">
                             @if($banner->label)
-                                <div class="header-label header-label-3">
+                                <div class="header-label header-label-2">
                                     {{ $banner->label }}
                                 </div>
                             @endif
-                            <h1>{{ $banner->title }}</h1>
+                            @if($banner->title)
+                                <h1>{{ $banner->title }}</h1>
+                            @endif
                             @if($banner->description)
                                 <div class="subhead">
                                     {!! nl2br(e($banner->description)) !!}
@@ -54,9 +55,8 @@
 
                             @if($banner->button_text)
                                 <a href="{{ $banner->button_url ?? '' }}"
-                                class="commn-btn btn-green-bg me-2 mb-3 mb-sm-0">
+                                class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">
                                     {{ $banner->button_text }}
-
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         width="18"
                                         height="18"
@@ -80,9 +80,9 @@
         </section>
     @endif
 
-
+    <!---------------------------strategic hub section starts here--------------------->
     @if($strategicHub)
-        <section class="eagle-london-section eagle-accra-section section-lg">
+        <section class="eagle-london-section section-lg">
             <div class="container-custom">
 
                 <div class="row align-items-center mb-4">
@@ -91,90 +91,109 @@
                     <div class="col-lg-7">
 
                         @if($strategicHub->label)
-                            <span class="tag green-lite-bg green-text">
+                            <span class="tag">
                                 {{ $strategicHub->label }}
                             </span>
                         @endif
 
-                        <h2 class="green-text element-3 mb-6">
-                            {{ $strategicHub->title }}
-                        </h2>
+                        @if($strategicHub->title)
+                            <h2 class="element-3 mb-6 text-deeper-orange">
+                                {{ $strategicHub->title }}
+                            </h2>
+                        @endif
                     </div>
 
                     <!-- RIGHT CONTENT -->
                     @if($strategicHub->primary_focus)
                         <div class="col-lg-5">
-                            <div class="focus-box primary-bg">
-                                <p class="focus-label">PRIMARY FOCUS</p>
+
+                            <div class="focus-box orange-bg">
+
+                                <p class="focus-label">
+                                    PRIMARY FOCUS
+                                </p>
 
                                 <h6 class="focus-text">
                                     {{ $strategicHub->primary_focus }}
                                 </h6>
+
                             </div>
+
                         </div>
                     @endif
                 </div>
 
                 <div class="row align-items-start">
-                    <div class="col-md-6 pe-lg-5">
+
+                    <div class="col-lg-6 pe-lg-5">
                         @if($strategicHub->label)
                         <h3 class="brand-title">
-                            <span class="orange green-text">{{ strtolower(Str::before($strategicHub->label, ' ')) }}</span>{{ strtolower(Str::after($strategicHub->label, ' ')) }}
-                        </h3>
+
+                                <span class="text-deeper-orange">
+                                    {{ strtolower(Str::before($strategicHub->label, ' ')) }}
+                                </span>{{ strtolower(Str::after($strategicHub->label, ' ')) }}
+
+                            </h3>
                         @endif
 
                         @if($strategicHub->description)
                             @foreach(preg_split('/\r\n|\r|\n/', $strategicHub->description) as $paragraph)
+
                                 @if(trim($paragraph))
-                                    <p class="subhead {{ $loop->first() ? 'mb-2' : '' }}">
-                                        {{ $paragraph }}
+                                    <p class="subhead {{ $loop->first ? 'mb-2' : '' }}">
+                                        {{ trim($paragraph) }}
                                     </p>
                                 @endif
+
                             @endforeach
                         @endif
                     </div>
 
                     @if($strategicHub->key_offerings)
-                        <div class="col-md-6">
-                            <!-- KEY OFFERINGS -->
-                            <div class="offer-box accra-box">
+                        <div class="col-lg-6">
+                            <div class="offer-box">
                                 <div class="offer-inner">
-                                    <p class="offer-title">KEY OFFERINGS</p>
+                                    <p class="offer-title">
+                                        KEY OFFERINGS
+                                    </p>
                                     <ul>
                                         @foreach(preg_split('/\r\n|\r|\n/', $strategicHub->key_offerings) as $offering)
+
                                             @if(trim($offering))
                                                 <li>{{ trim($offering) }}</li>
                                             @endif
+
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     @endif
-
                 </div>
-
             </div>
         </section>
     @endif
-    
+    <!---===========================================strategic hub section ends here========================-->
+
+    <!---================================== london by the numbers section starts here ===============================-->
     @if($numberIntro || $numberCards->isNotEmpty())
-        <section class="london-numbers-section accra-numbers-section border-btm-green section-md">
+        <section class="london-numbers-section section">
             <div class="container-custom">
+
                 @if($numberIntro)
-                    <!-- TAG -->
+
                     @if($numberIntro->label)
-                        <span class="tag green-lite-bg green-text">
+                        <span class="tag">
                             {{ $numberIntro->label }}
                         </span>
                     @endif
 
-                    <!-- TITLE -->
                     @if($numberIntro->title)
-                        <h2 class="green-text">
+                        <h2 class="text-deeper-orange">
                             {{ $numberIntro->title }}
                         </h2>
                     @endif
+
                 @endif
 
                 <!-- CARDS -->
@@ -184,7 +203,7 @@
                         @foreach($numberCards as $number)
                             <div class="col-lg-4 col-md-6">
                                 <div class="number-card text-center">
-                                    <h3 class="number green-text">
+                                    <h3 class="number">
                                         {{ $number->title }}
                                     </h3>
                                     @if($number->description)
@@ -197,25 +216,25 @@
                         @endforeach
                     </div>
                 @endif
+
             </div>
         </section>
     @endif
-    
 
+    <!--=====================================london by the numbers section ends here===============================-->
     @if($builtForIntro || $builtForCards->isNotEmpty())
-        <section class="target-section border-btm-green section-md bg-white ">
+        <section class="target-section section">
             <div class="container-custom">
+
                 @if($builtForIntro)
-                    <!-- TAG -->
                     @if($builtForIntro->label)
-                        <span class="tag green-lite-bg green-text">
+                        <span class="tag deeper-orange-bg text-white">
                             {{ $builtForIntro->label }}
                         </span>
                     @endif
 
-                    <!-- TITLE -->
                     @if($builtForIntro->title)
-                        <h2 class="green-text">
+                        <h2 class="text-white">
                             {{ $builtForIntro->title }}
                         </h2>
                     @endif
@@ -223,12 +242,16 @@
 
                 <!-- CARDS -->
                 @if($builtForCards->isNotEmpty())
-                    <div class="row g-4 mt-4">
-                        <!-- CARD 1 -->
+                    <div class="row g-6 mt-4">
                         @foreach($builtForCards as $card)
                             <div class="col-lg-4 col-md-6">
-                                <div class="target-card green-lite-bg bordr-lft-green">
-                                    <h6 class="orange-head green-text">{{ $card->title }}</h6>
+
+                                <div class="target-card">
+
+                                    <h6 class="text-deeper-orange">
+                                        {{ $card->title }}
+                                    </h6>
+
                                     @if($card->description)
                                         <p class="card-text">
                                             {!! nl2br(e($card->description)) !!}
@@ -237,226 +260,43 @@
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
                 @endif
+
             </div>
         </section>
     @endif
 
-
+    <!-- ================what we do in london section starts here====================== -->
     @if($whatWeDoIntro || $whatWeDoCards->isNotEmpty())
-        <section class="services-section lite-green-bg section-md">
+        <section class="services-section section">
             <div class="container-custom">
 
-                <!-- TAG -->
-                @if($whatWeDoIntro?->label)
-                    <span class="tag primary-bg text-white">
-                        {{ $whatWeDoIntro->label }}
-                    </span>
-                @endif
+                @if($whatWeDoIntro)
 
-                <!-- TITLE -->
-                @if($whatWeDoIntro?->title)
-                    <h2 class="dark-teal-text">
-                        {{ $whatWeDoIntro->title }}
-                    </h2>
+                    @if($whatWeDoIntro->label)
+                        <span class="tag deeper-orange-bg text-white">
+                            {{ $whatWeDoIntro->label }}
+                        </span>
+                    @endif
+
+                    @if($whatWeDoIntro->title)
+                        <h2 class="text-deeper-orange">
+                            {{ $whatWeDoIntro->title }}
+                        </h2>
+                    @endif
+
                 @endif
 
                 <!-- CARDS -->
                 @if($whatWeDoCards->isNotEmpty())
-                <div class="row g-6 mt-4">
-                    @foreach($whatWeDoCards as $index => $card)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="accra-service-card {{ $index === 0 ? 'active' : '' }}">
-                            <h4 class="text-white mb-3">
-                                {{ $card->title }}
-                            </h4>
-                            @if($card->description)
-                                <p class="text-white">
-                                    {!! nl2br(e($card->description)) !!}
-                                </p>
-                            @endif
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                @endif
-            </div>
-        </section>
-    @endif
+                    <div class="row g-6 mt-4">
 
-
-    @if($weServeIntro || $weServeCards->isNotEmpty())
-        <section class="markets-section border-0 section-md">
-            <div class="container-custom">
-
-                <!-- TAG -->
-                @if($weServeIntro?->label)
-                    <span class="tag green-lite-bg green-text">
-                        {{ $weServeIntro->label }}
-                    </span>
-                @endif
-
-                <!-- TITLE -->
-                @if($weServeIntro?->title)
-                    <h2 class="green-text">
-                        {{ $weServeIntro->title }}
-                    </h2>
-                @endif
-
-                <!-- GRID -->
-                @if($weServeCards->isNotEmpty())
-                <div class="row g-4 mt-4">
-
-                    @foreach($weServeCards as $card)
-                    <div class="col-lg-6">
-                        <div class="market-card bordr-lft-green">
-                            <h4 class="card-title green-text">
-                                {{ $card->title }}
-                            </h4>
-
-                            @if($card->description)
-                                <p class="card-text">
-                                    {!! nl2br(e($card->description)) !!}
-                                </p>
-                            @endif
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                @endif
-
-            </div>
-        </section>
-    @endif
-
-    @if($whyUsIntro || $whyUsCards->isNotEmpty())
-        <section class="why-choose-section primary-bg border-bottom-0 section-md">
-            <div class="container-custom">
-
-                <!-- TITLE -->
-                @if($whyUsIntro?->title)
-                    <h2 class="text-white">
-                        {{ $whyUsIntro->title }}
-                    </h2>
-                @endif
-
-                <!-- GRID -->
-                @if($whyUsCards->isNotEmpty())
-                    <div class="row g-4 mt-4">
-                        <!-- CARD -->
-                        @foreach($whyUsCards as $card)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-list-card bordr-top-green">
-                                <h4 class="card-title font-20 green-text">
-                                    {{ $card->title }}
-                                </h4>
-
-                                @if($card->description)
-                                    <p class="card-text">
-                                        {!! nl2br(e($card->description)) !!}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-        </section>
-    @endif
-
-    @if($intgrOrganization)
-        <section class="integration-section bg-white section-md">
-            <div class="container-custom">
-
-                <div class="row align-items-center g-2">
-
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <!-- TITLE -->
-                            <h2 class="green-text">
-                                {{ $intgrOrganization->title }}
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- LEFT CONTENT -->
-                    <div class="col-lg-6">
-
-                        <!-- DESCRIPTION -->
-                        @if($intgrOrganization->description)
-                            <p class="desc mt-3">
-                                {!! nl2br(e($intgrOrganization->description)) !!}
-                            </p>
-                        @endif
-
-                        @if($intgrOrganization->additional_description)
-                            <p class="desc italic">
-                                {!! nl2br(e($intgrOrganization->additional_description)) !!}
-                            </p>
-                        @endif
-
-                        <!-- LIST -->
-                        @if($intgrOrganization->key_points)
-                            <ul class="check-list check-list-green">
-
-                                @foreach(preg_split('/\r\n|\r|\n/', $intgrOrganization->key_points) as $point)
-                                    @if(trim($point))
-                                        <li>{{ trim($point) }}</li>
-                                    @endif
-                                @endforeach
-
-                            </ul>
-                        @endif
-
-                    </div>
-
-                    <!-- RIGHT QUOTE -->
-                    @if($intgrOrganization->quote)
-                        <div class="col-lg-6">
-                            <div class="quote-box box-border-green box-gradient-green">
-
-                                <p class="quote-text">
-                                    {{ $intgrOrganization->quote }}
-                                </p>
-
-                                @if($intgrOrganization->quote_author)
-                                    <p class="quote-author mb-0">
-                                        — {{ $intgrOrganization->quote_author }}
-                                    </p>
-                                @endif
-
-                            </div>
-                        </div>
-                    @endif
-
-                </div>
-
-            </div>
-        </section>
-    @endif
-
-    @if($howDeliverIntro || $howDeliverCards->isNotEmpty())
-        <section class="services-delivered-section grey-bg border-0 section-md">
-            <div class="container-custom">
-
-                <!-- TITLE -->
-                @if($howDeliverIntro?->title)
-                    <h2 class="green-text">
-                        {{ $howDeliverIntro->title }}
-                    </h2>
-                @endif
-
-                <!-- GRID -->
-                @if($howDeliverCards->isNotEmpty())
-                    <div class="row g-4 mt-4">
-                        <!-- CARD 1 -->
-                        @foreach($howDeliverCards as $card)
-                            <div class="col-lg-3 col-md-6">
-
-                                <div class="service-list-card bordr-top-green">
-
-                                    <h4 class="card-title font-20 green-text">
+                        @foreach($whatWeDoCards as $index => $card)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-card-2 {{ $index === 0 ? 'active' : '' }}">
+                                    <h4 class="card-title dark">
                                         {{ $card->title }}
                                     </h4>
 
@@ -465,17 +305,223 @@
                                             {!! nl2br(e($card->description)) !!}
                                         </p>
                                     @endif
-
                                 </div>
-
                             </div>
                         @endforeach
+
+                    </div>
+                @endif
+
+            </div>
+        </section>
+    @endif
+    <!-- ================what we do in london section ends here====================== -->
+
+    <!--================market we serve section================-->
+    @if($weServeIntro || $weServeCards->isNotEmpty())
+        <section class="markets-section section">
+            <div class="container-custom">
+
+                @if($weServeIntro)
+
+                    @if($weServeIntro->label)
+                        <span class="tag">
+                            {{ $weServeIntro->label }}
+                        </span>
+                    @endif
+
+                    @if($weServeIntro->title)
+                        <h2 class="text-deeper-orange">
+                            {{ $weServeIntro->title }}
+                        </h2>
+                    @endif
+
+                @endif
+
+                <!-- GRID -->
+                @if($weServeCards->isNotEmpty())
+                    <div class="row g-4 mt-4">
+                        @foreach($weServeCards as $card)
+                            <div class="col-lg-6">
+                                <div class="market-card">
+                                    <h4 class="card-title">
+                                        {{ $card->title }}
+                                    </h4>
+
+                                    @if($card->description)
+                                        <p class="card-text">
+                                            {!! nl2br(e($card->description)) !!}
+                                        </p>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 @endif
             </div>
         </section>
     @endif
+    <!--================market we serve section end================-->
 
+    <!--========================services delivered section==================== -->
+    @if($servicesDeliveredIntro || $servicesDeliveredCards->isNotEmpty())
+        <section class="services-delivered-section section">
+            <div class="container-custom">
+
+                @if($servicesDeliveredIntro)
+
+                    @if($servicesDeliveredIntro->label)
+                        <span class="tag deeper-orange-bg text-white">
+                            {{ $servicesDeliveredIntro->label }}
+                        </span>
+                    @endif
+
+                    @if($servicesDeliveredIntro->title)
+                        <h2 class="text-white">
+                            {{ $servicesDeliveredIntro->title }}
+                        </h2>
+                    @endif
+                    
+                @endif
+
+                <!-- GRID -->
+                @if($servicesDeliveredCards->isNotEmpty())
+                    <div class="row g-4 mt-4">
+
+                        @foreach($servicesDeliveredCards as $card)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="service-list-card">
+                                    <h4 class="card-title">
+                                        {{ $card->title }}
+                                    </h4>
+
+                                    @if($card->description)
+                                        <ul class="service-list">
+                                            @foreach(preg_split('/\r\n|\r|\n/', $card->description) as $item)
+                                                @if(trim($item))
+                                                    <li>{{ trim($item) }}</li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                @endif
+
+            </div>
+        </section>
+    @endif
+    <!--=============================services delivered section end====================-->
+
+    <!--=============================why choose us section start====================-->
+    @if($whyUsIntro || $whyUsCards->isNotEmpty())
+        <section class="why-choose-section section">
+            <div class="container-custom">
+
+                <!-- TITLE -->
+                @if($whyUsIntro?->title)
+                    <h2 class="text-deeper-orange">
+                        {{ $whyUsIntro->title }}
+                    </h2>
+                @endif
+
+                <!-- CARDS -->
+                @if($whyUsCards->isNotEmpty())
+                    <div class="row g-4 mt-4 justify-content-center">
+
+                        @foreach($whyUsCards as $card)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="why-card">
+                                        <h4 class="card-title">
+                                            {{ $card->title }}
+                                        </h4>
+
+                                        @if($card->description)
+                                            <p class="card-text">
+                                                {!! nl2br(e($card->description)) !!}
+                                            </p>
+                                        @endif
+
+                                    </div>
+                                </div>
+                            @endforeach
+
+                    </div>
+                @endif
+
+            </div>
+        </section>
+    @endif
+
+    <!--=============================Integrated with Eagle Accra section start====================-->
+    @if($intgrOrganization)
+        <section class="integration-section section">
+            <div class="container-custom">
+
+                <div class="row align-items-center g-2">
+                    @if($intgrOrganization->title)
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <!-- TITLE -->
+                                <h2 class="text-white">{{ $intgrOrganization->title }}</h2>
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="col-lg-6">
+
+                        <!-- DESCRIPTION -->
+                        @if($intgrOrganization->description)
+                            <p class="desc mt-3 text-white">
+                                {!! nl2br(e($intgrOrganization->description)) !!}
+                            </p>
+                        @endif
+
+                        @if($intgrOrganization->additional_description)
+                            <p class="desc italic text-white">
+                                {!! nl2br(e($intgrOrganization->additional_description)) !!}
+                            </p>
+                        @endif
+
+                        @if($intgrOrganization->key_points)
+                            <ul class="check-list">
+                                @foreach(preg_split('/\r\n|\r|\n/', $intgrOrganization->key_points) as $point)
+                                    @if(trim($point))
+                                        <li class="text-white">
+                                            {{ trim($point) }}
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
+
+                    </div>
+
+                    @if($intgrOrganization->quote)
+                        <div class="col-lg-6">
+                            <div class="quote-box">
+                                <p class="quote-text">
+                                    {{ $intgrOrganization->quote }}
+                                </p>
+                                @if($intgrOrganization->quote_author)
+                                    <p class="quote-author mb-0">
+                                        — {{ $intgrOrganization->quote_author }}
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+
+                </div>
+
+            </div>
+        </section>
+    @endif
 
     @if($faqIntro || $faqCards->isNotEmpty())
         <section class="faq-section section">
@@ -483,10 +529,18 @@
                 <div class="faq-main">
                     @if($faqIntro)
                         <div class="d-flex flex-column align-items-start text-center">
-                            <div class="tag deeper-orange-bg text-white mb-3">
-                                {{ $faqIntro->label }}
-                            </div>
-                            <h2 class="h2-36">{{ $faqIntro->title }}</h2>
+                            @if($faqIntro->label)
+                                <div class="tag deeper-orange-bg text-white mb-3">
+                                    {{ $faqIntro->label }}
+                                </div>
+                            @endif
+
+                            @if($faqIntro->title)
+                                <h2 class="h2-36">
+                                    {{ $faqIntro->title }}
+                                </h2>
+                            @endif
+
                             @if($faqIntro->description)
                                 <div class="subhead">
                                     {!! nl2br(e($faqIntro->description)) !!}
@@ -497,21 +551,22 @@
 
                     @if($faqCards->isNotEmpty())
                         <div class="faq-section-accordian pt-3">
-
                             <div class="accordion accordion-flush custom-faq" id="faqAccordion">
-                                @foreach($faqCards as $index => $faq)
+
+                                @foreach($faqCards as $faq)
                                     @php
                                         $headingId = 'heading' . $faq->id;
                                         $collapseId = 'collapse' . $faq->id;
                                     @endphp
-                                    <div class="accordion-item mb-3">
-                                        <h2 class="accordion-header" id="{{ $headingId }}">
+
+                                    <div class="accordion-item {{ $loop->last ? '' : 'mb-3'  }}">
+                                        <h2 class="accordion-header"
+                                            id="{{ $headingId }}">
                                             <button class="accordion-button collapsed"
                                                     type="button"
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#{{ $collapseId }}"
                                                     aria-controls="{{ $collapseId }}">
-
                                                 {{ $faq->title }}
                                             </button>
                                         </h2>
@@ -522,11 +577,14 @@
                                             data-bs-parent="#faqAccordion">
 
                                             <div class="accordion-body">
-                                                {!! nl2br(e($faq->description)) !!}
+                                                @if($faq->description)
+                                                    {!! nl2br(e($faq->description)) !!}
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
+
                             </div>
                         </div>
                     @endif
@@ -535,9 +593,8 @@
         </section>
     @endif
 
-    
     @if($ctaBottom)
-        <section class="ready-to london-accra-cta accra-cta section-md  text-center">
+        <section class="ready-to london-accra-cta section-md  text-center">
             <div class="container-custom">
 
                 <div class="inner-cta-box text-center text-white position-relative z-1">
@@ -551,7 +608,7 @@
 
                     <!-- TAG -->
                     @if($ctaBottom->label)
-                        <span class="tag green-bg text-white">
+                        <span class="tag deeper-orange-bg text-white">
                             {{ $ctaBottom->label }}
                         </span>
                     @endif
@@ -573,25 +630,26 @@
                     <!-- BUTTON -->
                     @if($ctaBottom->button_text)
                         <a href="{{ $ctaBottom->button_url ?? '' }}"
-                        class="commn-btn btn-green-bg"
-                        target="_blank">
-                            <i class="bi bi-whatsapp me-3"></i>
-                            {{ $ctaBottom->button_text }}
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-arrow-right ms-2">
-                                <path d="M5 12h14"></path>
-                                <path d="m12 5 7 7-7 7"></path>
-                            </svg>
-                        </a>
+                            class="commn-btn btn-deep-orange"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                                <i class="bi bi-whatsapp me-3"></i>
+                                {{ $ctaBottom->button_text }}
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-arrow-right ms-2">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
 
+                        </a>
                     @endif
                 </div>
             </div>
@@ -599,6 +657,7 @@
     @endif
 
 
+    <!-- ============== Exit-intent popup ================ -->
     <div class="exit-intent-overlay" id="exitIntentOverlay">
         <div class="exit-intent-modal">
 
@@ -606,14 +665,14 @@
                 &times;
             </button>
 
-            <h3>Speak with the Accra team</h3>
+            <h3>Speak with the London team</h3>
 
             <p>
-                Tell us about your African market project and the Accra team will assist you.
+                Tell us about your UK or European project and the London team will guide you.
             </p>
 
             <a href="{{ url('/contact') }}" id="intent-btn-black" class="intent-btn-black">
-                Contact Accra Team
+                Contact London Team
             </a>
 
             <a href="{{ url('/packages') }}" id="intent-btn-white" class="intent-btn-white">
@@ -622,5 +681,4 @@
 
         </div>
     </div>
-
 @endsection

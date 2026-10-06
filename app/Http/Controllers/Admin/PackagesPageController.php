@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\PackagesPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PackagesPageController extends Controller
 {
@@ -108,6 +109,9 @@ class PackagesPageController extends Controller
         $validated['published'] = $request->boolean('published');
         $validated['featured'] = $request->boolean('featured');
         $validated['most_popular'] = $request->boolean('most_popular');
+        if ($section === '3' && $is_card === '1') {
+            $validated['slug'] = Str::slug($validated['title']);
+        }
         $validated['section'] = $section;
         $validated['is_card'] = $is_card;
  
@@ -215,6 +219,9 @@ class PackagesPageController extends Controller
         $validated['published'] = $request->boolean('published');
         $validated['featured'] = $request->boolean('featured');
         $validated['most_popular'] = $request->boolean('most_popular');
+        if ($section === '3' && $is_card === '1') {
+            $validated['slug'] = Str::slug($validated['title']);
+        }
         $validated['section'] = $section;
         $validated['is_card'] = $is_card;
  

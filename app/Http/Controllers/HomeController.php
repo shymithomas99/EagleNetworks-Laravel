@@ -8,7 +8,10 @@ use App\Models\Author;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contact;
+use App\Models\HomePage;
 use App\Models\NewsletterSubscriber;
+use App\Models\PackagesPage;
+use App\Models\ServicesPage;
 use App\Models\VideoCategory;
 use App\Models\VideoProject;
 use App\Models\Work;
@@ -24,47 +27,68 @@ class HomeController extends Controller
         // $this->middleware('auth');
     }
 
-    public function home()
+    public function index()
     {
-        $works = Work::where('published', 1)
-            ->where('featured', 1)
-            ->whereHas('category', function ($query) {
-                $query->where('published', 1);
-            })
-            ->orderBy('displayOrder', 'asc')
-            ->get();
+        $homePageRecords = HomePage::query()
+            ->where('published', true)
+            ->orderBy('display_order')
+            ->get()
+            ->groupBy(fn ($item) => $item->section . '_' . (int) $item->is_card);
+
+        $banner = $homePageRecords->get('1_0')?->first();
+        $serviceIntro = $homePageRecords->get('2_0')?->first();
+        $serviceCards = ServicesPage::where('section', 2)
+                            ->where('is_card', 1)
+                            ->where('published', 1)
+                            ->where('featured', 1)
+                            ->orderBy('display_order')
+                            ->get();
+        $c5Intro = $homePageRecords->get('3_0')?->first();
+        $c5Cards = $homePageRecords->get('3_1', collect());
+        $workIntro = $homePageRecords->get('4_0')?->first();
+        $workCards = Work::where('published', 1)
+                        ->where('featured', 1)
+                        ->whereHas('category', function ($query) {
+                            $query->where('published', 1);
+                        })
+                        ->orderBy('displayOrder')
+                        ->get();
+        $clientIntro = $homePageRecords->get('5_0')?->first();
+        $clientCards = $homePageRecords->get('5_1', collect());
+        $ctaBannerIntro = $homePageRecords->get('6_0')?->first();
+        $ctaBannerCards = $homePageRecords->get('6_1', collect());
+        $packageIntro = $homePageRecords->get('7_0')?->first();
+        $packageCards = PackagesPage::where('section', 3)
+                            ->where('is_card', 1)
+                            ->where('published', 1)
+                            ->where('featured', 1)
+                            ->orderBy('display_order')
+                            ->get();
+        $testimonialIntro = $homePageRecords->get('8_0')?->first();
+        $testimonialCards = $homePageRecords->get('8_1', collect());
+        $valueIntro = $homePageRecords->get('9_0')?->first();
+        $valueCards = $homePageRecords->get('9_1', collect());
+        $ctaBannerBottom = $homePageRecords->get('10_0')?->first();
 
         return view('client.home', compact(
-            'works'
-        ));
-    }
-
-    public function work()
-    {
-        $videos = VideoProject::where('published', 1)
-            ->whereHas('category', function ($query) {
-                $query->where('published', 1);
-            })
-            ->orderBy('display_order', 'asc')
-            ->limit(4)
-            ->get();
-
-        $videoCount = VideoProject::where('published', 1)->count();
-
-        $workCategories = WorkCategory::where('published', 1)->get();
-
-        $works = Work::where('published', 1)
-            ->whereHas('category', function ($query) {
-                $query->where('published', 1);
-            })
-            ->orderBy('displayOrder', 'asc')
-            ->get();
-
-        return view('client.work', compact(
-            'videos',
-            'videoCount',
-            'workCategories',
-            'works'
+            'banner',
+            'serviceIntro',
+            'serviceCards',
+            'c5Intro',
+            'c5Cards',
+            'workIntro',
+            'workCards',
+            'clientIntro',
+            'clientCards',
+            'ctaBannerIntro',
+            'ctaBannerCards',
+            'packageIntro',
+            'packageCards',
+            'testimonialIntro',
+            'testimonialCards',
+            'valueIntro',
+            'valueCards',
+            'ctaBannerBottom',
         ));
     }
 
@@ -294,38 +318,6 @@ class HomeController extends Controller
             'categories',
             'contentTypes'
         ));
-    }
-
-    public function showBlog(Blog $blog)
-    {
-        abort_unless(
-            $blog->published &&
-            $blog->category()->where('published', true)->exists(),
-            404
-        );
-
-        $blog->load([
-            'author',
-            'category',
-        ]);
-
-        return view('client.blogs.show', compact('blog'));
-    }
-
-    public function showAuthor(Author $author)
-    {
-        $author->load([
-            'blogs' => function ($query) {
-                $query
-                    ->where('published', true)
-                    ->whereHas('category', function ($query) {
-                        $query->where('published', true);
-                    })
-                    ->latest();
-            },
-        ]);
-
-        return view('client.blogs.author', compact('author'));
     }
     
     public function services()

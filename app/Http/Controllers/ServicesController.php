@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\ServicesPage;
 use App\Models\Work;
 
-class ServicesPageController extends Controller
+class ServicesController extends Controller
 {
     public function index()
     {
@@ -36,7 +36,7 @@ class ServicesPageController extends Controller
         $faqCards = $servicesPageRecords->get('8_1', collect());
         $ctaBannerBottom = $servicesPageRecords->get('9_0')?->first();
 
-        return view('client.services-page', compact(
+        return view('client.services', compact(
             'banner',
             'serviceIntro',
             'serviceCards',

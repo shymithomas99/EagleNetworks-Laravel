@@ -16,7 +16,7 @@
                 <div>
                     <div class="insight-details-main">
                         <div class="custom-breadcrumb-wrapper">
-                            <a href="{{ route('blogs.index') }}" class="breadcrumb-link small-text d-flex align-items-center mb-4"><i
+                            <a href="{{ route('insights.index') }}" class="breadcrumb-link small-text d-flex align-items-center mb-4"><i
                                     class="bi bi-arrow-left-short me-1 fs-5 "></i>Back to Insights</a>
                         </div>
 
@@ -124,7 +124,7 @@
                 <!-- ============ author section ========== -->
                 @if ($blog->author)
                 <div class="author-card-separator">
-                    <a href="{{ route('author.show', $blog->author) }}" class="author-card-link text-decoration-none">
+                    <a href="{{ route('insights.author', $blog->author) }}" class="author-card-link text-decoration-none">
 
                         <div class="author-card">
 
@@ -178,7 +178,7 @@
                 </div>
                 @endif
                 <div class="back-btn">
-                    <a href="{{ route('blogs.index') }}" class="button-link text-deeper-orange d-flex align-items-center mb-0"><i
+                    <a href="{{ route('insights.index') }}" class="button-link text-deeper-orange d-flex align-items-center mb-0"><i
                             class="bi bi-arrow-left-short me-1 mt-1"></i>Back to all Insights </a>
                 </div>
             </div>

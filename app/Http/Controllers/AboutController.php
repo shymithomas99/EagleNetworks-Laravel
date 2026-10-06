@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\AboutPage;
 
-class AboutPageController extends Controller
+class AboutController extends Controller
 {
     public function index()
     {
@@ -33,7 +33,7 @@ class AboutPageController extends Controller
         $proofSignals = $aboutPageRecords->get('10_1', collect());
         $ctaBannerBottom = $aboutPageRecords->get('11_0')?->first();
 
-        return view('client.about-page', compact(
+        return view('client.about', compact(
             'banner',
             'story',
             'milestoneIntro',

@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\AboutPageController;
-use App\Http\Controllers\ContactPageController;
-use App\Http\ControllersAccraPageController;
-use App\Http\Controllers\LondonPageController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AccraController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LondonController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InsightsController;
+use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\WhatsAppController;
 use Illuminate\Support\Facades\Route;
@@ -15,31 +19,36 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('about', [AboutPageController::class, 'index'])->name('about-page.index');
+Route::get('about', [AboutController::class, 'index'])->name('about.index');
 
-Route::get('contact', [ContactPageController::class, 'index'])->name('contact-page.index');
+Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 
-Route::get('accra', [AccraPageController::class, 'index'])->name('accra-page.index');
+Route::get('accra', [AccraController::class, 'index'])->name('accra.index');
 
-Route::get('london', [LondonPageController::class, 'index'])->name('london-page.index');
+Route::get('london', [LondonController::class, 'index'])->name('london.index');
 
-Route::get('/amplify', function () {
-    return view('client.amplify');
-});
+Route::get('services', [ServicesController::class, 'index'])->name('services.index');
 
-Route::get('/connect', function () {
-    return view('client.connect');
-});
+Route::get('packages', [PackagesController::class, 'index'])->name('packages.index');
 
-Route::get('/ignite', function () {
-    return view('client.ignite');
-});
+Route::get('packages/{packagesPage:slug}', [PackagesController::class, 'show'])
+    ->name('packages.show');
 
-Route::get('/packages', function () {
-    return view('client.packages');
-});
+Route::get('/works', [WorkController::class, 'index'])->name('works.index');
+
+Route::get('/works/{slug}', [HomeController::class, 'workDetails'])
+    ->name('details');
+
+Route::get('/insights', [InsightsController::class, 'index'])
+    ->name('insights.index');
+
+Route::get('/insights/{blog:slug}', [InsightsController::class, 'show'])
+    ->name('insights.show');
+
+Route::get('/author/{author:slug}', [InsightsController::class, 'author'])
+    ->name('insights.author');
 
 Route::get('/privacy-policy', function () {
     return view('client.privacy-policy');
@@ -52,23 +61,6 @@ Route::get('/sitemap', function () {
 Route::get('/terms', function () {
     return view('client.terms');
 });
-
-
-Route::get('/services', [HomeController::class, 'services'])->name('services');
-
-Route::get('/works', [HomeController::class, 'work'])->name('work');
-
-Route::get('/works/{slug}', [HomeController::class, 'workDetails'])
-    ->name('details');
-
-Route::get('/insights', [HomeController::class, 'blogs'])
-    ->name('blogs.index');
-
-Route::get('/insights/{blog:slug}', [HomeController::class, 'showBlog'])
-    ->name('blogs.show');
-
-Route::get('/author/{author:slug}', [HomeController::class, 'showAuthor'])
-    ->name('author.show');
 
 Route::get('/media', [HomeController::class, 'media'])->name('media');
 

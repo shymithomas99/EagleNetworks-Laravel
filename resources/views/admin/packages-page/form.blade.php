@@ -101,7 +101,7 @@
                         </div>
                         @endif
 
-                        @if(!$is_card && ($section === '1' || $section === '4' || $section === '7'))
+                        @if((!$is_card && ($section === '1' || $section === '4' || $section === '7')) || ($is_card && $section === '3'))
                         <div class="col-6 my-3">
                             <label for="button_text">Button Text</label>
                             <input type="text" class="form-control" id="button_text" placeholder=""

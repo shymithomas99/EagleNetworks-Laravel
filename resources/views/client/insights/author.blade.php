@@ -16,7 +16,7 @@
                     <div class="authors-bnr">
 
                         <div class="custom-breadcrumb-wrapper">
-                            <a href="{{ route('blogs.index') }}" class="breadcrumb-link small-text d-flex align-items-center mb-4"><i
+                            <a href="{{ route('insights.index') }}" class="breadcrumb-link small-text d-flex align-items-center mb-4"><i
                                     class="bi bi-arrow-left-short me-1 fs-5 "></i>Back to Insights</a>
                         </div>
 
@@ -81,7 +81,7 @@
                             </h2>
 
                             @forelse ($author->blogs as $blog)
-                            <a href="{{ route('blogs.show', $blog->slug) }}" class="article-link text-decoration-none">
+                            <a href="{{ route('insights.show', $blog->slug) }}" class="article-link text-decoration-none">
 
                                 <div class="article-card">
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\AccraPage;
 
-class AccraPageController extends Controller
+class AccraController extends Controller
 {
     public function index()
     {
@@ -32,7 +32,7 @@ class AccraPageController extends Controller
         $faqCards = $accraPageRecords->get('10_1', collect());
         $ctaBottom = $accraPageRecords->get('11_0')?->first();
 
-        return view('client.accra-page', compact(
+        return view('client.accra', compact(
             'banner',
             'strategicHub',
             'numberIntro',

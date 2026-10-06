@@ -1098,6 +1098,10 @@ a {
     color: var(--color-white);
 }
 
+.service-card:hover .icon-box img{
+   filter: brightness(0) invert(1);
+}
+
 .button-link {
     color: var(--color-accent) !important;
     text-decoration: none;

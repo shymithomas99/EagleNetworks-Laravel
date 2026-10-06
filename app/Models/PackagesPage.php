@@ -16,6 +16,7 @@ class PackagesPage extends Model
         'section',
         'is_card',
         'title',
+        'slug',
         'support_title',
         'label',
         'description',

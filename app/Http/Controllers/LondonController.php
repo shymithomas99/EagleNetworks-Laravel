@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\LondonPage;
 
-class LondonPageController extends Controller
+class LondonController extends Controller
 {
     public function index()
     {
@@ -32,7 +32,7 @@ class LondonPageController extends Controller
         $faqCards = $londonPageRecords->get('10_1', collect());
         $ctaBottom = $londonPageRecords->get('11_0')?->first();
 
-        return view('client.london-page', compact(
+        return view('client.london', compact(
             'banner',
             'strategicHub',
             'numberIntro',

@@ -90,7 +90,7 @@ class HomePageController extends Controller
         );
 
         $imageRules = [
-            $is_card && in_array($section, [3, 5]) ? 'required' : 'nullable',
+            $is_card && in_array($section, [3, 5, 9]) ? 'required' : 'nullable',
             'image',
             'mimes:jpg,jpeg,png,webp',
         ];
@@ -100,6 +100,9 @@ class HomePageController extends Controller
             $imageRules[] = 'max:50';
         } elseif ($is_card && $section == 5) {
             $imageRules[] = 'max:600';
+        } elseif ($is_card && $section == 9) {
+            $imageRules[] = 'dimensions:width=32,height=32';
+            $imageRules[] = 'max:10';
         }
 
         $validated = $request->validate([
@@ -111,7 +114,7 @@ class HomePageController extends Controller
             'tag_2' => ['nullable', 'string'],
             'tag_3' => ['nullable', 'string'],
             'additional_description' => ['nullable', 'string'],
-            'rating' => [$is_card && $section === '8' ? 'required' : 'nullable', 'string'],
+            'rating' => [$is_card && $section === '8' ? 'required' : 'nullable', 'integer', 'min:1', 'max:5'],
             'testimonial' => [$is_card && $section === '8' ? 'required' : 'nullable', 'string'],
             'client_name' => [$is_card && $section === '8' ? 'required' : 'nullable', 'string'],
             'cta_title' => ['nullable', 'string'],
@@ -210,6 +213,9 @@ class HomePageController extends Controller
             $imageRules[] = 'max:50';
         } elseif ($is_card && $section == 5) {
             $imageRules[] = 'max:600';
+        }  elseif ($is_card && $section == 9) {
+            $imageRules[] = 'dimensions:width=32,height=32';
+            $imageRules[] = 'max:10';
         }
 
         $validated = $request->validate([
@@ -221,7 +227,7 @@ class HomePageController extends Controller
             'tag_2' => ['nullable', 'string'],
             'tag_3' => ['nullable', 'string'],
             'additional_description' => ['nullable', 'string'],
-            'rating' => [$is_card && $section === '8' ? 'required' : 'nullable', 'string'],
+            'rating' => [$is_card && $section === '8' ? 'required' : 'nullable', 'integer', 'min:1', 'max:5'],
             'testimonial' => [$is_card && $section === '8' ? 'required' : 'nullable', 'string'],
             'client_name' => [$is_card && $section === '8' ? 'required' : 'nullable', 'string'],
             'cta_title' => ['nullable', 'string'],

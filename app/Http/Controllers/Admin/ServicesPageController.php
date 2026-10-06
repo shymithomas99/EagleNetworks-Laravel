@@ -232,7 +232,7 @@ class ServicesPageController extends Controller
             'key_services' => [$is_card  && $section == 3 ? 'required' : 'nullable'],
             'key_points' => [$is_card  && $section == 3 ? 'required' : 'nullable',],
             'published' => ['nullable', 'boolean'],
-            'featured' => $is_card  && $section == 2 ? ['nullable', 'boolean'] : ['prohibited'],
+            'featured' => ['nullable', 'boolean'],
             'display_order' => [$is_card ? 'required' : 'nullable', 'integer', 'min:0'],
         ]);
  
