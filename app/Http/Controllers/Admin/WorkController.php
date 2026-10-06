@@ -59,8 +59,19 @@ class WorkController extends Controller
                 'coverImage' => 'required|image|mimes:jpg,jpeg,png,webp|dimensions:width=1280,height=780|max:1024',
                 'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=776,height=417|max:1024',
                 'briefMediaType' => ['nullable', 'in:1,2'],
-                'briefImage' => ['nullable','image','mimes:jpg,jpeg,png,webp', 'dimensions:width=1280,height=780', 'max:1024', Rule::requiredIf($request->briefMediaType == 1)],
-                'briefVideoUrl' => ['nullable', 'url', Rule::requiredIf($request->briefMediaType == 2)]
+                'briefImage' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'dimensions:width=1280,height=780', 'max:1024', Rule::requiredIf($request->briefMediaType == 1)],
+                'briefVideoUrl' => ['nullable', 'url', Rule::requiredIf($request->briefMediaType == 2)],
+                'cta_title' => ['nullable', 'string', 'max:512'],
+                'cta_description' => ['nullable', 'string'],
+
+                'cta_button_text' => ['nullable', 'string', 'max:255'],
+                'cta_button_url' => ['nullable', 'string', 'max:512'],
+
+                'cta_button_text_2' => ['nullable', 'string', 'max:255'],
+                'cta_button_url_2' => ['nullable', 'string', 'max:512'],
+
+                'cta_button_text_3' => ['nullable', 'string', 'max:255'],
+                'cta_button_url_3' => ['nullable', 'string', 'max:512']
             ],
             [
                 //
@@ -151,8 +162,29 @@ class WorkController extends Controller
                 'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=1280,height=780|max:1024',
                 'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=776,height=417|max:1024',
                 'briefMediaType' => ['nullable', 'in:1,2'],
-                'briefImage' => ['nullable','image','mimes:jpg,jpeg,png,webp', 'dimensions:width=1280,height=780', 'max:1024', Rule::requiredIf($request->briefMediaType == 1)],
-                'briefVideoUrl' => ['nullable', 'url', Rule::requiredIf($request->briefMediaType == 2)]
+                // 'briefImage' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'dimensions:width=1280,height=780', 'max:1024', Rule::requiredIf($request->briefMediaType == 1)],
+                'briefImage' => [
+                    'nullable',
+                    'image',
+                    'mimes:jpg,jpeg,png,webp',
+                    'dimensions:width=1280,height=780',
+                    'max:1024',
+                    Rule::requiredIf(
+                        $request->briefMediaType == 1 && empty($work->briefImage)
+                    ),
+                ],
+                'briefVideoUrl' => ['nullable', 'url', Rule::requiredIf($request->briefMediaType == 2)],
+                'cta_title' => ['nullable', 'string', 'max:512'],
+                'cta_description' => ['nullable', 'string'],
+
+                'cta_button_text' => ['nullable', 'string', 'max:255'],
+                'cta_button_url' => ['nullable', 'string', 'max:512'],
+
+                'cta_button_text_2' => ['nullable', 'string', 'max:255'],
+                'cta_button_url_2' => ['nullable', 'string', 'max:512'],
+
+                'cta_button_text_3' => ['nullable', 'string', 'max:255'],
+                'cta_button_url_3' => ['nullable', 'string', 'max:512']
             ],
             [
                 //
@@ -194,20 +226,65 @@ class WorkController extends Controller
             }
         }
 
-        $fileName3 = $work->briefImage;
-        if ($request->hasFile('briefImage') && $request->briefMediaType == '1') {
-            $file3 = $request->file('briefImage');
-            $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
-            $file3->move(public_path('backend_assets/works/brief-images'), $fileName3);
+        // $fileName3 = $work->briefImage;
+        // if ($request->hasFile('briefImage') && $request->briefMediaType == '1') {
+        //     $file3 = $request->file('briefImage');
+        //     $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
+        //     $file3->move(public_path('backend_assets/works/brief-images'), $fileName3);
 
-            if ($work->briefImage && file_exists(public_path('backend_assets/works/brief-images/' . $work->briefImage))) {
-                unlink(public_path('backend_assets/works/brief-images/' . $work->briefImage));
+        //     if ($work->briefImage && file_exists(public_path('backend_assets/works/brief-images/' . $work->briefImage))) {
+        //         unlink(public_path('backend_assets/works/brief-images/' . $work->briefImage));
+        //     }
+        // } else {
+        //     $fileName3 = null;
+        //     if ($work->briefImage && file_exists(public_path('backend_assets/works/brief-images/' . $work->briefImage))) {
+        //         unlink(public_path('backend_assets/works/brief-images/' . $work->briefImage));
+        //     }
+        // }
+
+
+        $fileName3 = $work->briefImage;
+
+        if ($request->briefMediaType == '1') {
+
+            // Keep existing image if no new image is uploaded
+            if ($request->hasFile('briefImage')) {
+
+                $file3 = $request->file('briefImage');
+
+                $fileName3 = time() . '_' . uniqid() . '.' . $file3->getClientOriginalExtension();
+
+                $file3->move(
+                    public_path('backend_assets/works/brief-images'),
+                    $fileName3
+                );
+
+                // Delete old image only after new image is uploaded
+                if (
+                    $work->briefImage &&
+                    file_exists(
+                        public_path('backend_assets/works/brief-images/' . $work->briefImage)
+                    )
+                ) {
+                    unlink(
+                        public_path('backend_assets/works/brief-images/' . $work->briefImage)
+                    );
+                }
             }
-        }
-        else {
+        } else {
+
+            // If media type is not Image, remove existing brief image
             $fileName3 = null;
-            if ($work->briefImage && file_exists(public_path('backend_assets/works/brief-images/' . $work->briefImage))) {
-                unlink(public_path('backend_assets/works/brief-images/' . $work->briefImage));
+
+            if (
+                $work->briefImage &&
+                file_exists(
+                    public_path('backend_assets/works/brief-images/' . $work->briefImage)
+                )
+            ) {
+                unlink(
+                    public_path('backend_assets/works/brief-images/' . $work->briefImage)
+                );
             }
         }
 

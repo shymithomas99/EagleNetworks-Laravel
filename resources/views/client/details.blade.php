@@ -1,10 +1,7 @@
 @extends('layouts.appweb')
 @section('title', $work->seoTitle ? $work->seoTitle . ' | ' : $work->title . ' | ')
 @push('meta')
-    <meta
-        name="description"
-        content="{{ $work->seoDescription ?: $work->excerpt }}"
-    >
+    <meta name="description" content="{{ $work->seoDescription ?: $work->excerpt }}">
 @endpush
 @section('content')
     <section class="section-hero details-page-banner">
@@ -109,20 +106,14 @@
                     {{-- Featured Image --}}
                     <div class="col-lg-5">
 
-                        @if($work->briefMediaType == 1 && $work->briefImage)
+                        @if ($work->briefMediaType == 1 && $work->briefImage)
                             <div class="post-video-container ratio ratio-16x9">
-                                <img
-                                    src="{{ asset('backend_assets/work/brief-images/' . $work->briefImage) }}"
-                                    alt="{{ $work->title }}"
-                                    class="object-fit-cover" style="border-radius: 15px;"
-                                >
+                                <img src="{{ asset('backend_assets/work/brief-images/' . $work->briefImage) }}"
+                                    alt="{{ $work->title }}" class="object-fit-cover" style="border-radius: 15px;">
                             </div>
-
                         @elseif($work->briefMediaType == 2 && $work->briefVideoUrl)
                             <div class="post-video-container ratio ratio-16x9">
-                                <iframe
-                                    title="{{ $work->title }}"
-                                    src="{{ $work->briefVideoUrl }}"
+                                <iframe title="{{ $work->title }}" src="{{ $work->briefVideoUrl }}"
                                     referrerpolicy="strict-origin-when-cross-origin"
                                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                                     allowfullscreen>
@@ -234,23 +225,27 @@
 
     <section class="ready-to ready-to-v2 section-md">
         <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
-            <h2 class="mb-3 text-white">Ready to Get Started?</h2>
-            <p class="subhead mb-4">Let's discuss how Eagle Networks can help you achieve your growth
-                objectives through integrated services and strategic partnership.</p>
+            <h2 class="mb-3 text-white">{{ $work->cta_title ?? 'Ready to Get Started?' }}</h2>
+            <p class="subhead mb-4">
+                {{ $work->cta_description ?? 'Let\'s discuss how Eagle Networks can help you achieve your growth objectives through integrated services and strategic partnership.' }}
+            </p>
 
             <div class="d-flex flex-column flex-sm-row mb-3">
 
-                <a href="{{ url('/contact') }}" class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Start a
-                    Conversation<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                <a href="{{ $work->cta_button_url ?? '#' }}"
+                    class=" commn-btn btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">{{ $work->cta_button_text ?? 'Start a Conversation' }}<svg
+                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-arrow-right ms-2" data-loc="client/src/pages/Home.tsx:47">
                         <path d="M5 12h14"></path>
                         <path d="m12 5 7 7-7 7"></path>
                     </svg> </a>
 
-                <a href="{{ url('/services') }}" class="commn-btn btn-primary-custom">Explore Our Services</a>
+                <a href="{{ $work->cta_button_url_2 ?? '#' }}" class="commn-btn btn-primary-custom">
+                    {{ $work->cta_button_text_2 }}</a>
             </div>
-            <a href="{{ url('/about') }}" class="commn-btn btn-primary-custom">About Eagle Networks</a>
+            <a href="{{ $work->cta_button_url_3 ?? '#' }}" class="commn-btn btn-primary-custom">
+                {{ $work->cta_button_text_3 }}</a>
 
         </div>
 

@@ -1,7 +1,7 @@
 <footer class="footer section-md">
     <div class="container-custom-2 ">
 
-            <div class="footer-grid pb-4 footer-sec-1">
+        <div class="footer-grid pb-4 footer-sec-1">
             <!-- Logo Content -->
             <div class="footer-col flex-fill">
                 <div class="footer-logo mb-3">
@@ -176,7 +176,7 @@
                     <li><a href="/privacy-policy" class="small-text">Privacy Policy</a></li>
                     <li><a href="/terms" class="small-text">Terms of Use</a></li>
                     <li><a href="/sitemap" class="small-text">Sitemap</a></li>
-                    <li><a href="#" class="small-text" id="openCookieSettings">Cookie Settings</a></li>
+
                     <li>
                         <a href="#" class="small-text" id="openCookieSettings">
                             Cookie Settings
@@ -261,7 +261,7 @@
 
             <!-- Header -->
             <div class="cookie-modal-header">
-                <h4>Cookie Preferences</h4>
+                <h4>{{ $cookiePage->title }}</h4>
 
                 <button class="cookie-modal-close" id="closeCookieModal">
                     <i class="bi bi-x-lg"></i>
@@ -272,9 +272,11 @@
             <div class="cookie-modal-body">
 
                 <p class="cookie-modal-text">
-                    Choose which cookies you allow us to use. Essential cookies cannot be disabled
-                    as they are required for the site to function.
-                    <a href="/privacy-policy">Privacy Policy</a>
+                    {{ $cookiePage->description ?? 'Choose which cookies you allow us to use. Essential cookies cannot be disabled as they are required for the site to function.' }}
+
+                    <a href="{{ $cookiePage->privacy_policy_url ?? '/privacy-policy' }}">
+                        {{ $cookiePage->privacy_policy_text ?? 'Privacy Policy' }}
+                    </a>
                 </p>
 
                 <!-- Essential -->
@@ -299,17 +301,15 @@
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="cookie-option-title">
-                                    Essential Cookies
+                                    {{ $cookiePage->essential_title ?? 'Essential Cookies' }}
                                 </div>
                                 <div class="cookie-badge">
-                                    Always Active
+                                    {{ $cookiePage->essential_badge ?? 'Always Active' }}
                                 </div>
                             </div>
 
                             <div class="cookie-option-desc">
-                                Required for the website to function. Includes session management and security
-                                cookies.
-                                These cannot be disabled.
+                                {{ $cookiePage->essential_description ?? 'Required for the website to function. Includes session management and security cookies. These cannot be disabled.' }}
                             </div>
                         </div>
 
@@ -341,7 +341,7 @@
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="cookie-option-title">
-                                    Analytics Cookies
+                                    {{ $cookiePage->analytics_title ?? 'Analytics Cookies' }}
                                 </div>
                                 <!-- Toggle -->
                                 <label class="cookie-switch">
@@ -352,8 +352,7 @@
                             </div>
 
                             <div class="cookie-option-desc">
-                                Helps us understand how visitors use the site (page views, traffic sources). Data is
-                                aggregated and anonymised. Provided by Ahrefs and Umami Analytics.
+                                {{ $cookiePage->analytics_description ?? 'Helps us understand how visitors use the site (page views, traffic sources). Data is aggregated and anonymised. Provided by Ahrefs and Umami Analytics.' }}
                             </div>
                         </div>
                     </div>
@@ -367,23 +366,18 @@
                 <div>
 
                     <button class="cookie-btn cookie-outline me-2" id="rejectAllBtn">
-                        Reject All
+                        {{ $cookiePage->reject_button_text ?? 'Reject All' }}
                     </button>
 
                     <button class="cookie-btn cookie-outline" id="acceptAllBtn">
-                        Accept All
+                        {{ $cookiePage->accept_button_text ?? 'Accept All' }}
                     </button>
 
 
                 </div>
 
-
-                {{--  <button class="cookie-btn cookie-fill">
-                    Save Preferences
-                </button>  --}}
-
                 <button class="cookie-btn cookie-fill" id="savePreferencesBtn">
-                    Save Preferences
+                    {{ $cookiePage->save_button_text ?? 'Save Preferences' }}
                 </button>
 
             </div>

@@ -50,17 +50,24 @@ Route::get('/insights/{blog:slug}', [InsightsController::class, 'show'])
 Route::get('/author/{author:slug}', [InsightsController::class, 'author'])
     ->name('insights.author');
 
-Route::get('/privacy-policy', function () {
-    return view('client.privacy-policy');
-});
+// Route::get('/privacy-policy', function () {
+//     return view('client.privacy-policy');
+// });
+
+
+Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])
+    ->name('privacy-policy');
 
 Route::get('/sitemap', function () {
     return view('client.sitemap');
 });
 
-Route::get('/terms', function () {
-    return view('client.terms');
-});
+// Route::get('/terms', function () {
+//     return view('client.terms');
+// });
+
+Route::get('/terms', [HomeController::class, 'terms'])
+    ->name('terms');
 
 Route::get('/media', [HomeController::class, 'media'])->name('media');
 

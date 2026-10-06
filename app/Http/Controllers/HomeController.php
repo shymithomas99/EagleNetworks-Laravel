@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Enums\BlogContentType;
 use App\Mail\ContactAdminEnquiry;
-use App\Models\Author;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contact;
@@ -12,6 +11,9 @@ use App\Models\HomePage;
 use App\Models\NewsletterSubscriber;
 use App\Models\PackagesPage;
 use App\Models\ServicesPage;
+use App\Models\MediaPage;
+use App\Models\PrivacyPolicyPage;
+use App\Models\TermsPage;
 use App\Models\VideoCategory;
 use App\Models\VideoProject;
 use App\Models\Work;
@@ -229,7 +231,8 @@ class HomeController extends Controller
     */
 
         $adminEmails = [
-            'shymicams@gmail.com','ama@theemhglobal.com'
+            'shymicams@gmail.com',
+            'ama@theemhglobal.com'
         ];
 
         Mail::to($adminEmails)->send(
@@ -263,7 +266,20 @@ class HomeController extends Controller
             ->orderBy('display_order', 'asc')
             ->get();
 
-        return view('client.media', compact('categories', 'videos'));
+        $mediaPages = MediaPage::where('published', 1)
+            ->orderBy('section')
+            ->get()
+            ->keyBy('section');
+
+        return view('client.media', [
+            'banner' => $mediaPages->get(1),
+            'about' => $mediaPages->get(2),
+
+            'categories' => $categories,
+            'videos' => $videos,
+        ]);
+
+        // return view('client.media', compact('categories', 'videos'));
     }
 
 
@@ -299,8 +315,8 @@ class HomeController extends Controller
     public function blogs()
     {
         $blogs = Blog::with([
-                'author'
-            ])
+            'author'
+        ])
             ->where('published', true)
             ->whereHas('category', function ($query) {
                 $query->where('published', true);
@@ -308,8 +324,8 @@ class HomeController extends Controller
             ->latest()
             ->get();
         $categories = BlogCategory::where('published', true)
-                    ->orderByDesc('id')
-                    ->get();
+            ->orderByDesc('id')
+            ->get();
 
         $contentTypes = BlogContentType::cases();
 
@@ -333,5 +349,198 @@ class HomeController extends Controller
         return view('client.services', compact(
             'works'
         ));
+    }
+
+
+    public function terms()
+    {
+        // Normal sections
+        $sections = TermsPage::where('is_card', false)
+            ->whereIn('section', range(1, 10))
+            ->orderBy('section')
+            ->get()
+            ->keyBy('section');
+
+        // Section 3 cards
+        $useOfWebsiteCards = TermsPage::where('section', 3)
+            ->where('is_card', true)
+            ->where('published', true)
+            ->orderBy('display_order')
+            ->get();
+
+        return view('client.terms', compact(
+            'sections',
+            'useOfWebsiteCards'
+        ));
+    }
+
+
+
+
+
+
+    public function privacyPolicy()
+    {
+        $privacyPolicies = PrivacyPolicyPage::where('published', 1)
+            ->orderBy('section')
+            ->orderBy('display_order')
+            ->orderBy('id')
+            ->get();
+
+        $sections = $privacyPolicies->groupBy('section');
+
+        return view('client.privacy-policy', [
+
+            /*
+        |--------------------------------------------------------------------------
+        | Banner
+        |--------------------------------------------------------------------------
+        */
+            'banner' => $this->getPrivacyPolicySection(
+                $sections,
+                1
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Introduction
+        |--------------------------------------------------------------------------
+        */
+            'introduction' => $this->getPrivacyPolicySection(
+                $sections,
+                2
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Data We Collect
+        |--------------------------------------------------------------------------
+        */
+            'dataCollect' => $this->getPrivacyPolicySection(
+                $sections,
+                3
+            ),
+
+            'dataCollectCards' => $this->getPrivacyPolicyCards(
+                $sections,
+                3
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | We Use Your Data
+        |--------------------------------------------------------------------------
+        */
+            'dataUsage' => $this->getPrivacyPolicySection(
+                $sections,
+                4
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Legal Basis
+        |--------------------------------------------------------------------------
+        */
+            'legalBasis' => $this->getPrivacyPolicySection(
+                $sections,
+                5
+            ),
+
+            'legalBasisCards' => $this->getPrivacyPolicyCards(
+                $sections,
+                5
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Data Sharing
+        |--------------------------------------------------------------------------
+        */
+            'dataSharing' => $this->getPrivacyPolicySection(
+                $sections,
+                6
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Data Retention
+        |--------------------------------------------------------------------------
+        */
+            'dataRetention' => $this->getPrivacyPolicySection(
+                $sections,
+                7
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Your Rights
+        |--------------------------------------------------------------------------
+        */
+            'rights' => $this->getPrivacyPolicySection(
+                $sections,
+                8
+            ),
+
+            'rightsCards' => $this->getPrivacyPolicyCards(
+                $sections,
+                8
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Cookies
+        |--------------------------------------------------------------------------
+        */
+            'cookies' => $this->getPrivacyPolicySection(
+                $sections,
+                9
+            ),
+
+            'cookieCards' => $this->getPrivacyPolicyCards(
+                $sections,
+                9
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | Contact
+        |--------------------------------------------------------------------------
+        */
+            'contact' => $this->getPrivacyPolicySection(
+                $sections,
+                10
+            ),
+
+            /*
+        |--------------------------------------------------------------------------
+        | CTA
+        |--------------------------------------------------------------------------
+        */
+            'cta' => $this->getPrivacyPolicySection(
+                $sections,
+                11
+            ),
+        ]);
+    }
+
+
+
+    private function getPrivacyPolicySection($sections, $section)
+    {
+        return $sections
+            ->get($section, collect())
+            ->where('is_card', 0)
+            ->first();
+    }
+
+
+
+    private function getPrivacyPolicyCards($sections, $section)
+    {
+        return $sections
+            ->get($section, collect())
+            ->where('is_card', 1)
+            ->sortBy('display_order')
+            ->values();
     }
 }
