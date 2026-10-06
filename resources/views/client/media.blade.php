@@ -1,10 +1,8 @@
 @extends('layouts.appweb')
 @section('title', 'Media | ')
 @push('meta')
-    <meta
-        name="description"
-        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight."
-    >
+    <meta name="description"
+        content="A strategy, creative, and technology agency with offices in London and Accra. We help ambitious businesses grow by combining UK expertise with African market insight.">
 @endpush
 @section('content')
     <section class="section-hero service-bnr">
@@ -14,9 +12,9 @@
             <div class="section-hero-sub">
                 <div>
                     <div>
-                        <h1 class="element-2">Eagle Media House</h1>
-                        <div class="subhead">A curated selection of films, TV ads, commercials and media projects produced
-                            across the agency..</div>
+                        <h1 class="element-2"> {{ $banner->title ?? 'Eagle Media House' }}</h1>
+                        <div class="subhead">{!! $banner->description ??
+                            'A curated selection of films, TV ads, commercials and media projects produced across the agency.' !!}</div>
                     </div>
 
                 </div>
@@ -162,24 +160,58 @@
     <section class="media-about section text-white text-center d-flex justify-content-center">
         <div class="container-custom ">
             <div class="max-768 max-768 d-flex flex-column align-items-center">
-                <h2>About Eagle Media House</h2>
-                <p>Eagle Media House is the creative production arm of Eagle London, delivering high-quality films,
-                    television advertisements, commercials, documentaries, and branded content for organisations across the
-                    UK, Europe, and Africa.</p>
+                <h2>{{ $about->title ?? 'About Eagle Media House' }}</h2>
 
-                <p>From concept development and scriptwriting through to production, post-production, and distribution
-                    strategy, our team brings creative vision and technical precision to every project. We work with
-                    startups, SMEs, public sector organisations, and global enterprises to produce content that resonates
-                    with audiences and drives measurable outcomes.</p>
 
-                <p>Eagle Media House operates in close collaboration with the wider Eagle London network, combining creative
-                    production capabilities with strategic insight, digital expertise, and community knowledge to deliver
-                    content that is both authentic and effective.</p>
+                @php
+                    $aboutDescription = $about->description ?? '';
+
+                    $aboutParagraphs = preg_split("/\r\n\s*\r\n|\n\s*\n/", trim($aboutDescription));
+
+                    $aboutParagraphs = collect($aboutParagraphs)->map(fn($paragraph) => trim($paragraph))->filter();
+                @endphp
+
+                @foreach ($aboutParagraphs as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+
+                @if ($about?->additional_description)
+                    <p>
+                        {!! $about->additional_description ?? '' !!}
+                    </p>
+                @endif
+
+
 
                 <div class="d-flex flex-column flex-sm-row mt-4 pt-2">
-                    <a href="/services" class="commn-btn  btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">Our Services</a>
-                    <a href="/work" class="commn-btn btn-white-outline me-0 me-sm-3 mb-3 mb-sm-0">View Our Work</a>
-                    <a href="/contact" class="commn-btn btn-white-outline">Start a Project</a>
+
+                    @if ($about?->button_text)
+                        <a href="{{ $about->button_url ?? '#' }}"
+                            class="commn-btn  btn-primary-custom me-0 me-sm-3 mb-3 mb-sm-0">
+
+                            {{ $about->button_text }}
+
+                        </a>
+                    @endif
+
+
+                    @if ($about?->button_text_2)
+                        <a href="{{ $about->button_url_2 ?? '#' }}"
+                            class="commn-btn btn-white-outline me-0 me-sm-3 mb-3 mb-sm-0">
+
+                            {{ $about->button_text_2 }}
+
+                        </a>
+                    @endif
+
+
+                    @if ($about?->button_text_3)
+                        <a href="{{ $about->button_url_3 ?? '#' }}" class="commn-btn btn-white-outline">
+
+                            {{ $about->button_text_3 }}
+
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

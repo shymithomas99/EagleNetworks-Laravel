@@ -1780,6 +1780,89 @@
 
                     </div>
 
+                    <!-- Media Page -->
+                    <div class="bg-dark py-1">
+
+                        <button
+                            class="accordion-custom {{ request()->is('admin/media-page*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                            data-target="mediaPageMenu">
+
+                            <span>
+                                <i class="fas fa-briefcase"></i>
+                                Media Page
+                            </span>
+
+                            <i class="fa fa-chevron-down arrow"></i>
+
+                        </button>
+
+
+                        <div id="mediaPageMenu"
+                            class="accordion-content {{ request()->is('admin/media-page*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }} py-2">
+
+
+                            {{-- =========================
+                                BANNER
+                            ========================== --}}
+
+                            <a href="{{ route('admin.media-page.edit', 1) }}"
+                                class="nav-anchor {{ request()->is('admin/media-page/1*') ? 'active' : '' }}">
+
+                                Banner
+
+                            </a>
+
+
+                            {{-- =========================
+                                VIDEO
+                            ========================== --}}
+
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                                data-target="mediaVideoMenu">
+
+                                Video
+
+                                <i class="fa fa-chevron-down arrow"></i>
+
+                            </button>
+
+
+                            <div id="mediaVideoMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }}">
+
+                                <a href="{{ route('admin.categories.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/categories*') ? 'active' : '' }}">
+
+                                    Categories
+
+                                </a>
+
+                                <a href="{{ route('admin.videos.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/videos*') ? 'active' : '' }}">
+
+                                    Videos
+
+                                </a>
+
+                            </div>
+
+
+                            {{-- =========================
+                                ABOUT
+                            ========================== --}}
+
+                            <a href="{{ route('admin.media-page.edit', 2) }}"
+                                class="nav-anchor {{ request()->is('admin/media-page/2*') ? 'active' : '' }}">
+
+                                About Eagle Media House
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
 
 
                 </li>

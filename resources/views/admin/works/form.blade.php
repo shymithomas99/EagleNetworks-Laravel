@@ -6,7 +6,8 @@
                 {{ $title ?? null }}
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ $work->id ? route('admin.works.update', $work) : route('admin.works.store') }}"
+                <form method="POST"
+                    action="{{ $work->id ? route('admin.works.update', $work) : route('admin.works.store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     {{ $work->id ? method_field('PUT') : '' }}
@@ -81,8 +82,7 @@
                         </div>
                         <div class="col-4 my-3">
                             <label for="projectYear">Project Year</label>
-                            <input type="text" id="projectYear" class="form-control"
-                                name="projectYear"
+                            <input type="text" id="projectYear" class="form-control" name="projectYear"
                                 value="{{ old('projectYear', $work->projectYear ?? '') }}">
                         </div>
                         <div class="col-6 my-3">
@@ -102,11 +102,7 @@
                                 <label for="briefMediaType" class="form-label">
                                     Brief Media Type
                                 </label>
-                                <select
-                                    name="briefMediaType"
-                                    id="briefMediaType"
-                                    class="form-select"
-                                >
+                                <select name="briefMediaType" id="briefMediaType" class="form-select">
                                     <option value="">Select Media Type</option>
                                     <option value="1"
                                         {{ old('briefMediaType', $work->briefMediaType ?? '') == '1' ? 'selected' : '' }}>
@@ -126,15 +122,11 @@
                                 <label for="briefImage" class="form-label">
                                     Brief Image (1280 × 780 px, max 1 MB)*
                                 </label>
-                                <input
-                                    type="file"
-                                    name="briefImage"
-                                    id="briefImage"
-                                    class="form-control custom-file-input"
-                                    accept=".jpg,.jpeg,.png,.webp"
-                                    onchange="document.getElementById('uploaded_brief_img').src = window.URL.createObjectURL(this.files[0])"
-                                >
-                                <img id="uploaded_brief_img" alt="Image" class="mt-1" width="130" height="100"
+                                <input type="file" name="briefImage" id="briefImage"
+                                    class="form-control custom-file-input" accept=".jpg,.jpeg,.png,.webp"
+                                    onchange="document.getElementById('uploaded_brief_img').src = window.URL.createObjectURL(this.files[0])">
+                                <img id="uploaded_brief_img" alt="Image" class="mt-1" width="130"
+                                    height="100"
                                     src="{{ $work->briefImage ? asset('backend_assets/works/brief-images/' . $work->briefImage) : asset('backend_assets/images/upload_image.png') }}" />
                                 @error('briefImage')
                                     <p style="color:red">{{ $message }}</p>
@@ -144,14 +136,9 @@
                                 <label for="briefVideoUrl" class="form-label">
                                     Brief Video URL*
                                 </label>
-                                <input
-                                    type="url"
-                                    name="briefVideoUrl"
-                                    id="briefVideoUrl"
-                                    value="{{ old('briefVideoUrl', $work->briefVideoUrl ?? '') }}"
-                                    class="form-control"
-                                    placeholder="https://player.vimeo.com/video/1028439571?h=2a3474e587"
-                                >
+                                <input type="url" name="briefVideoUrl" id="briefVideoUrl"
+                                    value="{{ old('briefVideoUrl', $work->briefVideoUrl ?? '') }}" class="form-control"
+                                    placeholder="https://player.vimeo.com/video/1028439571?h=2a3474e587">
                                 @error('briefVideoUrl')
                                     <p style="color:red">{{ $message }}</p>
                                 @enderror
@@ -182,6 +169,95 @@
                             <input type="text" id="testimonialAuthor" class="form-control" name="testimonialAuthor"
                                 value="{{ old('testimonialAuthor', $work->testimonialAuthor ?? '') }}">
                         </div>
+
+                        {{-- CTA Section --}}
+                        <div class="col-12 mt-4">
+                            <h5 class="border-bottom pb-2">
+                                Ready to Get Started? CTA
+                            </h5>
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="cta_title">CTA Title</label>
+                            <input type="text" id="cta_title" class="form-control" name="cta_title"
+                                value="{{ old('cta_title', $work->cta_title ?? 'Ready to Get Started?') }}">
+                            @error('cta_title')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="cta_description">CTA Description</label>
+                            <textarea id="cta_description" class="form-control" name="cta_description" rows="4">{{ old('cta_description', $work->cta_description ?? "Let's discuss how Eagle Networks can help you achieve your growth objectives through integrated services and strategic partnership.") }}</textarea>
+
+                            @error('cta_description')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Button 1 --}}
+                        <div class="col-6 my-3">
+                            <label for="cta_button_text">CTA Button 1 Text</label>
+                            <input type="text" id="cta_button_text" class="form-control" name="cta_button_text"
+                                value="{{ old('cta_button_text', $work->cta_button_text ?? 'Start a Conversation') }}">
+
+                            @error('cta_button_text')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="cta_button_url">CTA Button 1 URL</label>
+                            <input type="text" id="cta_button_url" class="form-control" name="cta_button_url"
+                                value="{{ old('cta_button_url', $work->cta_button_url ?? '/contact') }}">
+
+                            @error('cta_button_url')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Button 2 --}}
+                        <div class="col-6 my-3">
+                            <label for="cta_button_text_2">CTA Button 2 Text</label>
+                            <input type="text" id="cta_button_text_2" class="form-control" name="cta_button_text_2"
+                                value="{{ old('cta_button_text_2', $work->cta_button_text_2 ?? 'Explore Our Services') }}">
+
+                            @error('cta_button_text_2')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="cta_button_url_2">CTA Button 2 URL</label>
+                            <input type="text" id="cta_button_url_2" class="form-control" name="cta_button_url_2"
+                                value="{{ old('cta_button_url_2', $work->cta_button_url_2 ?? '/services') }}">
+
+                            @error('cta_button_url_2')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Button 3 --}}
+                        <div class="col-6 my-3">
+                            <label for="cta_button_text_3">CTA Button 3 Text</label>
+                            <input type="text" id="cta_button_text_3" class="form-control" name="cta_button_text_3"
+                                value="{{ old('cta_button_text_3', $work->cta_button_text_3 ?? 'About Eagle Networks') }}">
+
+                            @error('cta_button_text_3')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-6 my-3">
+                            <label for="cta_button_url_3">CTA Button 3 URL</label>
+                            <input type="text" id="cta_button_url_3" class="form-control" name="cta_button_url_3"
+                                value="{{ old('cta_button_url_3', $work->cta_button_url_3 ?? '/about') }}">
+
+                            @error('cta_button_url_3')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <div class="col-6 my-3">
                             <label class="form-label" for="customFile">Cover Image (1280 x 780 px, max 1 MB)*</label>
                             <input type="file" class="form-control custom-file-input" id="coverImage"
@@ -246,40 +322,40 @@
 @endsection
 
 @push('scripts')
-<script>
-$(document).ready(function () {
+    <script>
+        $(document).ready(function() {
 
-    const defaultBriefImage = "{{ asset('backend_assets/images/upload_image.png') }}";
+            const defaultBriefImage = "{{ asset('backend_assets/images/upload_image.png') }}";
 
-    function toggleMediaFields() {
-        const mediaType = $('#briefMediaType').val();
+            function toggleMediaFields() {
+                const mediaType = $('#briefMediaType').val();
 
-        if (mediaType === '1') {
-            $('#image-field').show();
-            $('#video-url-field').hide();
+                if (mediaType === '1') {
+                    $('#image-field').show();
+                    $('#video-url-field').hide();
 
-            $('#briefVideoUrl').val('');
-        } else if (mediaType === '2') {
-            $('#image-field').hide();
-            $('#video-url-field').show();
+                    $('#briefVideoUrl').val('');
+                } else if (mediaType === '2') {
+                    $('#image-field').hide();
+                    $('#video-url-field').show();
 
-            $('#briefImage').val('');
-            $('#uploaded_brief_img').attr('src', defaultBriefImage);
-        } else {
-            $('#image-field').hide();
-            $('#video-url-field').hide();
-            $('#briefImage').val('');
-            $('#briefVideoUrl').val('');
-            $('#uploaded_brief_img').attr('src', defaultBriefImage);
-        }
-    }
+                    $('#briefImage').val('');
+                    $('#uploaded_brief_img').attr('src', defaultBriefImage);
+                } else {
+                    $('#image-field').hide();
+                    $('#video-url-field').hide();
+                    $('#briefImage').val('');
+                    $('#briefVideoUrl').val('');
+                    $('#uploaded_brief_img').attr('src', defaultBriefImage);
+                }
+            }
 
-    $('#briefMediaType').on('change', function () {
-        toggleMediaFields();
-    });
+            $('#briefMediaType').on('change', function() {
+                toggleMediaFields();
+            });
 
-    // Important for edit form / validation error
-    toggleMediaFields();
-});
-</script>
+            // Important for edit form / validation error
+            toggleMediaFields();
+        });
+    </script>
 @endpush

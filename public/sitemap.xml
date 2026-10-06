@@ -1,54 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-    <loc>http://127.0.0.1:8000</loc>
+    <loc>http://127.0.0.1:4000</loc>
     <lastmod>2026-09-29T05:31:10+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/about</loc>
+    <loc>http://127.0.0.1:4000/about</loc>
     <lastmod>2026-08-20T05:52:30+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/contact</loc>
+    <loc>http://127.0.0.1:4000/contact</loc>
     <lastmod>2026-09-29T05:31:10+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/accra</loc>
+    <loc>http://127.0.0.1:4000/accra</loc>
     <lastmod>2026-09-29T05:31:10+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/amplify</loc>
+    <loc>http://127.0.0.1:4000/amplify</loc>
     <lastmod>2026-08-19T09:50:00+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/connect</loc>
+    <loc>http://127.0.0.1:4000/connect</loc>
     <lastmod>2026-08-19T09:50:00+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/details</loc>
-    <lastmod>2026-08-20T05:52:30+00:00</lastmod>
+    <loc>http://127.0.0.1:4000/details</loc>
+    <lastmod>2026-10-06T06:33:27+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/ignite</loc>
+    <loc>http://127.0.0.1:4000/ignite</loc>
     <lastmod>2026-08-19T09:50:00+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/london</loc>
+    <loc>http://127.0.0.1:4000/london</loc>
     <lastmod>2026-09-29T05:31:10+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/packages</loc>
+    <loc>http://127.0.0.1:4000/packages</loc>
     <lastmod>2026-08-19T09:50:00+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/privacy-policy</loc>
+    <loc>http://127.0.0.1:4000/privacy-policy</loc>
     <lastmod>2026-10-01T05:16:33+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/services</loc>
+    <loc>http://127.0.0.1:4000/services</loc>
     <lastmod>2026-09-29T05:31:10+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/terms-of-use</loc>
+    <loc>http://127.0.0.1:4000/terms-of-use</loc>
+            </url>
+    <url>
+    <loc>http://127.0.0.1:4000/works</loc>
+    <lastmod>2026-10-06T10:23:38+00:00</lastmod>
+            </url>
+    <url>
+    <loc>http://127.0.0.1:4000/works/test</loc>
+    <lastmod>2026-10-06T10:23:38+00:00</lastmod>
+            </url>
+    <url>
+    <loc>http://127.0.0.1:4000/media</loc>
+    <lastmod>2026-10-05T11:49:10+00:00</lastmod>
             </url>
 </urlset>

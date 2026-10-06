@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AboutPageController;
 use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\CookiePreferencePageController;
 use App\Http\Controllers\Admin\HomePageController;
+use App\Http\Controllers\Admin\MediaPageController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\TermsPageController;
 
@@ -402,4 +403,29 @@ Route::middleware('auth')->group(function () {
         '/cookie-preference-page',
         [CookiePreferencePageController::class, 'update']
     )->name('cookie-preference-page.update');
+
+    Route::prefix('media-page')
+        ->name('media-page.')
+        ->group(function () {
+
+            Route::get('/{section}/edit', [
+                MediaPageController::class,
+                'edit'
+            ])->name('edit');
+
+            Route::post('/{section}', [
+                MediaPageController::class,
+                'store'
+            ])->name('store');
+
+            Route::put('/{section}', [
+                MediaPageController::class,
+                'update'
+            ])->name('update');
+
+            Route::patch('/{section}/toggle-publish', [
+                MediaPageController::class,
+                'togglePublish'
+            ])->name('toggle-publish');
+        });
 });

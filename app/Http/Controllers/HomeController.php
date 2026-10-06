@@ -8,6 +8,7 @@ use App\Models\Author;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contact;
+use App\Models\MediaPage;
 use App\Models\NewsletterSubscriber;
 use App\Models\PrivacyPolicyPage;
 use App\Models\TermsPage;
@@ -242,7 +243,20 @@ class HomeController extends Controller
             ->orderBy('display_order', 'asc')
             ->get();
 
-        return view('client.media', compact('categories', 'videos'));
+        $mediaPages = MediaPage::where('published', 1)
+            ->orderBy('section')
+            ->get()
+            ->keyBy('section');
+
+        return view('client.media', [
+            'banner' => $mediaPages->get(1),
+            'about' => $mediaPages->get(2),
+
+            'categories' => $categories,
+            'videos' => $videos,
+        ]);
+
+        // return view('client.media', compact('categories', 'videos'));
     }
 
 
@@ -370,58 +384,7 @@ class HomeController extends Controller
     }
 
 
-    // public function privacyPolicy()
-    // {
-    //     $privacyPolicies = PrivacyPolicyPage::where('published', 1)
-    //         ->orderBy('section')
-    //         ->orderBy('display_order')
-    //         ->get();
 
-    //     $sections = $privacyPolicies->groupBy('section');
-
-    //     return view('client.privacy-policy', [
-    //         'banner'           => $this->getSection($sections, 1),
-    //         'introduction'     => $this->getSection($sections, 2),
-
-    //         'dataCollect'      => $this->getSection($sections, 3),
-    //         'dataCollectCards' => $this->getCards($sections, 3),
-
-    //         'dataUsage'        => $this->getSection($sections, 4),
-
-    //         'legalBasis'       => $this->getSection($sections, 5),
-    //         'legalBasisCards'  => $this->getCards($sections, 5),
-
-    //         'dataSharing'      => $this->getSection($sections, 6),
-    //         'dataRetention'    => $this->getSection($sections, 7),
-
-    //         'rights'           => $this->getSection($sections, 8),
-    //         'rightsCards'      => $this->getCards($sections, 8),
-
-    //         'cookies'          => $this->getSection($sections, 9),
-    //         'cookieCards'      => $this->getCards($sections, 9),
-
-    //         'contact'          => $this->getSection($sections, 10),
-    //         'cta'              => $this->getSection($sections, 11),
-    //     ]);
-    // }
-
-
-    // private function getSection($sections, $section)
-    // {
-    //     return $sections
-    //         ->get((string) $section, collect())
-    //         ->where('is_card', 0)
-    //         ->first();
-    // }
-
-
-    // private function getCards($sections, $section)
-    // {
-    //     return $sections
-    //         ->get((string) $section, collect())
-    //         ->where('is_card', 1)
-    //         ->values();
-    // }
 
 
 
