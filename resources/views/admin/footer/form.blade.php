@@ -15,8 +15,22 @@
                         @if(in_array($section, [1, 2, 6, 7, 8]))
                         <div class="col-6 my-3">
                             <label for="text">Text *</label><br>
-                            <textarea class="form-control" name="text" id="text" rows="{{ $section === '1' ? '3' : '1' }}"
+                            @if($section === '8')
+                            <div class="d-flex align-items-center border rounded bg-white">
+                                <span class="px-2 text-muted text-nowrap">&copy; {{ date('Y') }}</span>
+                                <input
+                                    type="text"
+                                    class="form-control border-0 shadow-none"
+                                    name="text"
+                                    id="text"
+                                    value="{{ old('text', $footer->text ?? '') }}"
+                                    placeholder=""
+                                >
+                            </div>
+                            @else
+                                <textarea class="form-control" name="text" id="text" rows="{{ $section === '1' ? '3' : '1' }}"
                                 placeholder="">{{ old('text', $footer->text ?? '') }}</textarea>
+                            @endif
                             @error('text')
                                 <p style="color:red">{{ $message }}</p>
                             @enderror

@@ -84,7 +84,7 @@ class BlogController extends Controller
                 $file->getClientOriginalExtension();
 
             $file->move(
-                public_path('backend_assets/images'),
+                public_path('backend_assets/blogs'),
                 $fileName
             );
         }
@@ -149,7 +149,7 @@ class BlogController extends Controller
                 $file->getClientOriginalExtension();
 
             $file->move(
-                public_path('backend_assets/images'),
+                public_path('backend_assets/blogs'),
                 $fileName
             );
 
@@ -369,7 +369,7 @@ class BlogController extends Controller
     //     if ($request->hasFile('coverImage')) {
     //         $file = $request->file('coverImage');
     //         $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-    //         $file->move(public_path('backend_assets/images'), $fileName);
+    //         $file->move(public_path('backend_assets/blogs'), $fileName);
     //     }
 
     //     $data = $request->all();
@@ -426,7 +426,7 @@ class BlogController extends Controller
     //     if ($request->hasFile('coverImage')) {
     //         $file = $request->file('coverImage');
     //         $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-    //         $file->move(public_path('backend_assets/images'), $fileName);
+    //         $file->move(public_path('backend_assets/blogs'), $fileName);
 
     //         if ($blog->coverImage && file_exists(public_path('backend_assets/blogs/' . $blog->coverImage))) {
     //             unlink(public_path('backend_assets/blogs/' . $blog->coverImage));

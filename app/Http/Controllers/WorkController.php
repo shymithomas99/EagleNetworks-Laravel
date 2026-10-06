@@ -33,6 +33,7 @@ class WorkController extends Controller
         $projectCards = $workPageRecords->get('4_1', collect());
         $videoIntro = $workPageRecords->get('5_0')?->first();
         $videoCards = VideoProject::where('published', 1)
+                    ->where('featured', 1)
                     ->whereHas('category', function ($query) {
                         $query->where('published', 1);
                     })

@@ -15,7 +15,7 @@
                         <a href="{{ route('admin.works.index') }}" class="fw-bold text-decoration-none">
                             click here</a>.
                         <br>
-                        Enable the <strong>Featured</strong> option to display the work on the public services page.
+                        Enable the <strong>Featured</strong> option to display the work on the public 'Services' page.
                     </p>
 
                 </div>

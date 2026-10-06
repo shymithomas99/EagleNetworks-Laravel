@@ -90,15 +90,15 @@ class FooterController extends Controller
         );
 
         $validated = $request->validate([
-            'text' => [in_array($section, [1, 2, 6, 7, 8]) ? 'required' : 'nullable', 'string'],
-            'company_name' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'string'],
-            'address' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'string'],
-            'phone_1' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'string'],
+            'text' => [in_array($section, ['1', '2', '6', '7', '8']) ? 'required' : 'nullable', 'string'],
+            'company_name' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'string'],
+            'address' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'string'],
+            'phone_1' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'string'],
             'phone_2' => ['nullable', 'string'],
-            'email' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'email'],
+            'email' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'email'],
             'social_media' => [$section === '5' ? 'required' : 'nullable', Rule::enum(SocialMedia::class)],
             'link_type' => [$section === '6' ? 'required' : 'nullable', 'string'],
-            'url' => [in_array($section, [2, 5]) || ($section === '6' && $request->link_type === '1') ? 'required' : 'nullable', 'url'],
+            'url' => [in_array($section, ['2', '5']) || ($section === '6' && $request->link_type === '1') ? 'required' : 'nullable', 'url'],
             'description' => [$section === '7' ? 'required' : 'nullable', 'string'],
             'privacy_text' => ['nullable', 'string'],
             'published' => ['nullable', 'boolean'],
@@ -161,15 +161,15 @@ class FooterController extends Controller
         );
 
         $validated = $request->validate([
-            'text' => [in_array($section, [1, 2, 6, 7, 8]) ? 'required' : 'nullable', 'string'],
-            'company_name' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'string'],
-            'address' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'string'],
-            'phone_1' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'string'],
+            'text' => [in_array($section, ['1', '2', '6', '7', '8']) ? 'required' : 'nullable', 'string'],
+            'company_name' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'string'],
+            'address' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'string'],
+            'phone_1' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'string'],
             'phone_2' => ['nullable', 'string'],
-            'email' => [in_array($section, [3, 4]) ? 'required' : 'nullable', 'email'],
+            'email' => [in_array($section, ['3', '4']) ? 'required' : 'nullable', 'email'],
             'social_media' => [$section === '5' ? 'required' : 'nullable', Rule::enum(SocialMedia::class)],
             'link_type' => [$section === '6' ? 'required' : 'nullable', 'string'],
-            'url' => [in_array($section, [2, 5]) || ($section === '6' && $request->link_type === '1') ? 'required' : 'nullable', 'url'],
+            'url' => [in_array($section, ['2', '5']) || ($section === '6' && $request->link_type === '1') ? 'required' : 'nullable', 'url'],
             'description' => [$section === '7' ? 'required' : 'nullable', 'string'],
             'privacy_text' => ['nullable', 'string'],
             'published' => ['nullable', 'boolean'],

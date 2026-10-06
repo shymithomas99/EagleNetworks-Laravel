@@ -107,7 +107,7 @@ class VideoProjectController extends Controller
             // }
 
             // ✅ Ensure folder exists
-            $destinationPath = public_path('backend_assets/images');
+            $destinationPath = public_path('backend_assets/video-thumbnails');
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
@@ -119,7 +119,7 @@ class VideoProjectController extends Controller
             $file->move($destinationPath, $filename);
 
             // ✅ Save path
-            $thumbnailPath = 'backend_assets/images/' . $filename;
+            $thumbnailPath = 'backend_assets/video-thumbnails/' . $filename;
         }
 
         VideoProject::create([
@@ -194,9 +194,9 @@ class VideoProjectController extends Controller
 
     //         $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-    //         $file->move(public_path('backend_assets/images'), $filename);
+    //         $file->move(public_path('backend_assets/video-thumbnails'), $filename);
 
-    //         $video->thumbnail_url = 'backend_assets/images/' . $filename;
+    //         $video->thumbnail_url = 'backend_assets/video-thumbnails/' . $filename;
     //     }
 
 
@@ -253,7 +253,7 @@ class VideoProjectController extends Controller
             // }
 
             // ✅ Ensure folder exists
-            $destinationPath = public_path('backend_assets/images');
+            $destinationPath = public_path('backend_assets/video-thumbnails');
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
@@ -264,7 +264,7 @@ class VideoProjectController extends Controller
             // ✅ Move file
             $file->move($destinationPath, $filename);
 
-            $thumbnailPath = 'backend_assets/images/' . $filename;
+            $thumbnailPath = 'backend_assets/video-thumbnails/' . $filename;
         }
 
         $video->update([

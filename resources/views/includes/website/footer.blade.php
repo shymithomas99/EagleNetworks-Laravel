@@ -1,200 +1,283 @@
 <footer class="footer section-md">
     <div class="container-custom-2 ">
-
-        <div class="footer-grid pb-4 footer-sec-1">
-            <!-- Logo Content -->
-            <div class="footer-col flex-fill">
-                <div class="footer-logo mb-3">
-                    <img src="images/LOGOEAGLELONDONACCRA.png" alt="Eagle Networks Logo">
-                </div>
-                <p class="small-text mb-0 max-240">
-                    Eagle is a Black-owned, full-service marketing and creative agency based in London and Accra,
-                    specialising in branding, web and software solutions, and TV and digital campaigns
-                </p>
-            </div>
-
-            <!-- Company Links -->
-            <div class="footer-col flex-fill">
-                <h3 class="mb-2">Company</h3>
-                <ul class="list-unstyled footer-links">
-                    <li><a href="/" class="small-text">Home</a></li>
-                    <li><a href="/services" class="small-text">Services</a></li>
-                    <li><a href="/packages" class="small-text">Packages</a></li>
-                    <li><a href="/london" class="small-text">London</a></li>
-                    <li><a href="/accra" class="small-text">Accra</a></li>
-                    <li><a href="/works" class="small-text">Our work</a></li>
-                    <li><a href="/insights" class="small-text">Insights</a></li>
-                    <li><a href="/about" class="small-text">About Us</a></li>
-                    <li><a href="/contact" class="small-text">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- London Contact -->
-            <div class="footer-col flex-fill">
-                <h3 class="mb-2">London</h3>
-                <ul class="list-unstyled footer-contact-list footer-links">
-                    <li class="contact-item d-flex align-items-start mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
-                                style="color: rgba(255, 255, 255, 0.65);">
-                                <path
-                                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
-                                </path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                        </span>
-                        <div>
-                            <span class="fw-semibold d-block">Eagle London Agency</span>
-                            <span class="small-text">c/o EMH Global Ltd, Old Town Hall Annexe, 29 Broadway, Stratford
-                                E15 4BQ</span>
-                        </div>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
-                                style="color: rgba(255, 255, 255, 0.65);">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
-                        </span>
-                        <a href="tel:+442039270281" class="small-text">+44 (0)203 927 0281</a>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
-                                style="color: rgba(255, 255, 255, 0.65);">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
-                        </span>
-                        <a href="tel:+447983508359" class="small-text">+44 (0)7983 508 359</a>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-mail mt-0.5 flex-shrink-0"
-                                style="color: rgba(255, 255, 255, 0.65);">
-                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                            </svg>
-                        </span>
-                        <a href="mailto:eaglenetworks@theemhglobal.com"
-                            class="small-text">eaglenetworks@theemhglobal.com</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Accra Contact -->
-            <div class="footer-col flex-fill">
-                <h3 class="mb-2">Accra</h3>
-                <ul class="list-unstyled footer-contact-list footer-links">
-                    <li class="contact-item d-flex align-items-start mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
-                                style="color: rgba(255, 255, 255, 0.65);">
-                                <path
-                                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
-                                </path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                        </span>
-                        <div>
-                            <span class="fw-semibold d-block">EMH Global Ghana Limited</span>
-                            <span class="small-text">Eagle House, C358/9 Manyo Plange Street, Adabraka, Accra,
-                                Ghana</span>
-                        </div>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
-                        </span>
-                        <a href="tel:+233302237395" class="small-text">+233 (0)302 237 395</a>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
-                        </span>
-                        <a href="tel:+233540381883" class="small-text">+233 (0)540 381 883</a>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <span class="me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-mail mt-0.5 flex-shrink-0"
-                                style="color: rgba(255, 255, 255, 0.65);">
-                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                            </svg>
-                        </span>
-                        <a href="mailto:eaglenetworks@theemhglobal.com"
-                            class="small-text">eaglenetworks@theemhglobal.com</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Connect & Legal -->
-            <div class="footer-col flex-fill">
-                <h3 class="mb-2">Connect</h3>
-                <div class="d-flex gap-3 fs-5 mb-5 mb-md-4 social-icons">
-                    <a href="https://uk.linkedin.com/company/eagletheagency"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://x.com/Eagletheagency"><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://www.instagram.com/eagletheagency"><i class="bi bi-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@eagletheagency"><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.youtube.com/channel/UCeQnJm2xSTkK2G9hbl5ySUQ"><i
-                            class="bi bi-youtube"></i></a>
+        @if($companyblurb || $companyLinks->isNotEmpty() || $london || $accra || $connectLinks->isNotEmpty() || $legalLinks->isNotEmpty())
+            <div class="footer-grid pb-4 footer-sec-1">
+                <!-- Logo Content -->
+                <div class="footer-col flex-fill">
+                    <div class="footer-logo mb-3">
+                        <img src="{{ asset('images/LOGOEAGLELONDONACCRA.png') }}"
+                            alt="Eagle Networks Logo">
+                    </div>
+                    @if($companyblurb)
+                        <p class="small-text mb-0 max-240">
+                            {{ $companyblurb->text }}
+                        </p>
+                    @endif
                 </div>
 
-                <h3 class="mb-3">Legal</h3>
-                <ul class="list-unstyled footer-links-subtle">
-                    <li><a href="/privacy-policy" class="small-text">Privacy Policy</a></li>
-                    <li><a href="/terms" class="small-text">Terms of Use</a></li>
-                    <li><a href="/sitemap" class="small-text">Sitemap</a></li>
+                <!-- Company Links -->
+                @if($companyLinks->isNotEmpty())
+                    <div class="footer-col flex-fill">
+                        <h3 class="mb-2">Company</h3>
+                        <ul class="list-unstyled footer-links">
+                            @foreach($companyLinks as $link)
+                                @if($link->text)
+                                    <li>
+                                        <a href="{{ $link->url ?? '' }}"
+                                        class="small-text">
+                                            {{ $link->text }}
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                    <li>
-                        <a href="#" class="small-text" id="openCookieSettings">
-                            Cookie Settings
-                        </a>
-                    </li>
-                </ul>
+                <!-- London Contact -->
+                @if($london)
+                <div class="footer-col flex-fill">
+                    <h3 class="mb-2">London</h3>
+                    <ul class="list-unstyled footer-contact-list footer-links">
+                        <li class="contact-item d-flex align-items-start mb-2">
+                            <span class="me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
+                                    style="color: rgba(255, 255, 255, 0.65);">
+                                    <path
+                                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                    </path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </span>
+                            <div>
+                                <span class="fw-semibold d-block">{{ $london->company_name }}</span>
+                                <span class="small-text">{{ $london->address }}</span>
+                            </div>
+                        </li>
+
+                        @if($london->phone_1)
+                            <li class="contact-item d-flex align-items-center mb-2">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
+                                        style="color: rgba(255, 255, 255, 0.65);">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $london->phone_1) }}" class="small-text">{{ $london->phone_1 }}</a>
+                            </li>
+                        @endif
+
+                        @if($london->phone_2)
+                            <li class="contact-item d-flex align-items-center mb-2">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
+                                        style="color: rgba(255, 255, 255, 0.65);">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $london->phone_2) }}"
+                                    class="small-text">
+                                    {{ $london->phone_2 }}
+                                </a>
+                            </li>
+                        @endif
+
+                        @if($london->email)
+                            <li class="contact-item d-flex align-items-center mb-2">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-mail mt-0.5 flex-shrink-0"
+                                        style="color: rgba(255, 255, 255, 0.65);">
+                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                    </svg>
+                                </span>
+                                <a href="mailto:{{ $london->email }}"
+                                    class="small-text">
+                                    {{ $london->email }}
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+                @endif
+
+                <!-- Accra Contact -->
+                @if($accra)
+                    <div class="footer-col flex-fill">
+                        <h3 class="mb-2">{{ $accra->company_name }}</h3>
+                        <ul class="list-unstyled footer-contact-list footer-links">
+                            <li class="contact-item d-flex align-items-start mb-2">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
+                                        style="color: rgba(255, 255, 255, 0.65);">
+                                        <path
+                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                        </path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span class="fw-semibold d-block">{{ $accra->company_name }}</span>
+                                    <span class="small-text">{{ $accra->address }}</span>
+                                </div>
+                            </li>
+
+                            @if($accra->phone_1)
+                                <li class="contact-item d-flex align-items-center mb-2">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $accra->phone_1) }}" class="small-text">{{ $accra->phone_1 }}</a>
+                                </li>
+                            @endif
+
+                            @if($accra->phone_2)
+                                <li class="contact-item d-flex align-items-center mb-2">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $accra->phone_2) }}" class="small-text">{{ $accra->phone_2 }}</a>
+                                </li>
+                            @endif
+
+                            @if($accra->email)
+                                <li class="contact-item d-flex align-items-center mb-2">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-mail mt-0.5 flex-shrink-0"
+                                            style="color: rgba(255, 255, 255, 0.65);">
+                                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                        </svg>
+                                    </span>
+                                    <a href="mailto:{{ $accra->email }}"
+                                        class="small-text">
+                                        {{ $accra->email }}
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                @endif
+
+                <!-- Connect & Legal -->
+                @if($connectLinks->isNotEmpty() || $legalLinks->isNotEmpty())
+                    <div class="footer-col flex-fill">
+                        @if($connectLinks->isNotEmpty())
+                            <h3 class="mb-2">Connect</h3>
+                            <div class="d-flex gap-3 fs-5 mb-5 mb-md-4 social-icons">
+                                @foreach($connectLinks as $link)
+                                @if($link->url)
+                                    <a href="{{ $link->url }}"
+                                        aria-label="{{ $link->social_media?->label() ?? $link->text }}"
+                                        target="_blank"
+                                        rel="noopener">
+                                        @switch($link->social_media?->value)
+                                            @case('linkedin')
+                                                <i class="bi bi-linkedin"></i>
+                                                @break
+
+                                            @case('x')
+                                                <i class="bi bi-twitter-x"></i>
+                                                @break
+
+                                            @case('instagram')
+                                                <i class="bi bi-instagram"></i>
+                                                @break
+
+                                            @case('tiktok')
+                                                <i class="bi bi-tiktok"></i>
+                                                @break
+
+                                            @case('youtube')
+                                                <i class="bi bi-youtube"></i>
+                                                @break
+                                        @endswitch
+                                    </a>
+                                @endif
+                                @endforeach
+                            </div>
+                        @endif
+
+                        @if($legalLinks->isNotEmpty())
+                            <h3 class="mb-3">Legal</h3>
+                            <ul class="list-unstyled footer-links-subtle">
+                                @foreach($legalLinks as $link)
+                                    @if($link->text)
+                                        <li>
+                                            @if($link->link_type === 2)
+                                                {{-- Cookie Preferences Modal --}}
+                                                <a href="#"
+                                                    class="small-text"
+                                                    id="openCookieSettings">
+                                                    {{ $link->text }}
+                                                </a>
+                                            @elseif($link->url)
+                                                <a href="{{ $link->url }}"
+                                                    class="small-text">
+                                                    {{ $link->text }}
+                                                </a>
+                                            @endif
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                @endif
             </div>
-        </div>
+        @endif
 
         <div class="row justify-content-center" id="newsletter">
             <div class="col-12 newsletter-box">
-                <div class="row flex-column g-4">
-                    <div class="col-md-12">
-                        <h3 class="fw-bold mb-2">Stay Updated</h3>
-                        <p>Get insights, updates, and exclusive offers delivered
-                            to your inbox.</p>
+                @if($newsletter)
+                    <div class="row flex-column g-4">
+                        <div class="col-md-12">
+                            @if($newsletter->text)
+                                <h3 class="fw-bold mb-2">
+                                    {{ $newsletter->text }}
+                                </h3>
+                            @endif
+
+                            @if($newsletter->description)
+                                <p>
+                                    {{ $newsletter->description }}
+                                </p>
+                            @endif
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="row g-2 w-100">
                     <form action="{{ route('newsletter.subscribe') }}" method="POST">
@@ -222,13 +305,11 @@
                         </div>
                     </form>
 
-                    <p class="x-small-text mt-3 mb-0 fw-normal">
-                        We respect your privacy.
-                        {{--  <a href="{{ route('newsletter.unsubscribe', $subscriber->id) }}">  --}}
-                        Unsubscribe
-                        {{--  </a>  --}}
-                        at any time.
-                    </p>
+                    @if($newsletter?->privacy_text)
+                        <p class="x-small-text mt-3 mb-0 fw-normal">
+                            {{ $newsletter->privacy_text }}
+                        </p>
+                    @endif
 
                     @if (session('success'))
                         <div class="alert alert-success mt-2">
@@ -244,11 +325,14 @@
                 </div>
             </div>
         </div>
-        <div class="row copy-right pt-5">
-            <div class="col-12 text-center small-text">
-                &copy; 2026 Eagle Networks. All rights reserved.
+
+        @if($copyright)
+            <div class="row copy-right pt-5">
+                <div class="col-12 text-center small-text">
+                    &copy; {{ date('Y') }} {{ $copyright->text }}
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 
 

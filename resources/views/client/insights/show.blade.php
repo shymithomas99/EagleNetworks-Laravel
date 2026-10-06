@@ -73,7 +73,7 @@
                 @if ($blog->coverImage)
                 <div class="insight-intro-img">
                     <img
-                        src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                        src="{{ asset('backend_assets/blogs/' . $blog->coverImage) }}"
                         alt="{{ $blog->title }}"
                     >
                 </div>

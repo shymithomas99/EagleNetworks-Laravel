@@ -89,7 +89,7 @@
 
                                         <div class="col-auto">
                                             <img
-                                                src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                                                src="{{ asset('backend_assets/blogs/' . $blog->coverImage) }}"
                                                 class="article-img"
                                                 alt="{{ $blog->title }}"
                                             >

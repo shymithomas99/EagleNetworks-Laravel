@@ -40,7 +40,7 @@
                             click here</a>.
                         <br>
                         Enable the <strong>Featured</strong> option to display the
-                        {{ $contentLabel }} on the public home page.
+                        {{ $contentLabel }} on the public 'Home' page.
                     </p>
 
                 </div>

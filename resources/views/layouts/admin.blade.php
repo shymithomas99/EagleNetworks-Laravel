@@ -187,6 +187,15 @@
         .sidebar-custom-link i {
             color: #fff !important;
         }
+
+        .sidebar-section-title {
+            padding: 18px 15px 8px;
+            color: #999;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 
@@ -914,14 +923,14 @@
                     <!-- Work Page -->
                     <div class="bg-dark py-1">
                         <button
-                            class="accordion-custom {{ request()->is('admin/work-page*') || request()->is('admin/works*') || request()->is('admin/work-category*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                            class="accordion-custom {{ request()->is('admin/work-page*') || request()->is('admin/works*') || request()->is('admin/work-category*') ? 'active-parent active' : '' }}"
                             data-target="workPageMenu">
                             <span><i class="fas fa-briefcase"></i> Work Page</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
                         <div id="workPageMenu"
-                            class="accordion-content {{ request()->is('admin/work-page*') || request()->is('admin/works*') || request()->is('admin/work-category*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }} py-2">
+                            class="accordion-content {{ request()->is('admin/work-page*') || request()->is('admin/works*') || request()->is('admin/work-category*') ? 'show' : '' }} py-2">
                             <a href="{{ route('admin.work-page.edit', ['section' => 1, 'is_card' => 0, 'workPage' => 1]) }}"
                                 class="nav-anchor {{ request()->is('admin/work-page/1/0*') ? 'active' : '' }}">
                                 Banner
@@ -981,7 +990,7 @@
                             </div>
 
                             <button
-                                class="accordion-custom sub-accordion {{ request()->is('admin/work-page/5*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                                class="accordion-custom sub-accordion {{ request()->is('admin/work-page/5*') ? 'active-parent active' : '' }}"
                                 data-target="manageWorkPageVideoMenu">Video
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -991,12 +1000,8 @@
                                     class="nav-anchor {{ request()->is('admin/work-page/5/0*') ? 'active' : '' }}">
                                     Intro
                                 </a>
-                                <a href="{{ route('admin.categories.index') }}"
-                                    class="nav-anchor {{ request()->is('admin/categories*') ? 'active' : '' }}">
-                                    Categories
-                                </a>
-                                <a href="{{ route('admin.videos.index') }}"
-                                    class="nav-anchor {{ request()->is('admin/videos*') ? 'active' : '' }}">
+                                <a href="{{ route('admin.work-page.index', ['section' => 5, 'is_card' => 1]) }}"
+                                    class="nav-anchor {{ request()->is('admin/work-page/5/1*') ? 'active' : '' }}">
                                     Cards
                                 </a>
                             </div>
@@ -1007,6 +1012,56 @@
                             </a>
 
                         </div>
+                    </div>
+
+                    <!-- Media Page -->
+                    <div class="bg-dark py-1">
+
+                        <button
+                            class="accordion-custom {{ request()->is('admin/media-page*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                            data-target="mediaPageMenu">
+                            <span>
+                                <i class="fas fa-film"></i>
+                                Media Page
+                            </span>
+                            <i class="fa fa-chevron-down arrow"></i>
+                        </button>
+
+                        <div id="mediaPageMenu"
+                            class="accordion-content {{ request()->is('admin/media-page*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }} py-2">
+
+                            <a href="{{ route('admin.media-page.edit', 1) }}"
+                                class="nav-anchor {{ request()->is('admin/media-page/1*') ? 'active' : '' }}">
+                                Banner
+                            </a>
+
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
+                                data-target="mediaVideoMenu">
+                                Video
+                                <i class="fa fa-chevron-down arrow"></i>
+                            </button>
+
+                            <div id="mediaVideoMenu"
+                                class="accordion-content sub-menu {{ request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }}">
+
+                                <a href="{{ route('admin.categories.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/categories*') ? 'active' : '' }}">
+                                    Categories
+                                </a>
+
+                                <a href="{{ route('admin.videos.index') }}"
+                                    class="nav-anchor {{ request()->is('admin/videos*') ? 'active' : '' }}">
+                                    Cards
+                                </a>
+                            </div>
+
+                            <a href="{{ route('admin.media-page.edit', 2) }}"
+                                class="nav-anchor {{ request()->is('admin/media-page/2*') ? 'active' : '' }}">
+                                About Eagle Media House
+                            </a>
+                        </div>
+
                     </div>
 
                     <!-- Insights Page -->
@@ -1343,7 +1398,14 @@
 
                         </div>
                     </div>
+                </li>
 
+                <!-- OTHERS SECTION -->
+                <li class="nav-item">
+
+                    <div class="sidebar-section-title">
+                        <span>Others</span>
+                    </div>
                     {{-- =========================================================
                         TERMS OF USE
                     ========================================================= --}}
@@ -1830,91 +1892,6 @@
                         </a>
 
                     </div>
-
-                    <!-- Media Page -->
-                    <div class="bg-dark py-1">
-
-                        <button
-                            class="accordion-custom {{ request()->is('admin/media-page*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
-                            data-target="mediaPageMenu">
-
-                            <span>
-                                <i class="fas fa-briefcase"></i>
-                                Media Page
-                            </span>
-
-                            <i class="fa fa-chevron-down arrow"></i>
-
-                        </button>
-
-
-                        <div id="mediaPageMenu"
-                            class="accordion-content {{ request()->is('admin/media-page*') || request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }} py-2">
-
-
-                            {{-- =========================
-                                BANNER
-                            ========================== --}}
-
-                            <a href="{{ route('admin.media-page.edit', 1) }}"
-                                class="nav-anchor {{ request()->is('admin/media-page/1*') ? 'active' : '' }}">
-
-                                Banner
-
-                            </a>
-
-
-                            {{-- =========================
-                                VIDEO
-                            ========================== --}}
-
-                            <button
-                                class="accordion-custom sub-accordion {{ request()->is('admin/videos*') || request()->is('admin/categories*') ? 'active-parent active' : '' }}"
-                                data-target="mediaVideoMenu">
-
-                                Video
-
-                                <i class="fa fa-chevron-down arrow"></i>
-
-                            </button>
-
-
-                            <div id="mediaVideoMenu"
-                                class="accordion-content sub-menu {{ request()->is('admin/videos*') || request()->is('admin/categories*') ? 'show' : '' }}">
-
-                                <a href="{{ route('admin.categories.index') }}"
-                                    class="nav-anchor {{ request()->is('admin/categories*') ? 'active' : '' }}">
-
-                                    Categories
-
-                                </a>
-
-                                <a href="{{ route('admin.videos.index') }}"
-                                    class="nav-anchor {{ request()->is('admin/videos*') ? 'active' : '' }}">
-
-                                    Videos
-
-                                </a>
-
-                            </div>
-
-
-                            {{-- =========================
-                                ABOUT
-                            ========================== --}}
-
-                            <a href="{{ route('admin.media-page.edit', 2) }}"
-                                class="nav-anchor {{ request()->is('admin/media-page/2*') ? 'active' : '' }}">
-
-                                About Eagle Media House
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
 
                 </li>
 

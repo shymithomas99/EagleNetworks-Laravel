@@ -26,7 +26,7 @@ class WorkPageController extends Controller
     {
         abort_unless($is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '3', '5', '6'], true),
+            in_array($section, ['1', '3', '6'], true),
             404
         );
         $title = $this->getTitle($section) . ' Cards';

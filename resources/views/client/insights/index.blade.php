@@ -79,7 +79,7 @@
                                     <div class="card-type2-img-container">
                                         @if ($blog->coverImage)
                                             <img
-                                                src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                                                src="{{ asset('backend_assets/blogs/' . $blog->coverImage) }}"
                                                 alt="{{ $blog->title }}"
                                             >
                                         @endif
@@ -174,7 +174,7 @@
                                 <div class="card-type2-img-container">
                                     @if ($blog->coverImage)
                                         <img
-                                            src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                                            src="{{ asset('backend_assets/blogs/' . $blog->coverImage) }}"
                                             alt="{{ $blog->title }}"
                                         >
                                     @endif
@@ -273,7 +273,7 @@
                                 <div class="card-type2-img-container">
                                     @if ($blog->coverImage)
                                         <img
-                                            src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                                            src="{{ asset('backend_assets/blogs/' . $blog->coverImage) }}"
                                             alt="{{ $blog->title }}"
                                         >
                                     @endif
@@ -339,7 +339,7 @@
                                 <div class="card-type2-img-container">
                                     @if ($blog->coverImage)
                                         <img
-                                            src="{{ asset('backend_assets/images/' . $blog->coverImage) }}"
+                                            src="{{ asset('backend_assets/blogs/' . $blog->coverImage) }}"
                                             alt="{{ $blog->title }}"
                                         >
                                     @endif
