@@ -51,8 +51,7 @@ class PackagesController extends Controller
             ->groupBy(fn ($item) => $item->section . '_' . (int) $item->is_card);
 
         $banner = $packageRecords->get('1_0')?->first();
-        $forIntro = $packageRecords->get('2_0')?->first();
-        $forCards = $packageRecords->get('2_1', collect());
+        $for = $packageRecords->get('2_0')?->first();
         $serviceIntro = $packageRecords->get('3_0')?->first();
         $serviceCards = $packageRecords->get('3_1', collect());
         $howWeWorkIntro = $packageRecords->get('4_0')?->first();
@@ -60,9 +59,9 @@ class PackagesController extends Controller
         $ctaBannerBottom = $packageRecords->get('5_0')?->first();
 
         return view('client.packages.show', compact(
+            'packagesPage',
             'banner',
-            'forIntro',
-            'forCards',
+            'for',
             'serviceIntro',
             'serviceCards',
             'howWeWorkIntro',

@@ -42,7 +42,7 @@
                             @enderror
                         </div>
 
-                        @if($is_card && $section === '2')
+                        @if($is_card === '0' && $section === '2')
                         <div class="col-6 my-3">
                             <label for="additional_title">Additional Title *</label>
                             <input type="text" class="form-control" id="additional_title" placeholder=""
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="key_points">Key Points *</label><br>
+                            <label for="key_points">Key Points (Enter each point on a new line) *</label><br>
                             <textarea class="form-control" name="key_points" id="key_points" rows="4"
                                 placeholder="One per line...">{{ old('key_points', $package->key_points ?? '') }}</textarea>
                             @error('key_points')
@@ -175,7 +175,7 @@
                             @if($is_card)
                             <a class="btn btn-secondary" href="{{ route('admin.packages.index', ['packagesPage' => $packagesPage, 'section' => $section, 'is_card' => $is_card]) }}">Cancel</a>
                             @else
-                            <a href="{{ route('admin.packages-page.show', ['section' => 3, 'is_card' => 1, 'packagesPage' => $packagesPage]) }}" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('admin.packages-page.show', ['section' => 3, 'is_card' => 1, 'packagesPage' => $packagesPage]) }}" class="btn btn-secondary">Back</a>
                             @endif
                         </div>
                     </div>

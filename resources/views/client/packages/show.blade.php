@@ -1,5 +1,5 @@
 @extends('layouts.appweb')
-@section('title', 'Ignite | ')
+@section('title', $packagesPage->title . ' | ')
 @push('meta')
     <meta
         name="description"
@@ -16,9 +16,13 @@
                 <div class="section-hero-sub">
                     <div>
                         <div>
-                            @if($banner->label)
+                            @if($packagesPage->most_popular)
+                                <span class="badge-popular mb-4 border-0">Most Popular</span>
+                            @endif
+                            
+                            @if($packagesPage->title || $packagesPage->support_title)
                                 <div class="header-label">
-                                    {{ $banner->label }}
+                                    {{ $packagesPage->title }} — {{ $packagesPage->support_title }}
                                 </div>
                             @endif
 
@@ -31,10 +35,10 @@
                             @endif
 
 
-                            @if($banner->button_text && $banner->button_url)
-                                <a href="{{ $banner->button_url }}"
+                            @if($banner->button1_text)
+                                <a href="{{ $banner->button1_url ?? '' }}"
                                 class="commn-btn btn-primary-custom me-2 mb-3 mb-sm-0">
-                                    {{ $banner->button_text }}
+                                    {{ $banner->button1_text }}
 
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         width="18"
@@ -52,10 +56,12 @@
                                 </a>
                             @endif
 
-                            <a href="{{ url('/packages') }}"
-                            class="commn-btn btn-transperant">
-                                View All Packages
-                            </a>
+                            @if($banner->button2_text)
+                                <a href="{{ $banner->button2_url ?? '' }}"
+                                class="commn-btn btn-transperant">
+                                    {{ $banner->button2_text }}
+                                </a>
+                            @endif
                         </div>
 
                     </div>
@@ -64,52 +70,48 @@
         </section>
     @endif
 
-    @if($forIntro || $forCards->isNotEmpty())
+    @if($for)
         <section class="who-its-for section-md">
             <div class="container-custom">
                 <div class="row align-items-center">
-
-                    @if($forIntro)
-                        <div class="col-lg-6">
-                            <h2>{{ $forIntro->title }}</h2>
-                            @if($forIntro->description)
-                                @foreach(preg_split('/\r\n|\r|\n/', $forIntro->description) as $paragraph)
-                                    @if(trim($paragraph))
-                                        <div class="subhead mb-3">
-                                            {{ $paragraph }}
-                                        </div>
-                                    @endif
-                                @endforeach
-                            @endif
-                        </div>
-                    @endif
-
-                    @if($forCards->isNotEmpty())
-                        <div class="col-lg-6">
-                            @foreach($forCards as $card)
-                                <div class="package-card">
-                                    <h3 class="mb-4">
-                                        {{ $card->title }}
-                                    </h3>
-
-                                    @if($card->description)
-                                        <ul class="list-unstyled mb-0">
-
-                                            @foreach(preg_split('/\r\n|\r|\n/', $card->description) as $item)
-
-                                                @if(trim($item))
-                                                    <li class="d-flex align-items-start mb-3">
-                                                        <i class="bi bi-check2"></i>
-                                                        <span>{{ trim($item) }}</span>
-                                                    </li>
-                                                @endif
-
-                                            @endforeach
-
-                                        </ul>
-                                    @endif
-                                </div>
+                    <div class="col-lg-6">
+                        <h2>{{ $for->title }}</h2>
+                        @if($for->description)
+                            @foreach(preg_split('/\r\n|\r|\n/', $for->description) as $paragraph)
+                                @if(trim($paragraph))
+                                    <div class="subhead mb-3">
+                                        {{ $paragraph }}
+                                    </div>
+                                @endif
                             @endforeach
+                        @endif
+                    </div>
+                    @if($for->additional_title || $for->key_points)
+                        <div class="col-lg-6">
+                            <div class="package-card">
+                                @if($for->additional_title)
+                                    <h3 class="mb-4">
+                                        {{ $for->additional_title }}
+                                    </h3>
+                                @endif
+
+                                @if($for->key_points)
+                                    <ul class="list-unstyled mb-0">
+
+                                        @foreach(preg_split('/\r\n|\r|\n/', $for->key_points) as $item)
+
+                                            @if(trim($item))
+                                                <li class="d-flex align-items-start mb-3">
+                                                    <i class="bi bi-check2"></i>
+                                                    <span>{{ trim($item) }}</span>
+                                                </li>
+                                            @endif
+
+                                        @endforeach
+
+                                    </ul>
+                                @endif
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -236,7 +238,7 @@
                         @endif
                         @if($ctaBannerBottom->website)
                             <div class="col-md-4">
-                                <a href="{{ $ctaBannerBottom->website }}"
+                                <a href="https://{{ $ctaBannerBottom->website }}"
                                 target="_blank">
                                     <div class="icon-circle mx-auto mb-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -258,7 +260,7 @@
 
                         @if($ctaBannerBottom->linkedin)
                             <div class="col-md-4">
-                                <a href="{{ $ctaBannerBottom->linkedin }}"
+                                <a href="https://{{ $ctaBannerBottom->linkedin }}"
                                 target="_blank">
                                     <div class="icon-circle mx-auto mb-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

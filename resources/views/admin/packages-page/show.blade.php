@@ -34,42 +34,17 @@
                     Banner
                 </a>
 
-
                 {{-- For --}}
-                <div class="list-group-item">
-
-                    <div class="fw-bold mb-2">
-                        <i class="fas fa-cogs me-2"></i>
-                        For
-                    </div>
-
-                    <div class="ms-4">
-
-                        {{-- For Intro --}}
-                        <a href="{{ route('admin.packages.edit', [
-                                'packagesPage' => $packagesPage,
-                                'section' => '2',
-                                'is_card' => '0',
-                                'package' => $packages->get(2),
-                            ]) }}"
-                            class="list-group-item list-group-item-action border-0">
-                            <i class="fas fa-angle-right me-2"></i>
-                            Intro
-                        </a>
-
-                        {{-- For Cards --}}
-                        <a href="{{ route('admin.packages.index', [
-                                'packagesPage' => $packagesPage,
-                                'section' => '2',
-                                'is_card' => '1'
-                            ]) }}"
-                            class="list-group-item list-group-item-action border-0">
-                            <i class="fas fa-angle-right me-2"></i>
-                            Cards
-                        </a>
-
-                    </div>
-                </div>
+                <a href="{{ route('admin.packages.edit', [
+                        'packagesPage' => $packagesPage,
+                        'section' => '2',
+                        'is_card' => '0',
+                        'package' => $packages->get(2),
+                    ]) }}"
+                    class="list-group-item list-group-item-action">
+                    <i class="fas fa-bullseye me-2"></i>
+                    For
+                </a>
 
                 {{-- Services --}}
                 <div class="list-group-item">

@@ -26,7 +26,7 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1 && $is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '5'], true),
+            in_array($section, ['1', '2', '5'], true),
             404
         );
 
@@ -62,7 +62,7 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1 && $is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '5'], true),
+            in_array($section, ['1', '2', '5'], true),
             404
         );
 
@@ -88,15 +88,15 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1 && $is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '5'], true),
+            in_array($section, ['1', '2', '5'], true),
             404
         );
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'additional_title' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string', 'max:255'],
+            'additional_title' => [$is_card === '0'  && $section == 2 ? 'required' : 'nullable', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'key_points' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string'],
+            'key_points' => [$is_card === '0'  && $section == 2 ? 'required' : 'nullable', 'string'],
             'button_text' => ['nullable'],
             'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable'],
@@ -104,8 +104,8 @@ class PackageController extends Controller
             'button2_text' => ['nullable'],
             'button2_url' => ['nullable', 'url'],
             'email' => ['nullable', 'email'],
-            'website' => ['nullable', 'url'],
-            'linkedin' => ['nullable', 'url'],
+            'website' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
             'published' => ['nullable', 'boolean'],
             'display_order' => [$is_card ? 'required' : 'nullable', 'integer', 'min:0'],
         ]);
@@ -137,12 +137,12 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1, 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '5'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '5'], true),
             404
         );
 
         if (!$is_card) {
-            $cardOrIntro = in_array($section, ['1', '5']) ? '' : 'Intro';
+            $cardOrIntro = in_array($section, ['1', '2', '5']) ? '' : 'Intro';
         } else {
             $cardOrIntro = 'Card';
         }
@@ -167,15 +167,15 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1, 404);
         abort_if(
-            $is_card === '1' && in_array($section, ['1', '5'], true),
+            $is_card === '1' && in_array($section, ['1', '2', '5'], true),
             404
         );
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'additional_title' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string', 'max:255'],
+            'additional_title' => [$is_card === '0'  && $section == 2 ? 'required' : 'nullable', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'key_points' => [$is_card  && $section == 2 ? 'required' : 'nullable', 'string'],
+            'key_points' => [$is_card === '0'  && $section == 2 ? 'required' : 'nullable', 'string'],
             'button_text' => ['nullable'],
             'button_url' => ['nullable', 'url'],
             'button1_text' => ['nullable'],
@@ -183,8 +183,8 @@ class PackageController extends Controller
             'button2_text' => ['nullable'],
             'button2_url' => ['nullable', 'url'],
             'email' => ['nullable', 'email'],
-            'website' => ['nullable', 'url'],
-            'linkedin' => ['nullable', 'url'],
+            'website' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
             'published' => ['nullable', 'boolean'],
             'display_order' => [$is_card ? 'required' : 'nullable', 'integer', 'min:0'],
         ]);
@@ -215,7 +215,7 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1 && $is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '5'], true),
+            in_array($section, ['1', '2', '5'], true),
             404
         );
 
@@ -230,7 +230,7 @@ class PackageController extends Controller
     {
         abort_unless($packagesPage->section === 3 && $packagesPage->is_card == 1 && $is_card === '1', 404);
         abort_if(
-            in_array($section, ['1', '5'], true),
+            in_array($section, ['1', '2', '5'], true),
             404
         );
         
