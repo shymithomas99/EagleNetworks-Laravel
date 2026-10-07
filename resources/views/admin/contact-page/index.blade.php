@@ -5,12 +5,12 @@
             <div class="card-header">
                 {{ $title ?? null }}
 
-                <a href="{{ route('admin.about-page.create', ['section' => $section, 'is_card' => $is_card]) }}" class="btn btn-success float-end">
+                <a href="{{ route('admin.contact-page.create', ['section' => $section, 'is_card' => $is_card]) }}" class="btn btn-success float-end">
                     + Add
                 </a>
 
                 <!-- <div class="mt-3">
-                    <p><b>Manage all aboutPages here.</b></p>
+                    <p><b>Manage all contactPages here.</b></p>
                 </div> -->
             </div>
             <div class="card-body">
@@ -37,7 +37,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <form action="{{ route('admin.about-page.toggle-publish', ['section' => $section, 'is_card' => $is_card, 'aboutPage' => $item]) }}" method="POST"
+                                    <form action="{{ route('admin.contact-page.toggle-publish', ['section' => $section, 'is_card' => $is_card, 'contactPage' => $item]) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('PATCH')
@@ -45,11 +45,11 @@
                                             {{ $item->published ? 'Unpublish' : 'Publish' }}
                                         </button>
                                     </form>
-                                    <a class="btn btn-info" href="{{ route('admin.about-page.edit', ['section' => $section, 'is_card' => $is_card, 'aboutPage' => $item]) }}">
+                                    <a class="btn btn-info" href="{{ route('admin.contact-page.edit', ['section' => $section, 'is_card' => $is_card, 'contactPage' => $item]) }}">
                                         Edit
                                     </a>
                                     <!-- DELETE -->
-                                    <form action="{{ route('admin.about-page.destroy', ['section' => $section, 'is_card' => $is_card, 'aboutPage' => $item]) }}" method="POST"
+                                    <form action="{{ route('admin.contact-page.destroy', ['section' => $section, 'is_card' => $is_card, 'contactPage' => $item]) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')

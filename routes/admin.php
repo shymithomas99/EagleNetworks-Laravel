@@ -37,7 +37,7 @@ Route::middleware('guest')->group(function () {
 // ✅ PROTECTED ROUTES (auth middleware)
 Route::middleware('auth')->group(function () {
     // Logout route
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

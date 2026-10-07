@@ -198,7 +198,7 @@
 
                                         @if($card->key_points)
                                             <div class="expand-card">
-                                                <h4>KEY POINTS</h4>
+                                                <h4>{{ $loop->last ? 'KEY POINTS' : 'PROCESS' }}</h4>
                                                 <ul>
                                                     @foreach(preg_split('/\r\n|\r|\n/', $card->key_points) as $item)
                                                         @if(trim($item))
@@ -423,16 +423,10 @@
 
                 <div class="highlight-content">
 
-                    @if($ctaBanner->title)
+                    @if($ctaBanner->title && $ctaBanner->description)
                         <h2 class="h2-30 lh-base">
-                            {{ $ctaBanner->title }}
+                            {{ $ctaBanner->title }} {{ $ctaBanner->description }}
                         </h2>
-                    @endif
-
-                    @if($ctaBanner->description)
-                        <div class="subhead">
-                            {!! nl2br(e($ctaBanner->description)) !!}
-                        </div>
                     @endif
 
                     @if($ctaBanner->button_text)

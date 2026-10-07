@@ -82,7 +82,7 @@
 
                         @if ($is_card && $section === '3')
                         <div class="col-6 my-3">
-                            <label for="key_services">Key Services *</label><br>
+                            <label for="key_services">Key Services (Enter each point on a new line) *</label><br>
                             <textarea class="form-control" name="key_services" id="key_services" rows="4"
                                 placeholder="One per line...">{{ old('key_services', $servicesPage->key_services ?? '') }}</textarea>
                             @error('key_services')
@@ -91,7 +91,7 @@
                         </div>
                 
                         <div class="col-6 my-3">
-                            <label for="key_points">Key Points *</label><br>
+                            <label for="key_points">Process / Key Points (Enter each point on a new line) *</label><br>
                             <textarea class="form-control" name="key_points" id="key_points" rows="4"
                                 placeholder="One per line...">{{ old('key_points', $servicesPage->key_points ?? '') }}</textarea>
                             @error('key_points')

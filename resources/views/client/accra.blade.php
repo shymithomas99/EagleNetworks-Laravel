@@ -126,7 +126,7 @@
                         @if($strategicHub->description)
                             @foreach(preg_split('/\r\n|\r|\n/', $strategicHub->description) as $paragraph)
                                 @if(trim($paragraph))
-                                    <p class="subhead {{ $loop->first() ? 'mb-2' : '' }}">
+                                    <p class="subhead {{ $loop->first ? 'mb-2' : '' }}">
                                         {{ $paragraph }}
                                     </p>
                                 @endif
