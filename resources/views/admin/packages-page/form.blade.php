@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="key_services">Key Services *</label><br>
+                            <label for="key_services">Key Services (Enter each point on a new line) *</label><br>
                             <textarea class="form-control" name="key_services" id="key_services" rows="4"
                                 placeholder="One per line...">{{ old('key_services', $packagesPage->key_services ?? '') }}</textarea>
                             @error('key_services')
