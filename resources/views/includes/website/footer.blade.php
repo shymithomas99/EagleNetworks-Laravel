@@ -1,14 +1,19 @@
 <footer class="footer section-md">
     <div class="container-custom-2 ">
-        @if($companyblurb || $companyLinks->isNotEmpty() || $london || $accra || $connectLinks->isNotEmpty() || $legalLinks->isNotEmpty())
+        @if (
+            $companyblurb ||
+                $companyLinks->isNotEmpty() ||
+                $london ||
+                $accra ||
+                $connectLinks->isNotEmpty() ||
+                $legalLinks->isNotEmpty())
             <div class="footer-grid pb-4 footer-sec-1">
                 <!-- Logo Content -->
                 <div class="footer-col flex-fill">
                     <div class="footer-logo mb-3">
-                        <img src="{{ asset('images/LOGOEAGLELONDONACCRA.png') }}"
-                            alt="Eagle Networks Logo">
+                        <img src="{{ asset('images/LOGOEAGLELONDONACCRA.png') }}" alt="Eagle Networks Logo">
                     </div>
-                    @if($companyblurb)
+                    @if ($companyblurb)
                         <p class="small-text mb-0 max-240">
                             {{ $companyblurb->text }}
                         </p>
@@ -16,15 +21,14 @@
                 </div>
 
                 <!-- Company Links -->
-                @if($companyLinks->isNotEmpty())
+                @if ($companyLinks->isNotEmpty())
                     <div class="footer-col flex-fill">
                         <h3 class="mb-2">Company</h3>
                         <ul class="list-unstyled footer-links">
-                            @foreach($companyLinks as $link)
-                                @if($link->text)
+                            @foreach ($companyLinks as $link)
+                                @if ($link->text)
                                     <li>
-                                        <a href="{{ $link->url ?? '' }}"
-                                        class="small-text">
+                                        <a href="{{ $link->url ?? '' }}" class="small-text">
                                             {{ $link->text }}
                                         </a>
                                     </li>
@@ -35,88 +39,92 @@
                 @endif
 
                 <!-- London Contact -->
-                @if($london)
-                <div class="footer-col flex-fill">
-                    <h3 class="mb-2">London</h3>
-                    <ul class="list-unstyled footer-contact-list footer-links">
-                        <li class="contact-item d-flex align-items-start mb-2">
-                            <span class="me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
-                                    style="color: rgba(255, 255, 255, 0.65);">
-                                    <path
-                                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
-                                    </path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                            </span>
-                            <div>
-                                <span class="fw-semibold d-block">{{ $london->company_name }}</span>
-                                <span class="small-text">{{ $london->address }}</span>
-                            </div>
-                        </li>
-
-                        @if($london->phone_1)
-                            <li class="contact-item d-flex align-items-center mb-2">
+                @if ($london)
+                    <div class="footer-col flex-fill">
+                        <h3 class="mb-2">London</h3>
+                        <ul class="list-unstyled footer-contact-list footer-links">
+                            <li class="contact-item d-flex align-items-start mb-2">
                                 <span class="me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-map-pin mt-0.5 flex-shrink-0"
                                         style="color: rgba(255, 255, 255, 0.65);">
                                         <path
-                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
                                         </path>
+                                        <circle cx="12" cy="10" r="3"></circle>
                                     </svg>
                                 </span>
-                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $london->phone_1) }}" class="small-text">{{ $london->phone_1 }}</a>
+                                <div>
+                                    <span class="fw-semibold d-block">{{ $london->company_name }}</span>
+                                    <span class="small-text">{{ $london->address }}</span>
+                                </div>
                             </li>
-                        @endif
 
-                        @if($london->phone_2)
-                            <li class="contact-item d-flex align-items-center mb-2">
-                                <span class="me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-phone flex-shrink-0"
-                                        style="color: rgba(255, 255, 255, 0.65);">
-                                        <path
-                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $london->phone_2) }}"
-                                    class="small-text">
-                                    {{ $london->phone_2 }}
-                                </a>
-                            </li>
-                        @endif
+                            @if ($london->phone_1)
+                                <li class="contact-item d-flex align-items-center mb-2">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-phone flex-shrink-0"
+                                            style="color: rgba(255, 255, 255, 0.65);">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $london->phone_1) }}"
+                                        class="small-text">{{ $london->phone_1 }}</a>
+                                </li>
+                            @endif
 
-                        @if($london->email)
-                            <li class="contact-item d-flex align-items-center mb-2">
-                                <span class="me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-mail mt-0.5 flex-shrink-0"
-                                        style="color: rgba(255, 255, 255, 0.65);">
-                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                    </svg>
-                                </span>
-                                <a href="mailto:{{ $london->email }}"
-                                    class="small-text">
-                                    {{ $london->email }}
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+                            @if ($london->phone_2)
+                                <li class="contact-item d-flex align-items-center mb-2">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-phone flex-shrink-0"
+                                            style="color: rgba(255, 255, 255, 0.65);">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $london->phone_2) }}"
+                                        class="small-text">
+                                        {{ $london->phone_2 }}
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if ($london->email)
+                                <li class="contact-item d-flex align-items-center mb-2">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-mail mt-0.5 flex-shrink-0"
+                                            style="color: rgba(255, 255, 255, 0.65);">
+                                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                        </svg>
+                                    </span>
+                                    <a href="mailto:{{ $london->email }}" class="small-text">
+                                        {{ $london->email }}
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
                 @endif
 
                 <!-- Accra Contact -->
-                @if($accra)
+                @if ($accra)
                     <div class="footer-col flex-fill">
-                        <h3 class="mb-2">{{ $accra->company_name }}</h3>
+                        <h3 class="mb-2">Accra</h3>
                         <ul class="list-unstyled footer-contact-list footer-links">
                             <li class="contact-item d-flex align-items-start mb-2">
                                 <span class="me-2">
@@ -137,52 +145,55 @@
                                 </div>
                             </li>
 
-                            @if($accra->phone_1)
+                            @if ($accra->phone_1)
                                 <li class="contact-item d-flex align-items-center mb-2">
                                     <span class="me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-phone flex-shrink-0"
+                                            style="color: rgba(255, 255, 255, 0.65);">
                                             <path
                                                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                             </path>
                                         </svg>
                                     </span>
-                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $accra->phone_1) }}" class="small-text">{{ $accra->phone_1 }}</a>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $accra->phone_1) }}"
+                                        class="small-text">{{ $accra->phone_1 }}</a>
                                 </li>
                             @endif
 
-                            @if($accra->phone_2)
+                            @if ($accra->phone_2)
                                 <li class="contact-item d-flex align-items-center mb-2">
                                     <span class="me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-phone flex-shrink-0" style="color: rgba(255, 255, 255, 0.65);">
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-phone flex-shrink-0"
+                                            style="color: rgba(255, 255, 255, 0.65);">
                                             <path
                                                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                             </path>
                                         </svg>
                                     </span>
-                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $accra->phone_2) }}" class="small-text">{{ $accra->phone_2 }}</a>
+                                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $accra->phone_2) }}"
+                                        class="small-text">{{ $accra->phone_2 }}</a>
                                 </li>
                             @endif
 
-                            @if($accra->email)
+                            @if ($accra->email)
                                 <li class="contact-item d-flex align-items-center mb-2">
                                     <span class="me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                             class="lucide lucide-mail mt-0.5 flex-shrink-0"
                                             style="color: rgba(255, 255, 255, 0.65);">
                                             <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                         </svg>
                                     </span>
-                                    <a href="mailto:{{ $accra->email }}"
-                                        class="small-text">
+                                    <a href="mailto:{{ $accra->email }}" class="small-text">
                                         {{ $accra->email }}
                                     </a>
                                 </li>
@@ -192,60 +203,56 @@
                 @endif
 
                 <!-- Connect & Legal -->
-                @if($connectLinks->isNotEmpty() || $legalLinks->isNotEmpty())
+                @if ($connectLinks->isNotEmpty() || $legalLinks->isNotEmpty())
                     <div class="footer-col flex-fill">
-                        @if($connectLinks->isNotEmpty())
+                        @if ($connectLinks->isNotEmpty())
                             <h3 class="mb-2">Connect</h3>
                             <div class="d-flex gap-3 fs-5 mb-5 mb-md-4 social-icons">
-                                @foreach($connectLinks as $link)
-                                @if($link->url)
-                                    <a href="{{ $link->url }}"
-                                        aria-label="{{ $link->social_media?->label() ?? $link->text }}"
-                                        target="_blank"
-                                        rel="noopener">
-                                        @switch($link->social_media?->value)
-                                            @case('linkedin')
-                                                <i class="bi bi-linkedin"></i>
+                                @foreach ($connectLinks as $link)
+                                    @if ($link->url)
+                                        <a href="{{ $link->url }}"
+                                            aria-label="{{ $link->social_media?->label() ?? $link->text }}"
+                                            target="_blank" rel="noopener">
+                                            @switch($link->social_media?->value)
+                                                @case('linkedin')
+                                                    <i class="bi bi-linkedin"></i>
                                                 @break
 
-                                            @case('x')
-                                                <i class="bi bi-twitter-x"></i>
+                                                @case('x')
+                                                    <i class="bi bi-twitter-x"></i>
                                                 @break
 
-                                            @case('instagram')
-                                                <i class="bi bi-instagram"></i>
+                                                @case('instagram')
+                                                    <i class="bi bi-instagram"></i>
                                                 @break
 
-                                            @case('tiktok')
-                                                <i class="bi bi-tiktok"></i>
+                                                @case('tiktok')
+                                                    <i class="bi bi-tiktok"></i>
                                                 @break
 
-                                            @case('youtube')
-                                                <i class="bi bi-youtube"></i>
+                                                @case('youtube')
+                                                    <i class="bi bi-youtube"></i>
                                                 @break
-                                        @endswitch
-                                    </a>
-                                @endif
+                                            @endswitch
+                                        </a>
+                                    @endif
                                 @endforeach
                             </div>
                         @endif
 
-                        @if($legalLinks->isNotEmpty())
+                        @if ($legalLinks->isNotEmpty())
                             <h3 class="mb-3">Legal</h3>
                             <ul class="list-unstyled footer-links-subtle">
-                                @foreach($legalLinks as $link)
-                                    @if($link->text)
+                                @foreach ($legalLinks as $link)
+                                    @if ($link->text)
                                         <li>
-                                            @if($link->link_type === 2)
+                                            @if ($link->link_type === 2)
                                                 {{-- Cookie Preferences Modal --}}
-                                                <a href="#"
-                                                    class="small-text"
-                                                    id="openCookieSettings">
+                                                <a href="#" class="small-text" id="openCookieSettings">
                                                     {{ $link->text }}
                                                 </a>
                                             @elseif($link->url)
-                                                <a href="{{ $link->url }}"
-                                                    class="small-text">
+                                                <a href="{{ $link->url }}" class="small-text">
                                                     {{ $link->text }}
                                                 </a>
                                             @endif
@@ -261,16 +268,16 @@
 
         <div class="row justify-content-center" id="newsletter">
             <div class="col-12 newsletter-box">
-                @if($newsletter)
+                @if ($newsletter)
                     <div class="row flex-column g-4">
                         <div class="col-md-12">
-                            @if($newsletter->text)
+                            @if ($newsletter->text)
                                 <h3 class="fw-bold mb-2">
                                     {{ $newsletter->text }}
                                 </h3>
                             @endif
 
-                            @if($newsletter->description)
+                            @if ($newsletter->description)
                                 <p>
                                     {{ $newsletter->description }}
                                 </p>
@@ -305,7 +312,7 @@
                         </div>
                     </form>
 
-                    @if($newsletter?->privacy_text)
+                    @if ($newsletter?->privacy_text)
                         <p class="x-small-text mt-3 mb-0 fw-normal">
                             {{ $newsletter->privacy_text }}
                         </p>
@@ -326,7 +333,7 @@
             </div>
         </div>
 
-        @if($copyright)
+        @if ($copyright)
             <div class="row copy-right pt-5">
                 <div class="col-12 text-center small-text">
                     &copy; {{ date('Y') }} {{ $copyright->text }}

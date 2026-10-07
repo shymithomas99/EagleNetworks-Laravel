@@ -26,7 +26,12 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
+
+                            @if ((string) $section === '3')
+                                <th>Description</th>
+                            @else
+                                <th>Title</th>
+                            @endif
                             <th>Display Order</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -42,9 +47,15 @@
                                     {{ $loop->iteration }}
                                 </td>
 
-                                <td>
-                                    {{ $item->title }}
-                                </td>
+                                @if ((string) $section === '3')
+                                    <td>
+                                        {{ $item->description }}
+                                    </td>
+                                @else
+                                    <td>
+                                        {{ $item->title }}
+                                    </td>
+                                @endif
 
                                 <td>
                                     {{ $item->display_order }}

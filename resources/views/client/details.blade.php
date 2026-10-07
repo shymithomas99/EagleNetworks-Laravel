@@ -17,7 +17,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('work') }}" class="breadcrumb-link">
+                                <a href="{{ route('works.index') }}" class="breadcrumb-link">
                                     Work
                                 </a>
                             </li>
@@ -108,7 +108,7 @@
 
                         @if ($work->briefMediaType == 1 && $work->briefImage)
                             <div class="post-video-container ratio ratio-16x9">
-                                <img src="{{ asset('backend_assets/work/brief-images/' . $work->briefImage) }}"
+                                <img src="{{ asset('backend_assets/works/brief-images/' . $work->briefImage) }}"
                                     alt="{{ $work->title }}" class="object-fit-cover" style="border-radius: 15px;">
                             </div>
                         @elseif($work->briefMediaType == 2 && $work->briefVideoUrl)
@@ -139,7 +139,7 @@
 
     @if ($featuredImage)
         <section class="post-fixed-bg"
-            style="background-image: url('{{ asset('backend_assets/work/featured-images/' . $featuredImage) }}');">
+            style="background-image: url('{{ asset('backend_assets/works/featured-images/' . $featuredImage) }}');">
         </section>
     @endif
 
@@ -181,7 +181,7 @@
                     @foreach ($work->galleries as $gallery)
                         <div class="gallery-item">
 
-                            <img src="{{ asset('backend_assets/work/gallery-images/' . $gallery->image) }}"
+                            <img src="{{ asset('backend_assets/works/gallery-images/' . $gallery->image) }}"
                                 alt="{{ $gallery->alt ?? $work->title }}">
 
                         </div>

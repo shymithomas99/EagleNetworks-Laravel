@@ -406,8 +406,11 @@ class TermsPageController extends Controller
                 'max:255',
             ],
 
+
             'title' => [
-                'required',
+                (string) $section === '3'
+                    ? 'nullable'
+                    : 'required',
                 'string',
                 'max:255',
             ],
@@ -959,8 +962,11 @@ class TermsPageController extends Controller
                 'max:255',
             ],
 
+
             'title' => [
-                'required',
+                (string) $section === '3'
+                    ? 'nullable'
+                    : 'required',
                 'string',
                 'max:255',
             ],
