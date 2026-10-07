@@ -86,15 +86,15 @@ class WorkPageController extends Controller
         );
 
         $validated = $request->validate([
-            'label' => [(!$is_card && $section === '1') || (!$is_card && $section === '4') ? 'required' : 'nullable', 'string', 'max:255'],
+            'label' => [(!$is_card && $section === '1') ? 'required' : 'nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'image' => [($is_card && $section === '4') ? 'required' : 'nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'dimensions:width=760,height=440', 'max:100'],
             'link_text' => [$is_card && $section === '4' ? 'required' : 'nullable', 'string'],
             'link_url' => [$is_card && $section === '4' ? 'required' : 'nullable', 'url'],
             'email' => ['nullable', 'email'],
-            'website' => ['nullable', 'url'],
-            'linkedin' => ['nullable', 'url'],
+            'website' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
             'button_text' => ['nullable', 'string'],
             'button_url' => ['nullable', 'url'],
             'published' => ['nullable', 'boolean'],
@@ -173,15 +173,15 @@ class WorkPageController extends Controller
         );
 
         $validated = $request->validate([
-            'label' => [(!$is_card && $section === '1') || (!$is_card && $section === '4') ? 'required' : 'nullable', 'string', 'max:255'],
+            'label' => [(!$is_card && $section === '1') ? 'required' : 'nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'dimensions:width=760,height=440', 'max:100'],
             'link_text' => [$is_card && $section === '4' ? 'required' : 'nullable', 'string'],
             'link_url' => [$is_card && $section === '4' ? 'required' : 'nullable', 'url'],
             'email' => ['nullable', 'email'],
-            'website' => ['nullable', 'url'],
-            'linkedin' => ['nullable', 'url'],
+            'website' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
             'button_text' => ['nullable', 'string'],
             'button_url' => ['nullable', 'url'],
             'published' => ['nullable', 'boolean'],

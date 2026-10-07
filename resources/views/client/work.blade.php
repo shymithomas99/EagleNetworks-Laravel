@@ -438,7 +438,7 @@
                             {{-- Website --}}
                             @if($ctaBannerBottom->website)
                                 <div class="col-md-4">
-                                    <a href="{{ $ctaBannerBottom->website }}"
+                                    <a href="https://{{ $ctaBannerBottom->website }}"
                                         target="_blank"
                                         rel="noopener">
                                         <div class="icon-circle mx-auto mb-3">
@@ -469,7 +469,7 @@
                             {{-- LinkedIn --}}
                             @if($ctaBannerBottom->linkedin)
                                 <div class="col-md-4">
-                                    <a href="{{ $ctaBannerBottom->linkedin }}"
+                                    <a href="https://{{ $ctaBannerBottom->linkedin }}"
                                         target="_blank"
                                         rel="noopener">
                                         <div class="icon-circle mx-auto mb-3">

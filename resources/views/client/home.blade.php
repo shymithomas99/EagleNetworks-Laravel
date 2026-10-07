@@ -139,7 +139,7 @@
                                 <div class="service-card position-relative">
                                     @if($card->image)
                                         <div class="icon-box">
-                                            <img src="{{ asset('backend_assets/services/' . $card->image) }}"
+                                            <img src="{{ asset('backend_assets/services-page/' . $card->image) }}"
                                                 alt="{{ $card->title }}"
                                                 class="img-fluid">
                                         </div>
