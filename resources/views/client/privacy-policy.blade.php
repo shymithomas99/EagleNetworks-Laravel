@@ -298,9 +298,8 @@
             <div class="complaint-box">
 
                 <p>
-                    <strong>Right to complain.</strong>
-
-                    {{ $rights->additional_description ?? '' }}
+                    {{--  <strong>Right to complain.</strong>  --}}
+                    {!! $rights->additional_description ?? '' !!}
 
                 </p>
 
@@ -354,11 +353,10 @@
             </div>
 
             <p class="pt-4">
-                {{ $cookies->additional_description ?? '' }}
 
-                <a href="https://www.aboutcookies.org" target="_blank" class="text-orange">
-                    aboutcookies.org.
-                </a>
+                {!! $cookies->additional_description ?? '' !!}
+
+
             </p>
 
         </div>
@@ -490,53 +488,54 @@
     </section>
 
 
+    @if ($cta)
+        <section class="ready-to ready-to-v2 section-md">
+            <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
 
-    <section class="ready-to ready-to-v2 section-md">
-        <div class="container-custom d-flex flex-column align-items-center text-center position-relative z-3">
+                <h2 class="mb-3 text-white">
+                    {{ $cta->title ?? 'Ready to Get Started?' }}
+                </h2>
 
-            <h2 class="mb-3 text-white">
-                {{ $cta->title ?? 'Ready to Get Started?' }}
-            </h2>
-
-            <p class="subhead mb-4 text-white">
-                {{ $cta->description ?? '' }}
-            </p>
-
-
-            <div class="d-flex flex-column flex-sm-row mb-3">
-
-                @if ($cta->button_text && $cta->button_url)
-                    <a href="{{ $cta->button_url }}" class=" commn-btn btn-third-custom me-0 me-sm-3 mb-3 mb-sm-0">
-
-                        {{ $cta->button_text }}
-
-                        <i class="bi bi-arrow-right ms-2"></i>
-
-                    </a>
-                @endif
+                <p class="subhead mb-4 text-white">
+                    {{ $cta->description ?? '' }}
+                </p>
 
 
-                @if ($cta->button_text_2 && $cta->button_url_2)
-                    <a href="{{ $cta->button_url_2 }}" class="commn-btn btn-white-outline">
+                <div class="d-flex flex-column flex-sm-row mb-3">
 
-                        {{ $cta->button_text_2 }}
+                    @if ($cta->button_text && $cta->button_url)
+                        <a href="{{ $cta->button_url }}" class=" commn-btn btn-third-custom me-0 me-sm-3 mb-3 mb-sm-0">
+
+                            {{ $cta->button_text }}
+
+                            <i class="bi bi-arrow-right ms-2"></i>
+
+                        </a>
+                    @endif
+
+
+                    @if ($cta->button_text_2 && $cta->button_url_2)
+                        <a href="{{ $cta->button_url_2 }}" class="commn-btn btn-white-outline">
+
+                            {{ $cta->button_text_2 }}
+
+                        </a>
+                    @endif
+
+                </div>
+
+
+                @if ($cta->button_text_3 && $cta->button_url_3)
+                    <a href="{{ $cta->button_url_3 }}" class="commn-btn btn-white-outline">
+
+                        {{ $cta->button_text_3 }}
 
                     </a>
                 @endif
 
             </div>
 
-
-            @if ($cta->button_text_3 && $cta->button_url_3)
-                <a href="{{ $cta->button_url_3 }}" class="commn-btn btn-white-outline">
-
-                    {{ $cta->button_text_3 }}
-
-                </a>
-            @endif
-
-        </div>
-
-    </section>
+        </section>
+    @endif
 
 @endsection

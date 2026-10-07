@@ -87,22 +87,24 @@
 
 
                         {{-- TITLE --}}
-                        <div class="col-md-6 my-3">
+                        @if ($section !== '3')
+                            <div class="col-md-6 my-3">
 
-                            <label for="title">
-                                Title *
-                            </label>
+                                <label for="title">
+                                    Title *
+                                </label>
 
-                            <input type="text" class="form-control" id="title" name="title"
-                                value="{{ old('title', $termsPage->title ?? '') }}">
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="{{ old('title', $termsPage->title ?? '') }}">
 
-                            @error('title')
-                                <p class="text-danger">
-                                    {{ $message }}
-                                </p>
-                            @enderror
+                                @error('title')
+                                    <p class="text-danger">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
 
-                        </div>
+                            </div>
+                        @endif
 
 
                         {{-- DESCRIPTION --}}

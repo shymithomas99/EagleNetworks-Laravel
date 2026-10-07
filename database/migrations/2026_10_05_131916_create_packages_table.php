@@ -11,29 +11,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('packages_page_id')->constrained('packages_page');
-            $table->unsignedTinyInteger('section');
-            $table->boolean('is_card');
-            $table->string('title')->nullable();
-            $table->string('additional_title')->nullable();
-            $table->text('description')->nullable();
-            $table->string('button_text')->nullable();
-            $table->string('button_url')->nullable();
-            $table->string('button1_text')->nullable();
-            $table->string('button1_url')->nullable();
-            $table->string('button2_text')->nullable();
-            $table->string('button2_url')->nullable();
-            $table->text('key_points')->nullable();
-            $table->string('email')->nullable();
-            $table->string('website')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->boolean('published')->default(false);
-            $table->integer('display_order')->default(0);
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if (!Schema::hasTable('packages')) {
+            Schema::create('packages', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('packages_page_id')->constrained('packages_page');
+                $table->unsignedTinyInteger('section');
+                $table->boolean('is_card');
+                $table->string('title')->nullable();
+                $table->string('additional_title')->nullable();
+                $table->text('description')->nullable();
+                $table->string('button_text')->nullable();
+                $table->string('button_url')->nullable();
+                $table->string('button1_text')->nullable();
+                $table->string('button1_url')->nullable();
+                $table->string('button2_text')->nullable();
+                $table->string('button2_url')->nullable();
+                $table->text('key_points')->nullable();
+                $table->string('email')->nullable();
+                $table->string('website')->nullable();
+                $table->string('linkedin')->nullable();
+                $table->boolean('published')->default(false);
+                $table->integer('display_order')->default(0);
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**

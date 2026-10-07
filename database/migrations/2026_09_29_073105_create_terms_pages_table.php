@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('intro')->nullable();
 
             $table->string('label')->nullable();
-            $table->string('title');
+            $table->string('title')->nullable();
 
             $table->text('description')->nullable();
             $table->text('additional_description')->nullable();
