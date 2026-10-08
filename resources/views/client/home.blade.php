@@ -148,7 +148,7 @@
                                         <h3>{{ $card->title }}</h3>
                                     @endif
 
-                                    @if($card->description)
+                                    @if($card->short_description)
                                         <p>
                                             {{ $card->short_description }}
                                         </p>
@@ -347,9 +347,9 @@
                         @if($ctaBannerCards->isNotEmpty())
                             <div class="row g-5 justify-content-center">
                                 @foreach($ctaBannerCards as $card)
-                                    @php $loopEven = $loop->even; @endphp
+                                    @php $loopOdd = $loop->odd; @endphp
                                     <div class="col-md-6">
-                                        <div class="location-card {{ $loopEven ? 'london-card' : 'accra-card' }}">
+                                        <div class="location-card {{ $loopOdd ? 'london-card' : 'accra-card' }}">
                                             @if($card->label)
                                                 <p class="x-small-text text-uppercase grey-color-v2 mb-2 d-block">
                                                     {{ $card->label }}
@@ -357,7 +357,8 @@
                                             @endif
                                             @if($card->title)
                                                 <h2 class="location-title text-deeper-orange mb-2">
-                                                    {{ $card->title }}
+                                                    {{ Str::before($card->title, ' ') }}
+                                                    <span>{{ Str::after($card->title, ' ') }}</span>
                                                 </h2>
                                             @endif
                                             @if($card->description)
@@ -371,7 +372,7 @@
                                                     @foreach([$card->tag_1, $card->tag_2, $card->tag_3] as $tag)
                                                         @if($tag)
                                                             @php
-                                                                $bg = $loopEven ? 'badge-bg-lite' : 'bg-green-lite';
+                                                                $bg = $loopOdd ? 'badge-bg-lite' : 'bg-green-lite';
                                                             @endphp
                                                             <span class="badge-custom {{ $loop->first ? $bg : 'bg-grey-lite' }} fw-semibold">
                                                                 {{ $tag }}
@@ -389,14 +390,14 @@
 
                                             @if($card->button1_text)
                                                 <a href="{{ $card->button1_url ?? '' }}"
-                                                class="btn-outline-custom {{ $loopEven ? 'btn-london' : 'btn-accra' }} me-2 mb-2 mb-xl-0">
+                                                class="btn-outline-custom {{ $loopOdd ? 'btn-london' : 'btn-accra' }} me-2 mb-2 mb-xl-0">
                                                     {{ $card->button1_text }}
                                                 </a>
                                             @endif
 
                                             @if($card->button2_text)
                                                 <a href="{{ $card->button2_url ?? '' }}"
-                                                class="btn-outline-custom {{ $loopEven ? 'btn-london' : 'btn-accra' }}">
+                                                class="btn-outline-custom {{ $loopOdd ? 'btn-london' : 'btn-accra' }}">
                                                     {{ $card->button2_text }}
                                                 </a>
                                             @endif

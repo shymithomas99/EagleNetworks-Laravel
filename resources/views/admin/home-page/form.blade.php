@@ -200,7 +200,7 @@
                         </div>
                         @endif
 
-                        @if(!$is_card && in_array($section, [1, 10]))
+                        @if(!$is_card && in_array($section, [1, 10]) || ($is_card && $section === '6'))
                         <div class="col-6 my-3">
                             <label for="button1_text">Button 1 Text</label>
                             <input type="text" class="form-control" id="button1_text" placeholder=""
