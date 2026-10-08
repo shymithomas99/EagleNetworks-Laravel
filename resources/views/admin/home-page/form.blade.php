@@ -144,7 +144,7 @@
                             @if(!$is_card)
                             <div class="col-6 my-3">
                                 <label for="cta_title">CTA Title *</label>
-                                <input type="number" class="form-control" id="cta_title" placeholder=""
+                                <input type="text" class="form-control" id="cta_title" placeholder=""
                                     name="cta_title" value="{{ old('cta_title', $homePage->cta_title ?? '') }}">
                                 @error('cta_title')
                                     <p style="color:red">{{ $message }}</p>

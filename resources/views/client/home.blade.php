@@ -150,7 +150,7 @@
 
                                     @if($card->description)
                                         <p>
-                                            {{ $card->description }}
+                                            {{ $card->short_description }}
                                         </p>
                                     @endif
 

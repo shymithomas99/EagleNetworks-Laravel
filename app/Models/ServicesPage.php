@@ -18,6 +18,7 @@ class ServicesPage extends Model
         'label',
         'title',
         'description',
+        'short_description',
         'image',
         'button_text',
         'button_url',
