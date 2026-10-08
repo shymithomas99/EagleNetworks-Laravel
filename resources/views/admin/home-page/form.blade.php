@@ -51,6 +51,9 @@
                         </div>
                         @endif
 
+                        @if($is_card && $section === '8')
+                        <input type="hidden" name="title" value="0">
+                        @else
                         <div class="col-6 my-3">
                             <label for="title">Title *</label>
                             <input type="text" class="form-control" id="title" placeholder=""
@@ -59,6 +62,7 @@
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>
+                        @endif
 
                         @if((!$is_card) || ($is_card && in_array($section, [6, 9])))
                         <div class="col-6 my-3">
@@ -82,7 +86,7 @@
                         </div>
                         @endif
                         
-                        @if(!$is_card && $section === '8')
+                        @if($is_card && $section === '8')
                         <div class="col-6 my-3">
                             <label for="rating">Star Rating *</label>
                             <input type="number" class="form-control" id="rating" placeholder=""

@@ -64,7 +64,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                @if($section === '8')
+                                <th>Client</th>
+                                @else
                                 <th>Title</th>
+                                @endif
                                 <th>Display Order</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -74,7 +78,11 @@
                             @forelse ($collections as $key => $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    @if($section === '8')
+                                    <td>{{ $item->client_name }}</td>
+                                    @else
                                     <td>{{ $item->title }}</td>
+                                    @endif
                                     <td>{{ $item->display_order }}</td>
                                     <td>
                                         <span
