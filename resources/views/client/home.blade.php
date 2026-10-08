@@ -357,8 +357,7 @@
                                             @endif
                                             @if($card->title)
                                                 <h2 class="location-title text-deeper-orange mb-2">
-                                                    {{ Str::before($card->title, ' ') }}
-                                                    <span>{{ Str::after($card->title, ' ') }}</span>
+                                                    {{ substr($card->title, 0, 5) }}<span>{{ substr($card->title, 5) }}</span>
                                                 </h2>
                                             @endif
                                             @if($card->description)
