@@ -233,13 +233,15 @@
 
                     <!-- Home Page -->
                     <div class="bg-dark py-1">
-                        <button class="accordion-custom {{ request()->is('admin/home-page*') ? 'active-parent active' : '' }}"
+                        <button
+                            class="accordion-custom {{ request()->is('admin/home-page*') ? 'active-parent active' : '' }}"
                             data-target="homePageMenu">
                             <span><i class="fas fa-home"></i> Home Page</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
-                        <div id="homePageMenu" class="accordion-content {{ request()->is('admin/home-page*') ? 'show' : '' }} py-2">
+                        <div id="homePageMenu"
+                            class="accordion-content {{ request()->is('admin/home-page*') ? 'show' : '' }} py-2">
                             <a href="{{ route('admin.home-page.edit', ['section' => 1, 'is_card' => 0, 'homePage' => 1]) }}"
                                 class="nav-anchor {{ request()->is('admin/home-page/1/0*') ? 'active' : '' }}">
                                 Banner
@@ -294,7 +296,7 @@
                                     class="nav-anchor {{ request()->is('admin/home-page/4/1*') ? 'active' : '' }}">
                                     Cards
                                 </a>
-                            </div> 
+                            </div>
 
                             <button
                                 class="accordion-custom sub-accordion {{ request()->is('admin/home-page/5*') ? 'active-parent active' : '' }}"
@@ -405,7 +407,8 @@
                                 Banner
                             </a>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/2*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/services-page/2*') ? 'active-parent active' : '' }}"
                                 data-target="manageServiceMenu">Service
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -421,7 +424,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/3*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/services-page/3*') ? 'active-parent active' : '' }}"
                                 data-target="manageServiceHowWeCreateMenu">How We Create
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -437,7 +441,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/4*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/services-page/4*') ? 'active-parent active' : '' }}"
                                 data-target="manageServiceInitiativesMenu">Project
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -453,7 +458,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/5*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/services-page/5*') ? 'active-parent active' : '' }}"
                                 data-target="manageServiceHowWeDeliverMenu">How We Deliver
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -469,7 +475,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/services-page/6*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/services-page/6*') ? 'active-parent active' : '' }}"
                                 data-target="manageServicePageWorkMenu">Work
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -517,13 +524,15 @@
 
                     <!-- Packages Page -->
                     <div class="bg-dark py-1">
-                        <button class="accordion-custom {{ request()->is('admin/packages-page*') || request()->routeIs('admin.packages.*') ? 'active-parent active' : '' }}"
+                        <button
+                            class="accordion-custom {{ request()->is('admin/packages-page*') || request()->routeIs('admin.packages.*') ? 'active-parent active' : '' }}"
                             data-target="packagesPageMenu">
                             <span><i class="fas fa-boxes"></i> Packages Page</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
-                        <div id="packagesPageMenu" class="accordion-content {{ request()->is('admin/packages-page*') || request()->routeIs('admin.packages.*') ? 'show' : '' }} py-2">
+                        <div id="packagesPageMenu"
+                            class="accordion-content {{ request()->is('admin/packages-page*') || request()->routeIs('admin.packages.*') ? 'show' : '' }} py-2">
                             <a href="{{ route('admin.packages-page.edit', ['section' => 1, 'is_card' => 0, 'packagesPage' => 1]) }}"
                                 class="nav-anchor {{ request()->is('admin/packages-page/1/0*') ? 'active' : '' }}">
                                 Banner
@@ -546,7 +555,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/3*') || request()->routeis('admin.packages.*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/3*') || request()->routeis('admin.packages.*') ? 'active-parent active' : '' }}"
                                 data-target="managePackagesMenu">Package
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -567,7 +577,8 @@
                                 CTA Banner
                             </a>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/5*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/packages-page/5*') ? 'active-parent active' : '' }}"
                                 data-target="managePackageWhatYouGetMenu">What You Get
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -627,8 +638,9 @@
                                 class="nav-anchor {{ request()->is('admin/london-page/2/0*') ? 'active' : '' }}">
                                 Strategic Hub
                             </a>
-                            
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/3*') ? 'active-parent active' : '' }}"
+
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/london-page/3*') ? 'active-parent active' : '' }}"
                                 data-target="manageNumberMenu">Number
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -644,7 +656,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/4*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/london-page/4*') ? 'active-parent active' : '' }}"
                                 data-target="manageLondonBuiltFor">Built For
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -660,7 +673,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/5*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/london-page/5*') ? 'active-parent active' : '' }}"
                                 data-target="manageLondonWhatWeDoMenu">What We Do
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -676,7 +690,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/6*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/london-page/6*') ? 'active-parent active' : '' }}"
                                 data-target="manageLondonWeServeMenu">We Serve
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -692,7 +707,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/7*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/london-page/7*') ? 'active-parent active' : '' }}"
                                 data-target="manageLondonServicesDeliveredMenu">Services Delivered
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -708,7 +724,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/london-page/8*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/london-page/8*') ? 'active-parent active' : '' }}"
                                 data-target="manageLondonWhyChooseUsMenu">Why Choose Us
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -774,7 +791,8 @@
                                 Strategic Hub
                             </a>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/3*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/3*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraNumbersMenu">Number
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -790,7 +808,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/4*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/4*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraBuiltFor">Built For
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -806,7 +825,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/5*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/5*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraWhatWeDoMenu">What We Do
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -822,7 +842,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/6*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/6*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraWeServeMenu">We Serve
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -838,7 +859,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/7*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/7*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraServicesDeliveredMenu">Why Choose Us
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -859,7 +881,8 @@
                                 Integrated Organization
                             </a>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/9*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra-page/9*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraWhyChooseUsMenu">How We Deliver
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -875,7 +898,8 @@
                                 </a>
                             </div>
 
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/accra/10*') ? 'active-parent active' : '' }}"
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/accra/10*') ? 'active-parent active' : '' }}"
                                 data-target="manageAccraPageFAQMenu">FAQ
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -1343,13 +1367,15 @@
 
                     <!-- Footer Page -->
                     <div class="bg-dark py-1">
-                        <button class="accordion-custom {{ request()->is('admin/footer*') || request()->is('admin/newsletter-subscribers*') ? 'active-parent active' : '' }}"
+                        <button
+                            class="accordion-custom {{ request()->is('admin/footer*') || request()->is('admin/newsletter-subscribers*') ? 'active-parent active' : '' }}"
                             data-target="footerMenu">
                             <span><i class="fas fa-shoe-prints"></i> Footer</span>
                             <i class="fa fa-chevron-down arrow"></i>
                         </button>
 
-                        <div id="footerMenu" class="accordion-content {{ request()->is('admin/footer*') || request()->is('admin/newsletter-subscribers*') ? 'show' : '' }} py-2">
+                        <div id="footerMenu"
+                            class="accordion-content {{ request()->is('admin/footer*') || request()->is('admin/newsletter-subscribers*') ? 'show' : '' }} py-2">
                             <a href="{{ route('admin.footer.edit', ['section' => 1, 'is_link' => 0, 'footer' => 1]) }}"
                                 class="nav-anchor {{ request()->is('admin/footer/1/0*') ? 'active' : '' }}">
                                 Company Blurb
@@ -1374,8 +1400,9 @@
                                 class="nav-anchor {{ request()->is('admin/footer/6/1*') ? 'active' : '' }}">
                                 Legal
                             </a>
-                            
-                            <button class="accordion-custom sub-accordion {{ request()->is('admin/footer/7*') || request()->is('admin/newsletter-subscribers*') ? 'active-parent active' : '' }}"
+
+                            <button
+                                class="accordion-custom sub-accordion {{ request()->is('admin/footer/7*') || request()->is('admin/newsletter-subscribers*') ? 'active-parent active' : '' }}"
                                 data-target="manageFooterNewsletterMenu">Newsletter
                                 <i class="fa fa-chevron-down arrow"></i>
                             </button>
@@ -1891,6 +1918,17 @@
 
                         </a>
 
+                    </div>
+                    {{--  Seo  --}}
+
+
+                    <div class="bg-dark py-1">
+                        <a href="{{ route('admin.seo.index') }}"
+                            class="accordion-custom {{ request()->is('admin/seo*') ? 'active-parent active' : '' }}">
+                            <span>
+                                <i class="fas fa-search"></i> SEO Management
+                            </span>
+                        </a>
                     </div>
 
                 </li>

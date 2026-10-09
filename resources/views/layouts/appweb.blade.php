@@ -5,8 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') Eagle Agency | Growth Through Authentic Connection</title>
-    @stack('meta')
+    {{--  <title>@yield('title') Eagle Agency | Growth Through Authentic Connection</title>  --}}
+    {{--  @stack('meta')  --}}
+    <title>{{ $seo?->meta_title ?: config('app.name') }}</title>
+
+    @if ($seo?->meta_description)
+        <meta name="description" content="{{ $seo->meta_description }}">
+    @endif
+
+    @if ($seo?->meta_keywords)
+        <meta name="keywords" content="{{ $seo->meta_keywords }}">
+    @endif
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +31,7 @@
 
     <!-- FontAwesome (optional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+
     @stack('styles')
 
     <!-- ========================= -->
@@ -44,13 +53,13 @@
             wait_for_update: 500
         });
     </script>
-    
+
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2JYCZVKQD"></script>
 
     <script>
         gtag('js', new Date());
-      gtag('config', 'G-X2JYCZVKQD');
+        gtag('config', 'G-X2JYCZVKQD');
     </script>
 
     <!-- ========================= -->
@@ -166,7 +175,13 @@
                             <a class="nav-link d-flex align-items-center {{ request()->is('works') || request()->is('insights') ? 'active' : '' }}"
                                 href="#" id="workDropdown" role="button">
                                 Work & Insights
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-200" data-loc="client/src/components/Navigation.tsx:118"><path d="m6 9 6 6 6-6"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-chevron-down transition-transform duration-200"
+                                    data-loc="client/src/components/Navigation.tsx:118">
+                                    <path d="m6 9 6 6 6-6"></path>
+                                </svg>
                             </a>
 
                             <div class="dropdown-menu custom-mega-dropdown">
@@ -443,7 +458,7 @@
     <main>
         @yield('content')
     </main>
-    
+
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
     <!-- <script>
         $(document).on('click', '.ajax-link', function(e) {
@@ -469,8 +484,9 @@
             location.reload();
         };
     </script> -->
-    
+
     @include('includes.website.footer')
     @stack('scripts')
 </body>
+
 </html>
