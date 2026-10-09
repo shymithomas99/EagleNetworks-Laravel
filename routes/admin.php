@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\LondonPageController;
 use App\Http\Controllers\Admin\AccraPageController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PackagesPageController;
+use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\ServicesPageController;
 use App\Http\Controllers\Admin\WorkPageController;
 use App\Http\Controllers\Admin\WorkCategoryController;
@@ -319,4 +320,8 @@ Route::middleware('auth')->group(function () {
                 'togglePublish'
             ])->name('toggle-publish');
         });
+
+    Route::resource('seo', SeoController::class)
+        ->except(['show'])
+        ->names('seo');
 });

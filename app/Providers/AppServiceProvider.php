@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\CookiePreferencePage;
 use App\Models\Footer;
+use App\Models\Seo;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 ->where('published', true)
                 ->orderBy('display_order')
                 ->get()
-                ->groupBy(fn ($item) => $item->section . '_' . (int) $item->is_link);
+                ->groupBy(fn($item) => $item->section . '_' . (int) $item->is_link);
 
             $companyblurb = $footerRecords->get('1_0')?->first();
 
@@ -63,8 +64,18 @@ class AppServiceProvider extends ServiceProvider
                 'newsletter' => $newsletter,
                 'copyright' => $copyright,
             ]);
-
         });
-        
+
+        View::composer('layouts.appweb', function ($view) {
+            $path = '/' . ltrim(request()->path(), '/');
+
+            if ($path === '/.') {
+                $path = '/';
+            }
+
+            $seo = Seo::where('page_url', $path)->first();
+
+            $view->with('seo', $seo);
+        });
     }
 }
