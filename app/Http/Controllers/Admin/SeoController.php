@@ -36,8 +36,8 @@ class SeoController extends Controller
                 'regex:/^\/[^\s?#]*$/',
                 'unique:seos,page_url',
             ],
-            'meta_title' => ['nullable', 'string', 'max:60'],
-            'meta_description' => ['nullable', 'string', 'max:160'],
+            'meta_title' => ['nullable', 'string', 'max:70'],
+            'meta_description' => ['nullable', 'string', 'max:170'],
             'meta_keywords' => ['nullable', 'string'],
         ], [
             'page_url.regex' => 'Enter a relative page URL starting with /. Example: /about',
@@ -66,8 +66,8 @@ class SeoController extends Controller
                 'regex:/^\/[^\s?#]*$/',
                 Rule::unique('seos', 'page_url')->ignore($seo->id),
             ],
-            'meta_title' => ['nullable', 'string', 'max:60'],
-            'meta_description' => ['nullable', 'string', 'max:160'],
+            'meta_title' => ['nullable', 'string', 'max:70'],
+            'meta_description' => ['nullable', 'string', 'max:170'],
             'meta_keywords' => ['nullable', 'string'],
         ], [
             'page_url.regex' => 'Enter a relative page URL starting with /. Example: /about',
