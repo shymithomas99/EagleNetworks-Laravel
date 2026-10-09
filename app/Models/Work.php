@@ -47,6 +47,8 @@ class Work extends Model
         'cta_button_url_3',
         'featured',
         'published',
+        'publish_date',
+        'expiry_date',
         'displayOrder',
         'coverImage',
         'featuredImage',
@@ -58,6 +60,8 @@ class Work extends Model
     protected $casts = [
         'featured' => 'boolean',
         'published' => 'boolean',
+        'publish_date' => 'date',
+        'expiry_date' => 'date',
         'publishedAt' => 'datetime',
     ];
 

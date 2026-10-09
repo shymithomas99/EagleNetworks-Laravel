@@ -198,6 +198,21 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
 
+        $today = now()->startOfDay();
+        $dateRangeActive =
+            ($blog->publish_date || $blog->expiry_date)
+            &&
+            (!$blog->publish_date || $today->gte(\Carbon\Carbon::parse($blog->publish_date)->startOfDay()))
+            &&
+            (!$blog->expiry_date || $today->lte(\Carbon\Carbon::parse($blog->expiry_date)->startOfDay()));
+
+        if ($dateRangeActive) {
+            return back()->with(
+                'error',
+                'This content is currently controlled by its Publish Date and Expiry Date. Manual publishing cannot be changed during this period.'
+            );
+        }
+
         $blog->update([
             'published' => !$blog->published,
         ]);
@@ -290,6 +305,9 @@ class BlogController extends Controller
                 'dimensions:width=900,height=1125',
                 'max:200',
             ],
+
+            'publish_date' => ['nullable', 'date'],
+            'expiry_date' => ['nullable', 'date', 'after_or_equal:publish_date'],
 
             'seoTitle' => [
                 'nullable',

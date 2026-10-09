@@ -27,6 +27,20 @@
                     </thead>
                     <tbody>
                         @forelse ($collections as $key => $item)
+
+                            @php
+                                $today = now()->startOfDay();
+
+                                $dateRangeActive =
+                                    ($item->publish_date || $item->expiry_date)
+                                    &&
+                                    (!$item->publish_date || $today->gte(\Carbon\Carbon::parse($item->publish_date)->startOfDay()))
+                                    &&
+                                    (!$item->expiry_date || $today->lte(\Carbon\Carbon::parse($item->expiry_date)->startOfDay()));
+
+                                $isPublished = $dateRangeActive || $item->published;
+                            @endphp
+
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->title }}</td>
@@ -34,8 +48,8 @@
                                 <td>{{ $item->category?->name ?? '-' }}</td>
                                 <td>
                                     <span
-                                        class="badge fs-6 px-3 py-2 {{ $item->published ? 'bg-success' : 'bg-secondary' }}">
-                                        {{ $item->published ? 'Published' : 'Unpublished' }}
+                                        class="badge fs-6 px-3 py-2 {{ $isPublished ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $isPublished ? 'Published' : 'Unpublished' }}
                                     </span>
                                 </td>
                                 {{-- <td>
@@ -49,7 +63,7 @@
                                         @csrf
                                         @method('PATCH')
                                         <button class="btn btn-primary">
-                                            {{ $item->published ? 'Unpublish' : 'Publish' }}
+                                            {{ $isPublished ? 'Unpublish' : 'Publish' }}
                                         </button>
                                     </form>
                                     <a class="btn btn-info" href="{{ route('admin.blogs.edit', $item) }}">

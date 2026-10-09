@@ -38,8 +38,8 @@ Route::get('packages/{packagesPage:slug}', [PackagesController::class, 'show'])
 
 Route::get('/works', [WorkController::class, 'index'])->name('works.index');
 
-Route::get('/works/{slug}', [HomeController::class, 'workDetails'])
-    ->name('details');
+Route::get('/works/{slug}', [WorkController::class, 'show'])
+    ->name('works.show');
 
 Route::get('/insights', [InsightsController::class, 'index'])
     ->name('insights.index');

@@ -403,7 +403,7 @@
                                 </div>
                                 <h3>{{ $card->cover_title ?? $card->title }}</h3>
                                 <p>{{ $card->excerpt }}</p>
-                                <a href="{{ route('details', $card->slug) }}" class="button-link small-text mb-0">See More <i
+                                <a href="{{ route('works.show', $card->slug) }}" class="button-link small-text mb-0">See More <i
                                         class="bi bi-arrow-right-short ms-1"></i></a>
                             </div>
                         </div>

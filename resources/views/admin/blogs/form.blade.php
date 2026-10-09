@@ -115,17 +115,72 @@
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="seoTitle">SEO Title</label>
-                            <input type="text" class="form-control" id="seoTitle" name="seoTitle"
+                            <label for="seoTitle">SEO Title (max 60 characters)</label>
+
+                            <input type="text"
+                                class="form-control"
+                                id="seoTitle"
+                                name="seoTitle"
+                                maxlength="60"
                                 value="{{ old('seoTitle', $blog->seoTitle ?? '') }}">
+
+                            <small class="text-muted">
+                                <span id="seoTitleCount">0</span>/60 characters
+                            </small>
+
+                            @error('seoTitle')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-6 my-3">
-                            <label for="seoDescription">SEO Description</label><br>
-                            <textarea class="form-control" name="seoDescription" id="seoDescription">{{ old('seoDescription', $blog->seoDescription ?? '') }}</textarea>
+                            <label for="seoDescription">
+                                SEO Description (max 160 characters)
+                            </label>
+
+                            <textarea class="form-control"
+                                name="seoDescription"
+                                id="seoDescription"
+                                maxlength="160"
+                                rows="3">{{ old('seoDescription', $blog->seoDescription ?? '') }}</textarea>
+
+                            <small class="text-muted">
+                                <span id="seoDescriptionCount">0</span>/160 characters
+                            </small>
+
+                            @error('seoDescription')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-3 my-3">
+                            <label for="publish_date">Publish Date</label>
+                            <input type="date"
+                                class="form-control"
+                                id="publish_date"
+                                name="publish_date"
+                                value="{{ old('publish_date', $blog->publish_date?->format('Y-m-d')) }}">
+
+                            @error('publish_date')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-3 my-3">
+                            <label for="expiry_date">Expiry Date</label>
+                            <input type="date"
+                                class="form-control"
+                                id="expiry_date"
+                                name="expiry_date"
+                                value="{{ old('expiry_date', $blog->expiry_date?->format('Y-m-d')) }}">
+
+                            @error('expiry_date')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="col-6 my-3">
+                            <input type="hidden" name="published" value="0">
                             <input type="checkbox" class="form-check-input" id="published" name="published"
                                 value="1" {{ old('published', $blog->published ?? false) ? 'checked' : '' }}>
                             <label class="form-check-label" for="published">Published</label>
@@ -142,3 +197,83 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            function checkPublishDateRange() {
+
+                const publishDate = $('#publish_date').val();
+                const expiryDate = $('#expiry_date').val();
+
+                if (!publishDate && !expiryDate) {
+                    $('#published').prop('disabled', false);
+                    return;
+                }
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const startDate = publishDate ? new Date(publishDate + 'T00:00:00') : null;
+                const endDate = expiryDate ? new Date(expiryDate + 'T00:00:00') : null;
+
+                let withinRange = true;
+
+                // If Publish Date exists
+                if (startDate && today < startDate) {
+                    withinRange = false;
+                }
+
+                // If Expiry Date exists
+                if (endDate && today > endDate) {
+                    withinRange = false;
+                }
+
+                if (withinRange) {
+                    $('#published')
+                        .prop('checked', true)
+                        .prop('disabled', true);
+                } else {
+                    $('#published')
+                        .prop('disabled', false);
+                }
+            }
+
+            $('#publish_date, #expiry_date').on('change', function () {
+                checkPublishDateRange();
+            });
+
+            // Run when editing an existing Work
+            checkPublishDateRange();
+
+        });
+
+
+        function updateCharacterCount(inputId, countId, maxLength) {
+            const input = $('#' + inputId);
+            const counter = $('#' + countId);
+
+            function update() {
+                const length = input.val().length;
+
+                counter.text(length);
+
+                if (length > maxLength) {
+                    counter.css('color', 'red');
+                } else if (length >= maxLength - 10) {
+                    counter.css('color', 'orange');
+                } else {
+                    counter.css('color', '');
+                }
+            }
+
+            input.on('input', update);
+
+            // Set correct count when editing an existing work
+            update();
+        }
+
+        updateCharacterCount('seoTitle', 'seoTitleCount', 60);
+        updateCharacterCount('seoDescription', 'seoDescriptionCount', 160);
+    </script>
+@endpush

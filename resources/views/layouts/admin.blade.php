@@ -1928,7 +1928,6 @@
         });
     </script>
 
-    @include('includes.admin.SESSIONMESSAGE')
     @include('includes.admin.footer')
 
     @stack('scripts')

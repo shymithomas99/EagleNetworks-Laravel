@@ -22,10 +22,31 @@ class WorkController extends Controller
         $processCards = $workPageRecords->get('2_1', collect());
         $workIntro = $workPageRecords->get('3_0')?->first();
         $workCategories = WorkCategory::where('published', 1)->get();
-        $workCards = Work::where('published', 1)
-                        ->where('featured', 1)
-                        ->whereHas('category', function ($query) {
+        $today = now()->toDateString();
+        $workCards = Work::whereHas('category', function ($query) {
                             $query->where('published', 1);
+                        })
+                        ->where(function ($query) use ($today) {
+                            // Published manually
+                            $query->where('published', 1)
+                                // OR date range is active
+                                ->orWhere(function ($query) use ($today) {
+                                    // At least one date must be provided
+                                    $query->where(function ($query) {
+                                        $query->whereNotNull('publish_date')
+                                            ->orWhereNotNull('expiry_date');
+                                    })
+                                    // Publish date: NULL or today/on/before
+                                    ->where(function ($query) use ($today) {
+                                        $query->whereNull('publish_date')
+                                            ->orWhereDate('publish_date', '<=', $today);
+                                    })
+                                    // Expiry date: NULL or today/on/after
+                                    ->where(function ($query) use ($today) {
+                                        $query->whereNull('expiry_date')
+                                            ->orWhereDate('expiry_date', '>=', $today);
+                                    });
+                                });
                         })
                         ->orderBy('displayOrder')
                         ->get();
@@ -46,7 +67,7 @@ class WorkController extends Controller
                         })->count();
         $ctaBannerBottom = $workPageRecords->get('6_0')?->first();
 
-        return view('client.work', compact(
+        return view('client.works.index', compact(
             'banner',
             'processIntro',
             'processCards',
@@ -60,5 +81,42 @@ class WorkController extends Controller
             'videoCount',
             'ctaBannerBottom',
         ));
+    }
+
+
+    public function show($slug)
+    {
+        $today = now()->toDateString();
+
+        $work = Work::with('galleries')
+            ->whereHas('category', function ($query) {
+                $query->where('published', 1);
+            })
+            ->where(function ($query) use ($today) {
+                // Published manually
+                $query->where('published', 1)
+                    // OR date range is active
+                    ->orWhere(function ($query) use ($today) {
+                        // At least one date must be provided
+                        $query->where(function ($query) {
+                            $query->whereNotNull('publish_date')
+                                ->orWhereNotNull('expiry_date');
+                        })
+                        // Publish date: NULL or today/on/before
+                        ->where(function ($query) use ($today) {
+                            $query->whereNull('publish_date')
+                                ->orWhereDate('publish_date', '<=', $today);
+                        })
+                        // Expiry date: NULL or today/on/after
+                        ->where(function ($query) use ($today) {
+                            $query->whereNull('expiry_date')
+                                ->orWhereDate('expiry_date', '>=', $today);
+                        });
+                    });
+            })
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        return view('client.works.show', compact('work'));
     }
 }

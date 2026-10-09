@@ -170,13 +170,6 @@
                                 value="{{ old('testimonialAuthor', $work->testimonialAuthor ?? '') }}">
                         </div>
 
-                        {{-- CTA Section --}}
-                        <div class="col-12 mt-4">
-                            <h5 class="border-bottom pb-2">
-                                Ready to Get Started? CTA
-                            </h5>
-                        </div>
-
                         <div class="col-6 my-3">
                             <label for="cta_title">CTA Title</label>
                             <input type="text" id="cta_title" class="form-control" name="cta_title"
@@ -282,30 +275,65 @@
                                 <p style="color:red">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="col-4 my-3">
-                            <input type="checkbox" class="form-check-input" id="featured" name="featured"
-                                value="1" {{ old('featured', $work->featured ?? false) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="featured">Featured</label>
+
+                        <div class="col-6 my-3">
+                            <label for="seoTitle">SEO Title (max 60 characters)</label>
+                            <input type="text" id="seoTitle" class="form-control" name="seoTitle"
+                                maxlength="60" value="{{ old('seoTitle', $work->seoTitle ?? '') }}">
+                            <small class="text-muted">
+                                <span id="seoTitleCount">0</span>/60 characters
+                            </small>
+                            @error('seoTitle')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
                         </div>
-                        <div class="col-4 my-3">
+
+                        <div class="col-6 my-3">
+                            <label for="seoDescription">SEO Description (max 160 characters)</label>
+                            <textarea id="seoDescription" class="form-control" name="seoDescription" maxlength="160">{{ old('seoDescription', $work->seoDescription ?? '') }}</textarea>
+                            <small class="text-muted">
+                                <span id="seoDescriptionCount">0</span>/160 characters
+                            </small>
+                            @error('seoDescription')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-3 my-3">
+                            <label for="publish_date">Publish Date</label>
+                            <input type="date" id="publish_date" class="form-control" name="publish_date"
+                                value="{{ old('publish_date', $work->publish_date ?? '') }}">
+                            @error('publish_date')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-3 my-3">
+                            <label for="expiry_date">Expiry Date</label>
+                            <input type="date" id="expiry_date" class="form-control" name="expiry_date"
+                                value="{{ old('expiry_date', $work->expiry_date ?? '') }}">
+                            @error('expiry_date')
+                                <p style="color:red">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        
+                        <div class="col-3 my-3">
+                            <input type="hidden" name="published" value="0">
                             <input type="checkbox" class="form-check-input" id="published" name="published"
                                 value="1" {{ old('published', $work->published ?? false) ? 'checked' : '' }}>
                             <label class="form-check-label" for="published">Published</label>
                         </div>
-                        <div class="col-4 my-3">
+
+                        <div class="col-3 my-3">
+                            <input type="checkbox" class="form-check-input" id="featured" name="featured"
+                                value="1" {{ old('featured', $work->featured ?? false) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="featured">Featured</label>
+                        </div>
+
+                        <div class="col-3 my-3">
                             <label for="displayOrder">Display Order</label>
                             <input type="number" id="displayOrder" class="form-control" name="displayOrder"
                                 value="{{ old('displayOrder', $work->displayOrder ?? 0) }}">
-                        </div>
-                        <div class="col-6 my-3">
-                            <label for="seoTitle">SEO Title</label>
-                            <input type="text" id="seoTitle" class="form-control" name="seoTitle"
-                                value="{{ old('seoTitle', $work->seoTitle ?? '') }}">
-                        </div>
-
-                        <div class="col-6 my-3">
-                            <label for="seoDescription">SEO Description</label>
-                            <textarea id="seoDescription" class="form-control" name="seoDescription">{{ old('seoDescription', $work->seoDescription ?? '') }}</textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -356,6 +384,81 @@
 
             // Important for edit form / validation error
             toggleMediaFields();
+
+
+            function checkPublishDateRange() {
+
+                const publishDate = $('#publish_date').val();
+                const expiryDate = $('#expiry_date').val();
+
+                if (!publishDate && !expiryDate) {
+                    $('#published').prop('disabled', false);
+                    return;
+                }
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const startDate = publishDate ? new Date(publishDate + 'T00:00:00') : null;
+                const endDate = expiryDate ? new Date(expiryDate + 'T00:00:00') : null;
+
+                let withinRange = true;
+
+                // If Publish Date exists
+                if (startDate && today < startDate) {
+                    withinRange = false;
+                }
+
+                // If Expiry Date exists
+                if (endDate && today > endDate) {
+                    withinRange = false;
+                }
+
+                if (withinRange) {
+                    $('#published')
+                        .prop('checked', true)
+                        .prop('disabled', true);
+                } else {
+                    $('#published')
+                        .prop('disabled', false);
+                }
+            }
+
+            $('#publish_date, #expiry_date').on('change', function () {
+                checkPublishDateRange();
+            });
+
+            // Run when editing an existing Work
+            checkPublishDateRange();
+
         });
+
+
+        function updateCharacterCount(inputId, countId, maxLength) {
+            const input = $('#' + inputId);
+            const counter = $('#' + countId);
+
+            function update() {
+                const length = input.val().length;
+
+                counter.text(length);
+
+                if (length > maxLength) {
+                    counter.css('color', 'red');
+                } else if (length >= maxLength - 10) {
+                    counter.css('color', 'orange');
+                } else {
+                    counter.css('color', '');
+                }
+            }
+
+            input.on('input', update);
+
+            // Set correct count when editing an existing work
+            update();
+        }
+
+        updateCharacterCount('seoTitle', 'seoTitleCount', 60);
+        updateCharacterCount('seoDescription', 'seoDescriptionCount', 160);
     </script>
 @endpush

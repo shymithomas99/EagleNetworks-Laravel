@@ -19,12 +19,34 @@ class InsightsController extends Controller
             ->groupBy(fn ($item) => $item->section . '_' . (int) $item->is_card);
 
         $banner = $insightsPageRecords->get('1_0')?->first();
+        $today = now()->toDateString();
         $blogs = Blog::with([
                 'author'
                 ])
-                ->where('published', true)
                 ->whereHas('category', function ($query) {
                     $query->where('published', true);
+                })
+                ->where(function ($query) use ($today) {
+                    // Published manually
+                    $query->where('published', 1)
+                        // OR date range is active
+                        ->orWhere(function ($query) use ($today) {
+                            // At least one date must be provided
+                            $query->where(function ($query) {
+                                $query->whereNotNull('publish_date')
+                                    ->orWhereNotNull('expiry_date');
+                            })
+                            // Publish date: NULL or today/on/before
+                            ->where(function ($query) use ($today) {
+                                $query->whereNull('publish_date')
+                                    ->orWhereDate('publish_date', '<=', $today);
+                            })
+                            // Expiry date: NULL or today/on/after
+                            ->where(function ($query) use ($today) {
+                                $query->whereNull('expiry_date')
+                                    ->orWhereDate('expiry_date', '>=', $today);
+                            });
+                        });
                 })
                 ->latest()
                 ->get();
@@ -45,8 +67,25 @@ class InsightsController extends Controller
 
     public function show(Blog $blog)
     {
+        $today = now()->startOfDay();
+
+        $publishDate = $blog->publish_date
+            ? \Carbon\Carbon::parse($blog->publish_date)->startOfDay()
+            : null;
+
+        $expiryDate = $blog->expiry_date
+            ? \Carbon\Carbon::parse($blog->expiry_date)->startOfDay()
+            : null;
+
+        $dateRangeActive =
+            ($publishDate || $expiryDate)
+            && (!$publishDate || $today->gte($publishDate))
+            && (!$expiryDate || $today->lte($expiryDate));
+
+        $isPublished = $blog->published || $dateRangeActive;
+
         abort_unless(
-            $blog->published &&
+            $isPublished &&
             $blog->category()->where('published', true)->exists(),
             404
         );
@@ -61,12 +100,34 @@ class InsightsController extends Controller
 
     public function author(Author $author)
     {
+        $today = now()->startOfDay();
         $author->load([
-            'blogs' => function ($query) {
+            'blogs' => function ($query) use ($today) {
                 $query
-                    ->where('published', true)
                     ->whereHas('category', function ($query) {
                         $query->where('published', true);
+                    })
+                    ->where(function ($query) use ($today) {
+                        // Published manually
+                        $query->where('published', 1)
+                            // OR date range is active
+                            ->orWhere(function ($query) use ($today) {
+                                // At least one date must be provided
+                                $query->where(function ($query) {
+                                    $query->whereNotNull('publish_date')
+                                        ->orWhereNotNull('expiry_date');
+                                })
+                                // Publish date: NULL or today/on/before
+                                ->where(function ($query) use ($today) {
+                                    $query->whereNull('publish_date')
+                                        ->orWhereDate('publish_date', '<=', $today);
+                                })
+                                // Expiry date: NULL or today/on/after
+                                ->where(function ($query) use ($today) {
+                                    $query->whereNull('expiry_date')
+                                        ->orWhereDate('expiry_date', '>=', $today);
+                                });
+                            });
                     })
                     ->latest();
             },

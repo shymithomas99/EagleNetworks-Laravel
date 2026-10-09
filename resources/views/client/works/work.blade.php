@@ -117,7 +117,7 @@
                     <div class="row mt-5 g-6">
                         @foreach($workCards as $card)
                             <div class="col-md-6">
-                                <a href="{{ route('details', $card->slug) }}" class="card-type2 text-decoration-none">
+                                <a href="{{ route('works.show', $card->slug) }}" class="card-type2 text-decoration-none">
                                     <div class="card-type2-img-container green-border-bottom">
                                         @php
                                             $image = $card->coverImage ?: $card->featuredImage;

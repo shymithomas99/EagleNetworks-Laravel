@@ -23,6 +23,8 @@ class Blog extends Model
         'seoTitle',
         'seoDescription',
         'published',
+        'publish_date',
+        'expiry_date',
         'publishedAt',
     ];
 
@@ -36,6 +38,8 @@ class Blog extends Model
         return [
             'content_type' => BlogContentType::class,
             'published' => 'boolean',
+            'publish_date' => 'date',
+            'expiry_date' => 'date',
             'publishedAt' => 'datetime',
         ];
     }

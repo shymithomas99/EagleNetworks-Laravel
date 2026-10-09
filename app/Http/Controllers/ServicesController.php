@@ -24,10 +24,32 @@ class ServicesController extends Controller
         $howDeliverIntro = $servicesPageRecords->get('5_0')?->first();
         $howDeliverCards = $servicesPageRecords->get('5_1', collect());
         $workIntro = $servicesPageRecords->get('6_0')?->first();
-        $workCards = Work::where('published', 1)
-            ->where('featured', 1)
+        $today = now()->toDateString();
+        $workCards = Work::where('featured', 1)
             ->whereHas('category', function ($query) {
                 $query->where('published', 1);
+            })
+            ->where(function ($query) use ($today) {
+                // Published manually
+                $query->where('published', 1)
+                    // OR date range is active
+                    ->orWhere(function ($query) use ($today) {
+                        // At least one date must be provided
+                        $query->where(function ($query) {
+                            $query->whereNotNull('publish_date')
+                                ->orWhereNotNull('expiry_date');
+                        })
+                        // Publish date: NULL or today/on/before
+                        ->where(function ($query) use ($today) {
+                            $query->whereNull('publish_date')
+                                ->orWhereDate('publish_date', '<=', $today);
+                        })
+                        // Expiry date: NULL or today/on/after
+                        ->where(function ($query) use ($today) {
+                            $query->whereNull('expiry_date')
+                                ->orWhereDate('expiry_date', '>=', $today);
+                        });
+                    });
             })
             ->orderBy('displayOrder', 'asc')
             ->get();

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
     <loc>http://127.0.0.1:8000</loc>
-    <lastmod>2026-10-08T07:36:39+00:00</lastmod>
+    <lastmod>2026-10-08T13:26:54+00:00</lastmod>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/about</loc>
@@ -24,7 +24,6 @@
             </url>
     <url>
     <loc>http://127.0.0.1:8000/details</loc>
-    <lastmod>2026-10-07T12:16:32+00:00</lastmod>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/ignite</loc>
@@ -42,18 +41,18 @@
             </url>
     <url>
     <loc>http://127.0.0.1:8000/services</loc>
-    <lastmod>2026-10-07T12:16:10+00:00</lastmod>
+    <lastmod>2026-10-08T13:26:49+00:00</lastmod>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/terms-of-use</loc>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/insights</loc>
-    <lastmod>2026-09-25T12:35:04+00:00</lastmod>
+    <lastmod>2026-10-09T09:34:01+00:00</lastmod>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/insights/reframe-content-in-a-different-light-and-produce-new-posts</loc>
-    <lastmod>2026-09-25T12:35:04+00:00</lastmod>
+    <lastmod>2026-10-09T09:34:01+00:00</lastmod>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/insights/celebrating-ghana-69-independence-day</loc>
@@ -80,20 +79,8 @@
     <lastmod>2026-08-27T15:50:19+00:00</lastmod>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/insights/reframe-content-different-light-produce-new-posts</loc>
-    <lastmod>2026-08-27T15:49:09+00:00</lastmod>
-            </url>
-    <url>
     <loc>http://127.0.0.1:8000/works</loc>
-    <lastmod>2026-08-27T11:22:56+00:00</lastmod>
-            </url>
-    <url>
-    <loc>http://127.0.0.1:8000/works/toyota-ghana</loc>
-    <lastmod>2026-08-27T11:22:56+00:00</lastmod>
-            </url>
-    <url>
-    <loc>http://127.0.0.1:8000/works/paul-robinson-west-ham-tv-ad</loc>
-    <lastmod>2026-08-27T11:19:45+00:00</lastmod>
+    <lastmod>2026-08-20T11:17:32+00:00</lastmod>
             </url>
     <url>
     <loc>http://127.0.0.1:8000/works/nhs-digital-outdoor-campaign</loc>

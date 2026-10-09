@@ -55,6 +55,8 @@ class WorkController extends Controller
                 'clientName' => ['required', 'string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
                 'projectYear' => ['nullable'],
+                'publish_date' => ['nullable', 'date'],
+                'expiry_date' => ['nullable', 'date', 'after_or_equal:publish_date'],
                 'excerpt' => ['required', 'string'],
                 'coverImage' => 'required|image|mimes:jpg,jpeg,png,webp|dimensions:width=1280,height=780|max:1024',
                 'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=776,height=417|max:1024',
@@ -158,6 +160,8 @@ class WorkController extends Controller
                 'clientName' => ['required', 'string'],
                 'category_id' => ['required', 'exists:work_categories,id'],
                 'projectYear' => ['nullable'],
+                'publish_date' => ['nullable', 'date'],
+                'expiry_date' => ['nullable', 'date', 'after_or_equal:publish_date'],
                 'excerpt' => ['required', 'string'],
                 'coverImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=1280,height=780|max:1024',
                 'featuredImage' => 'nullable|image|mimes:jpg,jpeg,png,webp|dimensions:width=776,height=417|max:1024',
@@ -313,6 +317,22 @@ class WorkController extends Controller
     public function togglePublish($id)
     {
         $work = Work::findOrFail($id);
+        
+        $today = now()->startOfDay();
+        $dateRangeActive =
+            ($work->publish_date || $work->expiry_date)
+            &&
+            (!$work->publish_date || $today->gte(\Carbon\Carbon::parse($work->publish_date)->startOfDay()))
+            &&
+            (!$work->expiry_date || $today->lte(\Carbon\Carbon::parse($work->expiry_date)->startOfDay()));
+
+        if ($dateRangeActive) {
+            return back()->with(
+                'error',
+                'This content is currently controlled by its Publish Date and Expiry Date. Manual publishing cannot be changed during this period.'
+            );
+        }
+
         $work->update(['published' => !$work->published]);
 
         $message = $work->published

@@ -48,10 +48,32 @@ class HomeController extends Controller
         $c5Intro = $homePageRecords->get('3_0')?->first();
         $c5Cards = $homePageRecords->get('3_1', collect());
         $workIntro = $homePageRecords->get('4_0')?->first();
-        $workCards = Work::where('published', 1)
-                        ->where('featured', 1)
+        $today = now()->toDateString();
+        $workCards = Work::where('featured', 1)
                         ->whereHas('category', function ($query) {
                             $query->where('published', 1);
+                        })
+                        ->where(function ($query) use ($today) {
+                            // Published manually
+                            $query->where('published', 1)
+                                // OR date range is active
+                                ->orWhere(function ($query) use ($today) {
+                                    // At least one date must be provided
+                                    $query->where(function ($query) {
+                                        $query->whereNotNull('publish_date')
+                                            ->orWhereNotNull('expiry_date');
+                                    })
+                                    // Publish date: NULL or today/on/before
+                                    ->where(function ($query) use ($today) {
+                                        $query->whereNull('publish_date')
+                                            ->orWhereDate('publish_date', '<=', $today);
+                                    })
+                                    // Expiry date: NULL or today/on/after
+                                    ->where(function ($query) use ($today) {
+                                        $query->whereNull('expiry_date')
+                                            ->orWhereDate('expiry_date', '>=', $today);
+                                    });
+                                });
                         })
                         ->orderBy('displayOrder')
                         ->get();
@@ -93,25 +115,6 @@ class HomeController extends Controller
             'ctaBannerBottom',
         ));
     }
-
-    public function workDetails($slug)
-    {
-        // $work = Work::where('slug', $slug)
-        //     ->where('published', 1)
-        //     ->firstOrFail();
-
-        $work = Work::with('galleries')
-            ->where('published', 1)
-            ->whereHas('category', function ($query) {
-                $query->where('published', 1);
-            })
-            ->where('slug', $slug)
-            ->firstOrFail();
-
-        return view('client.details', compact('work'));
-    }
-
-
 
 
     public function submit(Request $request)
