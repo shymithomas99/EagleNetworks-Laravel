@@ -62,9 +62,9 @@
                     {{-- Meta Title --}}
                     <div class="form-group"> <label for="meta_title">Meta Title</label> <input type="text"
                             name="meta_title" id="meta_title" class="form-control"
-                            value="{{ old('meta_title', $seo->meta_title) }}" maxlength="60" placeholder="Enter meta title">
+                            value="{{ old('meta_title', $seo->meta_title) }}" maxlength="70" placeholder="Enter meta title">
                         <small id="meta_title_counter" class="form-text text-muted"> 0 /
-                            60 characters </small>
+                            70 characters </small>
                     </div>
                     {{-- Meta Description --}}
                     <div class="form-group"> <label for="meta_description">Meta Description</label>
@@ -125,7 +125,7 @@
             }
 
             function updateTitleCounter() {
-                updateCounter(metaTitle, titleCounter, 0, 60, 'title');
+                updateCounter(metaTitle, titleCounter, 0, 70, 'title');
             }
 
             function updateDescriptionCounter() {
