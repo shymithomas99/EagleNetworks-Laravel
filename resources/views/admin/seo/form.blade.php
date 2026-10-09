@@ -57,20 +57,7 @@
 
                     <h5 class="mb-3">Meta Information</h5>
 
-                    {{--  <div class="form-group">
-                        <label for="meta_title">Meta Title</label>
 
-                        <input type="text" name="meta_title" id="meta_title" class="form-control"
-                            value="{{ old('meta_title', $seo->meta_title) }}" maxlength="255"
-                            placeholder="Enter meta title">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="meta_description">Meta Description</label>
-
-                        <textarea name="meta_description" id="meta_description" class="form-control" rows="4"
-                            placeholder="Enter meta description">{{ old('meta_description', $seo->meta_description) }}</textarea>
-                    </div>  --}}
 
                     {{-- Meta Title --}}
                     <div class="form-group"> <label for="meta_title">Meta Title</label> <input type="text"
@@ -81,10 +68,10 @@
                     </div>
                     {{-- Meta Description --}}
                     <div class="form-group"> <label for="meta_description">Meta Description</label>
-                        <textarea name="meta_description" id="meta_description" class="form-control" rows="4" maxlength="160"
+                        <textarea name="meta_description" id="meta_description" class="form-control" rows="4" maxlength="170"
                             placeholder="Enter meta description">{{ old('meta_description', $seo->meta_description) }}</textarea>
                         <small id="meta_description_counter" class="form-text text-muted"> 0 /
-                            160 characters </small>
+                            170 characters </small>
                     </div>
 
                     <div class="form-group py-2">
@@ -131,7 +118,7 @@
                     counter.textContent += ' — Over recommended limit';
                 } else if (label === 'description' && length > 0 && length < min) {
                     counter.classList.add('text-muted');
-                    counter.textContent += ' — Recommended: 150–160 characters';
+                    counter.textContent += ' — Recommended: 150–170 characters';
                 } else {
                     counter.classList.add('text-success');
                 }
@@ -146,7 +133,7 @@
                     metaDescription,
                     descriptionCounter,
                     150,
-                    160,
+                    170,
                     'description'
                 );
             }
