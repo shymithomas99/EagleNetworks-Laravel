@@ -50,21 +50,12 @@ Route::get('/insights/{blog:slug}', [InsightsController::class, 'show'])
 Route::get('/author/{author:slug}', [InsightsController::class, 'author'])
     ->name('insights.author');
 
-// Route::get('/privacy-policy', function () {
-//     return view('client.privacy-policy');
-// });
-
-
 Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])
     ->name('privacy-policy');
 
 Route::get('/sitemap', function () {
     return view('client.sitemap');
 });
-
-// Route::get('/terms', function () {
-//     return view('client.terms');
-// });
 
 Route::get('/terms', [HomeController::class, 'terms'])
     ->name('terms');
@@ -81,20 +72,7 @@ Route::post('/newsletter-subscribe', [HomeController::class, 'newsletterSubscrib
 // Route::get('/unsubscribe/{id}', [HomeController::class, 'unsubscribeNewsletter'])
 //     ->name('newsletter.unsubscribe');
 
-
 // Route::get('/sitemap.xml', [SitemapController::class, 'index']);
-
-// use Illuminate\Support\Facades\Artisan;
-
-// Route::get('/generate-app-key', function () {
-//     Artisan::call('key:generate', [
-//         '--force' => true,
-//     ]);
-
-//     return 'Application key generated successfully.';
-// });
-
-
 
 // Route::get('/generate-sitemap', function () {
 //     Artisan::call('sitemap:generate');
